@@ -1,0 +1,6 @@
+[
+  {
+    "scope": "single budget-limited public web research",
+    "text": "{\"report_date\": \"2026-10-30\", \"status\": \"Budget-limited monitoring run\", \"headline\": \"Evidence-based summary\", \"today_findings\": [], \"retail_observations\": [], \"unverified_leads\": [], \"older_leads\": [], \"coverage\": [{\"platform\": \"Reddit / YouTube / social / forums / retailers\", \"summary\": \"Bounded public search\", \"checked\": true}], \"visibility_gaps\": [\"Budget-limited public-index coverage, not exhaustive\"], \"methodology\": \"Original URLs and exact dates required\"} "
+  }
+]
