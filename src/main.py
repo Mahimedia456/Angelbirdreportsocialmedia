@@ -35,6 +35,13 @@ def main():
     else:
         report,sweeps=research_day(target)
     report=compile_history(report,ROOT)
+    # A previously saved model run counted unrelated Reddit platform news as an
+    # Angelbird mention. When relevance guardrails exclude all such candidates,
+    # replace the stale source-summary language with an accurate limited-coverage note.
+    if not report.today_findings and any('candidate items excluded' in gap for gap in report.visibility_gaps):
+        report.headline=(f'No directly evidenced new Angelbird brand mentions were retained for {target} '
+                         f'from this bounded research run. Previous dated findings are preserved below.')
+        report.status='Limited source coverage - relevance corrected'
     report.generated_at_pkt=now.strftime('%Y-%m-%d %H:%M PKT')
     dest=ROOT/'reports'/target[:4]/target[5:7]
     dest.mkdir(parents=True,exist_ok=True)
