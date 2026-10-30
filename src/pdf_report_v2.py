@@ -327,67 +327,91 @@ def footer(canvas,doc):
     canvas.drawRightString(PAGE_W-MARGIN,32,f'Page {doc.page}')
     canvas.restoreState()
 
+def platform_dossier(report):
+    # Every top-level platform KPI has its matching posts and source links below.
+    dated=list(report.today_findings)+list(report.historical_findings)
+    date_today=report.report_date
+    latest=platform_summary(report.today_findings)
+    previous=platform_summary(report.historical_findings)
+    undated=platform_summary(report.unverified_leads)
+    section=[]
+    for platform in PLATFORMS:
+        current=latest[platform]
+        old=previous[platform]
+        leads=undated[platform]
+        all_posts=current+old
+        if platform=='Retailers':
+            listings=list(report.retail_observations)+list(report.historical_retail)
+            section.extend([Spacer(1,13),band('Retailers | observed product and offer listings',
+                                              str(len(listings))+' offers / price records'),Spacer(1,8),
+                            P('Retailer figures are price snapshots, not social posts or engagement metrics.','small')])
+            for i,item in enumerate(report.retail_observations,1):
+                section.extend([Spacer(1,6),P('LATEST PRICE CHECK | '+date_today,'caption')])
+                section.extend(simple_card(item,i))
+            for i,item in enumerate(report.historical_retail,1):
+                section.extend([Spacer(1,6),P('HISTORICAL PRICE SNAPSHOT | '+str(item.published_date or 'date uncertain'),'caption')])
+                section.extend(simple_card(item,i))
+            for i,item in enumerate(leads,1):
+                section.extend([Spacer(1,6),P('RETAIL SOURCE LEAD | unverified date','caption')])
+                section.extend(finding_card(item,'R-U'+str(i)))
+            if not listings and not leads:
+                section.extend([P('No accessible dated product listing was retained for this reporting window.','small'),Spacer(1,10)])
+            continue
+        section.extend([Spacer(1,15)]+platform_scorecard(platform,all_posts,
+                        'LATEST '+date_today+' + previous five days'))
+        section.extend([P('Verified source links shown below: '+str(len(all_posts))+'; '
+                          'new today: '+str(len(current))+'; previous five days: '+str(len(old))+'; '
+                          'undated leads: '+str(len(leads))+'.','small'),Spacer(1,8)])
+        if current:
+            section.extend([P('NEW POSTS | '+date_today,'caption'),Spacer(1,7)])
+            for i,item in enumerate(current,1):section.extend(finding_card(item,'N'+str(i)))
+        else:
+            section.extend([P('No independently date-verified new post for '+date_today+' in accessible sources.','micro'),Spacer(1,8)])
+        if old:
+            for i,item in enumerate(sorted(old,key=lambda x:x.published_date or '',reverse=True),1):
+                section.extend([P('PREVIOUS POST | '+(item.published_date or 'date not verified'),'caption'),Spacer(1,5)])
+                section.extend(finding_card(item,'H'+str(i)))
+        if leads:
+            section.extend([P('UNVERIFIED LEADS | Not included in observed post KPIs','caption'),Spacer(1,7)])
+            for i,item in enumerate(leads,1):section.extend(finding_card(item,'U'+str(i)))
+    return section
+
 def render_pdf(report,path):
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
     doc=SimpleDocTemplate(str(path),pagesize=A4,topMargin=34,bottomMargin=60,leftMargin=MARGIN,rightMargin=MARGIN,
         title=f'Angelbird Social Monitoring {report.report_date}',author='Angelbird Social Monitoring')
+    current=list(report.today_findings)
+    previous=list(report.historical_findings)
+    all_dated=current+previous
     story=summary_header(report)
-    all_dated=list(report.today_findings)+list(report.historical_findings)
     story.extend([Spacer(1,12)])
     story.extend(engagement_overview(all_dated))
-    story.extend([band('Latest day | '+report.report_date,
-                       str(len(report.today_findings))+' independently dated brand mention(s)'),Spacer(1,8)])
-    if report.today_findings:
-        story.extend(source_sections(report.today_findings,'N',report.report_date))
-    else:
-        story.extend([P('No original dated Angelbird post was verified from the accessible sources for this day; search coverage is limited.','small'),Spacer(1,10)])
-    if report.retail_observations:
-        story.extend([Spacer(1,9),band('Retail / price observations | '+report.report_date,
-                         str(len(report.retail_observations))+' public listing(s), not new social posts'),Spacer(1,8)])
-        for i,item in enumerate(report.retail_observations,1):story.extend(simple_card(item,i))
-    if report.unverified_leads:
-        story.extend([Spacer(1,10),band('Undated public leads | date unverified',
-                                      str(len(report.unverified_leads))+' candidate(s), excluded from new KPIs'),Spacer(1,8)])
-        for platform in PLATFORMS:
-            leads=platform_summary(report.unverified_leads)[platform]
-            if not leads:continue
-            story.extend([Spacer(1,6),band(platform+' | needs date verification',str(len(leads))+' lead(s)'),Spacer(1,7)])
-            for i,item in enumerate(leads,1):story.extend(finding_card(item,'U-'+str(i)))
-    story.extend([Spacer(1,12),band('Previous five calendar days | '+(report.report_period_start or '')+' to prior day'),
-                  Spacer(1,7),P('Previous findings are sorted by original post date. They do not add to the latest-day new-post count.','small')])
-    grouped=defaultdict(list)
-    for item in report.historical_findings:grouped[item.published_date].append(item)
-    for offset in range(1,6):
-        day=(date.fromisoformat(report.report_date)-timedelta(days=offset)).isoformat()
-        records=grouped.get(day,[])
-        story.extend([Spacer(1,11),band(day,str(len(records))+' saved source finding(s)'),Spacer(1,7)])
-        if records:story.extend(source_sections(records,'H'+day[-2:],day))
-        else:story.extend([P('No original dated entry saved for this day. Missing entries do not mean zero platform activity.','small'),Spacer(1,7)])
-    if report.historical_retail:
-        story.extend([Spacer(1,12),band('Historical retailer observations','Prices are snapshots, not current offers'),Spacer(1,8)])
-        for i,item in enumerate(report.historical_retail,1):story.extend(simple_card(item,i))
+    story.extend([Spacer(1,7),P('Every platform listed in the analytics table has a matching source-detail section below. '
+                    'Platform totals include current and five previous dates; post cards show the exact original date.','small')])
+    story.extend([Spacer(1,10),band('Platform by platform | analytics + posts + original media'),Spacer(1,9)])
+    story.extend(platform_dossier(report))
     if report.older_leads:
-        story.extend([Spacer(1,9),band('Historical response watchlist','Do not count again as new'),Spacer(1,8)])
+        story.extend([Spacer(1,10),band('Historical response watchlist | older dated sources'),Spacer(1,9)])
         for i,item in enumerate(report.older_leads,1):story.extend(finding_card(item,'W'+str(i)))
-    story.extend([Spacer(1,12),band('Source coverage | searched vs verified'),Spacer(1,8)])
+    story.extend([Spacer(1,12),band('Daily source coverage | actual checks and limitations'),Spacer(1,9)])
     if report.coverage:
         for c in report.coverage:
-            status='SOURCE CHECKED' if c.checked else 'INDEX ONLY / NOT VERIFIED'
+            status='ORIGINAL / PROVIDER CHECK' if c.checked else 'INDEX ONLY / NOT VERIFIED'
             story.extend([P(status+' | '+c.platform+': '+c.summary,'small'),Spacer(1,5)])
-    else:story.append(P('No platform-specific search evidence logged. Treat this report as incomplete.','small'))
+    else:story.append(P('No platform-specific source access log. The report is incomplete.','small'))
     if report.visibility_gaps:
-        story.extend([Spacer(1,7),P('Visibility limitations: '+'; '.join(report.visibility_gaps[:12]),'micro')])
+        story.extend([Spacer(1,7),P('Source limits: '+'; '.join(report.visibility_gaps[:12]),'micro')])
     counts=Counter(item.sentiment for item in all_dated)
     actions=[item for item in all_dated if item.priority in ('Urgent','High','Medium')
              and 'required' in (item.response_action or '').lower()]
-    story.extend([Spacer(1,14),band('Overall feedback | source-grounded'),Spacer(1,9),
-       panel([P(f'{len(report.today_findings)} new verified Angelbird mention(s) on {report.report_date}; '
-                f'{len(report.historical_findings)} older records from five prior days.','small'),
-              Spacer(1,6),P(f'Sentiment across dated findings: {counts["Positive"]} positive, '
+    story.extend([Spacer(1,13),band('Overall source-grounded feedback'),Spacer(1,9),
+       panel([P(f'{len(current)} new dated source(s) on {report.report_date}; '
+                f'{len(previous)} historical dated source(s) in the previous five calendar days.','small'),
+              Spacer(1,6),P(f'Sentiment across dated sources: {counts["Positive"]} positive, '
                 f'{counts["Neutral"]} neutral, {counts["Negative"]} negative, '
                 f'{counts["Question"]} questions.','small'),
-              Spacer(1,6),P(f'{len(actions)} actionable dated responses identified. '
-                'Retail market observations and unverified leads are outside the social KPI.','small')],bg=GREY),
-       Spacer(1,9),P(traffic_disclaimer(),'micro'),
-       Spacer(1,5),P('Original URLs, media credits, source-date evidence and attribution are displayed within the corresponding platform cards.','micro')])
+              Spacer(1,6),P(f'{len(actions)} response-action sources. '
+                'Undated posts and price listings are outside the verified post count.','small')],bg=GREY),
+       Spacer(1,10),P(traffic_disclaimer(),'micro'),
+       Spacer(1,5),P('Source URLs, original publication dates, named authors, image provenance and public comments are included where observed.','micro')])
     doc.build(story,onFirstPage=footer,onLaterPages=footer)
