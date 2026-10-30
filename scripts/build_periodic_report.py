@@ -40,6 +40,34 @@ def main():
                 key=(item.url.strip().lower().rstrip('/'), 'offer' if target is offers else 'lead' if target is leads else 'finding')
                 if key in seen:continue
                 seen.add(key);target.append(item)
+    # Recover original dated historical evidence that is not in the daily collector archive.
+    # Keep reference-sourced records identifiable and do not promote them to API-verified.
+    from src.schema import Finding
+    archived=0
+    for archive_path in sorted((ROOT/'data').glob('reference_*.json')):
+        try:archive=json.loads(archive_path.read_text(encoding='utf-8'))
+        except (OSError,ValueError):continue
+        for raw in archive.get('findings',[]):
+            if not isinstance(raw,dict):continue
+            stamp=raw.get('published_date')
+            try:valid=start<=date.fromisoformat(str(stamp))<=end
+            except (ValueError,TypeError):valid=False
+            if not valid or not raw.get('date_evidence'):continue
+            try:item=Finding.model_validate(dict(raw,status='older'))
+            except Exception:continue
+            key=(item.url.strip().lower().rstrip('/'),'finding')
+            if key in seen:continue
+            seen.add(key);gathered.append(item);archived+=1
+        for raw in archive.get('retail_observations',[]):
+            if not isinstance(raw,dict):continue
+            stamp=raw.get('reference_date') or raw.get('published_date')
+            try:valid=start<=date.fromisoformat(str(stamp))<=end
+            except (ValueError,TypeError):valid=False
+            if not valid:continue
+            try:item=Finding.model_validate(dict(raw,status='retail'))
+            except Exception:continue
+            key=(item.url.strip().lower().rstrip('/'),'offer')
+            if key not in seen:seen.add(key);offers.append(item)
     gathered.sort(key=lambda x:x.published_date or '',reverse=True)
     grouped=platform_summary(gathered);unverified=platform_summary(leads)
     output=ROOT/'reports'/str(end.year)/f'{end.month:02d}'/f'{brand}-Social-Monitoring-{args.period.title()}-{start}_to_{end}.pdf'
@@ -48,6 +76,7 @@ def main():
     story=[pdf.band(brand.upper()+' | '+args.period.upper()+' SOCIAL MONITORING',f'{start} TO {end}'),
            Spacer(1,9),pdf.P(f'Saved daily research snapshots: {len(saved)} of {(end-start).days+1}. Missing days are incomplete coverage, NOT zero activity.','small'),
            Spacer(1,8)]
+    story.extend([pdf.P(f'Direct collector records: {len(gathered)-archived}; archived dated records: {archived}. Archive provenance is separately labeled, and older linked sources are not newly verified by this run.','small'),Spacer(1,8)])
     story.extend(pdf.engagement_overview(gathered))
     types=Counter(content_type(x) for x in gathered)
     story.extend([Spacer(1,8),pdf.P('CONTENT TYPES | '+', '.join(f'{k}: {types.get(k,0)}' for k in ('post','story','reel','tagged_post','mention','comment','video','article')),'small'),
@@ -79,7 +108,7 @@ def main():
         story.extend([pdf.P(item.title,'small'),pdf.link(item.url,'RETAIL SOURCE'),Spacer(1,5)])
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
-            'snapshots':len(saved),'dated_findings':len(gathered),'unverified_leads':len(leads),
+            'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
             'platform_counts':{p:len(grouped[p]) for p in PLATFORMS}}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
