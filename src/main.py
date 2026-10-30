@@ -23,6 +23,8 @@ def main():
     json_path=data/(base+'.json')
     sweeps=[]
     engine=os.getenv('RESEARCH_ENGINE','python').strip().lower()
+    if os.getenv('FREE_SOURCES_ONLY','').strip().lower() in ('true','1','yes') and engine=='openai' and not render_only and not dry:
+        raise RuntimeError('FREE_SOURCES_ONLY forbids paid OpenAI API calls; use RESEARCH_ENGINE=python')
     if render_only:
         if not json_path.exists():
             raise FileNotFoundError('No saved research JSON for '+target+'. Render-only does not call the API.')
