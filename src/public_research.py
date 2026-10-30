@@ -243,6 +243,33 @@ class PublicResearch:
                            'index':'Brave' if key else 'Bing RSS'})
         self.counts[group+'.queries']+=1
 
+    def known_sources(self):
+        """Revisit supplied original post URLs even if public search indexes miss them."""
+        path=ROOT/'data'/'reference_history_2026_10_29.json'
+        if path.is_file():
+            try:
+                entries=json.loads(path.read_text(encoding='utf-8')).get('findings',[])
+                for item in entries:
+                    url=item.get('url','')
+                    group=source_group(url,'Industry articles')
+                    if group in GROUPS and matches_source_domain(group,url):
+                        self.add({'url':url,'title':item.get('title',''),
+                                  'snippet':item.get('source_excerpt') or item.get('summary','')},
+                                  group,'User-provided original reference URL')
+            except (OSError,ValueError):pass
+        extra=ROOT/'data'/'monitored_urls.json'
+        if extra.is_file():
+            try:
+                for item in json.loads(extra.read_text(encoding='utf-8')):
+                    if not isinstance(item,dict):continue
+                    url=item.get('url','')
+                    group=item.get('platform') or source_group(url,'Industry articles')
+                    if group in GROUPS and matches_source_domain(group,url):
+                        self.add({'url':url,'title':item.get('title','Angelbird source'),
+                                  'snippet':item.get('description','Angelbird post')},
+                                 group,'Curated original URL')
+            except (OSError,ValueError):pass
+
     def search(self):
         for group,queries in GROUPS.items():
             for template in queries:
@@ -262,6 +289,7 @@ class PublicResearch:
                                   'snippet':item.findtext('description')},'Industry articles','Google News RSS')
                 except ElementTree.ParseError:self.gaps.append('Google News feed parsing failed')
             else:self.gaps.append('Google News index: '+state)
+        self.known_sources()
         return len(self.candidates)
 
     def youtube(self):
@@ -542,14 +570,19 @@ class PublicResearch:
             failed=self.counts[group+'.fetch_failed']
             success=self.counts[group+'.successful_queries']
             coverage.append(Coverage(platform=group,
-                checked=bool(success or api),
+                checked=bool(attempted or api),
                 summary=(f'{q} indexed query attempt(s), {success} index response(s), '
                          f'{attempted} original source fetch(es), {failed} inaccessible; '
                          f'{verified_count} exact-day source-verified mention(s). '
                          'A blocked index or missing official API is not a negative search result.')))
-        headline=(f'{len(verified)} direct Angelbird mention(s) independently dated {self.date} '
-                 f'from accessible public sources. Source coverage and access limitations follow.')
-        report=ResearchReport(report_date=self.date,status='Python public-source monitoring',
+        headline=(f'{len(verified)} directly dated Angelbird mention(s) established for {self.date} '
+                 f'from {self.fetched} first-party page attempts; previous five days are listed separately.')
+        status='Python public-source monitoring'
+        if not self.fetched and not self.counts['YouTube.api_searches'] and not self.counts['Reddit.api_posts']:
+            status='INCOMPLETE - No original source pages checked'
+            headline='Search indexes returned no usable original sources. The 30 October activity level is unknown, not confirmed zero.'
+            self.gaps.append('No source-page evidence could be checked with current index/API access. Configure provider credentials.')
+        report=ResearchReport(report_date=self.date,status=status,
             headline=headline,today_findings=verified,unverified_leads=self.unverified[:15],
             older_leads=self.older[:20],retail_observations=self.retail[:15],coverage=coverage,
             visibility_gaps=self.gaps+[
