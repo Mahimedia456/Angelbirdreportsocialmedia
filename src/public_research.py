@@ -26,6 +26,7 @@ PRICE=re.compile(r'(?:USD|EUR|GBP|CAD|PKR|INR|[$€£₹])\s?\d[\d,.]*',re.I)
 PRODUCT=re.compile(r'(Angelbird\s+.{0,45}?(?:CFexpress|microSD|SD\s*card|card reader|SSD|AV\s*PRO)|AV\s*PRO[^.,;\n]{0,60})',re.I)
 DOMAINS={'reddit.com':'Reddit','youtube.com':'YouTube','youtu.be':'YouTube',
  'facebook.com':'Facebook','instagram.com':'Instagram','linkedin.com':'LinkedIn',
+ 'x.com':'X / Twitter','twitter.com':'X / Twitter',
  'dpreview.com':'Camera forums','eoshd.com':'Camera forums','newsshooter.com':'Industry articles',
  'cined.com':'Industry articles','petapixel.com':'Industry articles',
  'bhphotovideo.com':'Retailers','adorama.com':'Retailers','cvp.com':'Retailers'}
@@ -35,6 +36,7 @@ GROUPS={
  'Facebook':['site:facebook.com "Angelbird" {date}'],
  'Instagram':['site:instagram.com "Angelbird" {date}'],
  'LinkedIn':['site:linkedin.com/posts "Angelbird" {date}'],
+ 'X / Twitter':['site:x.com "Angelbird" {date}'],
  'Camera forums':['site:dpreview.com/forums "Angelbird" {month} {year}',
                   '"Angelbird" "CFexpress" camera forum {date}'],
  'Industry articles':['site:newsshooter.com "Angelbird" {month} {year}',
@@ -77,6 +79,7 @@ def matches_source_domain(group,url):
         'Facebook':('facebook.com','fb.watch'),
         'Instagram':('instagram.com'),
         'LinkedIn':('linkedin.com'),
+        'X / Twitter':('x.com','twitter.com'),
         'Camera forums':('dpreview.com','eoshd.com','reduser.net','bmcuser.com',
                          'forum.blackmagicdesign.com','nikonites.com','sonyalpha.blog'),
         'Retailers':('bhphotovideo.com','adorama.com','cvp.com','proav.co.uk',
@@ -371,6 +374,31 @@ class PublicResearch:
                         selected.append((vid,{'title':'Monitored Angelbird video','channelTitle':''},''))
             except (OSError,ValueError):
                 self.gaps.append('YouTube watchlist parsing failed')
+        # One batch videos.list request gives source-traceable public view/like/comment
+        # counts for all newly published video findings. No analytics permissions needed.
+        discovered=[x[0] for x in selected if x[0]]
+        if discovered:
+            stats_response,stats_status=self.get('https://www.googleapis.com/youtube/v3/videos',
+                params={'part':'statistics','id':','.join(dict.fromkeys(discovered[:25])),
+                        'key':key})
+            if stats_response:
+                self.counts['YouTube.statistics_calls']+=1
+                try:
+                    for obj in stats_response.json().get('items',[]):
+                        video_url='https://www.youtube.com/watch?v='+str(obj.get('id',''))
+                        record=next((f for f in self.findings if f.url==video_url),None)
+                        if record is None:continue
+                        stats=obj.get('statistics') or {}
+                        for response_key,metric_name in (('viewCount','views'),
+                                                         ('likeCount','likes'),
+                                                         ('commentCount','comments')):
+                            value=stats.get(response_key)
+                            if str(value or '').isdigit():
+                                record.engagement[metric_name]=int(value)
+                        record.engagement_source='YouTube Data API videos.list statistics'
+                except (ValueError,TypeError,AttributeError):
+                    self.gaps.append('YouTube public video statistics could not be parsed')
+            else:self.gaps.append('YouTube statistics endpoint: '+stats_status)
         for vid,sn,thumb in selected[:max_videos]:
             url=f'https://www.youtube.com/watch?v={vid}'
             parent=next((x for x in self.findings if x.url==url),None)
