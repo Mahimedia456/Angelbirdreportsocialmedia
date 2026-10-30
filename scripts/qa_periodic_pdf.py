@@ -46,7 +46,9 @@ def main():
     if meta.get("dated_findings",0) and annotations==0:
         raise RuntimeError("Source detail links absent from PDF annotations")
     overview_index=normalized_text.find(normalized("EXECUTIVE KPI DASHBOARD"))
-    source_detail_index=normalized_text.find(normalized("FACEBOOK | SOURCE DETAILS"))
+    source_detail_index=normalized_text.find(normalized("FACEBOOK | SOURCE EVIDENCE"))
+    if source_detail_index<0:
+        source_detail_index=normalized_text.find(normalized("FACEBOOK | SOURCE DETAILS"))
     if source_detail_index<0 or overview_index>source_detail_index:
         raise RuntimeError("Executive KPI not before per-source detail sections")
     audit={
