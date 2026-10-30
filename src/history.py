@@ -7,8 +7,13 @@ from pathlib import Path
 from .schema import Finding, ResearchReport
 
 def _key(f: Finding):
-    # A Reddit thread can contain several separate comments, so author + excerpt matter.
-    return (f.url.rstrip('/').lower(), f.author.casefold().strip(), f.source_excerpt.casefold().strip()[:90])
+    # Editorial articles and product pages are one observation per canonical URL.
+    # Social threads can hold distinct comments from different authors.
+    url=f.url.split('#')[0].rstrip('/').lower()
+    host=(__import__('urllib.parse',fromlist=['urlparse']).urlparse(url).hostname or '').lower()
+    if not any(x in host for x in ('reddit.com','youtube.com','facebook.com','instagram.com','linkedin.com')):
+        return (url,'article')
+    return (url, f.author.casefold().strip(), f.source_excerpt.casefold().strip()[:90])
 
 def _older(f: Finding, target: str):
     """Only the five complete calendar days immediately before the report date."""
@@ -73,12 +78,20 @@ def compile_history(report: ResearchReport, root: Path):
             if f is not None and _older(f,target) and _relevant(f):
                 f.status='older';watch.append(f)
     def unique(items):
-        seen=set(); out=[]
+        seen={}; out=[]
         for f in sorted(items,key=lambda x:x.published_date or '',reverse=True):
             if not _older(f,target):continue
             key=_key(f)
-            if key in seen:continue
-            seen.add(key);out.append(f)
+            if key in seen:
+                previous=seen[key]
+                # Preserve strongest reference details and actually downloaded photos.
+                if not previous.image_files and f.image_files: previous.image_files=f.image_files
+                if not previous.engagement and f.engagement: previous.engagement=f.engagement
+                if not previous.comments and f.comments: previous.comments=f.comments
+                if not previous.impact and f.impact: previous.impact=f.impact
+                if not previous.source_excerpt and f.source_excerpt: previous.source_excerpt=f.source_excerpt
+                continue
+            seen[key]=f;out.append(f)
         return out
     report.historical_findings=unique(historic)
     report.historical_retail=unique(retail)
