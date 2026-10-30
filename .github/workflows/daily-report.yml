@@ -1,5 +1,9 @@
 name: Angelbird Daily Social Monitoring
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'config/run_public_research_2026_10_30.run'
   schedule:
     - cron: '0 14 * * *' # UTC; 19:00 Pakistan time, reports today's partial-day snapshot
   workflow_dispatch:
