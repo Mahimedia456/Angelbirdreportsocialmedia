@@ -7,3 +7,5 @@ Regenerate platform-by-platform PDF with sourced public metrics, YouTube count f
 2026-10-30 actual additions: source-dated Yajmin Angelbird CFast roundup, ratioDB, Geizhals, billigxxl price snapshots, credited original product photos, explicit URLs. Zero paid research API; render-only from sourced JSON.
 
 Final sourced retail dates, photo attribution and low-priority undated retailer leads; regenerate PDF-only with no GPT call.
+
+Platform-first PDF acceptance run: Facebook 3 posts directly below Facebook KPI, LinkedIn 1, Reddit 1, YouTube 1, articles and retailers with their links. No paid GPT API calls.
