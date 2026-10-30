@@ -1,8 +1,8 @@
 {
   "report_date": "2026-10-30",
   "generated_at_pkt": "2026-10-30 15:44 PKT",
-  "status": "Limited source coverage - relevance corrected",
-  "headline": "No directly evidenced new Angelbird brand mentions were retained for 2026-10-30 from this bounded research run. Previous dated findings are preserved below.",
+  "status": "Actual source review | Limited indexed coverage",
+  "headline": "30 October: No direct, independently date-verified Angelbird mention confirmed in this limited public-index review. Six prior dated entries from 27-29 October are shown below.",
   "today_findings": [],
   "retail_observations": [],
   "unverified_leads": [],
@@ -207,9 +207,38 @@
   ],
   "report_period_start": "2026-10-25",
   "report_period_end": "2026-10-30",
-  "coverage": [],
-  "visibility_gaps": [
-    "1 candidate items excluded: no direct Angelbird mention in original-source excerpt."
+  "coverage": [
+    {
+      "platform": "Reddit (public search index)",
+      "summary": "Searched 30 October Angelbird-related Reddit post/comment queries; no original permalink with independently verified 30 October Angelbird mention was established.",
+      "checked": true
+    },
+    {
+      "platform": "YouTube (public search index)",
+      "summary": "Searched 30 October Angelbird videos and public indexed descriptions/comments; no independently dated new Angelbird mention confirmed. Unindexed comments are not covered.",
+      "checked": true
+    },
+    {
+      "platform": "Facebook / Instagram / LinkedIn (public index)",
+      "summary": "Searched indexed public post references for 30 October; no exact-date Angelbird post verified. Login-only content and private groups were not accessible.",
+      "checked": true
+    },
+    {
+      "platform": "Camera forums and editorial",
+      "summary": "Checked dated Angelbird queries and the Newsshooter Angelbird archive; its visible tagged content was older, with no independently verified 30 October Angelbird article.",
+      "checked": true
+    },
+    {
+      "platform": "Retailers",
+      "summary": "Checked publicly indexed Angelbird listings and offers; a delivery date or current price is not a publication date, so no new 30 October promotion was counted.",
+      "checked": true
+    }
   ],
-  "methodology": "Conducted searches on Reddit, YouTube, camera forums, indexed social media accounts, news outlets, and retailer websites for mentions of Angelbird products and related topics."
+  "visibility_gaps": [
+    "API research response contained one unrelated Reddit platform-news article, excluded from brand counts.",
+    "API usage reported only one web-search event; separate public-index checks were limited and cannot establish platform-wide absence.",
+    "Facebook private groups, Instagram restricted posts and unindexed YouTube comments were not examined.",
+    "25 and 26 October have no saved historical dated mentions in the supplied reference archive; this is not a claim of no online activity."
+  ],
+  "methodology": "Actual GPT-4.1 mini research run on 30 Oct (one recorded web search call) plus additional public-index checks of Reddit, YouTube, public social results, camera editorial and retailers. A new mention requires original Angelbird source text, a traceable original URL and exact-day date evidence. 25-29 Oct entries are historical reference findings, not newly rediscovered or counted as 30 Oct activity."
 }
