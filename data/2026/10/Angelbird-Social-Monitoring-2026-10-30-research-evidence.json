@@ -55,7 +55,7 @@
         "group": "Camera forums",
         "stage": "search",
         "query": "site:dpreview.com/forums \"Angelbird\" October 2026",
-        "results": 1,
+        "results": 10,
         "index": "Bing RSS"
       },
       {
@@ -90,7 +90,7 @@
         "group": "Retailers",
         "stage": "search",
         "query": "site:bhphotovideo.com \"Angelbird\" AV PRO October 2026",
-        "results": 3,
+        "results": 10,
         "index": "Bing RSS"
       },
       {
@@ -99,38 +99,113 @@
         "query": "site:cvp.com \"Angelbird\" CFexpress October 2026",
         "results": 10,
         "index": "Bing RSS"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.angelbird.com/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Reddit",
+        "url": "https://www.angelbird.com/",
+        "source_date": "",
+        "title": "Memory cards, SSDs, SD cards & more | Angelbird"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.angelbird.com/category/memory-cards-29/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/category/memory-cards-29/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Reddit",
+        "url": "https://www.angelbird.com/category/memory-cards-29/",
+        "source_date": "",
+        "title": "Memory cards"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.bhphotovideo.com/c/browse/angelbird/ci/51210",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.amazon.com/stores/Angelbird/page/A9F8DA27-FB8A-490D-82A0-B098DD679ADB",
+        "result": "OK",
+        "final_url": "https://www.amazon.com/stores/Angelbird/page/A9F8DA27-FB8A-490D-82A0-B098DD679ADB"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.amazon.com/angelbird/s?k=angelbird",
+        "result": "OK",
+        "final_url": "https://www.amazon.com/angelbird/s?k=angelbird"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Reddit",
+        "url": "https://www.amazon.com/angelbird/s?k=angelbird",
+        "source_date": "",
+        "title": "1-16 of 90 results for \"angelbird\" Sort by: Featured Price: Low to High Price: High to Low Avg. Customer Review Newest Arrivals Best Sellers"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.angelbird.com/our-story/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/our-story/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Reddit",
+        "url": "https://www.angelbird.com/our-story/",
+        "source_date": "",
+        "title": "Storage media that unlocks your creative freedom"
       }
     ],
     "counts": {
-      "Reddit.irrelevant_index_hits": 20,
+      "Reddit.candidates": 10,
       "Reddit.successful_queries": 2,
       "Reddit.queries": 2,
-      "YouTube.irrelevant_index_hits": 20,
+      "Reddit.fallback_attempts": 1,
       "YouTube.successful_queries": 2,
+      "YouTube.fallback_attempts": 1,
       "YouTube.queries": 2,
-      "Facebook.irrelevant_index_hits": 10,
       "Facebook.successful_queries": 1,
+      "Facebook.fallback_attempts": 1,
       "Facebook.queries": 1,
-      "Instagram.irrelevant_index_hits": 10,
       "Instagram.successful_queries": 1,
+      "Instagram.fallback_attempts": 1,
       "Instagram.queries": 1,
-      "LinkedIn.irrelevant_index_hits": 10,
       "LinkedIn.successful_queries": 1,
+      "LinkedIn.fallback_attempts": 1,
       "LinkedIn.queries": 1,
-      "Camera forums.irrelevant_index_hits": 11,
       "Camera forums.successful_queries": 2,
+      "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 2,
-      "Industry articles.irrelevant_index_hits": 30,
       "Industry articles.successful_queries": 3,
+      "Industry articles.fallback_attempts": 1,
       "Industry articles.queries": 3,
-      "Retailers.irrelevant_index_hits": 13,
       "Retailers.successful_queries": 2,
-      "Retailers.queries": 2
+      "Retailers.fallback_attempts": 1,
+      "Retailers.queries": 2,
+      "Reddit.source_attempts": 6,
+      "Reddit.not_dated_today": 4,
+      "Reddit.fetch_failed": 1,
+      "Reddit.no_brand_original": 1
     },
     "search_queries": 15,
-    "original_pages_attempted": 0,
+    "original_pages_attempted": 6,
     "cached_images": 0,
-    "undated_brand_sources": 0,
+    "undated_brand_sources": 4,
     "previous_five_day_brand_sources": 0
   },
   {
