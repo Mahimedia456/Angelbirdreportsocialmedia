@@ -270,18 +270,24 @@ class PublicResearch:
 
     def known_sources(self):
         """Revisit supplied original post URLs even if public search indexes miss them."""
-        path=ROOT/'data'/'reference_history_2026_10_29.json'
-        if path.is_file():
+        # Scan all dated evidence archives instead of a single hardcoded archive date.
+        # Historical URLs are discovery candidates only; original page must
+        # still pass dated source verification for today's KPI.
+        archive_paths=sorted((ROOT/'data').glob('reference_*.json'))
+        social_audit=ROOT/'data'/'cross_platform_oct_2026_audit.json'
+        if social_audit.exists():archive_paths.append(social_audit)
+        for path in archive_paths:
             try:
-                entries=json.loads(path.read_text(encoding='utf-8')).get('findings',[])
-                for item in entries:
+                archive=json.loads(path.read_text(encoding='utf-8'))
+                for item in archive.get('findings',[])+archive.get('leads',[]):
+                    if not isinstance(item,dict):continue
                     url=item.get('url','')
                     group=source_group(url,'Industry articles')
                     if group in GROUPS and matches_source_domain(group,url):
                         self.add({'url':url,'title':item.get('title',''),
                                   'snippet':item.get('source_excerpt') or item.get('summary','')},
-                                  group,'User-provided original reference URL')
-            except (OSError,ValueError):pass
+                                 group,'Archived original URL recheck')
+            except (OSError,ValueError,TypeError):pass
         extra=ROOT/'data'/'monitored_urls.json'
         if extra.is_file():
             try:
