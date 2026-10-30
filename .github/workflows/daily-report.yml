@@ -22,13 +22,19 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 45
     env:
       PYTHONUNBUFFERED: '1'
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      OPENAI_MODEL: 'gpt-4.1-mini'
-      MAX_WEB_CALLS: '2'
-      FORCE_RESEARCH: 'false'
+      RESEARCH_ENGINE: 'python'
+      BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+      REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+      REDDIT_USER_AGENT: ${{ vars.REDDIT_USER_AGENT }}
+      MAX_SEARCH_QUERIES: '18'
+      MAX_SOURCE_PAGES: '35'
+      MAX_SOURCE_IMAGES: '12'
+      MAX_HISTORICAL_IMAGES: '5'
       REPORT_DATE: ${{ inputs.report_date }}
       DRY_RUN: ${{ inputs.dry_run }}
     steps:
@@ -42,14 +48,14 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Validate and test
         run: python -m unittest discover -s tests -v
-      - name: Research and render
+      - name: Collect actual public posts, comments, images and render PDF
         run: python -m src.main
       - name: Save dated reports to GitHub
         if: success()
         run: |
           git config user.name 'angelbird-report-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/ data/ || true
+          git add reports/ data/ assets/ || true
           if ! git diff --cached --quiet; then
             git commit -m "Angelbird daily monitoring ${REPORT_DATE:-PKT-today}"
             git pull --rebase origin "${GITHUB_REF_NAME}"
@@ -63,4 +69,5 @@ jobs:
           path: |
             data/
             reports/
+            assets/
           if-no-files-found: ignore
