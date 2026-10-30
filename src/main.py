@@ -8,6 +8,7 @@ from .public_research import collect_day,cache_historical_images
 from .history import compile_history
 from .chatgpt_import import import_chatgpt_evidence
 from .paid_gpt import supplement as paid_supplement, merge as merge_paid
+from .scheduled_research import research_sweeps
 from .pdf_report_v2 import render_pdf
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -44,12 +45,18 @@ def main():
     if import_audit['found']:
         sweeps.append({'scope':'ChatGPT web research JSON import','data':import_audit})
     if not render_only and not dry and os.getenv('GPT_RESEARCH_ENABLED','false').lower() in ('1','true','yes'):
-        print('Optional paid GPT research: one request, maximum two web searches per date.',flush=True)
-        paid_report, paid_audit=paid_supplement(target, report)
-        report, paid_added=merge_paid(report,paid_report)
-        sweeps.append({'scope':'Paid GPT bounded supplement','data':dict(paid_audit,merged=paid_added)})
-        if paid_report is None:
-            report.visibility_gaps.append('Optional paid GPT supplement unavailable: see GPT attempt diagnostics; free findings preserved.')
+        if os.getenv('GPT_PLATFORM_SWEEPS','false').lower() in ('1','true','yes'):
+            print('Scheduled GPT platform research: social, community, editorial; max 3 mini-model requests, up to 2 web calls each.',flush=True)
+            report,platform_audit=research_sweeps(target,report,ROOT)
+            sweeps.append({'scope':'Scheduled platform-specific GPT web research',
+                           'data':platform_audit})
+        else:
+            print('Legacy bounded GPT research: one request, maximum two web searches.',flush=True)
+            paid_report, paid_audit=paid_supplement(target, report)
+            report, paid_added=merge_paid(report,paid_report)
+            sweeps.append({'scope':'Paid GPT bounded supplement','data':dict(paid_audit,merged=paid_added)})
+            if paid_report is None:
+                report.visibility_gaps.append('GPT supplement unavailable; see research attempt diagnostics. Free findings preserved.')
     report=compile_history(report,ROOT)
     fetch_images=os.getenv('FETCH_EVIDENCE_IMAGES','').lower() in ('1','true','yes')
     if not dry and engine=='python' and (not render_only or fetch_images):
