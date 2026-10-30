@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 from .schema import ResearchReport,Coverage
 from .public_research import collect_day,cache_historical_images
 from .report_scope import scope_to_day
+from .story_watchlist import include_watchlist
 from .chatgpt_import import import_chatgpt_evidence
 from .paid_gpt import supplement as paid_supplement, merge as merge_paid
 from .scheduled_research import research_sweeps
@@ -62,6 +63,9 @@ def main():
             if paid_report is None:
                 report.visibility_gaps.append('GPT supplement unavailable; see research attempt diagnostics. Free findings preserved.')
     report=scope_to_day(report)
+    report,story_leads_added=include_watchlist(report,ROOT)
+    if story_leads_added:
+        print(f'Linked {story_leads_added} source-supplied Instagram story URLs as UNVERIFIED leads; no post or reach claims.',flush=True)
     fetch_images=os.getenv('FETCH_EVIDENCE_IMAGES','').lower() in ('1','true','yes')
     if not dry and engine=='python' and (not render_only or fetch_images):
         image_audit=cache_historical_images(report)
