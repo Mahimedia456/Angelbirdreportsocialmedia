@@ -27,21 +27,21 @@
         "group": "YouTube",
         "stage": "search",
         "query": "site:youtube.com \"Angelbird\" October 2026",
-        "results": 5,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Facebook",
         "stage": "search",
         "query": "site:facebook.com \"Angelbird\" 2026-10-30",
-        "results": 5,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Instagram",
         "stage": "search",
         "query": "site:instagram.com \"Angelbird\" 2026-10-30",
-        "results": 1,
+        "results": 5,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -52,10 +52,17 @@
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:x.com \"Angelbird\" 2026-10-30",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
         "group": "Camera forums",
         "stage": "search",
         "query": "site:dpreview.com/forums \"Angelbird\" October 2026",
-        "results": 10,
+        "results": 7,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -83,7 +90,7 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "\"Angelbird\" camera review 2026-10-30",
-        "results": 5,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -171,20 +178,21 @@
     "counts": {
       "YouTube.api_searches": 1,
       "YouTube.verified": 1,
+      "YouTube.statistics_calls": 1,
       "YouTube.comments_calls": 1,
       "Reddit.wrong_source_domain": 20,
       "Reddit.successful_queries": 2,
       "Reddit.fallback_attempts": 1,
       "Reddit.queries": 2,
-      "YouTube.wrong_source_domain": 15,
+      "YouTube.wrong_source_domain": 20,
       "YouTube.successful_queries": 2,
       "YouTube.fallback_attempts": 1,
       "YouTube.queries": 2,
-      "Facebook.wrong_source_domain": 5,
+      "Facebook.wrong_source_domain": 10,
       "Facebook.successful_queries": 1,
       "Facebook.fallback_attempts": 1,
       "Facebook.queries": 1,
-      "Instagram.wrong_source_domain": 1,
+      "Instagram.wrong_source_domain": 5,
       "Instagram.successful_queries": 1,
       "Instagram.fallback_attempts": 1,
       "Instagram.queries": 1,
@@ -192,15 +200,18 @@
       "LinkedIn.successful_queries": 1,
       "LinkedIn.fallback_attempts": 1,
       "LinkedIn.queries": 1,
-      "Camera forums.wrong_source_domain": 20,
+      "X / Twitter.wrong_source_domain": 10,
+      "X / Twitter.successful_queries": 1,
+      "X / Twitter.fallback_attempts": 1,
+      "X / Twitter.queries": 1,
+      "Camera forums.wrong_source_domain": 17,
       "Camera forums.successful_queries": 2,
       "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 2,
-      "Industry articles.irrelevant_index_hits": 21,
+      "Industry articles.irrelevant_index_hits": 30,
       "Industry articles.successful_queries": 3,
       "Industry articles.fallback_attempts": 1,
       "Industry articles.queries": 3,
-      "Industry articles.wrong_source_domain": 4,
       "Retailers.wrong_source_domain": 20,
       "Retailers.successful_queries": 2,
       "Retailers.fallback_attempts": 1,
@@ -215,7 +226,7 @@
       "Industry articles.source_attempts": 1,
       "Industry articles.not_dated_today": 1
     },
-    "search_queries": 15,
+    "search_queries": 16,
     "original_pages_attempted": 6,
     "cached_images": 2,
     "undated_brand_sources": 0,

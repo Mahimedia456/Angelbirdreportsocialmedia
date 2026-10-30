@@ -1,6 +1,6 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 17:30 PKT",
+  "generated_at_pkt": "2026-10-30 17:32 PKT",
   "status": "Python public-source monitoring",
   "headline": "1 directly dated Angelbird mention(s) established for 2026-10-30 from 6 first-party page attempts; previous five days are listed separately.",
   "today_findings": [
@@ -23,9 +23,13 @@
       "impact": "Public brand or product mention; contextual relevance only.",
       "verification_note": "YouTube official API original video metadata",
       "reference_date": "",
-      "engagement_source": "",
+      "engagement_source": "YouTube Data API videos.list statistics",
       "publisher": "",
-      "engagement": {},
+      "engagement": {
+        "views": 2,
+        "likes": 0,
+        "comments": 0
+      },
       "images": [],
       "image_files": [
         "assets/2026/10/2026-10-30/source_001.jpg"
@@ -142,7 +146,7 @@
       "verification_note": "Original page has a previous-five-day publication date, not today's.",
       "reference_date": "",
       "engagement_source": "",
-      "publisher": "",
+      "publisher": "NetNewsLedger",
       "engagement": {
         "price": "CAD $529",
         "sustained_write": "1,050 MB/s"
@@ -401,6 +405,11 @@
       "checked": false
     },
     {
+      "platform": "X / Twitter",
+      "summary": "1 indexed query attempt(s), 1 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
       "platform": "Camera forums",
       "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": false
@@ -442,6 +451,7 @@
     "Facebook: alternate public index HTTP 202",
     "Instagram: alternate public index HTTP 202",
     "LinkedIn: alternate public index HTTP 202",
+    "X / Twitter: alternate public index HTTP 202",
     "Camera forums: alternate public index HTTP 202",
     "Industry articles: alternate public index HTTP 202",
     "Retailers: alternate public index HTTP 202",
@@ -452,5 +462,5 @@
     "No recent technical forum discussions or customer complaints regarding Angelbird AV PRO memory cards were found within the specified timeframe.",
     "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
   ],
-  "methodology": "Python collector: 15 public search query attempts, 6 original-page attempts, 2 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence."
+  "methodology": "Python collector: 16 public search query attempts, 6 original-page attempts, 2 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence."
 }
