@@ -4,8 +4,33 @@
     "date": "2026-10-30",
     "month": "2026-10",
     "name": "Angelbird-Social-Monitoring-2026-10-30.pdf",
+    "type": "daily",
     "demo": false,
     "path": "reports/2026/10/Angelbird-Social-Monitoring-2026-10-30.pdf",
     "source_url": "https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/reports/2026/10/Angelbird-Social-Monitoring-2026-10-30.pdf"
+  },
+  {
+    "id": "monthly-2026-10-01-2026-10-30",
+    "date": "2026-10-30",
+    "month": "2026-10",
+    "type": "monthly",
+    "start": "2026-10-01",
+    "end": "2026-10-30",
+    "name": "Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-30.pdf",
+    "demo": false,
+    "path": "reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-30.pdf",
+    "source_url": "https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-30.pdf"
+  },
+  {
+    "id": "weekly-2026-10-24-2026-10-30",
+    "date": "2026-10-30",
+    "month": "2026-10",
+    "type": "weekly",
+    "start": "2026-10-24",
+    "end": "2026-10-30",
+    "name": "Angelbird-Social-Monitoring-Weekly-2026-10-24_to_2026-10-30.pdf",
+    "demo": false,
+    "path": "reports/2026/10/Angelbird-Social-Monitoring-Weekly-2026-10-24_to_2026-10-30.pdf",
+    "source_url": "https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/reports/2026/10/Angelbird-Social-Monitoring-Weekly-2026-10-24_to_2026-10-30.pdf"
   }
 ]
