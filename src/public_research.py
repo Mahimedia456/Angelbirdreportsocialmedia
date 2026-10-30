@@ -640,12 +640,60 @@ def collect_day(day):
     return PublicResearch(day).run()
 
 
+def _discover_original_preview(engine, item):
+    """Best-effort public OG post-image preview; never borrow unrelated Google images."""
+    if not valid_url(item.url):return ''
+    from urllib.parse import urljoin, urlparse
+    r,state=engine.get(item.url,timeout=10)
+    if not r or 'html' not in (r.headers.get('content-type') or '').lower():
+        engine.audit.append({'stage':'post-image-discovery','url':item.url,'status':state})
+        return ''
+    soup=BeautifulSoup(r.text,'html.parser')
+    title=soup.title.get_text(' ',strip=True) if soup.title else ''
+    # Generic login, Facebook wall, or sign-in HTML is not evidence of a post photo.
+    if any(phrase in title.lower() for phrase in ('log in', 'sign in', 'login required')):
+        engine.audit.append({'stage':'post-image-discovery','url':item.url,
+                             'status':'login page; no image attributed'})
+        return ''
+    image=''
+    for tag_type,name in (('property','og:image'),('name','twitter:image')):
+        tag=soup.find('meta',attrs={tag_type:name})
+        if tag and valid_url(urljoin(r.url,tag.get('content',''))):
+            image=urljoin(r.url,tag.get('content',''))
+            break
+    if not image:return ''
+    # Reject site logo/avatar images likely unrelated to specific source material.
+    if any(word in image.lower() for word in ('logo','avatar','placeholder','icon-default')):
+        return ''
+    engine.audit.append({'stage':'post-image-discovery','url':item.url,
+                         'status':'original page advertised source preview',
+                         'image_url':image})
+    item.image_context='Public original-post preview from source og:image / twitter:image metadata.'
+    item.image_credit_url=item.url
+    return image
+
 def cache_historical_images(report):
-    """Cache limited original-source thumbnails for GPT, YouTube, and historical findings."""
+    """Bounded official/public post thumbnails for every platform's source card."""
     engine=PublicResearch(report.report_date)
-    items=(report.today_findings+report.unverified_leads+report.retail_observations+
-           report.historical_findings+report.historical_retail)
-    engine.findings=[f for f in items if f.image_url and not f.image_files]
-    engine.image_limit=min(12,int(os.getenv('MAX_REPORT_IMAGES','8')))
-    engine.download_images(prefix='verified')
-    return {'cached_report_images':engine.images,'image_audit':engine.audit}
+    items=(report.today_findings+report.historical_findings+
+           report.retail_observations+report.historical_retail+
+           report.unverified_leads)
+    max_images=min(14,int(os.getenv('MAX_REPORT_IMAGES','10')))
+    max_preview_checks=min(18,int(os.getenv('MAX_POST_PREVIEW_CHECKS','10')))
+    engine.image_limit=max_images
+    preview_checks=0
+    candidates=[]
+    for item in items:
+        if item.image_files:continue
+        if not item.image_url and item.images:
+            candidate=item.images[0]
+            if valid_url(candidate) and not candidate.lower().endswith(('.html','.htm')):
+                item.image_url=candidate
+        if not item.image_url and preview_checks<max_preview_checks:
+            preview_checks+=1
+            item.image_url=_discover_original_preview(engine,item)
+        if item.image_url:candidates.append(item)
+    engine.findings=candidates
+    engine.download_images(prefix='original')
+    return {'cached_report_images':engine.images,'original_post_preview_checks':preview_checks,
+            'image_audit':engine.audit}
