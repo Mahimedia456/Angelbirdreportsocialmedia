@@ -59,6 +59,10 @@ styles={
  'kpi':ParagraphStyle('v2-kpi',fontName=BOLD,fontSize=20,leading=26,textColor=DARK,alignment=TA_CENTER),
  'kpilabel':ParagraphStyle('v2-kpilabel',fontName=BOLD,fontSize=6,leading=9,textColor=DARK,alignment=TA_CENTER),
  'green':ParagraphStyle('v2-green',fontName=BOLD,fontSize=7.1,leading=11,textColor=GREEN),
+ 'positive':ParagraphStyle('v2-positive',fontName=BOLD,fontSize=7.6,leading=12,textColor=GREEN),
+ 'negative':ParagraphStyle('v2-negative',fontName=BOLD,fontSize=7.6,leading=12,textColor=RED),
+ 'neutral':ParagraphStyle('v2-neutral',fontName=BOLD,fontSize=7.6,leading=12,textColor=AMBER),
+ 'question':ParagraphStyle('v2-question',fontName=BOLD,fontSize=7.6,leading=12,textColor=AMBER),
  'caption':ParagraphStyle('v2-caption',fontName=BOLD,fontSize=7,leading=11,textColor=DARK),
 }
 
