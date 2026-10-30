@@ -9,3 +9,5 @@ Regenerate platform-by-platform PDF with sourced public metrics, YouTube count f
 Final sourced retail dates, photo attribution and low-priority undated retailer leads; regenerate PDF-only with no GPT call.
 
 Platform-first PDF acceptance run: Facebook 3 posts directly below Facebook KPI, LinkedIn 1, Reddit 1, YouTube 1, articles and retailers with their links. No paid GPT API calls.
+
+Final platform-first PDF production audit with pypdf: source URL annotations, 9 platform sections, Facebook/LinkedIn/Reddit/YouTube cards immediately under matching analytics. No paid GPT API.
