@@ -57,6 +57,26 @@ def valid_url(url):
     u=urlparse(str(url or ''))
     return u.scheme in ('http','https') and bool(u.hostname)
 
+def matches_source_domain(group,url):
+    host=(urlparse(url).hostname or '').lower()
+    if not host:return False
+    allowed={
+        'Reddit':('reddit.com','redd.it'),
+        'YouTube':('youtube.com','youtu.be'),
+        'Facebook':('facebook.com','fb.watch'),
+        'Instagram':('instagram.com'),
+        'LinkedIn':('linkedin.com'),
+        'Camera forums':('dpreview.com','eoshd.com','reduser.net','bmcuser.com',
+                         'forum.blackmagicdesign.com','nikonites.com','sonyalpha.blog'),
+        'Retailers':('bhphotovideo.com','adorama.com','cvp.com','proav.co.uk',
+                     'downtowncamera.com','ofertasgaming.com','angelbird.com')
+    }
+    if group=='Industry articles':
+        other=tuple(v for k,values in allowed.items() for v in values if k!='Retailers')
+        return not any(host==d or host.endswith('.'+d) for d in other) and not host.endswith('amazon.com')
+    domains=allowed.get(group,())
+    return any(host==d or host.endswith('.'+d) for d in domains)
+
 def source_group(url, default):
     host=(urlparse(url).hostname or '').lower()
     for domain, group in DOMAINS.items():
@@ -138,6 +158,9 @@ class PublicResearch:
             self.audit.append({'group':group,'stage':'candidate','url':url,'outcome':'unresolved Google News redirect'})
             return
         if url in self.candidates:return
+        if not matches_source_domain(group,url):
+            self.counts[group+'.wrong_source_domain']+=1
+            return
         # Do not use source-fetch budget on unrelated indexed search results.
         indexed_text=str(item.get('title') or '')+' '+str(item.get('snippet') or '')
         if not BRAND.search(indexed_text):
