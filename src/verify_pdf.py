@@ -48,6 +48,14 @@ def verify(day):
     for source in data.retail_observations:
         if source.url not in urls:
             raise RuntimeError(f'Original dated retailer URL absent from generated PDF: {source.url}')
+    from .social_content import content_type
+    from .platform_analytics import category
+    story_leads=[x for x in data.unverified_leads
+                 if x.reference_date==day and category(x)=='Instagram'
+                 and content_type(x)=='story']
+    for source in story_leads:
+        if source.url not in urls:
+            raise RuntimeError('Original Instagram Story research link missing from PDF: '+source.url)
     all_sources=data.today_findings+data.historical_findings
     groups=platform_summary(all_sources)
     # Source cards must live between their own platform section heading and the
@@ -69,6 +77,7 @@ def verify(day):
                 raise RuntimeError(f'{platform} source not shown under that platform analytics: {source.title}')
     audit={'date':day,'pages':len(reader.pages),
            'dated_posts_checked':checked,'report_scope':'single-day',
+           'instagram_story_lead_links_checked':len(story_leads),
            'source_hyperlinks':len(urls),'platform_sections':len(all_positions),
            'result':'passed'}
     out=pdf.with_name(pdf.stem+'-quality.json')
