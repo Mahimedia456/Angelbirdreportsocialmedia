@@ -1,0 +1,64 @@
+name: Angelbird Daily Social Monitoring
+on:
+  schedule:
+    - cron: '0 19 * * *'
+      timezone: 'Asia/Karachi'
+  workflow_dispatch:
+    inputs:
+      report_date:
+        description: 'YYYY-MM-DD (leave blank for today in Pakistan)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Generate a demonstration PDF without paid API calls'
+        required: false
+        default: false
+        type: boolean
+permissions:
+  contents: write
+concurrency:
+  group: angelbird-report-main
+  cancel-in-progress: false
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: '1'
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.5' }}
+      REPORT_DATE: ${{ inputs.report_date }}
+      DRY_RUN: ${{ inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - name: Validate and test
+        run: python -m unittest discover -s tests -v
+      - name: Research and render
+        run: python -m src.main
+      - name: Save dated reports to GitHub
+        if: success()
+        run: |
+          git config user.name 'angelbird-report-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/ data/ || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Angelbird daily monitoring ${REPORT_DATE:-PKT-today}"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "${GITHUB_REF_NAME}"
+          fi
+      - name: Preserve diagnostics if run fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: angelbird-failed-run
+          path: |
+            data/
+            reports/
+          if-no-files-found: ignore
