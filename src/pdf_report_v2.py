@@ -297,6 +297,21 @@ def _fmt_count(metrics, field):
     if field not in metrics['available']:return 'N/A'
     return format(metrics['totals'].get(field,0),',')
 
+def instagram_story_lead_card(item):
+    """Compact explicit unverified Story link; not a verified Atomos/Angelbird mention."""
+    parts=[
+        P('INSTAGRAM STORY LINK | UNVERIFIED','caption'),
+        Spacer(1,4),
+        P('Source account: '+(item.author or 'Not known'),'small'),
+        Spacer(1,4),
+        source_url_line(item.url,'OPEN ORIGINAL INSTAGRAM STORY'),
+        Spacer(1,5),
+        P('Original Story media, tag/mention, brand association, reach and '
+          'publication date NOT independently accessible. This is a supplied '
+          'research lead, NOT a confirmed brand mention.','micro')
+    ]
+    return [panel(parts,accent=AMBER),Spacer(1,7)]
+
 def platform_scorecard(platform,items,day_label):
     from .platform_analytics import metric_summary
     m=metric_summary(items)
@@ -446,10 +461,19 @@ def render_pdf(report,path):
                             'confirmed in the accessible material for this platform. '
                             'This does not prove no posts exist.','small'),Spacer(1,8)])
         if candidates:
-            story.extend([P('SEARCHED ON '+day+' | original publication date unverified','caption'),
-                          Spacer(1,6)])
-            for n,item in enumerate(candidates,1):
-                story.extend(finding_card(item,'U'+str(n)))
+            stories=[x for x in candidates if platform=='Instagram' and content_type(x)=='story']
+            other=[x for x in candidates if x not in stories]
+            if stories:
+                story.extend([P(f'INSTAGRAM STORIES TO VERIFY | {len(stories)} original links, 0 verified by URL alone','caption'),
+                              Spacer(1,6),
+                              P('Original links have been preserved below. No Story image, '
+                                'the monitored brand tag, publication time or views have '
+                                'been inferred from the URLs.','micro'),Spacer(1,7)])
+                for item in stories:story.extend(instagram_story_lead_card(item))
+            if other:
+                story.extend([P('PUBLIC SOURCE LEADS | original date or brand not verified','caption'),
+                              Spacer(1,6)])
+                for n,item in enumerate(other,1):story.extend(finding_card(item,'U'+str(n)))
     # Access coverage and search methodology remain in saved JSON, not PDF pages.
     counts=Counter(x.sentiment for x in todays)
     actions=[x for x in todays if x.priority in ('Urgent','High','Medium')
