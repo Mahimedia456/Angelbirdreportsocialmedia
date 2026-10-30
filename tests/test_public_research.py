@@ -1,8 +1,13 @@
 import unittest
 from unittest.mock import Mock
-from src.public_research import iso, excerpt, classify, PublicResearch
+from src.public_research import iso, excerpt, classify, PublicResearch, matches_source_domain
 
 class TestOriginalSourceExtraction(unittest.TestCase):
+    def test_platform_relevance_filter(self):
+        self.assertTrue(matches_source_domain('Reddit','https://www.reddit.com/r/cameras/comments/123/post'))
+        self.assertFalse(matches_source_domain('Reddit','https://www.angelbird.com/'))
+        self.assertFalse(matches_source_domain('YouTube','https://www.amazon.com/angelbird/s?k=angelbird'))
+
     def test_exact_date_and_brand_mention(self):
         f=classify("https://www.example.com/a","Reporter tested an Angelbird AV PRO CFexpress card, and it works well.",
            "Industry articles","2026-10-30","Original article:published_time",
