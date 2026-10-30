@@ -158,11 +158,10 @@ def main():
     lead_urls_by_platform={}
     for platform in PLATFORMS:
         lead_urls_by_platform[platform]=len({x.url.strip().rstrip('/').lower() for x in unverified.get(platform,[])})
-    story.extend([Spacer(1,8),pdf.band('SOURCE DISCOVERY KPIs | VERIFIED AND PENDING'),Spacer(1,7),
-                  pdf.P('Verified dated entries and source-discovered pending entries are separate. Pending links are real research leads but NOT verified October posts.','small'),Spacer(1,6)])
-    for platform in PLATFORMS:
-        story.extend([pdf.P(f'{platform}: verified dated records {len(grouped[platform])} | original-link leads awaiting validation {lead_urls_by_platform[platform]}','small'),Spacer(1,3)])
-    story.append(Spacer(1,8))
+    story.extend([Spacer(1,8),
+                  pdf.P('Research status: Dated source records and discovery leads remain separate. '
+                        'Original source leads are listed by platform in the KPI table below.','small'),
+                  Spacer(1,7)])
     # Platform scorecards count source records. Also show genuine format-level KPIs.
     social_types=Counter(content_type(x) for x in gathered)
     distinct_threads={x.url.split('/comment/')[0].split('&lc=')[0].rstrip('/').lower()
@@ -245,21 +244,31 @@ def main():
     unknown_sentiment=sum(x.sentiment=='Not applicable' for x in gathered)
     def observed(metric):
         return f"{total_metrics[metric]:,}" if total_metrics[metric] is not None else 'N/A'
-    dashboard_start=len(story)
-    story.extend(dashboard('OVERALL KPI | ALL RECORDED PLATFORMS',
-        ['Dated records','Pending leads','Views','Likes','Comments','Shares'],
-        [[len(gathered),len(leads),observed('views'),observed('likes'),
-          observed('comments'),observed('shares')]],
-        [92,87,87,87,87,87]))
-    story.extend(dashboard('OVERALL SENTIMENT | SOURCE RECORDS',
-        ['Positive','Negative','Neutral','Questions','Not classified','Total'],
-        [[positive,negative,neutral,question,unknown_sentiment,len(gathered)]],
-        [88,88,88,88,88,88]))
-    story.extend([pdf.P('Engagement totals include only sources with recorded numeric values. '
-                      +'Views measured on '+str(measured_sources['views'])+' source record(s), '
-                      +'likes on '+str(measured_sources['likes'])+', comments on '
-                      +str(measured_sources['comments'])+'. N/A means no observed metrics, not zero activity.','small'),
-                  Spacer(1,7)])
+    # ONE consolidated executive KPI card area; detailed tables remain below.
+    from src.kpi_cards import kpi_dashboard
+    source_urls=len({x.url.rstrip('/').lower() for x in gathered+leads if x.url})
+    card_groups=[
+        ('SOURCE COVERAGE',[
+            ('Dated sources',len(gathered)),('Pending leads',len(leads)),
+            ('Unique source URLs',source_urls),('Days captured',f'{len(saved)}/{(end-start).days+1}')]),
+        ('OBSERVED ENGAGEMENT',[
+            ('Views',total_metrics['views']),('Likes',total_metrics['likes']),
+            ('Comments',total_metrics['comments']),('Shares',total_metrics['shares'])]),
+        ('OVERALL SENTIMENT',[
+            ('Positive',positive),('Negative',negative),
+            ('Neutral',neutral),('Questions',question)]),
+        ('POST FORMATS',[
+            ('Posts',social_types.get('post',0)),('Videos',social_types.get('video',0)),
+            ('Reels',social_types.get('reel',0)),('Stories',social_types.get('story',0))]),
+        ('ADDITIONAL ENGAGEMENT AND EVIDENCE',[
+            ('Reactions',total_metrics['reactions']),('Reposts',total_metrics['reposts']),
+            ('Linked replies',replies),('Cached images',source_media['embedded_verified'])]),
+        ('SUPPORTING RECORDS',[
+            ('Retail entries',len(offers)),('Articles',social_types.get('article',0)),
+            ('Comment findings',social_types.get('comment',0)),('Not classified',unknown_sentiment)]),
+    ]
+    story[intro_end:intro_end]=kpi_dashboard(pdf,card_groups)
+    dashboard_card_groups=card_groups
     sentiment_rows=[]
     for platform in PLATFORMS:
         items=grouped[platform]
@@ -281,18 +290,6 @@ def main():
     story.extend([pdf.P('Retail observations (separate from social posts): '+str(len(offers))
                        +' | Unique retailer URLs: '+str(len({x.url.rstrip('/').lower() for x in offers}))
                        +'. Dated and discovered source counts must not be added as verified post totals.','small'),Spacer(1,8)])
-    # Reactions and reposts are separate platform-native engagement metrics.
-    # Do not pretend LinkedIn reactions are identical to likes.
-    story.extend(dashboard('ADDITIONAL ENGAGEMENT | OBSERVED ONLY',
-        ['Reactions','Reposts','Recorded replies','Retail items','Cached images','Days sampled'],
-        [[observed('reactions'),observed('reposts'),replies,len(offers),
-          source_media['embedded_verified'],f'{len(saved)}/{(end-start).days+1}']],
-        [85,85,87,85,85,85]))
-    # Make the executive tables the first content after the heading and coverage note.
-    dashboard_end=len(story)
-    early_dashboards=story[dashboard_start:dashboard_end]
-    del story[dashboard_start:dashboard_end]
-    story[intro_end:intro_end]=early_dashboards
     story.extend(pdf.engagement_overview(gathered))
     story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
     types=Counter(content_type(x) for x in gathered)
@@ -319,6 +316,12 @@ def main():
                 if c.get('url'):story.append(pdf.link(c['url'],'OPEN COMMENT'))
             story.append(Spacer(1,9))
         if not items:story.extend([pdf.P('No dated source record available in saved research for this period. Not evidence of zero real-world activity.','small'),Spacer(1,5)])
+        if platform=='Facebook' and brand=='Atomos':
+            story.extend([pdf.P('FACEBOOK DATA QUALITY NOTE','caption'),
+                          pdf.P('An older Facebook finding was withdrawn because its purported post URL contained a placeholder ID. '
+                                'It is not original-source evidence. Any real Facebook mention will appear here once its actual '
+                                'permalink, author and publication context are established.','small'),
+                          Spacer(1,8)])
         if unverified.get(platform):
             story.append(pdf.P('UNVERIFIED LEADS | EXCLUDED FROM KPIs','caption'))
             for x in unverified[platform]:
@@ -361,7 +364,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'kpi_card_groups':dashboard_card_groups,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
