@@ -44,6 +44,41 @@ class TestPlatformAnalytics(unittest.TestCase):
         self.assertNotIn('views',m['available'])
         self.assertNotIn('impressions',m['totals'])
         self.assertEqual(m['totals']['likes'],1245)
+    def test_youtube_public_video_metrics_are_source_backed(self):
+        c=PublicResearch('2026-10-30')
+        def fake_get(url,params=None,**kw):
+            result=Mock()
+            if url.endswith('/search'):
+                result.json.return_value={'items':[{
+                    'id':{'videoId':'qAl9K4dgiTc'},
+                    'snippet':{'title':'Angelbird Raven Black camera review',
+                               'description':'Angelbird card field notes',
+                               'publishedAt':'2026-10-30T12:00:00Z',
+                               'channelTitle':'Camera Reviewer',
+                               'thumbnails':{'medium':{'url':'https://i.ytimg.com/test.jpg'}}}
+                }]}
+            elif url.endswith('/videos'):
+                result.json.return_value={'items':[{'id':'qAl9K4dgiTc',
+                    'statistics':{'viewCount':'2412','likeCount':'71','commentCount':'9'}}]}
+            else:
+                result.json.return_value={'items':[]}
+            return result,'OK'
+        c.get=fake_get
+        import os
+        from unittest.mock import patch
+        with patch.dict(os.environ,{'YOUTUBE_API_KEY':'mock-key',
+                                    'YT_MAX_COMMENT_VIDEOS':'1'}):
+            c.youtube()
+        self.assertEqual(len(c.findings),1)
+        self.assertEqual(c.counts['YouTube.api_searches'],1)
+        self.assertEqual(c.counts['YouTube.statistics_calls'],1)
+        self.assertEqual(c.counts['YouTube.comments_calls'],1)
+        self.assertEqual(c.findings[0].engagement['views'],2412)
+        self.assertEqual(c.findings[0].engagement['likes'],71)
+        self.assertEqual(c.findings[0].engagement['comments'],9)
+        self.assertEqual(c.findings[0].engagement_source,
+                         'YouTube Data API videos.list statistics')
+
     def test_original_author_and_publisher(self):
         c=PublicResearch('2026-10-30')
         html='<html><head><meta property="article:published_time" content="2026-10-30T10:00:00Z"><meta property="og:site_name" content="Cine News"><meta name="author" content="Journalist A"><meta property="og:image" content="/media/photo.jpg"></head><body><article>Angelbird AV PRO V90 card tested by author.</article></body></html>'
