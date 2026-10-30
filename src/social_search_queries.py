@@ -37,3 +37,17 @@ GROUPS={
 # Extra device-level public discovery. Candidates remain unverified until original-source validation.
 for _group,_queries in {"Facebook":["site:facebook.com \"Angelbird\" \"CFexpress\" {month} {year}","site:facebook.com \"AV PRO\" \"Angelbird\" {month} {year}","site:facebook.com/groups/ \"Angelbird\" \"card\" {month} {year}"],"Instagram":["site:instagram.com/p/ \"angelbird\" \"CFexpress\" {month} {year}","site:instagram.com/reel/ \"angelbird\" \"SSD\" {month} {year}","site:instagram.com \"angelbirdmedia\" \"{month}\" \"{year}\""],"LinkedIn":["site:linkedin.com/posts/ \"Angelbird\" \"CFexpress\" {month} {year}","site:linkedin.com/posts/ \"Angelbird\" \"AV PRO\" {month} {year}"],"X / Twitter":["site:x.com/ \"Angelbird\" \"CFexpress\" {month} {year}","site:x.com/ \"Angelbird\" \"AV PRO\" {month} {year}"],"Camera forums":["site:dpreview.com/forums \"Angelbird\" \"card\" {month} {year}","site:forum.blackmagicdesign.com \"Angelbird\" \"{month}\" \"{year}\"","site:reddit.com/r/cinematography \"Angelbird\" {month} {year}"]}.items():
     GROUPS[_group].extend(_queries)
+
+# Additional source-discovery queries: public Meta content requires original-source proof.
+GROUPS['Facebook'].extend([
+  "site:facebook.com \"Angelbird\" \"CFexpress\" {month} {year}",
+  "site:facebook.com \"Angelbird\" \"AV PRO\" {month} {year}",
+  "site:facebook.com \"Angelbird\" \"CFast\" {month} {year}",
+  "site:facebook.com \"Angelbird\" \"SSD2GO\" {month} {year}",
+  "site:facebook.com/angelbirdmedia/posts/ {month} {year}",
+  "site:facebook.com/AngelbirdTechnologies/posts/ {month} {year}",
+  "site:facebook.com/reel/ \"Angelbird\" {month} {year}",
+  "site:facebook.com/groups/ \"Angelbird\" \"card\" {month} {year}",
+  "site:facebook.com/photo/ \"Angelbird\" {month} {year}",
+  "\"Angelbird\" Facebook filmmaker review {month} {year}"
+])
