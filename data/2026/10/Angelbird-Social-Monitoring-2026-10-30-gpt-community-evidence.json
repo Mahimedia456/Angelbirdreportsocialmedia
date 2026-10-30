@@ -1,0 +1,52 @@
+{
+  "report_date": "2026-10-30",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "completed",
+  "headline": "Angelbird Media Usage and Feedback Monitoring Report",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "DPReview",
+      "summary": "DPReview provides in-depth reviews and discussions on various camera models, including their compatibility with different media cards. However, there are no specific mentions of Angelbird media cards in the latest reviews.",
+      "checked": true
+    },
+    {
+      "platform": "Reddit",
+      "summary": "Reddit hosts numerous discussions on camera equipment and media cards. A search for 'Angelbird media' yields no posts or comments from October 30, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "YouTube",
+      "summary": "YouTube features numerous reviews and demonstrations of camera equipment. A search for 'Angelbird media' reveals no new videos or comments from October 30, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "Blackmagic Design Forum",
+      "summary": "The Blackmagic Design Forum is a hub for discussions on video production equipment. A search for 'Angelbird media' shows no new threads or posts from October 30, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "RED Digital Cinema Forum",
+      "summary": "The RED Digital Cinema Forum is a platform for discussions on RED cameras and accessories. A search for 'Angelbird media' reveals no new posts or comments from October 30, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "Sony Cine Forum",
+      "summary": "The Sony Cine Forum is dedicated to discussions on Sony's cinema products. A search for 'Angelbird media' yields no new threads or posts from October 30, 2026.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "No new discussions or feedback on Angelbird media products were found on the specified platforms for October 30, 2026.",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "A comprehensive search was conducted across Reddit, YouTube, DPReview, Blackmagic Design Forum, RED Digital Cinema Forum, and Sony Cine Forum for posts, comments, reviews, and discussions mentioning 'Angelbird media' or related terms, specifically dated October 30, 2026. No relevant content was identified on this date."
+}

@@ -1,0 +1,29 @@
+{
+  "report_date": "2026-10-30",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "Completed",
+  "headline": "Angelbird Technologies Brand Monitoring Report for October 30, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "LinkedIn",
+      "summary": "Angelbird Technologies' LinkedIn page has a recent post about their participation in IBC 2026.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "Facebook",
+    "Instagram",
+    "X/Twitter",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a comprehensive search on LinkedIn for Angelbird Technologies' posts dated October 30, 2026. No relevant posts were found on Facebook, Instagram, or X/Twitter for the specified date."
+}

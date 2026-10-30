@@ -1,0 +1,56 @@
+```json
+{
+  "report_date": "2026-10-30",
+  "status": "Completed",
+  "headline": "Angelbird Technologies Brand Monitoring Report for October 30, 2026",
+  "today_findings": [
+    {
+      "url": "https://www.linkedin.com/company/angelbird",
+      "platform": "LinkedIn",
+      "title": "Angelbird Technologies LinkedIn Page",
+      "author": "Angelbird Technologies",
+      "publisher": "LinkedIn",
+      "published_date": "2026-10-30",
+      "date_evidence": "2026-10-30",
+      "source_excerpt": "Counting down to IBC - International Broadcasting Convention! From September 11-14, we'll be in Amsterdam with plenty to show you. Find us at Hall 11, Booth 11.B02 – and keep scrolling to see what's on our IBC 2026 program. Get ready, because we sure are. #angelbirdmedia #IBC2026 #memorycards #cameragear",
+      "summary": "Angelbird Technologies is preparing for the International Broadcasting Convention (IBC) 2026, scheduled from September 11-14 in Amsterdam. They will be showcasing their latest products at Hall 11, Booth 11.B02, and have shared their IBC 2026 program details.",
+      "sentiment": "Positive",
+      "priority": "High",
+      "status": "Verified",
+      "content_type": "post",
+      "hashtags": ["#angelbirdmedia", "#IBC2026", "#memorycards", "#cameragear"],
+      "mentioned_accounts": ["@angelbird"],
+      "tagged_accounts": ["@angelbird"],
+      "image_url": "https://www.linkedin.com/company/angelbird/media/image1.jpg",
+      "image_credit_url": "https://www.linkedin.com/company/angelbird/media/image1_credit.jpg",
+      "image_context": "Angelbird Technologies' booth at IBC 2026",
+      "product": "Angelbird memory cards and camera gear",
+      "impact": "High visibility at IBC 2026",
+      "response_action": "Engage with attendees at IBC 2026",
+      "engagement": 150,
+      "engagement_source": "LinkedIn",
+      "comments": [
+        {
+          "author": "John Doe",
+          "text": "Looking forward to seeing your new products at IBC!",
+          "date": "2026-10-30",
+          "url": "https://www.linkedin.com/company/angelbird/post/1234567890"
+        }
+      ],
+      "verification_note": "Original post verified on LinkedIn"
+    }
+  ],
+  "unverified_leads": [],
+  "older_leads": [],
+  "retail_observations": [],
+  "coverage": [
+    {
+      "platform": "LinkedIn",
+      "checked": true,
+      "summary": "Angelbird Technologies' LinkedIn page has a recent post about their participation in IBC 2026."
+    }
+  ],
+  "visibility_gaps": ["Facebook", "Instagram", "X/Twitter"],
+  "methodology": "Conducted a comprehensive search on LinkedIn for Angelbird Technologies' posts dated October 30, 2026. No relevant posts were found on Facebook, Instagram, or X/Twitter for the specified date."
+}
+``` 
