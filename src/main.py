@@ -5,6 +5,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from .schema import ResearchReport,Coverage
 from .research import research_day
+from .public_research import collect_day
 from .history import compile_history
 from .pdf_report_v2 import render_pdf
 
@@ -33,12 +34,20 @@ def main():
                 for p in ('Reddit / forums','YouTube','Facebook / Instagram / LinkedIn','News / resellers')],
              visibility_gaps=['No live research performed in demo mode.'])
     else:
-        report,sweeps=research_day(target)
+        engine=os.getenv('RESEARCH_ENGINE','python').strip().lower()
+        if engine=='python':
+            print('Starting Python-first public website collection (no OpenAI calls).',flush=True)
+            report,sweeps=collect_day(target)
+        elif engine=='openai':
+            print('Optional paid OpenAI research selected.',flush=True)
+            report,sweeps=research_day(target)
+        else:
+            raise ValueError('RESEARCH_ENGINE must be python or openai')
     report=compile_history(report,ROOT)
     # A previously saved model run counted unrelated Reddit platform news as an
     # Angelbird mention. When relevance guardrails exclude all such candidates,
     # replace the stale source-summary language with an accurate limited-coverage note.
-    if not report.today_findings and any('candidate items excluded' in gap for gap in report.visibility_gaps):
+    if not report.today_findings and report.status!='Python public-source monitoring' and any('candidate items excluded' in gap for gap in report.visibility_gaps):
         report.headline=(f'No directly evidenced new Angelbird brand mentions were retained for {target} '
                          f'from this bounded research run. Previous dated findings are preserved below.')
         report.status='Limited source coverage - relevance corrected'
