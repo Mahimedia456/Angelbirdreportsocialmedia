@@ -8,7 +8,7 @@ from pypdf import PdfReader
 
 ROOT=Path(__file__).resolve().parents[1]
 REQUIRED=[
-    "OVERALL KPI", "OVERALL SENTIMENT", "SOCIAL MEDIA SENTIMENT",
+    "EXECUTIVE KPI DASHBOARD", "OVERALL SENTIMENT", "SOCIAL MEDIA SENTIMENT",
     "POST ANALYTICS", "PLATFORM KPI", "ADDITIONAL ENGAGEMENT",
     "FACEBOOK", "INSTAGRAM", "X / TWITTER", "LINKEDIN",
     "REDDIT", "YOUTUBE", "CAMERA FORUMS", "RETAILERS",
@@ -45,7 +45,7 @@ def main():
         raise RuntimeError("Source images expected in PDF, but none were embedded")
     if meta.get("dated_findings",0) and annotations==0:
         raise RuntimeError("Source detail links absent from PDF annotations")
-    overview_index=normalized_text.find(normalized("OVERALL KPI"))
+    overview_index=normalized_text.find(normalized("EXECUTIVE KPI DASHBOARD"))
     source_detail_index=normalized_text.find(normalized("FACEBOOK | SOURCE DETAILS"))
     if source_detail_index<0 or overview_index>source_detail_index:
         raise RuntimeError("Executive KPI not before per-source detail sections")
