@@ -161,6 +161,7 @@ def finding_card(item,number,historical=False):
              Spacer(1,6),P('Source: '+item.platform+(' | '+item.author if item.author else '')+
                           (' | '+item.published_date if item.published_date else ' | Date not verified'),'meta'),
              link(item.url)]
+    if getattr(item,'publisher',''):content.extend([Spacer(1,3),P('Publisher: '+item.publisher,'micro')])
     if item.product:content.extend([Spacer(1,5),P('Product: '+item.product,'small')])
     if item.image_url:
         content.extend([Spacer(1,4),link(item.image_url,'VIEW SOURCE IMAGE')])
@@ -175,14 +176,17 @@ def finding_card(item,number,historical=False):
     if item.response_action:content.extend([Spacer(1,6),P('<b>Angelbird response:</b> '+escape(item.response_action[:350]),'small',raw=True)])
     if item.engagement:
         stats='    |    '.join(f'{k.replace("_"," ").title()}: {v}' for k,v in list(item.engagement.items())[:7])
-        content.extend([Spacer(1,6),P('Stats: '+stats,'micro')])
+        content.extend([Spacer(1,6),P('Public engagement (where observed): '+stats,'micro')])
+        if getattr(item,'engagement_source',''):content.append(P('Metrics source: '+item.engagement_source,'micro'))
     if getattr(item,'comments',None):
         content.extend([Spacer(1,9),P('PUBLIC COMMENTS | ORIGINAL CONTEXT','caption'),Spacer(1,4)])
         for c in item.comments[:5]:
             author=str(c.get('author') or 'Public commenter')[:60]
             message=str(c.get('text') or '')[:320]
             stamp=str(c.get('date') or '')
-            content.extend([P(author+(' | '+stamp if stamp else ''),'green'),P(message,'small'),Spacer(1,4)])
+            content.extend([P(author+(' | '+stamp if stamp else ''),'green'),P(message,'small')])
+            if c.get('url'):content.append(link(c['url'],'OPEN ORIGINAL COMMENT'))
+            content.append(Spacer(1,4))
     if item.verification_note:content.extend([Spacer(1,5),P('Reference note: '+item.verification_note,'micro')])
     left=W-70
     t=Table([[content,qr_image(item.url,45)]],colWidths=[left,70])
