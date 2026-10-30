@@ -33,3 +33,7 @@ GROUPS={
     'site:bhphotovideo.com "Angelbird" {month} {year}',
     'site:cvp.com "Angelbird" {month} {year}']
 }
+
+# Extra device-level public discovery. Candidates remain unverified until original-source validation.
+for _group,_queries in {"Facebook":["site:facebook.com \"Angelbird\" \"CFexpress\" {month} {year}","site:facebook.com \"AV PRO\" \"Angelbird\" {month} {year}","site:facebook.com/groups/ \"Angelbird\" \"card\" {month} {year}"],"Instagram":["site:instagram.com/p/ \"angelbird\" \"CFexpress\" {month} {year}","site:instagram.com/reel/ \"angelbird\" \"SSD\" {month} {year}","site:instagram.com \"angelbirdmedia\" \"{month}\" \"{year}\""],"LinkedIn":["site:linkedin.com/posts/ \"Angelbird\" \"CFexpress\" {month} {year}","site:linkedin.com/posts/ \"Angelbird\" \"AV PRO\" {month} {year}"],"X / Twitter":["site:x.com/ \"Angelbird\" \"CFexpress\" {month} {year}","site:x.com/ \"Angelbird\" \"AV PRO\" {month} {year}"],"Camera forums":["site:dpreview.com/forums \"Angelbird\" \"card\" {month} {year}","site:forum.blackmagicdesign.com \"Angelbird\" \"{month}\" \"{year}\"","site:reddit.com/r/cinematography \"Angelbird\" {month} {year}"]}.items():
+    GROUPS[_group].extend(_queries)
