@@ -1,27 +1,49 @@
 import { existsSync, mkdirSync, readdirSync, copyFileSync, writeFileSync, rmSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
-const root=process.cwd(), out=join(root,'_site');
+
+const root=process.cwd();
+const out=join(root,'_site');
+const brand='Angelbird';
+const dailyRe=new RegExp('^'+brand+'-Social-Monitoring-(\\\\d{4}-\\\\d{2}-\\\\d{2})(-DEMO)?\\\\.pdf$','i');
+const periodRe=new RegExp('^'+brand+'-Social-Monitoring-(Weekly|Monthly)-(\\\\d{4}-\\\\d{2}-\\\\d{2})_to_(\\\\d{4}-\\\\d{2}-\\\\d{2})\\\\.pdf$','i');
+
 if(existsSync(out))rmSync(out,{recursive:true,force:true});
 mkdirSync(out,{recursive:true});
-for(const f of ['index.html','styles.css','app.js'])copyFileSync(join(root,'website',f),join(out,f));
-const pdfRe=/^Angelbird-Social-Monitoring-(\d{4}-\d{2}-\d{2})(-DEMO)?\.pdf$/i;
+for(const file of ['index.html','styles.css','app.js']){
+  copyFileSync(join(root,'website',file),join(out,file));
+}
+writeFileSync(join(out,'.nojekyll'),'');
 const items=[];
-const walk=dir=>{
+function walk(dir){
   if(!existsSync(dir))return;
-  for(const ent of readdirSync(dir,{withFileTypes:true})){
-    const path=join(dir,ent.name);
-    if(ent.isDirectory())walk(path);
-    else if(ent.isFile()&&ent.name.toLowerCase().endsWith('.pdf')){
-      const m=ent.name.match(pdfRe);if(!m)continue;
-      const date=m[1], demo=!!m[2], [year,month]=date.split('-');
-      const rel=relative(root,path).replaceAll('\\','/');
-      if(!rel.startsWith('reports/'+year+'/'+month+'/'))continue;
-      const target=join(out,rel);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);
-      items.push({id:date+(demo?'-DEMO':''),date,month:year+'-'+month,name:ent.name,demo,path:rel});
-    }
+  for(const entry of readdirSync(dir,{withFileTypes:true})){
+    const file=join(dir,entry.name);
+    if(entry.isDirectory()){walk(file);continue;}
+    if(!entry.isFile()||!entry.name.toLowerCase().endsWith('.pdf'))continue;
+    let item=null;
+    const daily=entry.name.match(dailyRe);
+    const period=entry.name.match(periodRe);
+    if(daily){
+      const date=daily[1],demo=Boolean(daily[2]);
+      item={id:date+(demo?'-DEMO':''),date,month:date.slice(0,7),type:'daily',
+            name:entry.name,demo};
+    }else if(period){
+      const type=period[1].toLowerCase(),start=period[2],end=period[3];
+      item={id:type+'-'+start+'-'+end,date:end,month:end.slice(0,7),type,
+            start,end,name:entry.name,demo:false};
+    }else{continue;}
+    const rel=relative(root,file).replaceAll('\\\\','/');
+    if(!rel.startsWith('reports/'+item.month.replace('-','/')+'/'))continue;
+    const target=join(out,rel);
+    mkdirSync(dirname(target),{recursive:true});
+    copyFileSync(file,target);
+    item.path=rel;
+    items.push(item);
   }
-};
+}
 walk(join(root,'reports'));
-items.sort((a,b)=>b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
-writeFileSync(join(out,'reports-index.json'),JSON.stringify(items,null,2));
-console.log('Angelbird archive build complete:',items.length,'PDF(s)');
+const typeRank={monthly:0,weekly:1,daily:2};
+items.sort((a,b)=>b.date.localeCompare(a.date)||(typeRank[a.type]-typeRank[b.type])||a.name.localeCompare(b.name));
+writeFileSync(join(out,'reports-index.json'),JSON.stringify(items,null,2)+'\n');
+const types=items.reduce((acc,item)=>(acc[item.type]=(acc[item.type]||0)+1,acc),{});
+console.log(brand+' report site built, all frequency PDFs:',types);
