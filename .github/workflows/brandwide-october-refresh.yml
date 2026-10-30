@@ -1,0 +1,97 @@
+name: Angelbird All-Products Brand-Wide October Evidence Refresh
+on:
+  push:
+    branches: [main]
+    paths: ['config/brandwide_refine_october_2026.run']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: angelbird-brandwide-october-refresh
+  cancel-in-progress: false
+jobs:
+  brandwide-refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      MAX_SEARCH_QUERIES: '72'
+      MAX_SOURCE_PAGES: '140'
+      MAX_SOURCE_PAGES_PER_GROUP: '14'
+      MAX_SOURCE_IMAGES: '25'
+      MAX_REPORT_IMAGES: '50'
+      MAX_UNVERIFIED_LEADS_PER_PLATFORM: '150'
+      BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt pypdf
+      - name: Audit all-brand eligibility and search source code
+        run: |
+          python -m scripts.audit_brandwide_scope
+          python -m py_compile scripts/refresh_brandwide.py scripts/build_periodic_report.py scripts/discover_official_catalog.py src/public_research.py src/social_search_queries.py
+      - name: Discover entire publicly accessible manufacturer catalog
+        run: python -m scripts.discover_official_catalog
+      - name: Refresh every saved October day across all brands and original-source platforms
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for dd in $(seq -w 1 31); do
+            day="2026-10-$dd"
+            path="data/2026/10/Angelbird-Social-Monitoring-$day.json"
+            if [ ! -f "$path" ]; then
+              echo "MISSING_ORIGINAL_DAY $day | not counted as checked"
+              continue
+            fi
+            echo "BRAND_WIDE_REFRESH $day"
+            python -m scripts.refresh_brandwide --date "$day"
+            if (( 10#$dd % 7 == 0 )); then
+              git add data/ assets/ || true
+              if ! git diff --cached --quiet; then
+                git commit -m 'Angelbird brand-wide refresh original evidence weekly checkpoint'
+                git pull --rebase origin main
+                git push origin main
+              fi
+            fi
+          done
+      - name: Publish product-complete manufacturer inventory and all source details
+        run: |
+          python -m scripts.build_periodic_report --period monthly --end 2026-10-31
+          python -m scripts.qa_periodic_pdf --period monthly
+          python scripts/update_report_index.py
+          python scripts/build_website.py
+          node scripts/build_website.mjs
+          node --check website/app.js
+      - name: Audit category breadth, catalog status and all 31 saved date snapshots
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          meta=json.loads(Path('reports/monthly-latest.json').read_text())
+          cat=json.loads(Path('data/official_catalog_latest.json').read_text())
+          assert meta['end']=='2026-10-31'
+          assert meta['snapshots']==31, 'Historical day evidence absent'
+          assert meta['brand_scope_mode']=='brand_wide_all_products_services_and_mentions'
+          assert Path('_site',meta['path']).is_file()
+          print('BRAND_WIDE_QA',json.dumps({'brand':cat['brand'],'dated':meta['dated_findings'],
+            'leads':meta['unverified_leads'],'retail':meta['retail_observations_count'],
+            'catalog_products':meta['official_catalog_items'],
+            'catalog_original_shop_accessible':cat.get('original_shop_accessible'),
+            'catalog_incomplete':not cat.get('original_shop_accessible'),
+            'saved_daily_snapshots':meta['snapshots']},sort_keys=True))
+          PY
+      - name: Commit complete source evidence research appendix and website PDF
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ assets/ reports/ reports-index.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Angelbird brand-wide October social research and manufacturer product catalog report'
+            git pull --rebase origin main
+            git push origin main
+          fi
