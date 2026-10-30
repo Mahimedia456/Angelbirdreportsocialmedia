@@ -48,8 +48,28 @@
       "images": [
         "https://www.facebook.com/photo?fbid=1575983300996022"
       ],
-      "verification_note": "Metrics and quotation transcribed from user-supplied 29-Oct report; not independently refreshed.",
-      "date_evidence": "Reference report attributes discovery to 28 October 2026"
+      "verification_note": "Comments and dated metrics transcribed from supplied 29 October report. All three comments concern photos, not card performance. Original source may require authentication.",
+      "date_evidence": "Reference report attributes discovery to 28 October 2026",
+      "comments": [
+        {
+          "author": "De Rizzo",
+          "text": "What is the method you used to shoot these bears?",
+          "sentiment": "Question",
+          "source": "User-supplied 29 Oct PDF"
+        },
+        {
+          "author": "Elizabeth Nicole Honey",
+          "text": "Beautiful",
+          "sentiment": "Positive",
+          "source": "User-supplied 29 Oct PDF"
+        },
+        {
+          "author": "Barbara Cummings",
+          "text": "Fabulous photos",
+          "sentiment": "Positive",
+          "source": "User-supplied 29 Oct PDF"
+        }
+      ]
     },
     {
       "title": "ComLine France names Angelbird as SATIS 2026 partner",
