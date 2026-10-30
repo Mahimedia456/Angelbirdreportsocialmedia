@@ -2,3 +2,16 @@
 .latest-link{display:block;width:100%;border:1px solid #9bc8be;border-radius:10px;background:#eff8f5;color:#235d55;text-align:left;font:inherit;font-weight:800;cursor:pointer;padding:14px 18px;margin-bottom:20px}.latest-link:hover,.latest-link:focus-visible{background:#e0f2ed;outline:2px solid #549887;outline-offset:2px}
 
 .period-filter{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 20px}.period-filter button{padding:9px 16px;border-radius:999px;background:transparent;color:inherit;border:1px solid #777;cursor:pointer}.period-filter button[aria-pressed='true']{background:#253b4c;color:white}
+
+/* Evidence-based viewer KPI summary. Color encodes sentiment, not certainty. */
+.report-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:16px 0 18px}
+.report-kpi{background:#eef4f7;border:1px solid #dce5ea;border-left:4px solid #53778d;border-radius:10px;padding:13px 15px;min-height:75px;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.report-kpi strong{font-size:21px;font-weight:850;color:#274e64;font-variant-numeric:tabular-nums}
+.report-kpi span{font-size:10px;font-weight:750;letter-spacing:.045em;color:#5a7180}
+.report-kpi.positive{background:#e9f6ef;border-color:#ccebd9;border-left-color:#168253}
+.report-kpi.positive strong{color:#168253}
+.report-kpi.neutral{background:#fff5d7;border-color:#f1e1b0;border-left-color:#d3a22a}
+.report-kpi.neutral strong{color:#986700}
+.report-kpi.negative{background:#fff0ee;border-color:#f1cfcc;border-left-color:#b83f3b}
+.report-kpi.negative strong{color:#b83f3b}
+@media(max-width:750px){.report-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
