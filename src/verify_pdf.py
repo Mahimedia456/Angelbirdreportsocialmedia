@@ -46,7 +46,7 @@ def verify(day):
     all_positions=[]
     for platform in PLATFORMS:
         heading=platform.casefold()
-        match=re.search(r'(?<!\w)'+re.escape(heading)+r'\s*\|',low)
+        match=re.search(r'(?<!\w)'+re.escape(heading)+r'\s*\|\s*source\s+details',low) if platform!='Retailers' else re.search(r'retailers\s*\|\s*observed',low)
         if match:all_positions.append((platform,match.start()))
     if len(all_positions)<7:
         raise RuntimeError('Platform-specific scorecard headings missing.')
