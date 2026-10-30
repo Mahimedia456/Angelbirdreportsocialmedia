@@ -55,6 +55,12 @@ def _instructions(day, scope, targets):
     return (
         f'You are doing SCHEDULED Angelbird brand monitoring for {day}, in Asia/Karachi. '
         'Do the public web search NOW; never give advice to search later. '
+        'Monitor the entire Angelbird brand and every product, current and legacy, '
+        'including all capacities, variants, custom media, SSDs, memory cards, '
+        'card readers, cables, firmware, software, accessories and services. '
+        'Also monitor brand-level mentions, compatibility, industry coverage, '
+        'customer feedback, distributors and corporate events regardless of model. '
+        'Named products are search examples only, not eligibility filters. '
         f'This sweep targets {scope}: {targets} '
         'Explore at least two distinct targeted query themes with the available '
         'search capacity, when supported. Prefer original post/comment URL not '
