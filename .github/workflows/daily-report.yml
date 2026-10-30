@@ -1,11 +1,11 @@
 name: Angelbird Daily Social Monitoring
 on:
   schedule:
-    - cron: '30 19 * * *' # UTC; 00:30 Pakistan next day, reports PREVIOUS fully completed day
+    - cron: '0 14 * * *' # UTC; 19:00 Pakistan time, reports today's partial-day snapshot
   workflow_dispatch:
     inputs:
       report_date:
-        description: 'YYYY-MM-DD (blank: today if manual, yesterday if scheduled after midnight PKT)'
+        description: 'YYYY-MM-DD (blank: today in Pakistan)'
         required: false
         type: string
       dry_run:
@@ -41,7 +41,7 @@ jobs:
       MAX_REPORT_IMAGES: '10'
       REPORT_SINGLE_DAY: 'true'
       REPORT_DATE: ${{ inputs.report_date }}
-      REPORT_PREVIOUS_COMPLETED_DAY: ${{ github.event_name == 'schedule' }}
+      REPORT_PREVIOUS_COMPLETED_DAY: 'false'
       DRY_RUN: ${{ inputs.dry_run }}
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +60,7 @@ jobs:
         env:
           REPORT_DATE: ${{ inputs.report_date }}
         run: |
-          if [ -n "$REPORT_DATE" ]; then DAY="$REPORT_DATE"; elif [ "$REPORT_PREVIOUS_COMPLETED_DAY" = 'true' ]; then DAY="$(TZ=Asia/Karachi date -d yesterday +%F)"; else DAY="$(TZ=Asia/Karachi date +%F)"; fi
+          DAY="${REPORT_DATE:-$(TZ=Asia/Karachi date +%F)}"
           python -m src.verify_pdf "$DAY"
       - name: Save dated reports to GitHub
         if: success()
