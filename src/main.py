@@ -1,11 +1,11 @@
 """Daily monitoring entry point. JSON research and PDF rendering are separately executable."""
 import json,os
-from datetime import datetime,date
+from datetime import datetime,date,timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from .schema import ResearchReport,Coverage
 from .public_research import collect_day,cache_historical_images
-from .history import compile_history
+from .report_scope import scope_to_day
 from .chatgpt_import import import_chatgpt_evidence
 from .paid_gpt import supplement as paid_supplement, merge as merge_paid
 from .scheduled_research import research_sweeps
@@ -15,7 +15,11 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     now=datetime.now(ZoneInfo('Asia/Karachi'))
-    target=(os.getenv('REPORT_DATE') or '').strip() or now.date().isoformat()
+    target=(os.getenv('REPORT_DATE') or '').strip()
+    if not target:
+        target=((now-timedelta(days=1)).date().isoformat()
+                if os.getenv('REPORT_PREVIOUS_COMPLETED_DAY','false').lower() in ('true','1')
+                else now.date().isoformat())
     date.fromisoformat(target)
     dry=os.getenv('DRY_RUN','').lower() in ('true','1','yes')
     render_only=os.getenv('REPORT_ONLY','').lower() in ('true','1','yes')
@@ -57,7 +61,7 @@ def main():
             sweeps.append({'scope':'Paid GPT bounded supplement','data':dict(paid_audit,merged=paid_added)})
             if paid_report is None:
                 report.visibility_gaps.append('GPT supplement unavailable; see research attempt diagnostics. Free findings preserved.')
-    report=compile_history(report,ROOT)
+    report=scope_to_day(report)
     fetch_images=os.getenv('FETCH_EVIDENCE_IMAGES','').lower() in ('1','true','yes')
     if not dry and engine=='python' and (not render_only or fetch_images):
         image_audit=cache_historical_images(report)
@@ -69,10 +73,11 @@ def main():
         report.headline=(f'No directly evidenced new Angelbird brand mentions were retained for {target} '
                          f'from this bounded research run. Previous dated findings are preserved below.')
         report.status='Limited source coverage - relevance corrected'
-    report.headline=(f'{len(report.today_findings)} dated new Angelbird source finding(s), '
-                     f'{len(report.retail_observations)} current-day price/retail observations, '
-                     f'{len(report.historical_findings)} previous-five-day references. '
-                     'Coverage limited to source-accessible results; retail snapshots are not social posts.')
+    report.headline=(f'{len(report.today_findings)} date-verified Angelbird post/article finding(s) '
+                     f'and {len(report.retail_observations)} dated retail observation(s) on {target}. '
+                     'Earlier dates are excluded; inaccessible networks cannot be claimed fully monitored.')
+    if not render_only and not dry:
+        report.research_as_of_pkt=now.strftime('%Y-%m-%d %H:%M PKT')
     report.generated_at_pkt=now.strftime('%Y-%m-%d %H:%M PKT')
     dest=ROOT/'reports'/target[:4]/target[5:7]
     dest.mkdir(parents=True,exist_ok=True)
