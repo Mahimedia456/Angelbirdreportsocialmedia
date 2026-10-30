@@ -1,4 +1,4 @@
-name: Angelbird Website Build Validation
+name: Atomos Website Build Validation
 on:
   push:
     branches: [main]
@@ -33,11 +33,11 @@ jobs:
           root=pathlib.Path('.')
           live=json.loads((root/'reports-index.json').read_text(encoding='utf-8'))
           built=json.loads((root/'_site'/'reports-index.json').read_text(encoding='utf-8'))
-          assert live, 'Root live manifest has no reports'
-          assert built, 'Built website index has no reports'
-          assert live[0]['date']==built[0]['date'], 'Static and live index newest report do not match'
+          assert isinstance(live,list), 'Root manifest is invalid'
+          assert isinstance(built,list), 'Built manifest is invalid'
+          assert (not live and not built) or (live and built and live[0]['date']==built[0]['date']), 'Static and live index newest report do not match'
           for item in live:
               assert (root/item['path']).exists(), f'Missing PDF for {item["date"]}'
               assert item.get('source_url','').startswith('https://raw.githubusercontent.com/')
-          print('SUCCESS: website date index and latest PDF links verified',live[0]['date'])
+          print('SUCCESS: website index verified',live[0]['date'] if live else 'empty archive before first daily run')
           PY
