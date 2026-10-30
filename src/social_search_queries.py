@@ -51,3 +51,70 @@ GROUPS['Facebook'].extend([
   "site:facebook.com/photo/ \"Angelbird\" {month} {year}",
   "\"Angelbird\" Facebook filmmaker review {month} {year}"
 ])
+
+# Brand-first discovery is the foundation. These search themes apply to EVERY
+# present, discontinued, new, legacy, accessory and unlisted product, as well
+# as company-wide service, firmware, creator and partnership mentions.
+# Named model queries elsewhere are optional supplements, never filters.
+_BROAD_BRAND_QUERIES={
+  "Facebook": [
+    "site:facebook.com \"{brand}\" {date}",
+    "site:facebook.com \"{brand}\" support OR firmware OR update OR customer {month} {year}",
+    "site:facebook.com \"{brand}\" launch OR event OR review OR unboxing {month} {year}",
+    "site:facebook.com \"{brand}\" reel OR livestream OR story {month} {year}",
+    "site:facebook.com/groups/ \"{brand}\" user experience {month} {year}",
+    "site:facebook.com \"{brand}\" seller OR dealer OR reseller {month} {year}"
+  ],
+  "Instagram": [
+    "site:instagram.com \"{brand}\" {date}",
+    "site:instagram.com \"{brand}\" tagged creator {month} {year}",
+    "site:instagram.com/reel/ \"{brand}\" {month} {year}",
+    "site:instagram.com/p/ \"{brand}\" {month} {year}",
+    "site:instagram.com \"{brand}\" review OR tutorial OR launch {month} {year}"
+  ],
+  "LinkedIn": [
+    "site:linkedin.com/posts/ \"{brand}\" {month} {year}",
+    "site:linkedin.com \"{brand}\" product OR partnership OR event {month} {year}",
+    "site:linkedin.com \"{brand}\" dealer OR trade show OR news {date}"
+  ],
+  "X / Twitter": [
+    "site:x.com \"{brand}\" {date}",
+    "site:x.com/status/ \"{brand}\" support OR review {month} {year}",
+    "site:twitter.com \"{brand}\" announcement OR customer {month} {year}"
+  ],
+  "Reddit": [
+    "site:reddit.com \"{brand}\" {date}",
+    "site:reddit.com/r/ \"{brand}\" review OR compatibility {month} {year}",
+    "site:reddit.com \"{brand}\" firmware OR problem OR recommendation {month} {year}"
+  ],
+  "YouTube": [
+    "site:youtube.com/watch \"{brand}\" {date}",
+    "site:youtube.com \"{brand}\" review OR tutorial {month} {year}",
+    "site:youtube.com \"{brand}\" live OR shorts OR first impressions {month} {year}"
+  ],
+  "Camera forums": [
+    "\"{brand}\" camera forum compatibility {month} {year}",
+    "site:dpreview.com/forums \"{brand}\" {date}",
+    "site:forum.blackmagicdesign.com \"{brand}\" {date}",
+    "site:forums.red.com \"{brand}\" {date}",
+    "site:community.sony.com \"{brand}\" {month} {year}"
+  ],
+  "Industry articles": [
+    "\"{brand}\" industry news {date}",
+    "\"{brand}\" review or release or firmware {month} {year}",
+    "site:newsshooter.com \"{brand}\" {month} {year}",
+    "site:cined.com \"{brand}\" {month} {year}",
+    "site:petapixel.com \"{brand}\" {month} {year}"
+  ],
+  "Retailers": [
+    "\"{brand}\" buy reseller inventory {month} {year}",
+    "site:bhphotovideo.com \"{brand}\" {month} {year}",
+    "site:cvp.com \"{brand}\" {month} {year}",
+    "site:adorama.com \"{brand}\" {month} {year}",
+    "site:wexphotovideo.com \"{brand}\" {month} {year}",
+    "site:proav.co.uk \"{brand}\" {month} {year}",
+    "site:galaxus.com \"{brand}\" {month} {year}"
+  ]
+}
+for _platform,_broad in _BROAD_BRAND_QUERIES.items():
+    GROUPS[_platform]=[q.replace('{brand}',BRAND) for q in _broad]+GROUPS.get(_platform,[])
