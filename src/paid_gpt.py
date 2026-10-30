@@ -24,6 +24,64 @@ def _json(text):
         if first>=0 and last>first:return json.loads(s[first:last+1])
         raise
 
+def _normalize_response(raw, day):
+    """Repair alternate model field names; separate retail from genuine social evidence."""
+    from datetime import date, timedelta
+    from urllib.parse import urlparse
+    import re
+    out=dict(raw)
+    buckets={k:[] for k in ('today_findings','unverified_leads','older_leads','retail_observations')}
+    today=date.fromisoformat(day)
+    retail_domains=('bhphotovideo.com','galaxus.de','galaxus.ch','x-kom.pl','adorama.com','cvp.com','proav.co.uk')
+    for bucket in buckets:
+        for original in out.get(bucket,[]) if isinstance(out.get(bucket),list) else []:
+            if not isinstance(original,dict):continue
+            item=dict(original)
+            item['url']=str(item.get('url') or item.get('permalink') or '').strip()
+            if not item['url'].startswith(('http://','https://')):continue
+            host=(urlparse(item['url']).hostname or '').lower()
+            if not re.search(r'\\bangelbird\\b|\\bav[ -]?pro\\b',str(item.get('source_excerpt') or '')):
+                continue
+            if not isinstance(item.get('engagement'),dict):
+                stats=item.get('engagement')
+                item['engagement']={'source_note':str(stats)[:180]} if stats else {}
+            if not isinstance(item.get('comments'),list):
+                item['comments']=[c for c in item.get('relevant_comments',[])
+                                  if isinstance(c,dict)] if isinstance(item.get('relevant_comments'),list) else []
+            raw_date=str(item.get('published_date') or '')
+            if not raw_date:
+                match=re.search(r'20\\d\\d-\\d\\d-\\d\\d',str(item.get('date_evidence') or ''))
+                raw_date=match.group(0) if match else ''
+            try: candidate_day=date.fromisoformat(raw_date)
+            except ValueError:candidate_day=None
+            retail=any(host==d or host.endswith('.'+d) for d in retail_domains)
+            if retail:
+                # A currently indexed product page is not a newly published review.
+                item['published_date']=''
+                item['status']='unverified'
+                item['verification_note']='GPT discovered an Angelbird retailer listing; current listing date/review date not independently verified.'
+                buckets['unverified_leads'].append(item)
+            elif candidate_day and candidate_day<today-timedelta(days=5):
+                # Outside requested current + 5 previous-day window.
+                continue
+            elif bucket=='today_findings' and candidate_day==today and len(str(item.get('date_evidence') or ''))>=12:
+                item['published_date']=day
+                item['status']='verified'
+                buckets['today_findings'].append(item)
+            elif candidate_day and today-timedelta(days=5)<=candidate_day<today and len(str(item.get('date_evidence') or ''))>=12:
+                item['published_date']=candidate_day.isoformat()
+                item['status']='older'
+                buckets['older_leads'].append(item)
+            else:
+                item['published_date']=''
+                item['status']='unverified'
+                item['verification_note']='GPT search lead with original publication date not independently proven.'
+                buckets['unverified_leads'].append(item)
+    out.update(buckets)
+    out['visibility_gaps']=list(out.get('visibility_gaps',[])) if isinstance(out.get('visibility_gaps'),list) else []
+    out['visibility_gaps'].append('GPT retail/product sources are treated as unverified leads, not new verified social mentions.')
+    return out
+
 def _cache_paths(day):
     prefix=ROOT/'data'/day[:4]/day[5:7]/f'Angelbird-Social-Monitoring-{day}-gpt'
     prefix.parent.mkdir(parents=True,exist_ok=True)
@@ -64,9 +122,16 @@ def verify_ai_candidates(report, already_verified):
 def supplement(day, existing):
     p=_cache_paths(day)
     if p['evidence'].exists() and os.getenv('GPT_FORCE_RESEARCH','').lower() not in ('1','true'):
-        data=json.loads(p['evidence'].read_text(encoding='utf-8'))
+        # Reparse saved original AI response to recover permalink/engagement field variants,
+        # without making a second paid request.
+        if p['raw'].exists():
+            try: data=_normalize_response(_json(p['raw'].read_text(encoding='utf-8')),day)
+            except (ValueError,TypeError):data=json.loads(p['evidence'].read_text(encoding='utf-8'))
+        else:data=json.loads(p['evidence'].read_text(encoding='utf-8'))
         report=ResearchReport.model_validate(data).enforce_date_guardrails()
-        return verify_ai_candidates(report,existing),{'cache':'reused', 'api_calls':0}
+        report=verify_ai_candidates(report,existing)
+        _save(p['evidence'],report.model_dump(mode='json'))
+        return report,{'cache':'reparsed_original_response', 'api_calls':0}
     if p['attempt'].exists() and os.getenv('GPT_FORCE_RESEARCH','').lower() not in ('1','true'):
         return None,{'cache':'prior_attempt_guard','api_calls':0}
     model=os.getenv('OPENAI_MODEL','gpt-4.1-mini')
@@ -116,7 +181,7 @@ def supplement(day, existing):
                           'response_id':getattr(response,'id',''),
                           'cost_note':'Actual charges only in OpenAI API Usage; no fixed dollar cap.'})
         try:
-            parsed=_json(raw)
+            parsed=_normalize_response(_json(raw),day)
             if not isinstance(parsed,dict) or parsed.get('report_date')!=day:
                 raise ValueError('AI returned invalid or wrong-date JSON')
             if str(parsed.get('headline','')).strip() in ('Evidence-based summary','One-line sourced summary'):
