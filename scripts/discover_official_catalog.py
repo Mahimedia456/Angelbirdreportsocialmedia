@@ -66,7 +66,7 @@ def main():
                             heading=parent.find(['h2','h3','h4'])
                             label=heading.get_text(' ',strip=True) if heading else ''
                     if not label or len(label)<6:label=fallback_name(dest)
-                    name=re.sub(r'\\s+',' ',label)[:190]
+                    name=re.sub(r'\s+',' ',label)[:190]
                     if dest not in products:
                         products[dest]={'title':name,'url':dest,'discovered_from':url,
                                         'catalog_status':'public manufacturer listing - current snapshot'}
