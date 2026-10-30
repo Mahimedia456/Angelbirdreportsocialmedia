@@ -1,13 +1,39 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 16:14 PKT",
+  "generated_at_pkt": "2026-10-30 16:18 PKT",
   "status": "Python public-source monitoring",
-  "headline": "0 direct Angelbird mention(s) independently dated 2026-10-30 from accessible public sources. Source coverage and access limitations follow.",
+  "headline": "0 directly dated Angelbird mention(s) established for 2026-10-30 from 6 first-party page attempts; previous five days are listed separately.",
   "today_findings": [],
   "retail_observations": [],
   "unverified_leads": [],
   "older_leads": [],
   "historical_findings": [
+    {
+      "title": "Best SD and CFexpress Cards for Northern Ontario: Where to Spend and Where to Save",
+      "platform": "Industry articles",
+      "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
+      "author": "James Murray",
+      "published_date": "2026-10-29",
+      "date_evidence": "Original first-party page article:published_time",
+      "summary": "WC Atlas Pro CFexpress 4.0 Type A, 240GB Compatible Sony cameras requiring Type A or faster buffer clearing $362.99 , Vistek; listed in stock. vistek.ca −12°C to +72°C . Angelbird AV PRO SE CFexpress B v4, 512GB Strong Type B video value when approved for the camera and recording mode $529 sale price , Camera Canada; listed in stock. cameracanada.com −12°C to +72°C . The Kingston V60 offers the most compelling general-purpose value here. Its modest premium over the listed SanDisk buys a higher m",
+      "sentiment": "Positive",
+      "priority": "Low",
+      "status": "older",
+      "image_url": "https://www.netnewsledger.com/wp-content/uploads/2026/10/Winter-camera-memory-card-lineup.jpg",
+      "product": "Angelbird AV PRO",
+      "details": "",
+      "source_excerpt": "WC Atlas Pro CFexpress 4.0 Type A, 240GB Compatible Sony cameras requiring Type A or faster buffer clearing $362.99 , Vistek; listed in stock. vistek.ca −12°C to +72°C . Angelbird AV PRO SE CFexpress B v4, 512GB Strong Type B video value when approved for the camera and recording mode $529 sale price , Camera Canada; listed in stock. cameracanada.com −12°C to +72°C . The Kingston V60 offers the most compelling general-purpose value here. Its modest premium over the listed SanDisk buys a higher minimum video write class and UHS-II sup",
+      "response_action": "Not required.",
+      "impact": "Public brand or product mention; contextual relevance only.",
+      "verification_note": "Original page has a previous-five-day publication date, not today's.",
+      "reference_date": "",
+      "engagement": {},
+      "images": [],
+      "image_files": [
+        "assets/2026/10/2026-10-30/source_001.jpg"
+      ],
+      "comments": []
+    },
     {
       "title": "Angelbird AV PRO SE CFexpress B 512GB included in Canadian camera-card guide",
       "platform": "NetNewsLedger / Editorial",
@@ -247,43 +273,43 @@
   "coverage": [
     {
       "platform": "Reddit",
-      "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 2 original source fetch(es), 2 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
       "platform": "YouTube",
       "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
-      "checked": true
+      "checked": false
     },
     {
       "platform": "Facebook",
-      "summary": "1 indexed query attempt(s), 1 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "summary": "1 indexed query attempt(s), 1 index response(s), 3 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
       "platform": "Instagram",
       "summary": "1 indexed query attempt(s), 1 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
-      "checked": true
+      "checked": false
     },
     {
       "platform": "LinkedIn",
       "summary": "1 indexed query attempt(s), 1 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
-      "checked": true
+      "checked": false
     },
     {
       "platform": "Camera forums",
       "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
-      "checked": true
+      "checked": false
     },
     {
       "platform": "Industry articles",
-      "summary": "3 indexed query attempt(s), 3 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "summary": "3 indexed query attempt(s), 3 index response(s), 1 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
       "platform": "Retailers",
       "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
-      "checked": true
+      "checked": false
     }
   ],
   "visibility_gaps": [
@@ -300,5 +326,5 @@
     "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
     "No result does not establish no brand activity on a platform."
   ],
-  "methodology": "Python collector: 15 public search query attempts, 0 original-page attempts, 0 attributable image thumbnails; optional Reddit/YouTube APIs. New verified posts require original source dates and direct Angelbird text."
+  "methodology": "Python collector: 15 public search query attempts, 6 original-page attempts, 1 attributable image thumbnails; optional Reddit/YouTube APIs. New verified posts require original source dates and direct Angelbird text."
 }

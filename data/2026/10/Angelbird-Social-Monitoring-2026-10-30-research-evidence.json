@@ -13,7 +13,7 @@
         "group": "Reddit",
         "stage": "search",
         "query": "site:reddit.com \"Angelbird\" \"card\" October 2026",
-        "results": 1,
+        "results": 10,
         "index": "Bing RSS"
       },
       {
@@ -27,14 +27,14 @@
         "group": "YouTube",
         "stage": "search",
         "query": "site:youtube.com \"Angelbird\" October 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing RSS"
       },
       {
         "group": "Facebook",
         "stage": "search",
         "query": "site:facebook.com \"Angelbird\" 2026-10-30",
-        "results": 5,
+        "results": 10,
         "index": "Bing RSS"
       },
       {
@@ -69,14 +69,14 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "site:newsshooter.com \"Angelbird\" October 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing RSS"
       },
       {
         "group": "Industry articles",
         "stage": "search",
         "query": "site:cined.com \"Angelbird\" October 2026",
-        "results": 7,
+        "results": 10,
         "index": "Bing RSS"
       },
       {
@@ -99,18 +99,73 @@
         "query": "site:cvp.com \"Angelbird\" CFexpress October 2026",
         "results": 10,
         "index": "Bing RSS"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
+        "result": "OK",
+        "final_url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
+        "source_date": "2026-10-29",
+        "title": "Best SD and CFexpress Cards for Northern Ontario: Where to Spend and Where to Save"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/"
+      },
+      {
+        "stage": "image",
+        "url": "https://www.netnewsledger.com/wp-content/uploads/2026/10/Winter-camera-memory-card-lineup.jpg",
+        "result": "cached attributed thumbnail",
+        "asset": "assets/2026/10/2026-10-30/source_001.jpg"
       }
     ],
     "counts": {
-      "Reddit.wrong_source_domain": 11,
+      "Reddit.wrong_source_domain": 20,
       "Reddit.successful_queries": 2,
       "Reddit.fallback_attempts": 1,
       "Reddit.queries": 2,
-      "YouTube.wrong_source_domain": 20,
+      "YouTube.wrong_source_domain": 11,
       "YouTube.successful_queries": 2,
       "YouTube.fallback_attempts": 1,
       "YouTube.queries": 2,
-      "Facebook.wrong_source_domain": 5,
+      "Facebook.wrong_source_domain": 10,
       "Facebook.successful_queries": 1,
       "Facebook.fallback_attempts": 1,
       "Facebook.queries": 1,
@@ -126,20 +181,30 @@
       "Camera forums.successful_queries": 2,
       "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 2,
-      "Industry articles.irrelevant_index_hits": 27,
+      "Industry articles.irrelevant_index_hits": 20,
       "Industry articles.successful_queries": 3,
       "Industry articles.fallback_attempts": 1,
       "Industry articles.queries": 3,
+      "Industry articles.wrong_source_domain": 1,
       "Retailers.wrong_source_domain": 20,
       "Retailers.successful_queries": 2,
       "Retailers.fallback_attempts": 1,
-      "Retailers.queries": 2
+      "Retailers.queries": 2,
+      "Industry articles.candidates": 1,
+      "Facebook.candidates": 3,
+      "Reddit.candidates": 2,
+      "Reddit.source_attempts": 2,
+      "Reddit.fetch_failed": 2,
+      "Facebook.source_attempts": 3,
+      "Facebook.no_brand_original": 3,
+      "Industry articles.source_attempts": 1,
+      "Industry articles.not_dated_today": 1
     },
     "search_queries": 15,
-    "original_pages_attempted": 0,
-    "cached_images": 0,
+    "original_pages_attempted": 6,
+    "cached_images": 1,
     "undated_brand_sources": 0,
-    "previous_five_day_brand_sources": 0
+    "previous_five_day_brand_sources": 1
   },
   {
     "scope": "Historical source image cache",
