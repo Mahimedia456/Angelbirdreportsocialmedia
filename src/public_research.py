@@ -367,69 +367,6 @@ class PublicResearch:
                            {'likes':cs.get('likeCount',0),'replies':(item.get('snippet') or {}).get('totalReplyCount',0)})
                 if f:self.accept(f,'YouTube API original comment')
 
-    def reddit(self):
-        cid=os.getenv('REDDIT_CLIENT_ID','')
-        secret=os.getenv('REDDIT_CLIENT_SECRET','')
-        if not(cid and secret):
-            self.gaps.append('Reddit OAuth not configured; direct comment thread access not guaranteed')
-            return
-        try:
-            r=self.s.post('https://www.reddit.com/api/v1/access_token',
-                auth=(cid,secret),data={'grant_type':'client_credentials'},
-                timeout=12,headers={'User-Agent':os.getenv('REDDIT_USER_AGENT',
-                   'script:angelbird.monitoring:v2.1 (public-source research)')})
-            r.raise_for_status()
-            token=r.json().get('access_token')
-            if not token:raise ValueError('No Reddit access token')
-        except (requests.RequestException,ValueError) as exc:
-            self.gaps.append('Reddit OAuth failed: '+str(exc)[:100]);return
-        h={'Authorization':'bearer '+token,
-           'User-Agent':os.getenv('REDDIT_USER_AGENT',
-                    'script:angelbird.monitoring:v2.1 (public-source research)')}
-        r,state=self.get('https://oauth.reddit.com/search',
-            params={'q':'Angelbird','sort':'new','t':'week','limit':'60','type':'link'},
-            headers=h)
-        if not r:
-            self.gaps.append('Reddit official search '+state);return
-        posts=(r.json().get('data') or {}).get('children') or []
-        self.counts['Reddit.api_posts']+=len(posts)
-        for e in posts[:18]:
-            p=e.get('data') or {}
-            post_date=datetime.fromtimestamp(p.get('created_utc',0),tz=timezone.utc).date().isoformat()
-            url='https://www.reddit.com'+p.get('permalink','')
-            body=p.get('title','')+' '+p.get('selftext','')
-            parent=None
-            if BRAND.search(body):
-                f=classify(url,body,'Reddit',post_date,'Reddit OAuth created_utc',
-                    p.get('title',''),p.get('author',''),'',{'score':p.get('score',0),
-                    'comments':p.get('num_comments',0)})
-                if f:
-                    self.accept(f,'Reddit OAuth post')
-                    parent=f if f.published_date==self.date else None
-            if int(p.get('num_comments',0))<=0:continue
-            thread,ts=self.get('https://oauth.reddit.com'+p.get('permalink',''),
-                params={'limit':'70','depth':'2'},headers=h)
-            if not thread:
-                self.audit.append({'group':'Reddit','url':url,'stage':'comments','result':ts});continue
-            try:tree=thread.json()
-            except ValueError:continue
-            if not isinstance(tree,list) or len(tree)<2:continue
-            for e in (tree[1].get('data') or {}).get('children') or []:
-                c=e.get('data') or {}
-                if not isinstance(c,dict):continue
-                if parent is not None and len(parent.comments)<6:
-                    parent.comments.append({'author':c.get('author',''),
-                                            'text':str(c.get('body',''))[:400],
-                                            'date':datetime.fromtimestamp(c.get('created_utc',0),tz=timezone.utc).date().isoformat(),
-                                            'score':c.get('score',0)})
-                if not BRAND.search(c.get('body','')):continue
-                cdate=datetime.fromtimestamp(c.get('created_utc',0),tz=timezone.utc).date().isoformat()
-                cid=c.get('id','')
-                curl=url.rstrip('/')+'/'+cid+'/'
-                f=classify(curl,c.get('body',''),'Reddit',cdate,'Reddit OAuth comment created_utc',
-                    'Reddit comment in '+p.get('title','')[:100],c.get('author',''),'',{'score':c.get('score',0)})
-                if f:self.accept(f,'Reddit OAuth original comment')
-
     def accept(self, item, origin):
         if not item or not BRAND.search(item.source_excerpt):return
         if item.published_date!=self.date:
@@ -562,7 +499,6 @@ class PublicResearch:
 
     def run(self):
         self.youtube()
-        self.reddit()
         self.search()
         # Round-robin source fetching: no single platform may consume the budget.
         queues={group:[] for group in GROUPS}
@@ -584,7 +520,7 @@ class PublicResearch:
         coverage=[]
         for group in GROUPS:
             q=self.counts[group+'.queries']
-            api=self.counts[group+'.api_searches']+self.counts[group+'.api_posts']
+            api=self.counts[group+'.api_searches']
             attempted=self.counts[group+'.source_attempts']
             verified_count=self.counts[group+'.verified']
             failed=self.counts[group+'.fetch_failed']
@@ -598,7 +534,7 @@ class PublicResearch:
         headline=(f'{len(verified)} directly dated Angelbird mention(s) established for {self.date} '
                  f'from {self.fetched} first-party page attempts; previous five days are listed separately.')
         status='Python public-source monitoring'
-        if not self.fetched and not self.counts['YouTube.api_searches'] and not self.counts['Reddit.api_posts']:
+        if not self.fetched and not self.counts['YouTube.api_searches']:
             status='INCOMPLETE - No original source pages checked'
             headline='Search indexes returned no usable original sources. The 30 October activity level is unknown, not confirmed zero.'
             self.gaps.append('No source-page evidence could be checked with current index/API access. Configure provider credentials.')
@@ -610,7 +546,7 @@ class PublicResearch:
               'No result does not establish no brand activity on a platform.'],
             methodology=(f'Python collector: {self.queries} public search query attempts, '
                          f'{self.fetched} original-page attempts, '
-                         f'{self.images} attributable image thumbnails; optional Reddit/YouTube APIs. '
+                         f'{self.images} attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. '
                          'New verified posts require original source dates and direct Angelbird text.'))
         return report,[{'scope':'Python public source audit','data':self.audit,
                         'counts':dict(self.counts),'search_queries':self.queries,
