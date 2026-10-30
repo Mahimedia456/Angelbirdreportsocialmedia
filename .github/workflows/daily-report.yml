@@ -27,6 +27,9 @@ jobs:
       RESEARCH_ENGINE: 'python'
       FREE_SOURCES_ONLY: 'false'
       GPT_RESEARCH_ENABLED: 'true'
+      GPT_PLATFORM_SWEEPS: 'true'
+      GPT_MAX_RESEARCH_ROUNDS: '3'
+      GPT_FORCE_RESEARCH: 'false'
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_MODEL: 'gpt-4.1-mini'
       GPT_MAX_WEB_CALLS: '2'
@@ -36,6 +39,7 @@ jobs:
       MAX_SOURCE_PAGES: '35'
       MAX_SOURCE_IMAGES: '12'
       MAX_HISTORICAL_IMAGES: '5'
+      MAX_REPORT_IMAGES: '10'
       REPORT_DATE: ${{ inputs.report_date }}
       DRY_RUN: ${{ inputs.dry_run }}
     steps:
@@ -49,7 +53,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Validate and test
         run: python -m unittest discover -s tests -v
-      - name: Collect actual public posts, comments, images and render PDF
+      - name: Scheduled platform research, source verification, posts, images and PDF
         run: python -m src.main
       - name: Save dated reports to GitHub
         if: success()
