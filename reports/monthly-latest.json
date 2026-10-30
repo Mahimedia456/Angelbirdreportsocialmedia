@@ -47,5 +47,14 @@
   },
   "unique_social_url_groups": 5,
   "linked_reply_excerpts": 0,
-  "daily_coverage_percent": 16.7
+  "daily_coverage_percent": 16.7,
+  "source_media": {
+    "embedded_verified": 2,
+    "linked_verified": 3,
+    "embedded_leads": 0,
+    "linked_leads": 2,
+    "missing_media_verified": 3
+  },
+  "retail_observations_count": 6,
+  "retail_unique_urls": 6
 }
