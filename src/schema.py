@@ -36,6 +36,8 @@ class Finding(BaseModel):
     reference_date: str = ''
     engagement: dict = Field(default_factory=dict)
     images: list[str] = Field(default_factory=list)
+    image_files: list[str] = Field(default_factory=list)
+    comments: list[dict] = Field(default_factory=list)
 
     @model_validator(mode='before')
     @classmethod
@@ -49,8 +51,12 @@ class Finding(BaseModel):
         if isinstance(d.get('published_date'), str) and d['published_date'].lower() in ('none','null','unknown','undated','n/a'):
             d['published_date'] = ''
         if not isinstance(d.get('engagement'),dict): d['engagement']={}
+        if not isinstance(d.get('image_files'),list): d['image_files']=[]
+        if not isinstance(d.get('comments'),list): d['comments']=[]
         if not isinstance(d.get('images'),list): d['images']=[]
         d['images']=[text_value(u) for u in d['images'] if text_value(u).startswith(('https://','http://'))]
+        d['image_files']=[text_value(p) for p in d['image_files'] if text_value(p).startswith('assets/') and '..' not in text_value(p)]
+        d['comments']=[c for c in d['comments'] if isinstance(c,dict)][:40]
         raw_sent = text_value(d.get('sentiment')).lower()
         sentiments = {x.lower():x for x in ('Positive','Negative','Neutral','Question','Not applicable')}
         # Composite/unclear sentiments must NOT silently become positive or negative.
