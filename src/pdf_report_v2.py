@@ -304,7 +304,7 @@ def instagram_story_lead_card(item):
         Spacer(1,4),
         P('Source account: '+(item.author or 'Not known'),'small'),
         Spacer(1,4),
-        source_url_line(item.url,'OPEN ORIGINAL INSTAGRAM STORY'),
+        source_url_line(item.url,('OPEN INSTAGRAM STORY LINK' if len([p for p in urlparse(item.url).path.split('/') if p])==3 else 'OPEN INSTAGRAM STORIES ACCOUNT PAGE')),
         Spacer(1,5),
         P('Original Story media, tag/mention, brand association, reach and '
           'publication date NOT independently accessible. This is a supplied '
