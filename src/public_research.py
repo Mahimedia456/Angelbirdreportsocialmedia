@@ -154,6 +154,7 @@ class PublicResearch:
                                   'snippet':BeautifulSoup(item.get('description',''),'html.parser').get_text(' ',strip=True)},
                                  group,'Brave index')
                         found+=1
+                    self.counts[group+'.successful_queries']+=1
                 except ValueError:state='Invalid search API response'
             else:self.gaps.append(f'{group}: Brave search {state}')
         else:
@@ -170,6 +171,7 @@ class PublicResearch:
                                   'snippet':BeautifulSoup(desc,'html.parser').get_text(' ',strip=True)},
                                  group,'Bing RSS',item.findtext('pubDate') or '')
                         found+=1
+                    self.counts[group+'.successful_queries']+=1
                 except ElementTree.ParseError:state='Unparseable index feed'
             if not response or state!='OK':self.gaps.append(f'{group}: Bing index {state}')
         self.audit.append({'group':group,'stage':'search','query':query,'results':found,
@@ -433,11 +435,13 @@ class PublicResearch:
             attempted=self.counts[group+'.source_attempts']
             verified_count=self.counts[group+'.verified']
             failed=self.counts[group+'.fetch_failed']
+            success=self.counts[group+'.successful_queries']
             coverage.append(Coverage(platform=group,
-                checked=bool(q or api),
-                summary=(f'{q} indexed query(s); {attempted} original source fetch(es), '
-                         f'{failed} inaccessible, {verified_count} exact-day source-verified mention(s). '
-                         'Indexed search is not proof of exhaustive platform coverage.')))
+                checked=bool(success or api),
+                summary=(f'{q} indexed query attempt(s), {success} index response(s), '
+                         f'{attempted} original source fetch(es), {failed} inaccessible; '
+                         f'{verified_count} exact-day source-verified mention(s). '
+                         'A blocked index or missing official API is not a negative search result.')))
         headline=(f'{len(verified)} direct Angelbird mention(s) independently dated {self.date} '
                  f'from accessible public sources. Source coverage and access limitations follow.')
         report=ResearchReport(report_date=self.date,status='Python public-source monitoring',
