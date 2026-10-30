@@ -4,9 +4,9 @@ from datetime import datetime,date
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from .schema import ResearchReport,Coverage
-from .research import research_day
 from .public_research import collect_day,cache_historical_images
 from .history import compile_history
+from .chatgpt_import import import_chatgpt_evidence
 from .pdf_report_v2 import render_pdf
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -23,8 +23,8 @@ def main():
     json_path=data/(base+'.json')
     sweeps=[]
     engine=os.getenv('RESEARCH_ENGINE','python').strip().lower()
-    if os.getenv('FREE_SOURCES_ONLY','').strip().lower() in ('true','1','yes') and engine=='openai' and not render_only and not dry:
-        raise RuntimeError('FREE_SOURCES_ONLY forbids paid OpenAI API calls; use RESEARCH_ENGINE=python')
+    if engine!='python' and not render_only and not dry:
+        raise RuntimeError('Only free Python collection is enabled. ChatGPT web evidence is imported from JSON, not a paid API.')
     if render_only:
         if not json_path.exists():
             raise FileNotFoundError('No saved research JSON for '+target+'. Render-only does not call the API.')
@@ -37,14 +37,11 @@ def main():
                 for p in ('Reddit / forums','YouTube','Facebook / Instagram / LinkedIn','News / resellers')],
              visibility_gaps=['No live research performed in demo mode.'])
     else:
-        if engine=='python':
-            print('Starting Python-first public website collection (no OpenAI calls).',flush=True)
-            report,sweeps=collect_day(target)
-        elif engine=='openai':
-            print('Optional paid OpenAI research selected.',flush=True)
-            report,sweeps=research_day(target)
-        else:
-            raise ValueError('RESEARCH_ENGINE must be python or openai')
+        print('Collecting public sources with Python and connected YouTube API (no OpenAI API calls).',flush=True)
+        report,sweeps=collect_day(target)
+    report,import_audit=import_chatgpt_evidence(report,ROOT)
+    if import_audit['found']:
+        sweeps.append({'scope':'ChatGPT web research JSON import','data':import_audit})
     report=compile_history(report,ROOT)
     if not render_only and not dry and engine=='python':
         image_audit=cache_historical_images(report)
