@@ -78,6 +78,12 @@ def main():
                      'Earlier dates are excluded; inaccessible networks cannot be claimed fully monitored.')
     if not render_only and not dry:
         report.research_as_of_pkt=now.strftime('%Y-%m-%d %H:%M PKT')
+    if target==now.date().isoformat():
+        report.status='PARTIAL DAY | original-source research remains time-limited until midnight PKT'
+    else:
+        report.status='Completed calendar day | coverage limited to accessible public sources'
+    if render_only and not report.research_as_of_pkt:
+        report.research_as_of_pkt='Saved evidence; unified research cutoff unavailable'
     report.generated_at_pkt=now.strftime('%Y-%m-%d %H:%M PKT')
     dest=ROOT/'reports'/target[:4]/target[5:7]
     dest.mkdir(parents=True,exist_ok=True)
