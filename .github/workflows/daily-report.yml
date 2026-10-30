@@ -55,6 +55,12 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Scheduled platform research, source verification, posts, images and PDF
         run: python -m src.main
+      - name: Verify source URLs and platform-to-post PDF evidence
+        env:
+          REPORT_DATE: ${{ inputs.report_date }}
+        run: |
+          DAY="${REPORT_DATE:-$(TZ=Asia/Karachi date +%F)}"
+          python -m src.verify_pdf "$DAY"
       - name: Save dated reports to GitHub
         if: success()
         run: |
