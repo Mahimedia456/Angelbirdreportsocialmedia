@@ -3,7 +3,9 @@ const ids=["months","days","viewer","status","heading","subtitle","crumbs","tota
 const el=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
 const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 const fmt=new Intl.DateTimeFormat("en-US",{timeZone:"UTC",weekday:"long",month:"long",day:"numeric",year:"numeric"});
-let records=[],selectedYear=2026,loadError="",lastManifestDate="";
+let records=[],selectedYear=2026,loadError="",lastManifestDate="",reportType="all";
+const typeName=x=>(x.type||"daily").toLowerCase();
+const typeTitle=x=>typeName(x).replace(/^./,c=>c.toUpperCase());
 const clean=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const dateValid=s=>/^\d{4}-\d{2}-\d{2}$/.test(s)&&!Number.isNaN(Date.parse(s+"T00:00:00Z"));
 const dayTitle=d=>fmt.format(new Date(d+"T00:00:00Z"));
@@ -19,19 +21,19 @@ el.back.onclick=()=>location.hash=item?"#/month/"+item.month:"#/";
 let crumb='<a href="#/">All Months</a>';
 if(item){
   crumb+=' <span>›</span> <a href="#/month/'+item.month+'">'+monthTitle(item.month)+'</a> <span>›</span> '+item.date;
-  el.heading.textContent="Daily Monitoring Report";el.subtitle.textContent="View the original daily research report.";
+  el.heading.textContent=typeTitle(item)+" Monitoring Report";el.subtitle.textContent="View the source-linked "+typeName(item)+" research PDF.";
   el["viewer-date"].textContent=dayTitle(item.date)+(item.demo?" · DEMO":"");
   el["viewer-name"].textContent=item.name;
   const url=new URL(item.source_url||item.path,new URL(".",location.href.split("#")[0]));
   el["open-pdf"].href=url.href;el["download-pdf"].href=url.href;
   el["pdf-frame"].src=url.href+"#toolbar=1";el.viewer.hidden=false;el.status.textContent="";
 } else if(key){
-  const all=records.filter(x=>x.month===key);
-  const items=all.filter(x=>!query||(x.date+" "+x.name).toLowerCase().includes(query));
+  const all=records.filter(x=>x.month===key&&(reportType==="all"||typeName(x)===reportType));
+  const items=all.filter(x=>!query||(x.date+" "+x.name+" "+typeName(x)).toLowerCase().includes(query));
   crumb+=' <span>›</span> '+monthTitle(key);
   el.heading.textContent=monthTitle(key)+" Reports";
   el.subtitle.textContent=all.length?all.length+" available report"+(all.length===1?"":"s")+", sorted by date.":"No reports have been published for this month yet.";
-  el.days.innerHTML=items.map(x=>'<button class="day" data-id="'+clean(x.id)+'"><span class="day-date"><strong>'+Number(x.date.slice(8))+'</strong><small>'+months[Number(x.date.slice(5,7))-1].slice(0,3).toUpperCase()+'</small></span><span class="day-info"><strong>'+clean(dayTitle(x.date))+(x.demo?' · Demo':'')+'</strong><span>'+clean(x.name)+'</span></span><span class="day-arrow">→</span></button>').join("");
+  el.days.innerHTML=items.map(x=>'<button class="day" data-id="'+clean(x.id)+'"><span class="day-date"><strong>'+Number(x.date.slice(8))+'</strong><small>'+months[Number(x.date.slice(5,7))-1].slice(0,3).toUpperCase()+'</small></span><span class="day-info"><strong>'+clean(typeTitle(x)+' | '+dayTitle(x.date))+(x.demo?' · Demo':'')+'</strong><span>'+clean(x.name)+'</span></span><span class="day-arrow">→</span></button>').join("");
   el.days.hidden=false;
   el.days.querySelectorAll("button").forEach(b=>b.onclick=()=>location.hash="#/report/"+encodeURIComponent(b.dataset.id));
   el.status.textContent=items.length?"":all.length?"No reports match your search.":"No reports available for this month yet.";
@@ -52,6 +54,14 @@ if(item){
 }
 el.crumbs.innerHTML=crumb;el.total.textContent=records.length;
 }
+const reportTypeUI=document.getElementById("report-type-filter");
+if(reportTypeUI){reportTypeUI.addEventListener("click",e=>{
+  const button=e.target.closest("button[data-type]");
+  if(!button)return;
+  reportType=button.dataset.type;
+  reportTypeUI.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+  route();
+});}
 el.search.addEventListener("input",route);
 el.year.addEventListener("change",()=>{selectedYear=Number(el.year.value);location.hash="#/";route()});
 window.addEventListener("hashchange",route);
@@ -63,8 +73,8 @@ const normalizeIndex=data=>{
  if(!Array.isArray(data))return [];
  const valid=data.filter(x=>x&&dateValid(x.date)&&/^\d{4}-(0[1-9]|1[0-2])$/.test(x.month)
   &&typeof x.path==="string"&&/^reports\/\d{4}\/\d{2}\/[^/]+\.pdf$/i.test(x.path));
- const active=new Set(valid.filter(x=>!x.demo).map(x=>x.date));
- return valid.filter(x=>!x.demo||!active.has(x.date))
+ const active=new Set(valid.filter(x=>!x.demo&&typeName(x)==="daily").map(x=>x.date));
+ return valid.filter(x=>!x.demo||typeName(x)!=="daily"||!active.has(x.date))
   .sort((a,b)=>b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
 };
 const getManifest=async url=>{
