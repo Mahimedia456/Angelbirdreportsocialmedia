@@ -11,3 +11,5 @@ Use alternate public search source, fair platform quotas and actual dated-source
 Use strict platform-domain checks and separate verified retailer-market observations for final 30 October PDF.
 
 Final monitored-source rerun: source whitelist, first-party sources, source audit and actual photos/comments.
+
+FREE_ONLY validation: no Brave Search API, no GPT API, free GDELT and public RSS discovery.\n
