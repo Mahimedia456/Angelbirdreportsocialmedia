@@ -125,7 +125,8 @@ def main():
     story=[pdf.band(brand.upper()+' | '+args.period.upper()+' SOCIAL MONITORING',f'{start} TO {end}'),
            Spacer(1,9),pdf.P(f'Saved daily research snapshots: {len(saved)} of {(end-start).days+1}. Missing days are incomplete coverage, NOT zero activity.','small'),
            Spacer(1,8)]
-    story.extend([pdf.P(f'Direct collector records: {len(gathered)-archived}; archived dated records: {archived}. Archive provenance is separately labeled, and older linked sources are not newly verified by this run.','small'),Spacer(1,8)])
+    story.extend([pdf.P(f'{len(gathered)-archived} direct source records; {archived} dated archive records. '
+                              'Saved references are identified separately from newly checked original sources.','small'),Spacer(1,8)])
     intro_end=len(story)
     # Analytical breakdown only describes collected evidence, not global platform reach.
     sentiments=Counter(x.sentiment for x in gathered)
@@ -136,23 +137,6 @@ def main():
         for key in ('views','likes','comments','shares','reactions','reposts'):
             val=item.engagement.get(key) if item.engagement else None
             if isinstance(val,(int,float)) and val>=0:measured[key]+=val
-    story.extend([Spacer(1,8),pdf.band('EVIDENCE QUALITY AND DEEP ANALYTICS'),Spacer(1,8),
-                  pdf.P('These KPIs describe captured original-source records only. Posts column in platform scorecards includes comments and articles and must NOT be interpreted as unique social posts.','small'),
-                  Spacer(1,6),pdf.P('Sentiment of observed records: '+', '.join(str(k)+': '+str(v) for k,v in sorted(sentiments.items())),'small'),
-                  Spacer(1,5),pdf.P('Source date distribution: '+', '.join(str(k)+': '+str(v) for k,v in sorted(weekly_buckets.items())),'small'),
-                  Spacer(1,5),pdf.P('Most frequently mentioned product labels: '+(', '.join(k[:55]+' ('+str(v)+')' for k,v in products.most_common(8)) or 'Not supplied'),'small'),
-                  Spacer(1,5),pdf.P('Observed numeric engagement (partial coverage): '+(', '.join(k+': '+str(v) for k,v in sorted(measured.items())) or 'No comparable cross-platform metrics'),'small'),
-                  Spacer(1,5),pdf.P('Duplicate threads or repeated complaint crossposts can inflate record counts; do not infer unique incidents or unique reach.','small'),Spacer(1,10)])
-    if coverage_checks:
-        counts=Counter((platform,checked) for _,platform,checked,_ in coverage_checks)
-        story.extend([pdf.band('PLATFORM SEARCH COVERAGE AUDIT'),Spacer(1,8),
-                      pdf.P('Public-source checks per saved research day (not proof of exhaustive coverage):','small')])
-        for platform in PLATFORMS:
-            ntrue=counts[(platform,True)]
-            nfalse=counts[(platform,False)]
-            if ntrue+nfalse:
-                story.extend([pdf.P(f'{platform}: {ntrue} checked / {nfalse} incomplete snapshots','small'),Spacer(1,3)])
-        story.append(Spacer(1,7))
     # Two-tier KPI: source-discovered records must be visible even when the
     # exact posting date is unavailable. Never mix these with verified dated totals.
     lead_urls_by_platform={}
@@ -167,25 +151,6 @@ def main():
     distinct_threads={x.url.split('/comment/')[0].split('&lc=')[0].rstrip('/').lower()
                       for x in gathered if x.url and x.platform not in ('Google / News / Articles','Retailers')}
     replies=sum(len(x.comments or []) for x in gathered)
-    story.extend([pdf.band('SOURCE MIX | CONTENT AND PROVENANCE'),Spacer(1,8),
-                  pdf.P('Source records: '+str(len(gathered))+' | Unique social-source URL groups: '+str(len(distinct_threads))
-                        +' | Standalone comment records: '+str(social_types.get('comment',0))
-                        +' | Linked reply excerpts: '+str(replies),'small'),
-                  Spacer(1,5),pdf.P('Breakdown: '+', '.join(k+': '+str(v) for k,v in sorted(social_types.items())),'small'),
-                  Spacer(1,5),pdf.P('Evidence: '+str(len(gathered)-archived)+' saved direct collector entries; '
-                       +str(archived)+' dated source-archive entries; '+str(len(leads))+' unverified leads. '
-                       'Archived/mirror provenance is not the same as a fresh original-site/API verification.','small'),
-                  Spacer(1,5),pdf.P('Coverage completeness: '+str(len(saved))+' of '+str((end-start).days+1)
-                       +' daily snapshots, '+str(round(100*len(saved)/((end-start).days+1),1))
-                       +'% days represented. Missing snapshots mean incomplete monitoring, not zero posts.','small'),
-                  Spacer(1,8)])
-    story.extend([pdf.band('IMAGE AND EVIDENCE COVERAGE'),Spacer(1,6),
-                  pdf.P('Embedded visual records: '+str(source_media['embedded_verified'])+' dated, '
-                       +str(source_media['embedded_leads'])+' leads. Source media links: '
-                       +str(source_media['linked_verified'])+' dated, '+str(source_media['linked_leads'])
-                       +' leads. No image evidence supplied: '+str(source_media['missing_media_verified'])
-                       +' dated records. Missing photos are NOT replaced with unrelated images.','small'),
-                  Spacer(1,7)])
     # Two separate, auditable tabular dashboards above the complete source cards.
     from reportlab.platypus import LongTable, TableStyle
     from reportlab.lib import colors
@@ -204,6 +169,16 @@ def main():
             ('VALIGN',(0,0),(-1,-1),'TOP'),
             ('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),
             ('LEFTPADDING',(0,0),(-1,-1),5),('RIGHTPADDING',(0,0),(-1,-1),5)]))
+        if 'SENTIMENT' in title.upper():
+            grid.setStyle(TableStyle([
+                ('BACKGROUND',(1,1),(1,-1),colors.HexColor('#E7F5EB')),
+                ('TEXTCOLOR',(1,1),(1,-1),colors.HexColor('#187448')),
+                ('BACKGROUND',(2,1),(2,-1),colors.HexColor('#FBE9E8')),
+                ('TEXTCOLOR',(2,1),(2,-1),colors.HexColor('#AA302C')),
+                ('BACKGROUND',(3,1),(3,-1),colors.HexColor('#FFF1CA')),
+                ('TEXTCOLOR',(3,1),(3,-1),colors.HexColor('#906600')),
+                ('BACKGROUND',(4,1),(4,-1),colors.HexColor('#FFF6E6')),
+            ]))
         out.extend([grid,Spacer(1,7)])
         return out
     post_rows=[]
@@ -290,17 +265,16 @@ def main():
     story.extend([pdf.P('Retail observations (separate from social posts): '+str(len(offers))
                        +' | Unique retailer URLs: '+str(len({x.url.rstrip('/').lower() for x in offers}))
                        +'. Dated and discovered source counts must not be added as verified post totals.','small'),Spacer(1,8)])
-    story.extend(pdf.engagement_overview(gathered))
-    story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
-    types=Counter(content_type(x) for x in gathered)
-    story.extend([Spacer(1,8),pdf.P('CONTENT TYPES | '+', '.join(f'{k}: {types.get(k,0)}' for k in ('post','story','reel','tagged_post','mention','comment','video','article')),'small'),
-                  Spacer(1,5),pdf.P(f'Linked comment excerpts: {sum(len(x.comments or []) for x in gathered)} | Engagement unavailable means N/A, not zero.','small')])
     for platform in PLATFORMS:
         items=grouped.get(platform,[])
         story.extend([Spacer(1,13)]+pdf.platform_scorecard(platform,items,f'{start} TO {end}'))
         for index,item in enumerate(items,1):
             story.extend([Spacer(1,8),pdf.P(f'{platform.upper()} | {content_type(item).upper()} | {item.published_date}','caption'),
-                          pdf.P(item.title,'item'),Spacer(1,4),pdf.P('Author: '+(item.author or 'Not available')+' | Sentiment: '+item.sentiment,'meta'),
+                          pdf.P(item.title,'item'),Spacer(1,4),pdf.P('Author: '+(item.author or 'Not available'),'meta'),
+                          pdf.P('SENTIMENT: '+item.sentiment,
+                                'positive' if item.sentiment=='Positive' else
+                                'negative' if item.sentiment=='Negative' else
+                                'neutral' if item.sentiment in ('Neutral','Not applicable') else 'question'),
                           pdf.link(item.url,'OPEN ORIGINAL SOURCE'),pdf.source_url_line(item.url),Spacer(1,5)])
             for label,value in [('Source excerpt',item.source_excerpt),('Analysis',item.summary),('Impact',item.impact),('Response',item.response_action),('Date evidence',item.date_evidence)]:
                 if value:story.extend([pdf.P(label+': '+str(value),'small'),Spacer(1,5)])
