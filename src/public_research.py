@@ -136,6 +136,11 @@ class PublicResearch:
             self.audit.append({'group':group,'stage':'candidate','url':url,'outcome':'unresolved Google News redirect'})
             return
         if url in self.candidates:return
+        # Do not use source-fetch budget on unrelated indexed search results.
+        indexed_text=str(item.get('title') or '')+' '+str(item.get('snippet') or '')
+        if not BRAND.search(indexed_text):
+            self.counts[group+'.irrelevant_index_hits']+=1
+            return
         self.candidates[url]={**item,'url':url,'group':group,'discovery':discovery,'search_date':search_date}
         self.counts[group+'.candidates']+=1
 
@@ -422,10 +427,21 @@ class PublicResearch:
         self.youtube()
         self.reddit()
         self.search()
-        for e in list(self.candidates.values())[:self.page_limit]:
-            if e['url'] in self.seen:continue
-            self.fetched+=1
-            self.page(e)
+        # Round-robin source fetching: no single platform may consume the budget.
+        queues={group:[] for group in GROUPS}
+        for e in self.candidates.values():
+            queues.setdefault(e['group'],[]).append(e)
+        per_group=max(1,int(os.getenv('MAX_SOURCE_PAGES_PER_GROUP','6')))
+        for round_index in range(per_group):
+            for group in GROUPS:
+                if self.fetched>=self.page_limit:break
+                entries=queues.get(group,[])
+                if round_index>=len(entries):continue
+                e=entries[round_index]
+                if e['url'] in self.seen:continue
+                self.fetched+=1
+                self.page(e)
+            if self.fetched>=self.page_limit:break
         self.download_images()
         verified=[f for f in self.findings if f.published_date==self.date and f.status=='verified']
         coverage=[]
