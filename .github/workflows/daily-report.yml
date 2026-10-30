@@ -26,7 +26,7 @@ jobs:
     env:
       PYTHONUNBUFFERED: '1'
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.5' }}
+      OPENAI_MODEL: 'gpt-4.1-mini'\n      MAX_WEB_CALLS: '2'\n      FORCE_RESEARCH: 'false'
       REPORT_DATE: ${{ inputs.report_date }}
       DRY_RUN: ${{ inputs.dry_run }}
     steps:
