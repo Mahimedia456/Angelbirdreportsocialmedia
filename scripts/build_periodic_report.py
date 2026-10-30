@@ -122,6 +122,15 @@ def main():
         lead_keys.add(key)
         deduped_leads.append(item)
     leads=deduped_leads
+    # Separately identify the official CURRENT product catalog, not a hand-picked
+    # social search whitelist or historical October product/retailer KPI.
+    catalog_path=ROOT/'data'/'official_catalog_latest.json'
+    try:
+        catalog=json.loads(catalog_path.read_text(encoding='utf-8')) if catalog_path.exists() else {}
+    except (OSError,ValueError):
+        catalog={}
+    catalog_products=[x for x in catalog.get('products',[]) if isinstance(x,dict) and
+                      str(x.get('url','')).startswith('https://')]
     gathered.sort(key=lambda x:x.published_date or '',reverse=True)
     # Keep a platform-specific count of supplied source media and observations.
     media_with_file=lambda x: any((ROOT/path).is_file() for path in x.image_files)
@@ -266,6 +275,11 @@ def main():
             ('Reference likes',pending_metrics.get('likes')),
             ('Reference comments',pending_metrics.get('comments')),
             ('Reference shares',pending_metrics.get('shares'))]))
+    card_groups.append(('OFFICIAL PRODUCT CATALOG | SEPARATE SNAPSHOT',[
+        ('Catalog products',len(catalog_products)),
+        ('Catalog pages',catalog.get('list_pages_checked',0)),
+        ('Listing access errors',len(catalog.get('errors',[]))),
+        ('Catalog source','Manufacturer')]))
     story[intro_end:intro_end]=kpi_dashboard(pdf,card_groups)
     dashboard_card_groups=card_groups
     sentiment_rows=[]
@@ -378,10 +392,31 @@ def main():
                 story.extend([pdf.link(media_url,'OPEN SOURCE IMAGE / MEDIA'),pdf.source_url_line(media_url),Spacer(1,4)])
         story.extend(pdf.evidence_thumbnail(item,max_width=pdf.W-48))
         story.append(Spacer(1,12))
+    # Every publicly indexed current/legacy catalog item discovered by the
+    # manufacturer-catalog crawler is listed, without imposing a product cap.
+    # These are NOT counted as user-posts or retroactive October prices.
+    if args.period=='monthly':
+        story.extend([Spacer(1,14),
+                      pdf.band('BRAND-WIDE PRODUCT INVENTORY | OFFICIAL CATALOG SNAPSHOT'),
+                      Spacer(1,7),
+                      pdf.P('Source: manufacturer public site; snapshot '+str(catalog.get('observed_at_pkt','not obtained'))+
+                            '. All fetched catalog products and capacity variants are included. '
+                            'This inventory is NOT a record of October social mentions, '
+                            'historic inventory, or independently verified third-party retail prices.','small'),
+                      Spacer(1,8)])
+        if catalog_products:
+            for product in catalog_products:
+                title=str(product.get('title') or 'Unnamed catalog item')
+                url=str(product.get('url'))
+                story.extend([pdf.P(title,'small'),pdf.link(url,'OFFICIAL PRODUCT LISTING'),
+                              Spacer(1,5)])
+        else:
+            story.extend([pdf.P('Manufacturer catalog not indexed in this run; '
+                                'product coverage cannot be claimed exhaustive.','small'),Spacer(1,5)])
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retailer_store_counts':dict(retail_store_counts),'retailer_price_reference_count':retail_price_observed,'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'kpi_card_groups':dashboard_card_groups,'pending_reference_metrics':pending_metrics,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'official_catalog_items':len(catalog_products),'official_catalog_pages':catalog.get('list_pages_checked',0),'brand_scope_mode':'brand_wide_all_products_services_and_mentions','retailer_store_counts':dict(retail_store_counts),'retailer_price_reference_count':retail_price_observed,'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'kpi_card_groups':dashboard_card_groups,'pending_reference_metrics':pending_metrics,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
