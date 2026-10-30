@@ -4,7 +4,7 @@ const root=process.cwd(), out=join(root,'_site');
 if(existsSync(out))rmSync(out,{recursive:true,force:true});
 mkdirSync(out,{recursive:true});
 for(const f of ['index.html','styles.css','app.js'])copyFileSync(join(root,'website',f),join(out,f));
-const pdfRe=/^Angelbird-Social-Monitoring-(\d{4}-\d{2}-\d{2})(-DEMO)?\.pdf$/i;
+const pdfRe=/^Atomos-Social-Monitoring-(\d{4}-\d{2}-\d{2})(-DEMO)?\.pdf$/i;
 const items=[];
 const walk=dir=>{
   if(!existsSync(dir))return;
@@ -24,4 +24,4 @@ const walk=dir=>{
 walk(join(root,'reports'));
 items.sort((a,b)=>b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
 writeFileSync(join(out,'reports-index.json'),JSON.stringify(items,null,2));
-console.log('Angelbird archive build complete:',items.length,'PDF(s)');
+console.log('Atomos archive build complete:',items.length,'PDF(s)');

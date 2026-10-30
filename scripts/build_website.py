@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "_site"
 SOURCE = ROOT / "website"
-PDF_PATTERN = re.compile(r"Angelbird-Social-Monitoring-(\d{4}-\d{2}-\d{2})(-DEMO)?\.pdf$", re.I)
+PDF_PATTERN = re.compile(r"Atomos-Social-Monitoring-(\d{4}-\d{2}-\d{2})(-DEMO)?\.pdf$", re.I)
 
 def build() -> list[dict]:
     if OUTPUT.exists():

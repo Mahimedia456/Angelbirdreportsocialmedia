@@ -37,7 +37,7 @@ if(item){
   el.status.textContent=items.length?"":all.length?"No reports match your search.":"No reports available for this month yet.";
 } else {
   el.heading.textContent="Social Monitoring Reports";
-  el.subtitle.textContent="Select a month to browse date-wise reports and view original PDFs.";
+  el.subtitle.textContent="Select a month for date-wise Atomos monitoring PDFs and original source evidence.";
   const output=[];
   for(let i=0;i<12;i++){
     const month=String(i+1).padStart(2,"0"),k=selectedYear+"-"+month,items=records.filter(x=>x.month===k);
@@ -57,7 +57,7 @@ el.year.addEventListener("change",()=>{selectedYear=Number(el.year.value);locati
 window.addEventListener("hashchange",route);
 // GitHub's public manifest is the live source of truth. Vercel deployments can lag;
 // a client can still list the latest dated PDF and open it directly from the repo.
-const LIVE_INDEX="https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/reports-index.json";
+const LIVE_INDEX="https://raw.githubusercontent.com/Mahimedia456/Atomosreportsocialmedia/main/reports-index.json";
 const LOCAL_INDEX="reports-index.json";
 const normalizeIndex=data=>{
  if(!Array.isArray(data))return [];

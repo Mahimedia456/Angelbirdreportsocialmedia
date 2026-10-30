@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-NAME=re.compile(r'Angelbird-Social-Monitoring-(\d{4}-\d{2}-\d{2})(-DEMO)?\.pdf$',re.I)
+NAME=re.compile(r'Atomos-Social-Monitoring-(\d{4}-\d{2}-\d{2})(-DEMO)?\.pdf$',re.I)
 
 def build():
     out=[]
@@ -22,7 +22,7 @@ def build():
         out.append({'id':day+('-DEMO' if demo else ''),'date':day,
                     'month':f'{year}-{month}','name':pdf.name,
                     'demo':bool(demo),'path':rel,
-                    'source_url':'https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/'+rel})
+                    'source_url':'https://raw.githubusercontent.com/Mahimedia456/Atomosreportsocialmedia/main/'+rel})
     real_dates={x['date'] for x in out if not x['demo']}
     out=[x for x in out if not x['demo'] or x['date'] not in real_dates]
     out.sort(key=lambda x:(x['date'],not x['demo']),reverse=True)
