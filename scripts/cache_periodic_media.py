@@ -33,7 +33,7 @@ def main():
             if not isinstance(item,dict):continue
             urls=([item.get('image_url')] if item.get('image_url') else [])+list(item.get('images') or [])
             current=list(item.get('image_files') or [])
-            for url in urls[:5]:
+            for url in dict.fromkeys(urls):
                 if not isinstance(url,str) or not eligible(url):skipped+=1;continue
                 hashval=hashlib.sha256(url.encode()).hexdigest()[:22]
                 rel=Path('assets')/'periodic-source-images'/a.period/(hashval+'.jpg')
