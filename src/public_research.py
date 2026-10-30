@@ -347,8 +347,20 @@ class PublicResearch:
         # Round-robin prevents an expanded Meta query set from consuming the
         # entire search budget before Reddit, YouTube, forums, or news are checked.
         from itertools import zip_longest
-        for batch in zip_longest(*GROUPS.values()):
-            for (group,_),template in zip(GROUPS.items(),batch):
+        # The first 2 searches are broad, brand-level queries on every run.
+        # Rotate remaining product, format, support and historical themes by
+        # actual date so a 31-day report does NOT sample the same few models
+        # on every day. This works without a predefined product shortlist.
+        schedules={}
+        for group,queries in GROUPS.items():
+            stable=list(queries[:2])
+            optional=list(queries[2:])
+            if optional:
+                offset=(self.day.toordinal()+sum(ord(x) for x in group))%len(optional)
+                optional=optional[offset:]+optional[:offset]
+            schedules[group]=stable+optional
+        for batch in zip_longest(*schedules.values()):
+            for (group,_),template in zip(schedules.items(),batch):
                 if template is None:continue
                 if self.queries>=self.limit:break
                 self.index_query(group,template.format(
@@ -508,8 +520,14 @@ class PublicResearch:
         indexed=(str(entry.get('title') or '')+' '+str(entry.get('snippet') or '')).strip()
         if not indexed or not BRAND.search(indexed):return
         if group=='YouTube' and not re.search(r'(?:atomos|angelbird)',indexed,re.I):return
+        # Do not silently truncate every brand/platform to three leads.
+        # Keep an operational safety ceiling, configurable independently of
+        # product range, while deduplicating direct original URLs below.
+        lead_limit=max(1,int(os.getenv('MAX_UNVERIFIED_LEADS_PER_PLATFORM','150')))
         if sum(x.platform==group and x.verification_note.startswith('Search index only')
-               for x in self.unverified)>=3:return
+               for x in self.unverified)>=lead_limit:
+            self.counts[group+'.index_lead_limit_reached']+=1
+            return
         if any(x.url==url for x in self.unverified):return
         lead=Finding(
             title=(entry.get('title') or 'Public indexed '+group+' source')[:180],
