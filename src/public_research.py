@@ -44,7 +44,7 @@ GROUPS={
 
 def iso(value):
     v=str(value or '').strip()
-    m=re.search(r'\b(20\d\d-\d\d-\d\d)\b',v)
+    m=re.search(r'(?<!\d)(20\d\d-\d\d-\d\d)(?!\d)',v)
     if m:
         try:return date.fromisoformat(m.group(1)).isoformat()
         except ValueError:pass
