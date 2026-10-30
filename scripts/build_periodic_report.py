@@ -75,6 +75,29 @@ def main():
             except Exception:continue
             key=(item.url.strip().lower().rstrip('/'),'offer')
             if key not in seen:seen.add(key);offers.append(item)
+    # Display publicly indexed but unverified social leads in a separate evidence section.
+    # They are NOT part of verified monthly platform counts or engagement.
+    social_audit=ROOT/'data'/'cross_platform_oct_2026_audit.json'
+    if social_audit.exists():
+        try:lead_archive=json.loads(social_audit.read_text(encoding='utf-8'))
+        except (OSError,ValueError):lead_archive={}
+        for raw in lead_archive.get('leads',[]):
+            if not isinstance(raw,dict):continue
+            try:item=Finding.model_validate(dict(raw,status='unverified'))
+            except Exception:continue
+            key=(item.url.strip().lower().rstrip('/')+'#'+item.title.lower(),'lead')
+            if key not in seen:seen.add(key);leads.append(item)
+    for aux_path in sorted((ROOT/'data'/str(end.year)/f'{end.month:02d}').glob('*-gpt-*-evidence.json')):
+        try:aux=json.loads(aux_path.read_text(encoding='utf-8'))
+        except (OSError,ValueError):continue
+        if not isinstance(aux,dict):continue
+        for field in ('unverified_leads','older_leads'):
+            for raw in aux.get(field,[]):
+                if not isinstance(raw,dict) or not raw.get('url'):continue
+                try:item=Finding.model_validate(dict(raw,status='unverified'))
+                except Exception:continue
+                key=(item.url.strip().lower().rstrip('/')+'#'+item.title.lower(),'lead')
+                if key not in seen:seen.add(key);leads.append(item)
     gathered.sort(key=lambda x:x.published_date or '',reverse=True)
     grouped=platform_summary(gathered);unverified=platform_summary(leads)
     output=ROOT/'reports'/str(end.year)/f'{end.month:02d}'/f'{brand}-Social-Monitoring-{args.period.title()}-{start}_to_{end}.pdf'
@@ -85,6 +108,7 @@ def main():
            Spacer(1,8)]
     story.extend([pdf.P(f'Direct collector records: {len(gathered)-archived}; archived dated records: {archived}. Archive provenance is separately labeled, and older linked sources are not newly verified by this run.','small'),Spacer(1,8)])
     story.extend(pdf.engagement_overview(gathered))
+    story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
     types=Counter(content_type(x) for x in gathered)
     story.extend([Spacer(1,8),pdf.P('CONTENT TYPES | '+', '.join(f'{k}: {types.get(k,0)}' for k in ('post','story','reel','tagged_post','mention','comment','video','article')),'small'),
                   Spacer(1,5),pdf.P(f'Linked comment excerpts: {sum(len(x.comments or []) for x in gathered)} | Engagement unavailable means N/A, not zero.','small')])
