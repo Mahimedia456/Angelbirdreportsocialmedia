@@ -1,6 +1,6 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 17:13 PKT",
+  "generated_at_pkt": "2026-10-30 17:30 PKT",
   "status": "Python public-source monitoring",
   "headline": "1 directly dated Angelbird mention(s) established for 2026-10-30 from 6 first-party page attempts; previous five days are listed separately.",
   "today_findings": [
@@ -23,6 +23,8 @@
       "impact": "Public brand or product mention; contextual relevance only.",
       "verification_note": "YouTube official API original video metadata",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {},
       "images": [],
       "image_files": [
@@ -52,6 +54,8 @@
       "impact": "Provides reliable storage for professional videographers and content creators.",
       "verification_note": "GPT discovered an Angelbird retailer listing; current listing date/review date not independently verified.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {
         "source_note": "26 reviews"
       },
@@ -78,6 +82,8 @@
       "impact": "Availability of high-capacity storage options.",
       "verification_note": "GPT discovered an Angelbird retailer listing; current listing date/review date not independently verified.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {
         "source_note": "Product listed on October 29, 2026"
       },
@@ -104,6 +110,8 @@
       "impact": "Provides detailed product information for potential buyers.",
       "verification_note": "GPT discovered an Angelbird retailer listing; current listing date/review date not independently verified.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {
         "source_note": "Product listed on October 25, 2026"
       },
@@ -133,6 +141,8 @@
       "impact": "Public brand or product mention; contextual relevance only.",
       "verification_note": "Original page has a previous-five-day publication date, not today's.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {
         "price": "CAD $529",
         "sustained_write": "1,050 MB/s"
@@ -162,6 +172,8 @@
       "impact": "Real-world creator use and potential opportunity for relationship building.",
       "verification_note": "Comments and dated metrics transcribed from supplied 29 October report. All three comments concern photos, not card performance. Original source may require authentication.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {
         "page_followers": "17K",
         "page_likes": "1.1K",
@@ -214,6 +226,8 @@
       "impact": "Positive peer recommendation; no independently confirmed technical test.",
       "verification_note": "",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {},
       "images": [],
       "image_files": [],
@@ -238,6 +252,8 @@
       "impact": "Used-market observation, not a verified card fault or rating.",
       "verification_note": "Historical report discovery date, NOT independently verified post date.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {},
       "images": [],
       "image_files": [],
@@ -262,6 +278,8 @@
       "impact": "Resale bundle visibility, not customer sentiment about quality.",
       "verification_note": "Reference report discovery date only.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {},
       "images": [],
       "image_files": [],
@@ -286,6 +304,8 @@
       "impact": "Trade-event visibility; no customer complaint in the referenced post.",
       "verification_note": "Reference report notes the post was edited; original date should be rechecked.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {
         "reactions": "32",
         "comments": "3",
@@ -316,6 +336,8 @@
       "impact": "",
       "verification_note": "Historical price check as of 29-Oct report; current price may differ.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {
         "price": "EUR 253.80"
       },
@@ -342,6 +364,8 @@
       "impact": "",
       "verification_note": "Offer end date, not original publishing date.",
       "reference_date": "",
+      "engagement_source": "",
+      "publisher": "",
       "engagement": {},
       "images": [],
       "image_files": [],
