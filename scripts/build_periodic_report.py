@@ -242,6 +242,17 @@ def main():
             ('Retail entries',len(offers)),('Articles',social_types.get('article',0)),
             ('Comment findings',social_types.get('comment',0)),('Not classified',unknown_sentiment)]),
     ]
+    # Explicitly separate archived, unverified source metrics from directly dated
+    # source engagement. A Facebook discovery-date is not a publishing timestamp.
+    from src.platform_analytics import metric_summary
+    pending_metric_summary=metric_summary(leads)
+    pending_metrics=pending_metric_summary.get('totals',{})
+    if pending_metrics:
+        card_groups.append(('UNVERIFIED REFERENCE METRICS',[
+            ('Reference views',pending_metrics.get('views')),
+            ('Reference likes',pending_metrics.get('likes')),
+            ('Reference comments',pending_metrics.get('comments')),
+            ('Reference shares',pending_metrics.get('shares'))]))
     story[intro_end:intro_end]=kpi_dashboard(pdf,card_groups)
     dashboard_card_groups=card_groups
     sentiment_rows=[]
@@ -350,7 +361,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'kpi_card_groups':dashboard_card_groups,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'kpi_card_groups':dashboard_card_groups,'pending_reference_metrics':pending_metrics,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
