@@ -1,8 +1,8 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 15:47 PKT",
-  "status": "Actual source review | Limited indexed coverage",
-  "headline": "30 October: No direct, independently date-verified Angelbird mention confirmed in this limited public-index review. Six prior dated entries from 27-29 October are shown below.",
+  "generated_at_pkt": "2026-10-30 16:06 PKT",
+  "status": "Python public-source monitoring",
+  "headline": "0 direct Angelbird mention(s) independently dated 2026-10-30 from accessible public sources. Source coverage and access limitations follow.",
   "today_findings": [],
   "retail_observations": [],
   "unverified_leads": [],
@@ -31,7 +31,11 @@
         "price": "CAD $529",
         "sustained_write": "1,050 MB/s"
       },
-      "images": []
+      "images": [],
+      "image_files": [
+        "assets/2026/10/2026-10-30/historical_001.jpg"
+      ],
+      "comments": []
     },
     {
       "title": "Photographer shares Arctic photos captured using Angelbird cards",
@@ -62,7 +66,9 @@
       },
       "images": [
         "https://www.facebook.com/photo?fbid=1575983300996022"
-      ]
+      ],
+      "image_files": [],
+      "comments": []
     },
     {
       "title": "Community member recommends Angelbird cards for Pocket OG",
@@ -84,7 +90,9 @@
       "verification_note": "",
       "reference_date": "",
       "engagement": {},
-      "images": []
+      "images": [],
+      "image_files": [],
+      "comments": []
     },
     {
       "title": "Used Angelbird card bundle listed in Facebook cinematography group",
@@ -106,7 +114,9 @@
       "verification_note": "Historical report discovery date, NOT independently verified post date.",
       "reference_date": "",
       "engagement": {},
-      "images": []
+      "images": [],
+      "image_files": [],
+      "comments": []
     },
     {
       "title": "Used RED KOMODO kit includes two Angelbird CF cards and reader",
@@ -128,7 +138,9 @@
       "verification_note": "Reference report discovery date only.",
       "reference_date": "",
       "engagement": {},
-      "images": []
+      "images": [],
+      "image_files": [],
+      "comments": []
     },
     {
       "title": "ComLine France names Angelbird as SATIS 2026 partner",
@@ -154,7 +166,9 @@
         "comments": "3",
         "reposts": "8"
       },
-      "images": []
+      "images": [],
+      "image_files": [],
+      "comments": []
     }
   ],
   "historical_retail": [
@@ -180,7 +194,9 @@
       "engagement": {
         "price": "EUR 253.80"
       },
-      "images": []
+      "images": [],
+      "image_files": [],
+      "comments": []
     },
     {
       "title": "Canon EOS R10 promotion included Angelbird 128GB SD card",
@@ -202,43 +218,60 @@
       "verification_note": "Offer end date, not original publishing date.",
       "reference_date": "",
       "engagement": {},
-      "images": []
+      "images": [],
+      "image_files": [],
+      "comments": []
     }
   ],
   "report_period_start": "2026-10-25",
   "report_period_end": "2026-10-30",
   "coverage": [
     {
-      "platform": "Reddit (public search index)",
-      "summary": "Searched 30 October Angelbird-related Reddit post/comment queries; no original permalink with independently verified 30 October Angelbird mention was established.",
+      "platform": "Reddit",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 20 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
-      "platform": "YouTube (public search index)",
-      "summary": "Searched 30 October Angelbird videos and public indexed descriptions/comments; no independently dated new Angelbird mention confirmed. Unindexed comments are not covered.",
+      "platform": "YouTube",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 15 original source fetch(es), 10 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
-      "platform": "Facebook / Instagram / LinkedIn (public index)",
-      "summary": "Searched indexed public post references for 30 October; no exact-date Angelbird post verified. Login-only content and private groups were not accessible.",
+      "platform": "Facebook",
+      "summary": "1 indexed query attempt(s), 1 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
-      "platform": "Camera forums and editorial",
-      "summary": "Checked dated Angelbird queries and the Newsshooter Angelbird archive; its visible tagged content was older, with no independently verified 30 October Angelbird article.",
+      "platform": "Instagram",
+      "summary": "1 indexed query attempt(s), 1 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "LinkedIn",
+      "summary": "1 indexed query attempt(s), 1 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Camera forums",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Industry articles",
+      "summary": "3 indexed query attempt(s), 3 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
       "platform": "Retailers",
-      "summary": "Checked publicly indexed Angelbird listings and offers; a delivery date or current price is not a publication date, so no new 30 October promotion was counted.",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     }
   ],
   "visibility_gaps": [
-    "API research response contained one unrelated Reddit platform-news article, excluded from brand counts.",
-    "API usage reported only one web-search event; separate public-index checks were limited and cannot establish platform-wide absence.",
-    "Facebook private groups, Instagram restricted posts and unindexed YouTube comments were not examined.",
-    "25 and 26 October have no saved historical dated mentions in the supplied reference archive; this is not a claim of no online activity."
+    "YouTube: Data API key not configured; direct comments unavailable",
+    "Reddit OAuth not configured; direct comment thread access not guaranteed",
+    "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
+    "No result does not establish no brand activity on a platform."
   ],
-  "methodology": "Actual GPT-4.1 mini research run on 30 Oct (one recorded web search call) plus additional public-index checks of Reddit, YouTube, public social results, camera editorial and retailers. A new mention requires original Angelbird source text, a traceable original URL and exact-day date evidence. 25-29 Oct entries are historical reference findings, not newly rediscovered or counted as 30 Oct activity."
+  "methodology": "Python collector: 15 public search query attempts, 35 original-page attempts, 0 attributable image thumbnails; optional Reddit/YouTube APIs. New verified posts require original source dates and direct Angelbird text."
 }

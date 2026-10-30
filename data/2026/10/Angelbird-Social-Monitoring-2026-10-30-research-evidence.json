@@ -1,6 +1,398 @@
 [
   {
-    "scope": "bounded targeted research",
-    "text": "```json\n{\n  \"report_date\": \"2026-10-30\",\n  \"status\": \"complete\",\n  \"headline\": \"Limited Angelbird Mentions Across Platforms on 2026-10-30\",\n  \"today_findings\": [\n    {\n      \"title\": \"Reddit Launches 'For You' And 'Following' Feeds\",\n      \"platform\": \"Reddit\",\n      \"url\": \"https://www.mediapost.com/publications/article/419096/reddit-launches-for-you-and-following-feeds.html\",\n      \"author\": \"Colin Kirkland\",\n      \"published_date\": \"2026-10-30\",\n      \"date_evidence\": \"2026-10-30\",\n      \"summary\": \"Reddit introduces new 'For You' and 'Following' feeds, enhancing content discovery and user engagement.\",\n      \"sentiment\": \"neutral\",\n      \"priority\": \"low\",\n      \"status\": \"verified\",\n      \"image_url\": null,\n      \"product\": null,\n      \"details\": null,\n      \"source_excerpt\": \"Reddit is launching its own 'For You' and 'Following' feeds, allowing users to explore communities and conversations algorithmically recommended to them.\",\n      \"response_action\": null,\n      \"impact\": null,\n      \"verification_note\": \"Article published on 2026-10-30.\",\n      \"engagement\": {\n        \"likes\": 0,\n        \"comments\": 0,\n        \"shares\": 0\n      },\n      \"images\": []\n    }\n  ],\n  \"retail_observations\": [],\n  \"unverified_leads\": [],\n  \"older_leads\": [],\n  \"coverage\": {\n    \"Reddit\": \"No verified mentions of Angelbird found on Reddit as of 2026-10-30.\",\n    \"YouTube\": \"No verified mentions of Angelbird found on YouTube as of 2026-10-30.\",\n    \"Camera Forums\": \"No verified mentions of Angelbird found on camera forums as of 2026-10-30.\",\n    \"Social Media\": \"No verified mentions of Angelbird found on indexed social media accounts as of 2026-10-30.\",\n    \"News\": \"No verified news articles mentioning Angelbird found as of 2026-10-30.\",\n    \"Retailers\": \"No new promotions or price changes for Angelbird products observed as of 2026-10-30.\"\n  },\n  \"visibility_gaps\": \"Limited presence of Angelbird mentions across major platforms on the specified date.\",\n  \"methodology\": \"Conducted searches on Reddit, YouTube, camera forums, indexed social media accounts, news outlets, and retailer websites for mentions of Angelbird products and related topics.\"\n}\n``` "
+    "scope": "Python public source audit",
+    "data": [
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com \"Angelbird\" 2026-10-30",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com \"Angelbird\" \"card\" October 2026",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search",
+        "query": "site:youtube.com/watch \"Angelbird\" 2026-10-30",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search",
+        "query": "site:youtube.com \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" 2026-10-30",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com \"Angelbird\" 2026-10-30",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/posts \"Angelbird\" 2026-10-30",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "site:dpreview.com/forums \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "\"Angelbird\" \"CFexpress\" camera forum 2026-10-30",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "site:newsshooter.com \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "site:cined.com \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "\"Angelbird\" camera review 2026-10-30",
+        "results": 7,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "site:bhphotovideo.com \"Angelbird\" AV PRO October 2026",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "site:cvp.com \"Angelbird\" CFexpress October 2026",
+        "results": 10,
+        "index": "Bing RSS"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/find-your-phone?hl=ca",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S857887476:1793358388251031"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/find-your-phone?hl=pt-BR",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-737341838:1793358388560038"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/find-your-phone?hl=zh-CN",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S840923357:1793358388845244"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/find-your-phone?hl=ms",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1861678612:1793358389163953"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/find-your-phone?hl=sl",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-317208851:1793358389432929"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/find-your-phone?hl=lv",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1407862273:1793358389689783"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/find-your-phone?hl=zh-TW",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1377426665:1793358389999379"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/personal-info",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-2096180102:1793358390271328"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/find-your-phone?hl=en",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-987213259:1793358390549960"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://myaccount.google.com/intro/dashboard?hl=en-US",
+        "result": "OK",
+        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-452882888:1793358390834247"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.fedex.com/en-us/tracking.html",
+        "result": "OK",
+        "final_url": "https://www.fedex.com/en-us/tracking.html"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.fedex.com/en-us/home.html",
+        "result": "OK",
+        "final_url": "https://www.fedex.com/en-us/home.html"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.fedexfreight.com/en-us/tracking",
+        "result": "OK",
+        "final_url": "https://www.fedexfreight.com/en-us/tracking"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.fedex.com/en-ca/tracking.html",
+        "result": "OK",
+        "final_url": "https://www.fedex.com/en-ca/tracking.html"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.fedex.com/en-gb/tracking.html",
+        "result": "OK",
+        "final_url": "https://www.fedex.com/en-gb/tracking.html"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.fedex.com/en-in/tracking.html",
+        "result": "OK",
+        "final_url": "https://www.fedex.com/en-in/tracking.html"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://local.fedex.com/en-us/track",
+        "result": "OK",
+        "final_url": "https://www.fedex.com/en-us/tracking.html"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.fedex.com/en-us/tracking/advanced.html",
+        "result": "OK",
+        "final_url": "https://www.fedex.com/en-us/tracking/advanced.html"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://images.fedex.com/wtrk/fedextracking/",
+        "result": "OK",
+        "final_url": "https://images.fedex.com/wtrk/fedextracking/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.fedexfreight.com/en-us",
+        "result": "OK",
+        "final_url": "https://www.fedexfreight.com/en-us"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://www.linkedin.com/in/ahmed-hakami-mba-ma-a4a10b181",
+        "result": "HTTP 999",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://www.linkedin.com/in/ahmedhakami-",
+        "result": "HTTP 999",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://sa.linkedin.com/in/ahmed-al-hakami",
+        "result": "HTTP 999",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://sa.linkedin.com/in/ahmed-hakami-394a4b135",
+        "result": "HTTP 999",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://patents.justia.com/inventor/ahmed-hakami",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://www.whitepages.com/name/Ahmed-Hakami",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://www.arabnews.com/saudi-arabia/whos-who-ahmed-hakami-founder-and-ceo-of-supplyfield-2395526",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://www.linkedin.com/pub/dir/Ahmed+/Hakami",
+        "result": "HTTP 999",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://www.linkedin.com/pub/dir/ahmed/hakami",
+        "result": "HTTP 999",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://www.linkedin.com/pub/dir/Ahmed+%F0%9F%A7%91%F0%9F%8F%BB%E2%80%8D%F0%9F%A6%BD/HAKAMI+",
+        "result": "HTTP 999",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://techcommunity.microsoft.com/blog/exchange/released-september-2026-exchange-server-security-updates/4554411",
+        "result": "OK",
+        "final_url": "https://techcommunity.microsoft.com/blog/exchange/released-september-2026-exchange-server-security-updates/4554411"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://techcommunity.microsoft.com/blog/skills-hub-blog/new-microsoft-certified-azure-ai-apps-and-agents-developer-associate/4494126",
+        "result": "OK",
+        "final_url": "https://techcommunity.microsoft.com/blog/skills-hub-blog/new-microsoft-certified-azure-ai-apps-and-agents-developer-associate/4494126"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://support.microsoft.com/en-us/sharepoint/platform/what-is-sharepoint",
+        "result": "OK",
+        "final_url": "https://support.microsoft.com/en-us/sharepoint/platform/what-is-sharepoint"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://support.microsoft.com/en-au/support/index",
+        "result": "OK",
+        "final_url": "https://support.microsoft.com/en-au/support/index"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "YouTube",
+        "url": "https://techcommunity.microsoft.com/blog/azurearchitectureblog/how-ms-discovery-is-empowering-scientists-to-do-more/4516670",
+        "result": "OK",
+        "final_url": "https://techcommunity.microsoft.com/blog/azurearchitectureblog/how-ms-discovery-is-empowering-scientists-to-do-more/4516670"
+      }
+    ],
+    "counts": {
+      "Reddit.candidates": 20,
+      "Reddit.successful_queries": 2,
+      "Reddit.queries": 2,
+      "YouTube.candidates": 20,
+      "YouTube.successful_queries": 2,
+      "YouTube.queries": 2,
+      "Facebook.candidates": 10,
+      "Facebook.successful_queries": 1,
+      "Facebook.queries": 1,
+      "Instagram.successful_queries": 1,
+      "Instagram.queries": 1,
+      "LinkedIn.candidates": 10,
+      "LinkedIn.successful_queries": 1,
+      "LinkedIn.queries": 1,
+      "Camera forums.candidates": 20,
+      "Camera forums.successful_queries": 2,
+      "Camera forums.queries": 2,
+      "Industry articles.successful_queries": 3,
+      "Industry articles.queries": 3,
+      "Industry articles.candidates": 17,
+      "Retailers.successful_queries": 2,
+      "Retailers.queries": 2,
+      "Retailers.candidates": 10,
+      "Reddit.source_attempts": 20,
+      "Reddit.inaccessible": 10,
+      "Reddit.no_brand_original": 10,
+      "YouTube.source_attempts": 15,
+      "YouTube.fetch_failed": 10,
+      "YouTube.no_brand_original": 5
+    },
+    "search_queries": 15,
+    "original_pages_attempted": 35,
+    "cached_images": 0
+  },
+  {
+    "scope": "Historical source image cache",
+    "data": {
+      "cached_historical_images": 1,
+      "image_audit": [
+        {
+          "stage": "image",
+          "url": "https://www.avshop.ca/images/angelbird/CFexpressBSEMK2512GB_1.jpeg",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/10/2026-10-30/historical_001.jpg"
+        }
+      ]
+    }
   }
 ]
