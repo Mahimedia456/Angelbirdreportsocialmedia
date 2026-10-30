@@ -32,9 +32,10 @@ class TestCumulativePDF(unittest.TestCase):
             report=ResearchReport(report_date='2026-10-30',headline='Monitoring brief')
             compile_history(report,root)
             self.assertEqual([x.published_date for x in report.historical_findings],
-                ['2026-10-29','2026-10-28','2026-10-22'])
+                ['2026-10-29','2026-10-28'])
             self.assertEqual(len(report.today_findings),0)
-            self.assertEqual(report.report_period_start,'2026-10-22')
+            self.assertTrue(all(x.published_date >= '2026-10-25' for x in report.historical_findings))
+            self.assertEqual(report.report_period_start,'2026-10-25')
             self.assertEqual(report.report_period_end,'2026-10-30')
             pdf=root/'report.pdf'
             render_pdf(report,pdf)
