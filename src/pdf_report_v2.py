@@ -6,6 +6,7 @@ from collections import Counter, defaultdict
 from datetime import date, timedelta
 from pathlib import Path
 from PIL import Image as PILImage
+from .platform_analytics import PLATFORMS, platform_summary, analytics_rows, traffic_disclaimer
 from xml.sax.saxutils import escape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether, HRFlowable, Image
 from reportlab.lib.pagesizes import A4
@@ -197,6 +198,44 @@ def simple_card(item,index,kind='retail'):
              Spacer(1,5),link(item.url)]
     if item.verification_note: content.extend([Spacer(1,4),P(item.verification_note,'micro')])
     return [panel(content,accent=AMBER if kind=='retail' else GREEN),Spacer(1,9)]
+
+
+def engagement_overview(items):
+    rows=[[P('PLATFORM','caption'),P('POSTS','caption'),P('VIEWS','caption'),
+           P('LIKES','caption'),P('COMMENTS','caption'),P('SHARES','caption')]]
+    for row in analytics_rows(items):
+        totals=row['totals']
+        def cell(key,alts=()):
+            names=(key,)+tuple(alts)
+            present=any(x in row['available'] for x in names)
+            value=sum(totals.get(x,0) for x in names)
+            return f'{value:,}' if present else 'N/A'
+        rows.append([P(row['platform'],'small'),P(str(row['count']),'small'),
+                     P(cell('views'),'small'),P(cell('likes',('reactions',)),'small'),
+                     P(cell('comments'),'small'),P(cell('shares',('reposts',)),'small')])
+    table=Table(rows,colWidths=[128,45,80,80,84,W-417],repeatRows=1)
+    table.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),GREY),
+        ('ROWBACKGROUNDS',(0,1),(-1,-1),[WHITE,colors.HexColor('#f9fafb')]),
+        ('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),
+        ('LEFTPADDING',(0,0),(-1,-1),4),('RIGHTPADDING',(0,0),(-1,-1),4),
+        ('VALIGN',(0,0),(-1,-1),'TOP')]))
+    return [band('Platform Analytics | observed public engagement'),Spacer(1,8),
+            table,Spacer(1,8),P(traffic_disclaimer(),'micro'),Spacer(1,12)]
+
+def grouped_platform_cards(items,prefix,empty=False):
+    output=[]
+    groups=platform_summary(items)
+    for platform in PLATFORMS:
+        records=groups[platform]
+        if not records and not empty:continue
+        output.extend([Spacer(1,8),band(platform,f'{len(records)} verified item(s)'),Spacer(1,8)])
+        if not records:
+            output.extend([P('No original dated post verified in accessible sources. '
+                             'This is not proof of no activity.','small'),Spacer(1,6)])
+            continue
+        for n,item in enumerate(records,1):
+            output.extend(finding_card(item,f'{prefix}-{n}'))
+    return output
 
 def footer(canvas,doc):
     canvas.saveState()
