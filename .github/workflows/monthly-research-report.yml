@@ -24,6 +24,7 @@ jobs:
       GPT_MAX_RESEARCH_ROUNDS: '3'
       GPT_MAX_WEB_CALLS: '3'
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
       OPENAI_MODEL: 'gpt-4.1-mini'
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       MAX_SEARCH_QUERIES: '56'
