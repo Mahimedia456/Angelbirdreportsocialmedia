@@ -83,9 +83,9 @@ def band(title,small=''):
        ('TOPPADDING',(0,0),(-1,-1),10),('BOTTOMPADDING',(0,0),(-1,-1),10)]))
     return tab
 
-def panel(contents,bg=GREY,accent=None):
+def panel(contents,bg=GREY,accent=None,width=W):
     if not isinstance(contents,list):contents=[contents]
-    tab=Table([[contents]],colWidths=[W])
+    tab=Table([[contents]],colWidths=[width])
     commands=[('BACKGROUND',(0,0),(-1,-1),bg),('BOX',(0,0),(-1,-1),.5,BORDER),
               ('LEFTPADDING',(0,0),(-1,-1),13),('RIGHTPADDING',(0,0),(-1,-1),13),
               ('TOPPADDING',(0,0),(-1,-1),11),('BOTTOMPADDING',(0,0),(-1,-1),9)]
@@ -103,7 +103,7 @@ def metric(value,name,bg,fg):
 
 def summary_header(report):
     start=report.report_period_start or report.report_date
-    top=Table([[P('ANGELBIRD | SOCIAL MONITORING','caption')],
+    top=Table([[P('ANGELBIRD | SOCIAL MONITORING','subtitle')],
                [P('Social Media Monitoring Report','title')],
                [P(f'Report date: {report.report_date}  |  Cumulative period: {start} to {report.report_date}  |  {report.generated_at_pkt}','subtitle')]],colWidths=[W])
     top.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),DARK),('LEFTPADDING',(0,0),(-1,-1),18),
@@ -144,9 +144,9 @@ def finding_card(item,number,historical=False):
         content.extend([Spacer(1,4),link(item.images[0],'VIEW SOURCE PHOTO')])
     excerpt=excerpt_text(item)
     if excerpt:
-        content.extend([Spacer(1,9),panel([P('ORIGINAL SOURCE EXCERPT','caption'),Spacer(1,3),P(excerpt[:450],'small')],bg=GREY,accent=accent)])
+        content.extend([Spacer(1,9),panel([P('ORIGINAL SOURCE EXCERPT','caption'),Spacer(1,3),P(excerpt[:450],'small')],bg=GREY,accent=accent,width=W-96)])
     if item.summary:content.extend([Spacer(1,8),P('<b>What happened:</b> '+escape(item.summary[:900]),'small',raw=True)])
-    if item.impact:content.extend([Spacer(1,7),panel(P('<b>Angelbird impact:</b> '+escape(item.impact[:500]),'small',raw=True),bg=GREEN_PALE)])
+    if item.impact:content.extend([Spacer(1,7),panel(P('<b>Angelbird impact:</b> '+escape(item.impact[:500]),'small',raw=True),bg=GREEN_PALE,width=W-96)])
     if item.response_action:content.extend([Spacer(1,6),P('<b>Angelbird response:</b> '+escape(item.response_action[:350]),'small',raw=True)])
     if item.engagement:
         stats='    |    '.join(f'{k.replace("_"," ").title()}: {v}' for k,v in list(item.engagement.items())[:7])
