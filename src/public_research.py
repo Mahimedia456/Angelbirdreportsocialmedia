@@ -218,11 +218,14 @@ class PublicResearch:
             url=f'https://www.youtube.com/watch?v={vid}'
             content=sn.get('title','')+' '+sn.get('description','')
             thumb=(sn.get('thumbnails',{}).get('medium') or {}).get('url','')
+            parent=None
             if BRAND.search(content):
                 f=classify(url,content,'YouTube',iso(sn.get('publishedAt')),
                            'YouTube Data API video publishedAt',sn.get('title',''),
                            sn.get('channelTitle',''),thumb)
-                if f:self.accept(f,'YouTube API video')
+                if f:
+                    self.accept(f,'YouTube API video')
+                    parent=f if f.published_date==self.date else None
             cr,cs=self.get('https://www.googleapis.com/youtube/v3/commentThreads',
                 params={'part':'snippet','videoId':vid,'maxResults':100,'order':'time',
                         'textFormat':'plainText','key':key})
@@ -236,8 +239,12 @@ class PublicResearch:
                 outer=(item.get('snippet') or {}).get('topLevelComment') or {}
                 cs=(outer.get('snippet') or {})
                 txt=cs.get('textOriginal') or cs.get('textDisplay') or ''
-                if not BRAND.search(txt):continue
                 published=iso(cs.get('publishedAt'))
+                if parent is not None and len(parent.comments)<6:
+                    parent.comments.append({'author':cs.get('authorDisplayName',''),
+                                            'text':txt[:400], 'date':published,
+                                            'likes':cs.get('likeCount',0)})
+                if not BRAND.search(txt):continue
                 comment_url=url+'&lc='+quote_plus(outer.get('id',''))
                 f=classify(comment_url,txt,'YouTube',published,'YouTube Data API comment publishedAt',
                            'YouTube video comment: '+sn.get('title','')[:95],
@@ -276,11 +283,14 @@ class PublicResearch:
             post_date=datetime.fromtimestamp(p.get('created_utc',0),tz=timezone.utc).date().isoformat()
             url='https://www.reddit.com'+p.get('permalink','')
             body=p.get('title','')+' '+p.get('selftext','')
+            parent=None
             if BRAND.search(body):
                 f=classify(url,body,'Reddit',post_date,'Reddit OAuth created_utc',
                     p.get('title',''),p.get('author',''),'',{'score':p.get('score',0),
                     'comments':p.get('num_comments',0)})
-                if f:self.accept(f,'Reddit OAuth post')
+                if f:
+                    self.accept(f,'Reddit OAuth post')
+                    parent=f if f.published_date==self.date else None
             if int(p.get('num_comments',0))<=0:continue
             thread,ts=self.get('https://oauth.reddit.com'+p.get('permalink',''),
                 params={'limit':'70','depth':'2'},headers=h)
@@ -291,7 +301,13 @@ class PublicResearch:
             if not isinstance(tree,list) or len(tree)<2:continue
             for e in (tree[1].get('data') or {}).get('children') or []:
                 c=e.get('data') or {}
-                if not isinstance(c,dict) or not BRAND.search(c.get('body','')):continue
+                if not isinstance(c,dict):continue
+                if parent is not None and len(parent.comments)<6:
+                    parent.comments.append({'author':c.get('author',''),
+                                            'text':str(c.get('body',''))[:400],
+                                            'date':datetime.fromtimestamp(c.get('created_utc',0),tz=timezone.utc).date().isoformat(),
+                                            'score':c.get('score',0)})
+                if not BRAND.search(c.get('body','')):continue
                 cdate=datetime.fromtimestamp(c.get('created_utc',0),tz=timezone.utc).date().isoformat()
                 cid=c.get('id','')
                 curl=url.rstrip('/')+'/'+cid+'/'
