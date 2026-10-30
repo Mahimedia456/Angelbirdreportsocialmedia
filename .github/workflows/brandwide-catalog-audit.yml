@@ -1,0 +1,50 @@
+name: Angelbird Brand-Wide Official Catalog and Discovery Audit
+on:
+  push:
+    branches: [main]
+    paths: ['config/brand_wide_catalog_2026_10.run']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: angelbird-catalog-discovery
+  cancel-in-progress: false
+jobs:
+  audit-catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Validate brand-wide Python and model-free search eligibility
+        run: |
+          python -m scripts.audit_brandwide_scope
+          python -m py_compile src/social_search_queries.py src/public_research.py src/scheduled_research.py src/paid_gpt.py scripts/discover_official_catalog.py scripts/build_periodic_report.py
+      - name: Crawl original manufacturer public catalog categories
+        run: python -m scripts.discover_official_catalog
+      - name: Assert all fetched product URLs are original manufacturer links
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          c=json.loads(Path('data/official_catalog_latest.json').read_text())
+          products=c.get('products',[])
+          expected='atomos.com' if c['brand']=='Atomos' else 'angelbird.com'
+          assert products, f'No public catalog products discovered; coverage incomplete: {c.get("errors")}'
+          assert all((urlsplit(p['url']).hostname or '').endswith(expected) for p in products)
+          print('CATALOG_QA_PASS',c['brand'],'products',len(products),'category_pages',c['list_pages_checked'])
+          PY
+      - name: Preserve entire discovered manufacturer catalog evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/official_catalog_latest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Angelbird whole-brand current manufacturer product and variant inventory'
+            git pull --rebase origin main
+            git push origin main
+          fi
