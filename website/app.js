@@ -1,9 +1,9 @@
 "use strict";
-const ids=["months","days","viewer","status","heading","subtitle","crumbs","total","search","back","year","viewer-date","viewer-name","open-pdf","download-pdf","pdf-frame"];
+const ids=["months","days","viewer","status","heading","subtitle","crumbs","total","search","back","year","viewer-date","viewer-name","open-pdf","download-pdf","pdf-frame","latest"];
 const el=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
 const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 const fmt=new Intl.DateTimeFormat("en-US",{timeZone:"UTC",weekday:"long",month:"long",day:"numeric",year:"numeric"});
-let records=[],selectedYear=2026,loadError="";
+let records=[],selectedYear=2026,loadError="",lastManifestDate="";
 const clean=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const dateValid=s=>/^\d{4}-\d{2}-\d{2}$/.test(s)&&!Number.isNaN(Date.parse(s+"T00:00:00Z"));
 const dayTitle=d=>fmt.format(new Date(d+"T00:00:00Z"));
@@ -22,7 +22,7 @@ if(item){
   el.heading.textContent="Daily Monitoring Report";el.subtitle.textContent="View the original daily research report.";
   el["viewer-date"].textContent=dayTitle(item.date)+(item.demo?" · DEMO":"");
   el["viewer-name"].textContent=item.name;
-  const url=new URL(item.path,new URL(".",location.href.split("#")[0]));
+  const url=new URL(item.source_url||item.path,new URL(".",location.href.split("#")[0]));
   el["open-pdf"].href=url.href;el["download-pdf"].href=url.href;
   el["pdf-frame"].src=url.href+"#toolbar=1";el.viewer.hidden=false;el.status.textContent="";
 } else if(key){
@@ -55,15 +55,62 @@ el.crumbs.innerHTML=crumb;el.total.textContent=records.length;
 el.search.addEventListener("input",route);
 el.year.addEventListener("change",()=>{selectedYear=Number(el.year.value);location.hash="#/";route()});
 window.addEventListener("hashchange",route);
-(async()=>{try{
- const response=await fetch("reports-index.json",{cache:"no-store"});
- if(!response.ok)throw new Error("HTTP "+response.status);
- const data=await response.json();
- records=(Array.isArray(data)?data:[]).filter(x=>dateValid(x.date)&&/^\d{4}-(0[1-9]|1[0-2])$/.test(x.month)&&typeof x.path==="string"&&/^reports\/\d{4}\/\d{2}\/[^/]+\.pdf$/i.test(x.path)).sort((a,b)=>b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
-}catch(e){loadError="Report index could not be loaded. Please refresh the page.";console.error(e)}
-const years=[...new Set([2026,...records.map(x=>Number(x.date.slice(0,4)))])].sort((a,b)=>b-a);
-const realDates=new Set(records.filter(x=>!x.demo).map(x=>x.date));
-records=records.filter(x=>!x.demo||!realDates.has(x.date));
-selectedYear=years[0];el.year.innerHTML=years.map(y=>'<option value="'+y+'">'+y+'</option>').join("");
-route();
-})();
+// GitHub's public manifest is the live source of truth. Vercel deployments can lag;
+// a client can still list the latest dated PDF and open it directly from the repo.
+const LIVE_INDEX="https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/reports-index.json";
+const LOCAL_INDEX="reports-index.json";
+const normalizeIndex=data=>{
+ if(!Array.isArray(data))return [];
+ const valid=data.filter(x=>x&&dateValid(x.date)&&/^\d{4}-(0[1-9]|1[0-2])$/.test(x.month)
+  &&typeof x.path==="string"&&/^reports\/\d{4}\/\d{2}\/[^/]+\.pdf$/i.test(x.path));
+ const active=new Set(valid.filter(x=>!x.demo).map(x=>x.date));
+ return valid.filter(x=>!x.demo||!active.has(x.date))
+  .sort((a,b)=>b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
+};
+const getManifest=async url=>{
+ const target=url+(url.includes("?")?"&":"?")+"refresh="+Math.floor(Date.now()/60000);
+ const response=await fetch(target,{cache:"no-store"});
+ if(!response.ok)throw new Error("Manifest HTTP "+response.status);
+ return normalizeIndex(await response.json());
+};
+async function refreshReports(){
+ let live=[],local=[];
+ try{live=await getManifest(LIVE_INDEX)}catch(error){
+   console.warn("Live GitHub reports manifest temporarily unavailable",error);
+ }
+ try{local=await getManifest(LOCAL_INDEX)}catch(error){
+   console.warn("Local archive manifest unavailable",error);
+ }
+ // Same-date live PDF wins over an older static Vercel copy.
+ const all=new Map();
+ for(const report of local)all.set(report.id,report);
+ for(const report of live)all.set(report.id,report);
+ const next=[...all.values()].sort((a,b)=>b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
+ if(!next.length){
+   loadError="Report index temporarily unavailable. See GitHub reports directly.";
+ }else{
+   loadError="";
+ }
+ const changed=JSON.stringify(next)!==JSON.stringify(records);
+ records=next;
+ lastManifestDate=new Date().toLocaleString();
+ const years=[...new Set([2026,...records.map(x=>Number(x.date.slice(0,4)))])].sort((a,b)=>b-a);
+ if(!years.includes(selectedYear))selectedYear=years[0];
+ el.year.innerHTML=years.map(y=>'<option value="'+y+'"'+(y===selectedYear?' selected':'')+'>'+y+'</option>').join("");
+ if(el.latest){
+   const top=records[0];
+   el.latest.hidden=!top;
+   if(top){
+     el.latest.textContent="Latest available report: "+dayTitle(top.date);
+     el.latest.onclick=()=>{location.hash="#/report/"+encodeURIComponent(top.id)};
+   }
+ }
+ if(changed||!document.body.dataset.ready){
+   document.body.dataset.ready="true";
+   route();
+ }
+}
+refreshReports();
+setInterval(refreshReports,300000);
+window.addEventListener("focus",refreshReports);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)refreshReports()});
