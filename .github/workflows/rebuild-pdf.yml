@@ -1,5 +1,12 @@
 name: Angelbird PDF Rebuild (No AI Cost)
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'data/reference_history_2026_10_29.json'
+      - '.github/workflows/rebuild-pdf.yml'
   workflow_dispatch:
     inputs:
       report_date:
@@ -27,7 +34,7 @@ jobs:
       - name: Regenerate latest-date PDF from saved JSON + prior references
         env:
           REPORT_ONLY: 'true'
-          REPORT_DATE: ${{ inputs.report_date }}
+          REPORT_DATE: ${{ inputs.report_date || '2026-10-30' }}
         run: python -m src.main
       - name: Commit regenerated PDF and cumulative JSON
         run: |
