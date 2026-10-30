@@ -1,6 +1,6 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 16:18 PKT",
+  "generated_at_pkt": "2026-10-30 16:19 PKT",
   "status": "Python public-source monitoring",
   "headline": "0 directly dated Angelbird mention(s) established for 2026-10-30 from 6 first-party page attempts; previous five days are listed separately.",
   "today_findings": [],
@@ -27,39 +27,13 @@
       "impact": "Public brand or product mention; contextual relevance only.",
       "verification_note": "Original page has a previous-five-day publication date, not today's.",
       "reference_date": "",
-      "engagement": {},
-      "images": [],
-      "image_files": [
-        "assets/2026/10/2026-10-30/source_001.jpg"
-      ],
-      "comments": []
-    },
-    {
-      "title": "Angelbird AV PRO SE CFexpress B 512GB included in Canadian camera-card guide",
-      "platform": "NetNewsLedger / Editorial",
-      "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
-      "author": "James Murray",
-      "published_date": "2026-10-29",
-      "date_evidence": "29 October 2026 publication date recorded in reference PDF",
-      "summary": "Canadian camera-card shortlist includes the Angelbird AV PRO SE 512GB as a conditional Type B recommendation. Editorial comparison, not independent field testing.",
-      "sentiment": "Positive",
-      "priority": "Low",
-      "status": "older",
-      "image_url": "https://www.avshop.ca/images/angelbird/CFexpressBSEMK2512GB_1.jpeg",
-      "product": "AV PRO SE CFexpress B v4 512GB",
-      "details": "",
-      "source_excerpt": "Angelbird AV PRO SE CFexpress B v4 512GB",
-      "response_action": "Optional: share the editorial mention.",
-      "impact": "Positive editorial visibility with product-specific context.",
-      "verification_note": "Imported from user's 29-Oct reference PDF; source should be rechecked before treating as new.",
-      "reference_date": "",
       "engagement": {
         "price": "CAD $529",
         "sustained_write": "1,050 MB/s"
       },
       "images": [],
       "image_files": [
-        "assets/2026/10/2026-10-30/historical_001.jpg"
+        "assets/2026/10/2026-10-30/source_001.jpg"
       ],
       "comments": []
     },
