@@ -20,6 +20,10 @@ SWEEPS=(
         'generic search pages. Include authors, source post dates, views, likes, '
         'reactions, comments, reposts/shares when actually visible, image URLs '
         'owned by the original source, and verbatim-short brand excerpts. '
+        'Search public Facebook stories and tagged Facebook posts, Instagram public '
+        'stories, reels, hashtags, creator mentions and explicit tagged accounts, only '
+        'when ORIGINAL public URLs and dates can be established. Stories may expire or '
+        'require login: never invent inaccessible stories or imply private Meta access. '
         'Do not imply private Meta or LinkedIn content was accessed.'
     )),
     ('community',(
@@ -69,6 +73,9 @@ def _instructions(day, scope, targets):
         'If publisher original date is not visible, mark the source unverified. '
         'For each item return: url, platform, title, author, publisher, published_date, '
         'date_evidence, source_excerpt, summary, sentiment, priority, status, '
+        'content_type (post/story/reel/mention/tagged_post/comment/video/article/retailer), '
+        'hashtags (list of literal visible #hashtags), mentioned_accounts (literal @handles), '
+        'tagged_accounts (only accounts explicitly tagged in source), '
         'image_url, image_credit_url, image_context, product, impact, response_action, '
         'engagement (numeric sourced counts only), engagement_source, comments (list of '
         '{author,text,date,url}), verification_note. '

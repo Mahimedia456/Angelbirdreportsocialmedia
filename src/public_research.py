@@ -17,6 +17,7 @@ from xml.etree import ElementTree
 import requests
 from bs4 import BeautifulSoup
 from .schema import Finding, Coverage, ResearchReport
+from .social_content import source_labels, content_type
 
 ROOT=Path(__file__).resolve().parents[1]
 BRAND=re.compile(r'\bangelbird\b|\bav[\s-]?pro\b',re.I)
@@ -33,8 +34,11 @@ DOMAINS={'reddit.com':'Reddit','youtube.com':'YouTube','youtu.be':'YouTube',
 GROUPS={
  'Reddit':['site:reddit.com "Angelbird" {date}','site:reddit.com "Angelbird" "card" {month} {year}'],
  'YouTube':['site:youtube.com/watch "Angelbird" {date}','site:youtube.com "Angelbird" {month} {year}'],
- 'Facebook':['site:facebook.com "Angelbird" {date}'],
- 'Instagram':['site:instagram.com "Angelbird" {date}'],
+ 'Facebook':['site:facebook.com "Angelbird" {date}',
+             'site:facebook.com "Angelbird" story tagged {date}'],
+ 'Instagram':['site:instagram.com "Angelbird" {date}',
+              'site:instagram.com/reel "Angelbird" {date}',
+              'site:instagram.com/stories "Angelbird" {date}'],
  'LinkedIn':['site:linkedin.com/posts "Angelbird" {date}'],
  'X / Twitter':['site:x.com "Angelbird" {date}'],
  'Camera forums':['site:dpreview.com/forums "Angelbird" {month} {year}',
@@ -116,8 +120,10 @@ def classify(url, content, group, when, evidence, title='',author='',image='',st
     if not snippet:return None
     if not valid_url(url):return None
     product=PRODUCT.search(content)
+    social_group=source_group(url,group) in ('Facebook','Instagram','LinkedIn','X / Twitter','Reddit','YouTube')
+    labels=source_labels(title+' '+snippet) if social_group else {}
     status='verified' if when and evidence else 'unverified'
-    return Finding(
+    finding=Finding(
         title=(title or snippet[:90])[:180], platform=source_group(url,group),
         url=url, published_date=when, date_evidence=evidence or '',
         source_excerpt=snippet,summary=snippet[:500],author=(author or '')[:110],
@@ -126,10 +132,14 @@ def classify(url, content, group, when, evidence, title='',author='',image='',st
         product=product.group(0)[:80] if product else '',
         image_url=image if valid_url(image) else '',
         engagement=stats or {},
+        hashtags=labels.get('hashtags',[]),
+        mentioned_accounts=labels.get('mentioned_accounts',[]),
         impact=('Customer feedback requires technical review.' if NEG.search(snippet) else
                 'Public brand or product mention; contextual relevance only.'),
         response_action=('Review source and consider technical response.' if NEG.search(snippet) else
                          'Optional review.' if '?' in snippet else 'Not required.'))
+    finding.content_type=content_type(finding)
+    return finding
 
 class PublicResearch:
     def __init__(self, day):
