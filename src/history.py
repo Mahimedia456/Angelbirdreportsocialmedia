@@ -2,7 +2,7 @@
 from __future__ import annotations
 import json
 import re
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from .schema import Finding, ResearchReport
 
@@ -11,7 +11,13 @@ def _key(f: Finding):
     return (f.url.rstrip('/').lower(), f.author.casefold().strip(), f.source_excerpt.casefold().strip()[:90])
 
 def _older(f: Finding, target: str):
-    return bool(f.published_date and f.published_date < target)
+    """Only the five complete calendar days immediately before the report date."""
+    try:
+        day = date.fromisoformat(f.published_date)
+        end = date.fromisoformat(target)
+        return end - timedelta(days=5) <= day < end
+    except (ValueError, TypeError):
+        return False
 
 def _relevant(f: Finding):
     # Reject unrelated news articles inherited from faulty earlier runs.
@@ -79,6 +85,6 @@ def compile_history(report: ResearchReport, root: Path):
     hist_keys={_key(f) for f in report.historical_findings}
     report.older_leads=[f for f in unique(watch) if _key(f) not in hist_keys]
     dates=[f.published_date for f in report.historical_findings+report.today_findings if f.published_date]
-    report.report_period_start=min(dates) if dates else target
+    report.report_period_start=(date.fromisoformat(target)-timedelta(days=5)).isoformat()
     report.report_period_end=target
     return report
