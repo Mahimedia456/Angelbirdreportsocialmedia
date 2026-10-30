@@ -50,7 +50,9 @@ if(item){
           ["Positive",sent.positive,"positive"],
           ["Neutral",sent.neutral,"neutral"],
           ["Negative",sent.negative,"negative"],
-          ["Questions",sent.question,"neutral"]
+          ["Questions",sent.question,"neutral"],
+          ["Retail listings",data.retail_observations_count,"base"],
+          ["Retail sources",Object.keys(data.retailer_store_counts||{}).length,"base"]
         ];
         el["preview-kpis"].innerHTML=cards.map(([label,value,style])=>
           '<div class="report-kpi '+style+'"><strong>'+clean(value===null||value===undefined?"N/A":Number(value).toLocaleString("en-US"))+
