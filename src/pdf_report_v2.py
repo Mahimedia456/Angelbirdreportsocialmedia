@@ -298,17 +298,17 @@ def _fmt_count(metrics, field):
     return format(metrics['totals'].get(field,0),',')
 
 def instagram_story_lead_card(item):
-    """Compact explicit unverified Story link; not a verified Atomos/Angelbird mention."""
+    """Publicly indexed Story lead, not a confirmed same-day brand mention."""
     parts=[
-        P('INSTAGRAM STORY LINK | UNVERIFIED','caption'),
+        P('INSTAGRAM STORY SEARCH RESULT | SOURCE UNVERIFIED','caption'),
         Spacer(1,4),
         P('Source account: '+(item.author or 'Not known'),'small'),
         Spacer(1,4),
         source_url_line(item.url,('OPEN INSTAGRAM STORY LINK' if len([p for p in urlparse(item.url).path.split('/') if p])==3 else 'OPEN INSTAGRAM STORIES ACCOUNT PAGE')),
         Spacer(1,5),
-        P('Original Story media, tag/mention, brand association, reach and '
-          'publication date NOT independently accessible. This is a supplied '
-          'research lead, NOT a confirmed brand mention.','micro')
+        P('Only an indexed reference or accessible URL was discovered. Original Story '
+          'media, brand tag, reach and publication date require first-party proof. '
+          'Not counted as a verified Story or mention.','micro')
     ]
     return [panel(parts,accent=AMBER),Spacer(1,7)]
 
@@ -466,7 +466,7 @@ def render_pdf(report,path):
             if stories:
                 story.extend([P(f'INSTAGRAM STORIES TO VERIFY | {len(stories)} original links, 0 verified by URL alone','caption'),
                               Spacer(1,6),
-                              P('Original links have been preserved below. No Story image, '
+                              P('Source-indexed leads are shown below. No Story image, '
                                 'the monitored brand tag, publication time or views have '
                                 'been inferred from the URLs.','micro'),Spacer(1,7)])
                 for item in stories:story.extend(instagram_story_lead_card(item))

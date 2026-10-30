@@ -9,7 +9,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from .schema import ResearchReport
 from .paid_gpt import _json, _normalize_response, verify_ai_candidates, merge
-from .story_watchlist import watchlist_leads
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -53,11 +52,6 @@ def _write(path,data):
     path.write_text(json.dumps(data,indent=2,ensure_ascii=False),encoding='utf-8')
 
 def _instructions(day, scope, targets):
-    if scope=='social':
-        leads=watchlist_leads(day)
-        if leads:
-            review_urls='; '.join(x.url for x in leads[:15])
-            targets+=' TARGETED USER-SUPPLIED INSTAGRAM STORY RESEARCH LEADS (NOT PROOF OF BRAND TAG): '+review_urls+'. Try public original links and indexed context where accessible; mark inaccessible Stories as unverified and never fabricate the content, date, tag, engagement or photo. '
     return (
         f'You are doing SCHEDULED Angelbird brand monitoring for {day}, in Asia/Karachi. '
         'Do the public web search NOW; never give advice to search later. '

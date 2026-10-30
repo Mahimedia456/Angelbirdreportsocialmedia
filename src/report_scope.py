@@ -13,7 +13,8 @@ def scope_to_day(report: ResearchReport):
     # Leads without proven source dates may be surfaced only when specifically
     # observed on this reporting day, clearly labelled as unverified.
     report.unverified_leads=[f for f in report.unverified_leads
-                             if f.reference_date==day]
+                             if f.reference_date==day
+                             and not (f.verification_note or '').startswith('USER-SUPPLIED STORY LINK ONLY.')]
     # Do not add previous-day archives anywhere in the dated PDF or JSON.
     report.historical_findings=[]
     report.historical_retail=[]
