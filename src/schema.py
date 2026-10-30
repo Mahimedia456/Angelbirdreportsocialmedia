@@ -100,6 +100,7 @@ class Coverage(BaseModel):
 class ResearchReport(BaseModel):
     report_date: str
     generated_at_pkt: str = ''
+    research_as_of_pkt: str = ''
     status: str = 'Evening monitoring run'
     headline: str = ''
     today_findings: list[Finding] = Field(default_factory=list)
@@ -120,7 +121,7 @@ class ResearchReport(BaseModel):
         if not isinstance(data, dict):
             raise ValueError('Report must be a JSON object')
         d=dict(data)
-        for key in ('report_date','generated_at_pkt','status','headline','methodology','report_period_start','report_period_end'):
+        for key in ('report_date','generated_at_pkt','research_as_of_pkt','status','headline','methodology','report_period_start','report_period_end'):
             if key in d: d[key]=text_value(d[key])
         # LLMs sometimes return source coverage as a {platform: summary} map.
         # Preserve it as unverified index-search notes, not proof of direct platform reads.
