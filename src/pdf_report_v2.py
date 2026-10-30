@@ -237,6 +237,9 @@ def simple_card(item,index,kind='retail'):
     if embedded:content.extend(embedded)
     elif image_src:content.append(P('Image preview unavailable; original image URL above.','micro'))
     else:content.append(P('Original product photo could not be retrieved.','micro'))
+    if item.details:content.extend([Spacer(1,5),P('Snapshot details: '+item.details,'small')])
+    if item.date_evidence:content.extend([Spacer(1,5),P('Date / price evidence: '+item.date_evidence,'micro')])
+    if getattr(item,'publisher',''):content.extend([Spacer(1,3),P('Publisher / price index: '+item.publisher,'micro')])
     if item.verification_note:content.extend([Spacer(1,4),P(item.verification_note,'micro')])
     return [panel(content,accent=AMBER if kind=='retail' else GREEN),Spacer(1,9)]
 
