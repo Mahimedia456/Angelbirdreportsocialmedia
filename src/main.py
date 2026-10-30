@@ -1,10 +1,12 @@
+"""Daily monitoring entry point. JSON research and PDF rendering are separately executable."""
 import json,os
 from datetime import datetime,date
 from pathlib import Path
 from zoneinfo import ZoneInfo
-from .schema import ResearchReport, Finding, Coverage
+from .schema import ResearchReport,Coverage
 from .research import research_day
-from .pdf_report import render_pdf
+from .history import compile_history
+from .pdf_report_v2 import render_pdf
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -13,35 +15,38 @@ def main():
     target=(os.getenv('REPORT_DATE') or '').strip() or now.date().isoformat()
     date.fromisoformat(target)
     dry=os.getenv('DRY_RUN','').lower() in ('true','1','yes')
-    if dry:
+    render_only=os.getenv('REPORT_ONLY','').lower() in ('true','1','yes')
+    data=ROOT/'data'/target[:4]/target[5:7]
+    data.mkdir(parents=True,exist_ok=True)
+    base=f'Angelbird-Social-Monitoring-{target}'+('-DEMO' if dry else '')
+    json_path=data/(base+'.json')
+    sweeps=[]
+    if render_only:
+        if not json_path.exists():
+            raise FileNotFoundError('No saved research JSON for '+target+'. Render-only does not call the API.')
+        print('REPORT_ONLY enabled: building PDF from saved research + historical archive, no API charges.')
+        report=ResearchReport.model_validate(json.loads(json_path.read_text(encoding='utf-8'))).enforce_date_guardrails()
+    elif dry:
         report=ResearchReport(report_date=target,status='DEMO ONLY - no live research',
-            headline='Demonstration report only. No live source verification was performed.',
-            coverage=[Coverage(platform=s,summary='Not checked: demonstration mode',checked=False)
-                      for s in ('Reddit / forums','YouTube','Facebook / Instagram / LinkedIn','News / resellers')],
-            visibility_gaps=['No live web search performed in demonstration mode.'])
-        sweeps=[]
+             headline='Demonstration layout: no new daily research performed.',
+             coverage=[Coverage(platform=p,summary='Not checked (demo only)',checked=False)
+                for p in ('Reddit / forums','YouTube','Facebook / Instagram / LinkedIn','News / resellers')],
+             visibility_gaps=['No live research performed in demo mode.'])
     else:
         report,sweeps=research_day(target)
-    # Preserve explicit dated historical leads from the supplied reference without
-    # counting them as today's mentions or overwriting anything newer.
-    watch_path=ROOT/'data'/'watchlist.json'
-    if watch_path.exists():
-        for raw in json.loads(watch_path.read_text(encoding='utf-8')):
-            old=Finding.model_validate(raw)
-            if old.published_date != target and all(old.url != x.url for x in report.older_leads):
-                report.older_leads.append(old)
+    report=compile_history(report,ROOT)
     report.generated_at_pkt=now.strftime('%Y-%m-%d %H:%M PKT')
     dest=ROOT/'reports'/target[:4]/target[5:7]
     dest.mkdir(parents=True,exist_ok=True)
-    data=ROOT/'data'/target[:4]/target[5:7]
-    data.mkdir(parents=True,exist_ok=True)
-    base=f'Angelbird-Social-Monitoring-{target}' + ('-DEMO' if dry else '')
-    (data/(base+'.json')).write_text(report.model_dump_json(indent=2),encoding='utf-8')
+    # Retain machine-readable daily evidence and cumulative historical sections.
+    json_path.write_text(report.model_dump_json(indent=2),encoding='utf-8')
     if sweeps:
-        (data/(base+'-research-evidence.json')).write_text(json.dumps(sweeps,ensure_ascii=False,indent=2),encoding='utf-8')
+        (data/(base+'-research-evidence.json')).write_text(
+            json.dumps(sweeps,ensure_ascii=False,indent=2),encoding='utf-8')
     pdf=dest/(base+'.pdf')
     render_pdf(report,pdf)
-    print('PDF generated:',pdf)
+    print(f'PDF generated: {pdf} | Today={len(report.today_findings)} | Prior={len(report.historical_findings)}')
     return pdf
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    main()
