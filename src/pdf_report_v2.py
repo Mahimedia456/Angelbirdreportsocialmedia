@@ -8,6 +8,7 @@ from pathlib import Path
 from urllib.parse import urlparse, unquote
 from PIL import Image as PILImage
 from .platform_analytics import PLATFORMS, platform_summary, analytics_rows, traffic_disclaimer
+from .social_content import content_type, content_counts, LABELS, SOCIAL
 from xml.sax.saxutils import escape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether, HRFlowable, Image
 from reportlab.lib.pagesizes import A4
@@ -180,10 +181,17 @@ def finding_card(item,number,historical=False):
     accent=accent_for(item)
     content=[P(f'{escape(number)}   |   {escape(item.platform.upper())}   |   {escape(item.sentiment.upper())}   |   {escape(item.priority.upper())}','green',raw=True),
              Spacer(1,4),P(item.title,'item'),
-             Spacer(1,6),P('Source: '+item.platform+(' | '+item.author if item.author else '')+
+             Spacer(1,5),P('CONTENT TYPE: '+LABELS[content_type(item)].upper(),'caption'),
+             Spacer(1,6),P('Source: +item.platform+(' | '+item.author if item.author else '')+
                           (' | '+item.published_date if item.published_date else ' | Date not verified'),'meta'),
              link(item.url),Spacer(1,3),source_url_line(item.url,'POST / ARTICLE LINK')]
     if getattr(item,'publisher',''):content.extend([Spacer(1,3),P('Publisher: '+item.publisher,'micro')])
+    if getattr(item,'hashtags',None):
+        content.extend([Spacer(1,4),P('Source hashtags: '+', '.join(item.hashtags[:12]),'small')])
+    if getattr(item,'mentioned_accounts',None):
+        content.extend([Spacer(1,4),P('Public @mentions: '+', '.join(item.mentioned_accounts[:12]),'small')])
+    if getattr(item,'tagged_accounts',None):
+        content.extend([Spacer(1,4),P('Tagged accounts (source-confirmed): '+', '.join(item.tagged_accounts[:12]),'small')])
     if item.product:content.extend([Spacer(1,5),P('Product: '+item.product,'small')])
     image_src=image_provenance(item)
     if image_src:
@@ -306,7 +314,17 @@ def platform_scorecard(platform,items,day_label):
         ('LEFTPADDING',(0,0),(-1,-1),4),('RIGHTPADDING',(0,0),(-1,-1),4),
         ('VALIGN',(0,0),(-1,-1),'TOP')]))
     note=P('Metrics reflect only accessible original-source/API observations as of the report run. N/A = not available.','micro')
-    return [band(platform+' | source details',day_label+' | '+str(len(items))+' source(s)'),Spacer(1,7),tab,Spacer(1,5),note,Spacer(1,9)]
+    result=[band(platform+' | source details',day_label+' | '+str(len(items))+' source(s)'),Spacer(1,7),tab,Spacer(1,5),note,Spacer(1,7)]
+    if platform in SOCIAL:
+        totals=content_counts(items)
+        parts=[f'{label}: {totals.get(kind,0)}' for kind,label in (
+            ('post','Posts'),('story','Stories'),('reel','Reels'),
+            ('mention','Mentions'),('tagged_post','Tagged posts'),
+            ('comment','Comment findings'),('video','Videos'))]
+        linked=sum(len(x.comments) for x in items)
+        parts.append(f'Linked public replies: {linked}')
+        result.extend([P(' | '.join(parts),'micro'),Spacer(1,7)])
+    return result
 
 def source_sections(items,tag,day_label,include_empty=False):
     # The source cards go DIRECTLY below that platform's analytics scorecard.
@@ -432,17 +450,7 @@ def render_pdf(report,path):
                           Spacer(1,6)])
             for n,item in enumerate(candidates,1):
                 story.extend(finding_card(item,'U'+str(n)))
-    story.extend([Spacer(1,13),band('Search and access audit | '+day),
-                  Spacer(1,8)])
-    if report.coverage:
-        for entry in report.coverage:
-            label='Original/API source checked' if entry.checked else 'Index only / not fully checked'
-            story.extend([P(label+': '+entry.platform+' | '+entry.summary,'small'),Spacer(1,5)])
-    else:
-        story.append(P('Search audit unavailable; do not interpret missing platform '
-                       'findings as zero activity.','small'))
-    if report.visibility_gaps:
-        story.extend([Spacer(1,8),P('Limits: '+'; '.join(report.visibility_gaps[:12]),'micro')])
+    # Access coverage and search methodology remain in saved JSON, not PDF pages.
     counts=Counter(x.sentiment for x in todays)
     actions=[x for x in todays if x.priority in ('Urgent','High','Medium')
              and 'required' in (x.response_action or '').lower()]
