@@ -26,7 +26,7 @@ jobs:
     env:
       PYTHONUNBUFFERED: '1'
       RESEARCH_ENGINE: 'python'
-      FREE_SOURCES_ONLY: 'true'
+      FREE_SOURCES_ONLY: 'false'
       GPT_RESEARCH_ENABLED: 'true'
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_MODEL: 'gpt-4.1-mini'
