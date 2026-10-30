@@ -7,6 +7,7 @@ from .schema import ResearchReport,Coverage
 from .public_research import collect_day,cache_historical_images
 from .history import compile_history
 from .chatgpt_import import import_chatgpt_evidence
+from .paid_gpt import supplement as paid_supplement, merge as merge_paid
 from .pdf_report_v2 import render_pdf
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -42,6 +43,13 @@ def main():
     report,import_audit=import_chatgpt_evidence(report,ROOT)
     if import_audit['found']:
         sweeps.append({'scope':'ChatGPT web research JSON import','data':import_audit})
+    if not render_only and not dry and os.getenv('GPT_RESEARCH_ENABLED','false').lower() in ('1','true','yes'):
+        print('Optional paid GPT research: one request, maximum two web searches per date.',flush=True)
+        paid_report, paid_audit=paid_supplement(target, report)
+        report, paid_added=merge_paid(report,paid_report)
+        sweeps.append({'scope':'Paid GPT bounded supplement','data':dict(paid_audit,merged=paid_added)})
+        if paid_report is None:
+            report.visibility_gaps.append('Optional paid GPT supplement unavailable: see GPT attempt diagnostics; free findings preserved.')
     report=compile_history(report,ROOT)
     if not render_only and not dry and engine=='python':
         image_audit=cache_historical_images(report)
