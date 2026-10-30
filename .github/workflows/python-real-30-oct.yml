@@ -24,9 +24,6 @@ jobs:
       MAX_SOURCE_IMAGES: '12'
       MAX_HISTORICAL_IMAGES: '5'
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-      REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
-      REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-      REDDIT_USER_AGENT: ${{ vars.REDDIT_USER_AGENT }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
