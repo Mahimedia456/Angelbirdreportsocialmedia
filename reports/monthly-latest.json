@@ -33,5 +33,16 @@
     "video": 1,
     "article": 2,
     "post": 3
+  },
+  "platform_discovery_leads": {
+    "Facebook": 3,
+    "Instagram": 0,
+    "X / Twitter": 0,
+    "LinkedIn": 0,
+    "Reddit": 1,
+    "YouTube": 1,
+    "Camera Forums": 0,
+    "Google / News / Articles": 0,
+    "Retailers": 0
   }
 }
