@@ -4,8 +4,8 @@ import { join, relative, dirname } from 'node:path';
 const root=process.cwd();
 const out=join(root,'_site');
 const brand='Angelbird';
-const dailyRe=new RegExp('^'+brand+'-Social-Monitoring-(\\\\d{4}-\\\\d{2}-\\\\d{2})(-DEMO)?\\\\.pdf$','i');
-const periodRe=new RegExp('^'+brand+'-Social-Monitoring-(Weekly|Monthly)-(\\\\d{4}-\\\\d{2}-\\\\d{2})_to_(\\\\d{4}-\\\\d{2}-\\\\d{2})\\\\.pdf$','i');
+const dailyRe=new RegExp('^'+brand+'-Social-Monitoring-(\\d{4}-\\d{2}-\\d{2})(-DEMO)?\\.pdf$','i');
+const periodRe=new RegExp('^'+brand+'-Social-Monitoring-(Weekly|Monthly)-(\\d{4}-\\d{2}-\\d{2})_to_(\\d{4}-\\d{2}-\\d{2})\\.pdf$','i');
 
 if(existsSync(out))rmSync(out,{recursive:true,force:true});
 mkdirSync(out,{recursive:true});
@@ -32,7 +32,7 @@ function walk(dir){
       item={id:type+'-'+start+'-'+end,date:end,month:end.slice(0,7),type,
             start,end,name:entry.name,demo:false};
     }else{continue;}
-    const rel=relative(root,file).replaceAll('\\\\','/');
+    const rel=relative(root,file).replaceAll('\\','/');
     if(!rel.startsWith('reports/'+item.month.replace('-','/')+'/'))continue;
     const target=join(out,rel);
     mkdirSync(dirname(target),{recursive:true});
