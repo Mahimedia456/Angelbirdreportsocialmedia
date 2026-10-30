@@ -4,7 +4,42 @@
   "research_as_of_pkt": "2026-10-31 02:24 PKT",
   "status": "Completed calendar day | coverage limited to accessible public sources",
   "headline": "0 date-verified Angelbird post/article finding(s) and 0 dated retail observation(s) on 2026-10-06. Earlier dates are excluded; inaccessible networks cannot be claimed fully monitored.",
-  "today_findings": [],
+  "today_findings": [
+    {
+      "title": "Fujifilm Updates CFexpress Type B Recommendations – This is What’s Changed",
+      "platform": "Industry articles",
+      "url": "https://www.fujirumors.com/fujifilm-updates-cfexpress-type-b-recommendations-this-is-whats-changed/",
+      "author": "Patrick",
+      "published_date": "2026-10-06",
+      "date_evidence": "Original first-party page article:published_time",
+      "summary": "22 cards Delkin Devices – 20 cards Lexar – 19 cards Nextorage – 19 cards Suneast – 18 cards Prograde Digital – 17 cards OWC – 14 cards SanDisk – 12 cards Wise – 10 cards Angelbird – 7 cards Sony – 3 cards Glyph – 3 cards Trascend – 2 cards Homan – 1 card Fujifilm CFexpress Type B Card Compatibility List Brand Series Model Number Capacity ProRes 422 / ProRes 422 HQ H.264/H.265 8K/6.2K/4K/FHD Still Burst 8K 6.2K / 5.8K 4K FHD Angelbird AV PRO SX AVP160CFXBSX 160GB ✓ ✓ ✓ ✓ ✓ ✓✓*3 Angelbird AV PRO X",
+      "sentiment": "Neutral",
+      "priority": "Low",
+      "status": "verified",
+      "image_url": "https://www.fujirumors.com/wp-content/uploads/2026/09/CFexpress-Type-B-Recommended.jpg",
+      "image_context": "",
+      "image_credit_url": "",
+      "product": "Angelbird AV PRO",
+      "details": "",
+      "source_excerpt": "22 cards Delkin Devices – 20 cards Lexar – 19 cards Nextorage – 19 cards Suneast – 18 cards Prograde Digital – 17 cards OWC – 14 cards SanDisk – 12 cards Wise – 10 cards Angelbird – 7 cards Sony – 3 cards Glyph – 3 cards Trascend – 2 cards Homan – 1 card Fujifilm CFexpress Type B Card Compatibility List Brand Series Model Number Capacity ProRes 422 / ProRes 422 HQ H.264/H.265 8K/6.2K/4K/FHD Still Burst 8K 6.2K / 5.8K 4K FHD Angelbird AV PRO SX AVP160CFXBSX 160GB ✓ ✓ ✓ ✓ ✓ ✓✓*3 Angelbird AV PRO XT MK2 AVP330CFXBMK2XT 330GB ✓ ✓ ✓ ✓ ✓ ✓",
+      "response_action": "Not required.",
+      "impact": "Public brand or product mention; contextual relevance only.",
+      "verification_note": "Original public page",
+      "reference_date": "",
+      "engagement_source": "",
+      "publisher": "Fuji Rumors",
+      "content_type": "article",
+      "hashtags": [],
+      "mentioned_accounts": [],
+      "tagged_accounts": [],
+      "engagement": {},
+      "images": [],
+      "image_files": [
+        "assets/2026/10/2026-10-06/source_001.jpg"
+      ],
+      "comments": []
+    }
+  ],
   "retail_observations": [],
   "unverified_leads": [
     {
@@ -282,6 +317,51 @@
       "platform": "Retailers",
       "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": false
+    },
+    {
+      "platform": "Facebook",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 3 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Instagram",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "LinkedIn",
+      "summary": "8 indexed query attempt(s), 8 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "X / Twitter",
+      "summary": "8 indexed query attempt(s), 8 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "Reddit",
+      "summary": "6 indexed query attempt(s), 6 index response(s), 2 original source fetch(es), 2 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "YouTube",
+      "summary": "5 indexed query attempt(s), 5 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "Camera forums",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "Industry articles",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 10 original source fetch(es), 2 inaccessible; 1 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Retailers",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
     }
   ],
   "visibility_gaps": [
@@ -296,7 +376,9 @@
     "Industry articles: alternate public index HTTP 202",
     "GDELT free news index: HTTP 429",
     "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
-    "No result does not establish no brand activity on a platform."
+    "No result does not establish no brand activity on a platform.",
+    "YouTube official API search HTTP 429",
+    "Camera forums: alternate public index HTTP 403"
   ],
-  "methodology": "Python collector: 45 public search query attempts, 14 original-page attempts, 0 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text."
+  "methodology": "Python collector: 45 public search query attempts, 14 original-page attempts, 0 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text. | Brand-wide original-source refresh: all available products and general brand topics"
 }
