@@ -6,7 +6,7 @@
   "snapshots": 5,
   "archived_findings": 4,
   "dated_findings": 6,
-  "unverified_leads": 5,
+  "unverified_leads": 3,
   "platform_counts": {
     "Facebook": 0,
     "Instagram": 0,
@@ -39,8 +39,8 @@
     "Instagram": 0,
     "X / Twitter": 0,
     "LinkedIn": 0,
-    "Reddit": 1,
-    "YouTube": 1,
+    "Reddit": 0,
+    "YouTube": 0,
     "Camera Forums": 0,
     "Google / News / Articles": 0,
     "Retailers": 0
@@ -52,7 +52,7 @@
     "embedded_verified": 3,
     "linked_verified": 3,
     "embedded_leads": 0,
-    "linked_leads": 2,
+    "linked_leads": 1,
     "missing_media_verified": 3
   },
   "retail_observations_count": 6,
@@ -207,20 +207,20 @@
     [
       "Reddit",
       2,
-      1,
-      3,
+      0,
+      2,
       0,
       0,
-      1
+      0
     ],
     [
       "YouTube",
       1,
+      0,
       1,
-      2,
       1,
       1,
-      1
+      0
     ],
     [
       "Camera Forums",
@@ -250,9 +250,13 @@
       0
     ]
   ],
+  "rejected_synthetic_example_urls": [
+    "https://www.reddit.com/r/videography/comments/abc123/angelbird_media_performance_in_real_world/",
+    "https://www.youtube.com/watch?v=def456"
+  ],
   "overall_kpi": {
     "dated_records": 6,
-    "pending_leads": 5,
+    "pending_leads": 3,
     "metrics": {
       "views": 3,
       "likes": 0,
