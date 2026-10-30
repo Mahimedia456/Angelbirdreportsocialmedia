@@ -177,14 +177,19 @@ def finding_card(item,number,historical=False):
              Spacer(1,4),P(item.title,'item'),
              Spacer(1,6),P('Source: '+item.platform+(' | '+item.author if item.author else '')+
                           (' | '+item.published_date if item.published_date else ' | Date not verified'),'meta'),
-             link(item.url)]
+             link(item.url),Spacer(1,3),source_url_line(item.url,'POST / ARTICLE LINK')]
     if getattr(item,'publisher',''):content.extend([Spacer(1,3),P('Publisher: '+item.publisher,'micro')])
     if item.product:content.extend([Spacer(1,5),P('Product: '+item.product,'small')])
-    if item.image_url:
-        content.extend([Spacer(1,4),link(item.image_url,'VIEW SOURCE IMAGE')])
-    elif item.images:
-        content.extend([Spacer(1,4),link(item.images[0],'VIEW SOURCE PHOTO')])
-    content.extend(evidence_thumbnail(item,max_width=W-105))
+    image_src=image_provenance(item)
+    if image_src:
+        content.extend([Spacer(1,5),link(image_src,'OPEN SOURCE PHOTO'),
+                        Spacer(1,3),source_url_line(image_src,'PHOTO URL')])
+    embedded_photo=evidence_thumbnail(item,max_width=W-105)
+    if embedded_photo:content.extend(embedded_photo)
+    elif image_src:
+        content.extend([Spacer(1,5),P('Preview unavailable. Original image link is provided; access may require login.','micro')])
+    else:
+        content.extend([Spacer(1,5),P('Original post image not accessible; use the direct post link above.','micro')])
     excerpt=excerpt_text(item)
     if excerpt:
         content.extend([Spacer(1,9),panel([P('ORIGINAL SOURCE EXCERPT','caption'),Spacer(1,3),P(excerpt[:450],'small')],bg=GREY,accent=accent,width=W-96)])
@@ -204,6 +209,7 @@ def finding_card(item,number,historical=False):
             content.extend([P(author+(' | '+stamp if stamp else ''),'green'),P(message,'small')])
             if c.get('url'):content.append(link(c['url'],'OPEN ORIGINAL COMMENT'))
             content.append(Spacer(1,4))
+    if item.date_evidence:content.extend([Spacer(1,5),P('Date source: '+item.date_evidence,'micro')])
     if item.verification_note:content.extend([Spacer(1,5),P('Reference note: '+item.verification_note,'micro')])
     left=W-70
     t=Table([[content,qr_image(item.url,45)]],colWidths=[left,70])
