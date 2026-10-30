@@ -1,0 +1,524 @@
+{
+  "brand": "Angelbird",
+  "source": "Official manufacturer public category/shop pages",
+  "observed_at_pkt": "2026-10-31T02:41:11+05:00",
+  "historical_price_assertion": false,
+  "official_catalog_items": 79,
+  "list_pages_checked": 36,
+  "truncated_page_budget": false,
+  "pages": [
+    "https://www.angelbird.com/",
+    "https://www.angelbird.com/category/memory-cards-29/",
+    "https://www.angelbird.com/category/cfexpresstm-v4-type-a-mk3-117/",
+    "https://www.angelbird.com/category/cfexpresstm-v4-type-a-mk2-72/",
+    "https://www.angelbird.com/category/cfexpresstm-20-type-a-39/",
+    "https://www.angelbird.com/category/cfexpresstm-v4-type-b-76/",
+    "https://www.angelbird.com/category/cfexpresstm-20-type-b-37/",
+    "https://www.angelbird.com/category/cfasttm-20-40/",
+    "https://www.angelbird.com/category/sdxctm-uhs-i-uhs-ii-38/",
+    "https://www.angelbird.com/category/microsdxctm-uhs-i-uhs-ii-41/",
+    "https://www.angelbird.com/category/custom-media-31/",
+    "https://www.angelbird.com/category/arri-45/",
+    "https://www.angelbird.com/category/atomos-46/",
+    "https://www.angelbird.com/category/kondor-blue-61/",
+    "https://www.angelbird.com/category/red-44/",
+    "https://www.angelbird.com/category/video-audio-ssd-33/",
+    "https://www.angelbird.com/category/av-pro-mk3-25-48/",
+    "https://www.angelbird.com/category/memory-card-readers-34/",
+    "https://www.angelbird.com/category/card-reader-cfexpress-a-49/",
+    "https://www.angelbird.com/category/card-reader-cfexpress-b-50/",
+    "https://www.angelbird.com/category/card-reader-sd-52/",
+    "https://www.angelbird.com/category/card-reader-cfast-20-51/",
+    "https://www.angelbird.com/category/accessories-35/",
+    "https://www.angelbird.com/category/apparel-116/",
+    "https://www.angelbird.com/category/mounting-bracket-pkt-73/",
+    "https://www.angelbird.com/category/tech-pouch-71/",
+    "https://www.angelbird.com/category/media-tank-54/",
+    "https://www.angelbird.com/category/usb-a-to-c-adapter-57/",
+    "https://www.angelbird.com/category/usb-c-to-sata-adapter-58/",
+    "https://www.angelbird.com/category/usb-cables-111/",
+    "https://www.angelbird.com/category/usb-c-40-cable-115/",
+    "https://www.angelbird.com/category/usb-c-32-tether-cable-114/",
+    "https://www.angelbird.com/category/usb-c-32-cable-112/",
+    "https://www.angelbird.com/category/usb-a-to-c-32-cable-113/",
+    "https://www.angelbird.com/category/deals-zone-109/",
+    "https://www.angelbird.com/category/current-deals-110/"
+  ],
+  "errors": [],
+  "products": [
+    {
+      "title": "Angelbird Tee Art Is Human 4019",
+      "url": "https://www.angelbird.com/prod/angelbird-tee-art-is-human-4019/?preselect=AB-TS-ART-L",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Angelbird Tee Art Is Human 4019",
+      "url": "https://www.angelbird.com/prod/angelbird-tee-art-is-human-4019/?preselect=AB-TS-ART-M",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Angelbird Tee Art Is Human 4019",
+      "url": "https://www.angelbird.com/prod/angelbird-tee-art-is-human-4019/?preselect=AB-TS-ART-S",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Angelbird Tee Art Is Human 4019",
+      "url": "https://www.angelbird.com/prod/angelbird-tee-art-is-human-4019/?preselect=AB-TS-ART-XL",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Arri Av Pro Ar 256 Cfast 20 Card 2115",
+      "url": "https://www.angelbird.com/prod/arri-av-pro-ar-256-cfast-20-card-2115/",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Atomx Ssdmini By Angelbird 2110",
+      "url": "https://www.angelbird.com/prod/atomx-ssdmini-by-angelbird-2110/?preselect=ATOMXMINI1000PK",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Atomx Ssdmini By Angelbird 2110",
+      "url": "https://www.angelbird.com/prod/atomx-ssdmini-by-angelbird-2110/?preselect=ATOMXMINI2000PK",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress A 3444",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-a-3444/?preselect=AVP1T0CFXAMK2",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress A 3444",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-a-3444/?preselect=AVP256CFXAMK2",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress A 3444",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-a-3444/?preselect=AVP512CFXAMK2",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress A V4 Mk3 3915",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-a-v4-mk3-3915/?preselect=AV1T6CXAM3",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress A V4 Mk3 3915",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-a-v4-mk3-3915/?preselect=AV400CXAM3",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress A V4 Mk3 3915",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-a-v4-mk3-3915/?preselect=AV800CXAM3",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress A V4 Se Mk3 4077",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-a-v4-se-mk3-4077/?preselect=AV200CXASEM3",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress Mk2 Type B 2893",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-mk2-type-b-2893/?preselect=AVP4T0CFXBMK2",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Cfexpress Xt Mk2 Type B 2898",
+      "url": "https://www.angelbird.com/prod/av-pro-cfexpress-xt-mk2-type-b-2898/?preselect=AVP1T3CFXBMK2XT",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Microsd V60 2631",
+      "url": "https://www.angelbird.com/prod/av-pro-microsd-v60-2631/?preselect=AVP128MSDV60",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Microsd V60 2631",
+      "url": "https://www.angelbird.com/prod/av-pro-microsd-v60-2631/?preselect=AVP256MSDV60",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Mk3 1899",
+      "url": "https://www.angelbird.com/prod/av-pro-mk3-1899/?preselect=AVP1000MK3",
+      "discovered_from": "https://www.angelbird.com/category/video-audio-ssd-33/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Mk3 1899",
+      "url": "https://www.angelbird.com/prod/av-pro-mk3-1899/?preselect=AVP2000MK3",
+      "discovered_from": "https://www.angelbird.com/category/video-audio-ssd-33/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd Mk2 V60 2071",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-mk2-v60-2071/?preselect=AVP064SDMK2V60",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd Mk2 V60 2071",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-mk2-v60-2071/?preselect=AVP128SDMK2V60",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd Mk2 V60 2071",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-mk2-v60-2071/?preselect=AVP1T0SDMK2V60",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd Mk2 V60 2071",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-mk2-v60-2071/?preselect=AVP256SDMK2V60",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd Mk2 V60 2071",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-mk2-v60-2071/?preselect=AVP512SDMK2V60",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd V90 Mk2 2400",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-v90-mk2-2400/?preselect=AVP064SDMK2V90",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd V90 Mk2 2400",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-v90-mk2-2400/?preselect=AVP128SDMK2V90",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd V90 Mk2 2400",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-v90-mk2-2400/?preselect=AVP256SDMK2V90",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Sd V90 Mk2 2400",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-v90-mk2-2400/?preselect=AVP512SDMK2V90",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Se Cfexpress A 3448",
+      "url": "https://www.angelbird.com/prod/av-pro-se-cfexpress-a-3448/?preselect=AVP160CFXASE",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Se Cfexpress A 3448",
+      "url": "https://www.angelbird.com/prod/av-pro-se-cfexpress-a-3448/?preselect=AVP330CFXASE",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Se Cfexpress B V4 Mk2 3513",
+      "url": "https://www.angelbird.com/prod/av-pro-se-cfexpress-b-v4-mk2-3513/?preselect=AVP1T0CFXBSEMK2",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Se Cfexpress B V4 Mk2 3513",
+      "url": "https://www.angelbird.com/prod/av-pro-se-cfexpress-b-v4-mk2-3513/?preselect=AVP2T0CFXBSEMK2",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Se Cfexpress B V4 Mk2 3513",
+      "url": "https://www.angelbird.com/prod/av-pro-se-cfexpress-b-v4-mk2-3513/?preselect=AVP4T0CFXBSEMK2",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Av Pro Se Cfexpress B V4 Mk2 3513",
+      "url": "https://www.angelbird.com/prod/av-pro-se-cfexpress-b-v4-mk2-3513/?preselect=AVP512CFXBSEMK2",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Cfast 20 Card Reader 2774",
+      "url": "https://www.angelbird.com/prod/cfast-20-card-reader-2774/?preselect=CFS31PK",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Cfexpress A Card Reader Pkt 3434",
+      "url": "https://www.angelbird.com/prod/cfexpress-a-card-reader-pkt-3434/?preselect=CFXACRPKT",
+      "discovered_from": "https://www.angelbird.com/category/memory-card-readers-34/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Cfexpress B Card Reader Pkt 3427",
+      "url": "https://www.angelbird.com/prod/cfexpress-b-card-reader-pkt-3427/?preselect=CFXBCRPKT",
+      "discovered_from": "https://www.angelbird.com/category/memory-card-readers-34/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Cfexpress B Recording Module 3261",
+      "url": "https://www.angelbird.com/prod/cfexpress-b-recording-module-3261/?preselect=KBRMCFXB",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Cfexpress B Recording Module 3261",
+      "url": "https://www.angelbird.com/prod/cfexpress-b-recording-module-3261/?preselect=KBRMCFXBRB",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "CFexpress™ Type B, now in 256 GB Built for efficient workflows",
+      "url": "https://www.angelbird.com/prod/av-pro-se-cfexpress-b-v4-mk2-3513/",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/angelbird-usb-32-cable-2265/?preselect=USB32CC050",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/angelbird-usb-32-cable-2265/?preselect=USB32CC100",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/angelbird-usb-32-cable-2265/?preselect=USB32CC25",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/av-pro-cfast-4052/?preselect=AV512CFSM2",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/av-pro-microsd-v30-mk2-3803/?preselect=AVP128MSDMK2V30",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/av-pro-microsd-v30-mk2-3803/?preselect=AVP1T0MSDMK2V30",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/av-pro-microsd-v30-mk2-3803/?preselect=AVP256MSDMK2V30",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/av-pro-microsd-v30-mk2-3803/?preselect=AVP512MSDMK2V30",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-v30-mk2-4004/?preselect=AV128SDM2V30",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/av-pro-sd-v30-mk2-4004/?preselect=AV256SDM2V30",
+      "discovered_from": "https://www.angelbird.com/category/memory-cards-29/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/ssd2go-pkt-mounting-bracket-2268/",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available",
+      "url": "https://www.angelbird.com/prod/usb-a-c-adapter-1817/",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available free engraving",
+      "url": "https://www.angelbird.com/prod/av-pro-se-cfexpress-b-v4-mk2-3513/?preselect=AV256CFXBSE",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available free engraving",
+      "url": "https://www.angelbird.com/prod/media-tank-3039/?preselect=MEDIA-TANK-CA2",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available free engraving",
+      "url": "https://www.angelbird.com/prod/media-tank-3039/?preselect=MEDIA-TANK-CB2",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available free engraving",
+      "url": "https://www.angelbird.com/prod/media-tank-3039/?preselect=MEDIA-TANK-CF2",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available free engraving",
+      "url": "https://www.angelbird.com/prod/media-tank-3039/?preselect=MEDIA-TANK-SD2",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available New",
+      "url": "https://www.angelbird.com/prod/usb-a-to-usb-c-32-solid-flex-cable-3789/?preselect=UAC3SFL32",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available New",
+      "url": "https://www.angelbird.com/prod/usb-c-32-solid-flextm-tether-cable-3790/?preselect=UC3SFL450",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available New",
+      "url": "https://www.angelbird.com/prod/usb-c-32-solid-flextm-tether-cable-3790/?preselect=UC3SFRAL450",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available New",
+      "url": "https://www.angelbird.com/prod/usb-c-40-cable-3791/?preselect=UC4SFL200",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available New",
+      "url": "https://www.angelbird.com/prod/usb-c-40-cable-3791/?preselect=UC4SFRAL100",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available New",
+      "url": "https://www.angelbird.com/prod/usb-c-40-cable-3791/?preselect=UC4SFRAL200",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available New",
+      "url": "https://www.angelbird.com/prod/usb-c-40-cable-3791/?preselect=UC4SFRAL32",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available Two color options New",
+      "url": "https://www.angelbird.com/prod/usb-c-40-cable-3791/?preselect=UC4SFBG100",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available Two color options New",
+      "url": "https://www.angelbird.com/prod/usb-c-40-cable-3791/?preselect=UC4SFBG32",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available Two color options New",
+      "url": "https://www.angelbird.com/prod/usb-c-40-cable-3791/?preselect=UC4SFL100",
+      "discovered_from": "https://www.angelbird.com/category/usb-cables-111/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Not available Two color options New",
+      "url": "https://www.angelbird.com/prod/usb-c-40-cable-3791/?preselect=UC4SFL32",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Performance Card Reader Cfexpress B 3458",
+      "url": "https://www.angelbird.com/prod/performance-card-reader-cfexpress-b-3458/?preselect=CFXBCRP",
+      "discovered_from": "https://www.angelbird.com/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Red Cfast 20 Card Reader 2878",
+      "url": "https://www.angelbird.com/prod/red-cfast-20-card-reader-2878/",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Red Pro Cfexpress V4 Type B Card Reader 3797",
+      "url": "https://www.angelbird.com/prod/red-pro-cfexpress-v4-type-b-card-reader-3797/",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Red Pro Cfexpress V4 Type B Webshop 3796",
+      "url": "https://www.angelbird.com/prod/red-pro-cfexpress-v4-type-b-webshop-3796/",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Red Webshop Cfast Card 2720",
+      "url": "https://www.angelbird.com/prod/red-webshop-cfast-card-2720/",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Sd Card Reader Pkt 3436",
+      "url": "https://www.angelbird.com/prod/sd-card-reader-pkt-3436/?preselect=SDCRPKT",
+      "discovered_from": "https://www.angelbird.com/category/memory-card-readers-34/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Sd Recording Module 3262",
+      "url": "https://www.angelbird.com/prod/sd-recording-module-3262/?preselect=KBRMSD",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Sd Recording Module 3262",
+      "url": "https://www.angelbird.com/prod/sd-recording-module-3262/?preselect=KBRMSDRB",
+      "discovered_from": "https://www.angelbird.com/category/custom-media-31/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Tech Pouch Gear Organizer By Peak Design 3340",
+      "url": "https://www.angelbird.com/prod/tech-pouch-gear-organizer-by-peak-design-3340/",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    },
+    {
+      "title": "Usb C To Sata Adapter 1710",
+      "url": "https://www.angelbird.com/prod/usb-c-to-sata-adapter-1710/",
+      "discovered_from": "https://www.angelbird.com/category/accessories-35/",
+      "catalog_status": "public manufacturer listing - current snapshot"
+    }
+  ]
+}
