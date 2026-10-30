@@ -5,6 +5,7 @@ Rendering uses saved JSON only, no API request or network image fetching.
 from collections import Counter, defaultdict
 from datetime import date, timedelta
 from pathlib import Path
+from PIL import Image as PILImage
 from xml.sax.saxutils import escape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether, HRFlowable, Image
 from reportlab.lib.pagesizes import A4
@@ -130,6 +131,28 @@ def accent_for(item):
 def excerpt_text(item):
     return (getattr(item,'source_excerpt','') or '').strip()
 
+def evidence_thumbnail(item,max_width=None):
+    """Embed a safely located cached original-source preview, never remote URL fetch."""
+    max_width=max_width or (W-103)
+    from pathlib import Path
+    base=Path(__file__).resolve().parents[1]
+    assets=(base/'assets').resolve()
+    for name in getattr(item,'image_files',[])[:2]:
+        try:
+            path=(base/name).resolve()
+            if not path.is_relative_to(assets) or not path.is_file():continue
+            with PILImage.open(path) as im:
+                iw,ih=im.size
+            if iw<40 or ih<40:continue
+            scale=min(max_width/iw,142/ih,1.0)
+            visual=Image(str(path),width=iw*scale,height=ih*scale)
+            visual.hAlign='LEFT'
+            return [Spacer(1,8),P('SOURCE VISUAL | THUMBNAIL','caption'),
+                    Spacer(1,4),visual,Spacer(1,3),
+                    P('Thumbnail from linked public source. Refer to original post for context and rights.','micro')]
+        except (OSError,ValueError):continue
+    return []
+
 def finding_card(item,number,historical=False):
     accent=accent_for(item)
     content=[P(f'{escape(number)}   |   {escape(item.platform.upper())}   |   {escape(item.sentiment.upper())}   |   {escape(item.priority.upper())}','green',raw=True),
@@ -142,6 +165,7 @@ def finding_card(item,number,historical=False):
         content.extend([Spacer(1,4),link(item.image_url,'VIEW SOURCE IMAGE')])
     elif item.images:
         content.extend([Spacer(1,4),link(item.images[0],'VIEW SOURCE PHOTO')])
+    content.extend(evidence_thumbnail(item,max_width=W-105))
     excerpt=excerpt_text(item)
     if excerpt:
         content.extend([Spacer(1,9),panel([P('ORIGINAL SOURCE EXCERPT','caption'),Spacer(1,3),P(excerpt[:450],'small')],bg=GREY,accent=accent,width=W-96)])
@@ -151,6 +175,13 @@ def finding_card(item,number,historical=False):
     if item.engagement:
         stats='    |    '.join(f'{k.replace("_"," ").title()}: {v}' for k,v in list(item.engagement.items())[:7])
         content.extend([Spacer(1,6),P('Stats: '+stats,'micro')])
+    if getattr(item,'comments',None):
+        content.extend([Spacer(1,9),P('PUBLIC COMMENTS | ORIGINAL CONTEXT','caption'),Spacer(1,4)])
+        for c in item.comments[:5]:
+            author=str(c.get('author') or 'Public commenter')[:60]
+            message=str(c.get('text') or '')[:320]
+            stamp=str(c.get('date') or '')
+            content.extend([P(author+(' | '+stamp if stamp else ''),'green'),P(message,'small'),Spacer(1,4)])
     if item.verification_note:content.extend([Spacer(1,5),P('Reference note: '+item.verification_note,'micro')])
     left=W-70
     t=Table([[content,qr_image(item.url,45)]],colWidths=[left,70])
