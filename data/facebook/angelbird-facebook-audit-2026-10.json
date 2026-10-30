@@ -1,0 +1,93 @@
+{
+  "audit_version": 1,
+  "brand": "Angelbird",
+  "platform": "Facebook",
+  "audited_date": "2026-10-31",
+  "target_period_start": "2026-10-01",
+  "target_period_end": "2026-10-31",
+  "scope": "All Angelbird camera cards, CFexpress Type A/B, CFast, SD, microSD, SSD, workflow accessories, readers, partnerships and brand mentions. Discover official pages, retailers, distributors, creators, user communities, comments, posts, Reels, videos and Stories.",
+  "status": "SOURCE_ACCESS_INCOMPLETE_NOT_ZERO_POSTS",
+  "verification_status": "NOT_FINAL_FACEBOOK_COVERAGE",
+  "verified_original_facebook_records": [],
+  "verified_record_count": 0,
+  "prior_monthly_summary_facebook_verified_count": 0,
+  "prior_monthly_summary_unverified_facebook_leads": 3,
+  "facebook_page_candidate": {
+    "handle": "AngelbirdTechnologies",
+    "url": "https://www.facebook.com/AngelbirdTechnologies/",
+    "identity_evidence": "The Photography & Video Show 2026 exhibitor directory associates the Angelbird brand with this Facebook handle",
+    "account_access": "Direct Facebook URL returned DisabledError, could not confirm page feed or post metadata",
+    "verification": "Page account identification supported by exhibitor directory; individual posts unverified"
+  },
+  "search_checks": [
+    {
+      "method": "Search engine Facebook-only indexing",
+      "query": "site:facebook.com Angelbird October 2026",
+      "result": "No attributable dated original Facebook publication retrieved."
+    },
+    {
+      "method": "Facebook page path indexing",
+      "query": "site:facebook.com/AngelbirdTechnologies/posts",
+      "result": "No original dated post accessible."
+    },
+    {
+      "method": "Product sweep",
+      "query": "site:facebook.com Angelbird CFexpress 2026 AV PRO",
+      "result": "No original source with October date, author, permalink and caption captured."
+    },
+    {
+      "method": "Reels indexing",
+      "query": "site:facebook.com/reel Angelbird 2026",
+      "result": "No verified October Facebook reel permalink with original publication metadata."
+    },
+    {
+      "method": "Official Facebook page",
+      "url": "https://www.facebook.com/AngelbirdTechnologies/",
+      "result": "Direct fetch blocked/disabled; content not inspected."
+    },
+    {
+      "method": "Archived first-party collection",
+      "scope": "Daily Angelbird October JSON / past monthly summary",
+      "result": "Earlier monthly rollup recorded zero verified Facebook sources and three unverified leads; distinct original Facebook links were not recovered in this check."
+    }
+  ],
+  "other_media_source_leads_not_facebook": [
+    {
+      "title": "Angelbird CFexpress Type A v4 800GB review",
+      "url": "https://www.newsshooter.com/2026/09/10/angelbird-av-pro-cfexpress-type-a-v4-800gb-review/",
+      "published_date": "2026-09-10",
+      "note": "September independent article; must not be counted as an October Facebook post."
+    },
+    {
+      "title": "New Angelbird CFexpress Type A cards",
+      "url": "https://www.digitalcameraworld.com/cameras/memory-cards/high-capacity-and-high-speed-angelbirds-new-cfexpress-type-a-cards-have-it-all",
+      "published_date": "2026-09-19",
+      "note": "September independent article; not Facebook evidence."
+    },
+    {
+      "title": "Angelbird product catalog",
+      "url": "https://www.angelbird.com/",
+      "published_date": null,
+      "note": "Current product catalog only, not a post and not a dated social mention."
+    }
+  ],
+  "evidence_fields_needed": [
+    "original Facebook permalink",
+    "author or page",
+    "published date with timezone",
+    "unaltered original caption/comment text",
+    "content type",
+    "original source image/media (when publicly accessible)",
+    "public engagement values with capture timestamp",
+    "brand-product attribution",
+    "verification method"
+  ],
+  "conclusion": "No independently verified October Facebook post could be captured with the available public-only access. This must not be interpreted as zero actual posts or absence of discussion. Existing unverified candidates must remain pending and not be published as verified.",
+  "safety": "Do not generate a fabricated Facebook finding or PDF that claims complete platform coverage.",
+  "data_integrity": {
+    "reports_cleaned": true,
+    "historical_reports_backup_branch": "backup/angelbird-reports-before-facebook-2026-10-31",
+    "source_json_preserved": true,
+    "source_media_preserved": true
+  }
+}
