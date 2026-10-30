@@ -1,8 +1,6 @@
 {
-  "images_cached": 1,
+  "images_cached": 0,
   "source_fetch_failures": 0,
   "ineligible_media_urls": 1,
-  "archives_updated": [
-    "data/reference_history_2026_10_29.json"
-  ]
+  "archives_updated": []
 }
