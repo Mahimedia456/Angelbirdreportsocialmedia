@@ -10,6 +10,7 @@ import os
 import re
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from urllib.parse import quote_plus, urlparse, urljoin, parse_qs
 from xml.etree import ElementTree
@@ -53,6 +54,15 @@ def iso(value):
         try:return datetime.strptime(v[:35],fmt).date().isoformat()
         except ValueError:pass
     return ''
+
+def youtube_date_pkt(value):
+    """Convert an API timestamp into the report timezone, not UTC calendar date."""
+    try:
+        stamp=datetime.fromisoformat(str(value).replace('Z','+00:00'))
+        if stamp.tzinfo is None:stamp=stamp.replace(tzinfo=timezone.utc)
+        return stamp.astimezone(ZoneInfo('Asia/Karachi')).date().isoformat()
+    except (ValueError,TypeError):
+        return iso(value)
 
 def valid_url(url):
     u=urlparse(str(url or ''))
@@ -313,34 +323,57 @@ class PublicResearch:
         return len(self.candidates)
 
     def youtube(self):
+        """One low-quota official video search, bounded public comment calls."""
         key=os.getenv('YOUTUBE_API_KEY','').strip()
         if not key:
-            self.gaps.append('YouTube: Data API key not configured; direct comments unavailable')
+            self.gaps.append('YouTube Data API key unavailable to workflow; videos/comments not checked directly')
             return
+        max_videos=max(0,min(12,int(os.getenv('YT_MAX_COMMENT_VIDEOS','6'))))
+        start=datetime(self.day.year,self.day.month,self.day.day,
+                       tzinfo=ZoneInfo('Asia/Karachi')).astimezone(timezone.utc)
+        finish=(start+timedelta(days=1))
+        fmt=lambda t:t.strftime('%Y-%m-%dT%H:%M:%SZ')
         r,state=self.get('https://www.googleapis.com/youtube/v3/search',
             params={'part':'snippet','q':'Angelbird','type':'video','order':'date',
-                    'publishedAfter':self.date+'T00:00:00Z','publishedBefore':self.end+'T00:00:00Z',
-                    'maxResults':25,'key':key})
+                    'publishedAfter':fmt(start),'publishedBefore':fmt(finish),
+                    'maxResults':20,'key':key})
         if not r:
-            self.gaps.append('YouTube API search '+state);return
-        try:videos=r.json().get('items',[])
-        except ValueError:return
+            self.gaps.append('YouTube official API search '+state)
+            return
+        try: videos=r.json().get('items',[])
+        except (ValueError,AttributeError):
+            self.gaps.append('YouTube API response parsing failed')
+            return
         self.counts['YouTube.api_searches']+=1
-        for obj in videos[:12]:
-            vid=(obj.get('id') or {}).get('videoId')
+        selected=[]
+        for obj in videos:
+            vid=(obj.get('id') or {}).get('videoId','')
             sn=obj.get('snippet') or {}
-            if not vid:continue
-            url=f'https://www.youtube.com/watch?v={vid}'
+            if not re.fullmatch('[a-zA-Z0-9_-]{11}',str(vid or '')):continue
             content=sn.get('title','')+' '+sn.get('description','')
+            if not BRAND.search(content):continue
+            url=f'https://www.youtube.com/watch?v={vid}'
             thumb=(sn.get('thumbnails',{}).get('medium') or {}).get('url','')
-            parent=None
-            if BRAND.search(content):
-                f=classify(url,content,'YouTube',iso(sn.get('publishedAt')),
-                           'YouTube Data API video publishedAt',sn.get('title',''),
-                           sn.get('channelTitle',''),thumb)
-                if f:
-                    self.accept(f,'YouTube API video')
-                    parent=f if f.published_date==self.date else None
+            day=youtube_date_pkt(sn.get('publishedAt'))
+            if day==self.date:
+                video=classify(url,content,'YouTube',day,'YouTube Data API publishedAt converted to PKT',
+                    sn.get('title',''),sn.get('channelTitle',''),thumb)
+                if video:self.accept(video,'YouTube official API original video metadata')
+            selected.append((vid,sn,thumb))
+        # Watch older relevant video threads for NEW daily comments without repeating search calls.
+        watch=ROOT/'data'/'youtube_watchlist.json'
+        if watch.is_file():
+            try:
+                vids=json.loads(watch.read_text(encoding='utf-8'))
+                for obj in vids[:20] if isinstance(vids,list) else []:
+                    vid=obj if isinstance(obj,str) else obj.get('video_id','') if isinstance(obj,dict) else ''
+                    if re.fullmatch('[a-zA-Z0-9_-]{11}',str(vid or '')) and vid not in [x[0] for x in selected]:
+                        selected.append((vid,{'title':'Monitored Angelbird video','channelTitle':''},''))
+            except (OSError,ValueError):
+                self.gaps.append('YouTube watchlist parsing failed')
+        for vid,sn,thumb in selected[:max_videos]:
+            url=f'https://www.youtube.com/watch?v={vid}'
+            parent=next((x for x in self.findings if x.url==url),None)
             cr,cs=self.get('https://www.googleapis.com/youtube/v3/commentThreads',
                 params={'part':'snippet','videoId':vid,'maxResults':100,'order':'time',
                         'textFormat':'plainText','key':key})
@@ -349,23 +382,26 @@ class PublicResearch:
                 continue
             self.counts['YouTube.comments_calls']+=1
             try:comments=cr.json().get('items',[])
-            except ValueError:continue
+            except (ValueError,AttributeError):continue
             for item in comments:
                 outer=(item.get('snippet') or {}).get('topLevelComment') or {}
                 cs=(outer.get('snippet') or {})
                 txt=cs.get('textOriginal') or cs.get('textDisplay') or ''
-                published=iso(cs.get('publishedAt'))
-                if parent is not None and len(parent.comments)<6:
+                published=youtube_date_pkt(cs.get('publishedAt'))
+                if parent is not None and len(parent.comments)<5:
                     parent.comments.append({'author':cs.get('authorDisplayName',''),
-                                            'text':txt[:400], 'date':published,
+                                            'text':txt[:360],'date':published,
                                             'likes':cs.get('likeCount',0)})
-                if not BRAND.search(txt):continue
-                comment_url=url+'&lc='+quote_plus(outer.get('id',''))
-                f=classify(comment_url,txt,'YouTube',published,'YouTube Data API comment publishedAt',
-                           'YouTube video comment: '+sn.get('title','')[:95],
+                if published!=self.date or not BRAND.search(txt):continue
+                cid=outer.get('id','')
+                comment_url=url+('&lc='+quote_plus(cid) if cid else '')
+                f=classify(comment_url,txt,'YouTube',published,
+                           'YouTube Data API original comment publishedAt converted to PKT',
+                           'Comment on: '+sn.get('title','')[:100],
                            cs.get('authorDisplayName',''),thumb,
-                           {'likes':cs.get('likeCount',0),'replies':(item.get('snippet') or {}).get('totalReplyCount',0)})
-                if f:self.accept(f,'YouTube API original comment')
+                           {'likes':cs.get('likeCount',0),
+                            'replies':(item.get('snippet') or {}).get('totalReplyCount',0)})
+                if f:self.accept(f,'YouTube API original public comment')
 
     def accept(self, item, origin):
         if not item or not BRAND.search(item.source_excerpt):return
