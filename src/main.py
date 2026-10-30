@@ -25,7 +25,7 @@ def main():
     render_only=os.getenv('REPORT_ONLY','').lower() in ('true','1','yes')
     data=ROOT/'data'/target[:4]/target[5:7]
     data.mkdir(parents=True,exist_ok=True)
-    base=f'Angelbird-Social-Monitoring-{target}'+('-DEMO' if dry else '')
+    base=f'Atomos-Social-Monitoring-{target}'+('-DEMO' if dry else '')
     json_path=data/(base+'.json')
     sweeps=[]
     engine=os.getenv('RESEARCH_ENGINE','python').strip().lower()
@@ -67,13 +67,13 @@ def main():
         image_audit=cache_historical_images(report)
         sweeps.append({'scope':'Historical source image cache','data':image_audit})
     # A previously saved model run counted unrelated Reddit platform news as an
-    # Angelbird mention. When relevance guardrails exclude all such candidates,
+    # Atomos mention. When relevance guardrails exclude all such candidates,
     # replace the stale source-summary language with an accurate limited-coverage note.
     if not report.today_findings and report.status!='Python public-source monitoring' and any('candidate items excluded' in gap for gap in report.visibility_gaps):
-        report.headline=(f'No directly evidenced new Angelbird brand mentions were retained for {target} '
+        report.headline=(f'No directly evidenced new Atomos brand mentions were retained for {target} '
                          f'from this bounded research run. Previous dated findings are preserved below.')
         report.status='Limited source coverage - relevance corrected'
-    report.headline=(f'{len(report.today_findings)} date-verified Angelbird post/article finding(s) '
+    report.headline=(f'{len(report.today_findings)} date-verified Atomos post/article finding(s) '
                      f'and {len(report.retail_observations)} dated retail observation(s) on {target}. '
                      'Earlier dates are excluded; inaccessible networks cannot be claimed fully monitored.')
     if not render_only and not dry:

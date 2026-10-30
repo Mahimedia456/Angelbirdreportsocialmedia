@@ -17,8 +17,8 @@ def clean(s):
     return re.sub(r'\s+','',str(s)).casefold()
 
 def verify(day):
-    report_file=ROOT/'data'/day[:4]/day[5:7]/f'Angelbird-Social-Monitoring-{day}.json'
-    pdf=ROOT/'reports'/day[:4]/day[5:7]/f'Angelbird-Social-Monitoring-{day}.pdf'
+    report_file=ROOT/'data'/day[:4]/day[5:7]/f'Atomos-Social-Monitoring-{day}.json'
+    pdf=ROOT/'reports'/day[:4]/day[5:7]/f'Atomos-Social-Monitoring-{day}.pdf'
     data=ResearchReport.model_validate_json(report_file.read_text(encoding='utf-8'))
     if data.report_period_start!=day or data.report_period_end!=day:
         raise RuntimeError('PDF source JSON must represent exactly the selected calendar date.')

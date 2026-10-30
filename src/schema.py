@@ -162,10 +162,10 @@ class ResearchReport(BaseModel):
         verified=[]
         exclusions=0
         for item in self.today_findings:
-            # A generic platform article is NOT an Angelbird mention. An excerpt
+            # A generic platform article is NOT an Atomos mention. An excerpt
             # of the actual source wording is required before the verified KPI.
             excerpt=item.source_excerpt or ''
-            direct=bool(re.search(r'\bangelbird\b|\bav[ -]?pro\b',excerpt,re.I))
+            direct=bool(re.search(r'\batomos\b|\batomosphere\b|\batom[- ]?os\b',excerpt,re.I))
             if not direct:
                 exclusions+=1
                 continue
@@ -176,7 +176,7 @@ class ResearchReport(BaseModel):
                 item.status='unverified'
                 self.unverified_leads.append(item)
         if exclusions:
-            self.visibility_gaps.append(f'{exclusions} candidate items excluded: no direct Angelbird mention in original-source excerpt.')
+            self.visibility_gaps.append(f'{exclusions} candidate items excluded: no direct Atomos mention in original-source excerpt.')
         seen=set()
         self.today_findings=[]
         for item in verified:

@@ -1,5 +1,5 @@
-"""Angelbird Report V2: latest dated evidence first, chronological historical dossier.
-Layout derives from the user-provided eight-page Angelbird 29 Oct reference report.
+"""Atomos Report V2: latest dated evidence first, chronological historical dossier.
+Layout derives from the user-provided eight-page Atomos 29 Oct reference report.
 Rendering uses saved JSON only, no API request or network image fetching.
 """
 from collections import Counter, defaultdict
@@ -19,15 +19,15 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.graphics.barcode import qr
 from reportlab.graphics.shapes import Drawing
 
-DARK=colors.HexColor('#30424c')
-GREEN=colors.HexColor('#24835c')
+DARK=colors.HexColor('#11151b')
+GREEN=colors.HexColor('#32845c')
 GREEN_PALE=colors.HexColor('#e5f3ea')
 GREY=colors.HexColor('#f0f2f4')
 RED=colors.HexColor('#b53f3c')
 RED_PALE=colors.HexColor('#f9eae9')
 AMBER=colors.HexColor('#b88330')
 AMBER_PALE=colors.HexColor('#fcf2e1')
-BORDER=colors.HexColor('#dce3e5')
+BORDER=colors.HexColor('#d8dce1')
 WHITE=colors.white
 PAGE_W,PAGE_H=A4
 MARGIN=42
@@ -54,7 +54,7 @@ styles={
  'body':ParagraphStyle('v2-body',fontName=FONT,fontSize=8.1,leading=12.5,textColor=DARK),
  'small':ParagraphStyle('v2-small',fontName=FONT,fontSize=7.3,leading=11,textColor=DARK),
  'micro':ParagraphStyle('v2-micro',fontName=FONT,fontSize=6.4,leading=9,textColor=DARK),
- 'meta':ParagraphStyle('v2-meta',fontName=FONT,fontSize=7.0,leading=10,textColor=colors.HexColor('#586e76')),
+ 'meta':ParagraphStyle('v2-meta',fontName=FONT,fontSize=7.0,leading=10,textColor=colors.HexColor('#60656d')),
  'kpi':ParagraphStyle('v2-kpi',fontName=BOLD,fontSize=20,leading=26,textColor=DARK,alignment=TA_CENTER),
  'kpilabel':ParagraphStyle('v2-kpilabel',fontName=BOLD,fontSize=6,leading=9,textColor=DARK,alignment=TA_CENTER),
  'green':ParagraphStyle('v2-green',fontName=BOLD,fontSize=7.1,leading=11,textColor=GREEN),
@@ -69,7 +69,7 @@ def P(value,kind='body',raw=False):
 def link(url,label='OPEN ORIGINAL SOURCE'):
     if not str(url).startswith(('https://','http://')):return P('Original source URL not available','micro')
     u=escape(url,{'"':'&quot;'})
-    return P(f'<link href="{u}" color="#24835c"><b>{escape(label)} &gt;</b></link>','green',raw=True)
+    return P(f'<link href="{u}" color="#ed743d"><b>{escape(label)} &gt;</b></link>','green',raw=True)
 
 def source_url_line(url, label='ORIGINAL URL'):
     # Visible and clickable URL rather than a generic action label.
@@ -122,8 +122,8 @@ def metric(value,name,bg,fg):
 
 def summary_header(report):
     """Only same-day post metrics. Historical numbers never appear in this PDF."""
-    top=Table([[P('ANGELBIRD | DAILY SOCIAL MONITORING','subtitle')],
-               [P(f'Angelbird Social & Web Report | {report.report_date}','title')],
+    top=Table([[P('ATOMOS | DAILY SOCIAL MONITORING','subtitle')],
+               [P(f'Atomos Social & Web Report | {report.report_date}','title')],
                [P(f'Coverage: {report.report_date} ONLY | Research: {report.research_as_of_pkt or "cutoff not recorded"} | Rendered: {report.generated_at_pkt}','subtitle')]],colWidths=[W])
     top.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),DARK),
          ('LEFTPADDING',(0,0),(-1,-1),18),
@@ -203,8 +203,8 @@ def finding_card(item,number,historical=False):
     if excerpt:
         content.extend([Spacer(1,9),panel([P('ORIGINAL SOURCE EXCERPT','caption'),Spacer(1,3),P(excerpt[:450],'small')],bg=GREY,accent=accent,width=W-96)])
     if item.summary:content.extend([Spacer(1,8),P('<b>What happened:</b> '+escape(item.summary[:900]),'small',raw=True)])
-    if item.impact:content.extend([Spacer(1,7),panel(P('<b>Angelbird impact:</b> '+escape(item.impact[:500]),'small',raw=True),bg=GREEN_PALE,width=W-96)])
-    if item.response_action:content.extend([Spacer(1,6),P('<b>Angelbird response:</b> '+escape(item.response_action[:350]),'small',raw=True)])
+    if item.impact:content.extend([Spacer(1,7),panel(P('<b>Atomos impact:</b> '+escape(item.impact[:500]),'small',raw=True),bg=GREEN_PALE,width=W-96)])
+    if item.response_action:content.extend([Spacer(1,6),P('<b>Atomos response:</b> '+escape(item.response_action[:350]),'small',raw=True)])
     if item.engagement:
         stats='    |    '.join(f'{k.replace("_"," ").title()}: {v}' for k,v in list(item.engagement.items())[:7])
         content.extend([Spacer(1,6),P('Public engagement (where observed): '+stats,'micro')])
@@ -328,7 +328,7 @@ def footer(canvas,doc):
     canvas.line(MARGIN,45,PAGE_W-MARGIN,45)
     canvas.setFont(FONT,6.7)
     canvas.setFillColor(DARK)
-    canvas.drawString(MARGIN,32,'Angelbird Insights 2026 | Social Monitoring')
+    canvas.drawString(MARGIN,32,'Atomos Insights 2026 | Social Monitoring')
     canvas.drawRightString(PAGE_W-MARGIN,32,f'Page {doc.page}')
     canvas.restoreState()
 
@@ -387,8 +387,8 @@ def render_pdf(report,path):
     path.parent.mkdir(parents=True,exist_ok=True)
     doc=SimpleDocTemplate(str(path),pagesize=A4,topMargin=34,bottomMargin=60,
         leftMargin=MARGIN,rightMargin=MARGIN,
-        title=f'Angelbird Social Monitoring {report.report_date} (only)',
-        author='Angelbird Social Monitoring')
+        title=f'Atomos Social Monitoring {report.report_date} (only)',
+        author='Atomos Social Monitoring')
     day=report.report_date
     todays=[f for f in report.today_findings if f.published_date==day]
     retail=[f for f in report.retail_observations if f.reference_date==day]
@@ -424,7 +424,7 @@ def render_pdf(report,path):
             for n,item in enumerate(records,1):
                 story.extend(finding_card(item,'D'+str(n)))
         else:
-            story.extend([P('No independently dated '+day+' Angelbird post/article was '
+            story.extend([P('No independently dated '+day+' Atomos post/article was '
                             'confirmed in the accessible material for this platform. '
                             'This does not prove no posts exist.','small'),Spacer(1,8)])
         if candidates:

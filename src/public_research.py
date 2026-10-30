@@ -1,4 +1,4 @@
-"""Public-source Angelbird monitoring. Python does collection; no OpenAI calls.
+"""Public-source Atomos monitoring. Python does collection; no OpenAI calls.
 
 Search discovers candidates; only first-party pages or authorized provider APIs can
 verify publication dates. Public images are cached as attributed, low-res thumbnails.
@@ -19,11 +19,11 @@ from bs4 import BeautifulSoup
 from .schema import Finding, Coverage, ResearchReport
 
 ROOT=Path(__file__).resolve().parents[1]
-BRAND=re.compile(r'\bangelbird\b|\bav[\s-]?pro\b',re.I)
+BRAND=re.compile(r'\batomos\b|\batomosphere\b|\batom[- ]?os\b',re.I)
 NEG=re.compile(r'overheat|hotter|failure|failed|corrupt|crash|broken|problem|error|not working|complain|recording stop',re.I)
 POS=re.compile(r'recommend|excellent|best|great|reliable|fast|impressive|love|superb|works well',re.I)
 PRICE=re.compile(r'(?:USD|EUR|GBP|CAD|PKR|INR|[$€£₹])\s?\d[\d,.]*',re.I)
-PRODUCT=re.compile(r'(Angelbird\s+.{0,45}?(?:CFexpress|microSD|SD\s*card|card reader|SSD|AV\s*PRO)|AV\s*PRO[^.,;\n]{0,60})',re.I)
+PRODUCT=re.compile(r'(?:Atomos\\s+)?(?:Ninja(?:\\s+(?:TX\\s*GO|TX|RAW|Ultra|V\\+))?|Shogun(?:\\s+(?:Ultra|AV-19M?|Classic))?|Shinobi(?:\\s+(?:7\\s*(?:II|RX)|II|GO))?|Sumo(?:\\s+PRO-19)?|AtomOS(?:phere)?|StudioSonic|TX-RX|UltraSync|A-Eye)[^,.;\\n]{0,65}',re.I)
 DOMAINS={'reddit.com':'Reddit','youtube.com':'YouTube','youtu.be':'YouTube',
  'facebook.com':'Facebook','instagram.com':'Instagram','linkedin.com':'LinkedIn',
  'x.com':'X / Twitter','twitter.com':'X / Twitter',
@@ -31,19 +31,19 @@ DOMAINS={'reddit.com':'Reddit','youtube.com':'YouTube','youtu.be':'YouTube',
  'cined.com':'Industry articles','petapixel.com':'Industry articles',
  'bhphotovideo.com':'Retailers','adorama.com':'Retailers','cvp.com':'Retailers'}
 GROUPS={
- 'Reddit':['site:reddit.com "Angelbird" {date}','site:reddit.com "Angelbird" "card" {month} {year}'],
- 'YouTube':['site:youtube.com/watch "Angelbird" {date}','site:youtube.com "Angelbird" {month} {year}'],
- 'Facebook':['site:facebook.com "Angelbird" {date}'],
- 'Instagram':['site:instagram.com "Angelbird" {date}'],
- 'LinkedIn':['site:linkedin.com/posts "Angelbird" {date}'],
- 'X / Twitter':['site:x.com "Angelbird" {date}'],
- 'Camera forums':['site:dpreview.com/forums "Angelbird" {month} {year}',
-                  '"Angelbird" "CFexpress" camera forum {date}'],
- 'Industry articles':['site:newsshooter.com "Angelbird" {month} {year}',
-                      'site:cined.com "Angelbird" {month} {year}',
-                      '"Angelbird" camera review {date}'],
- 'Retailers':['site:bhphotovideo.com "Angelbird" AV PRO {month} {year}',
-              'site:cvp.com "Angelbird" CFexpress {month} {year}'],
+ 'Reddit':['site:reddit.com "Atomos" {date}','site:reddit.com "Atomos" "card" {month} {year}'],
+ 'YouTube':['site:youtube.com/watch "Atomos" {date}','site:youtube.com "Atomos" {month} {year}'],
+ 'Facebook':['site:facebook.com "Atomos" {date}'],
+ 'Instagram':['site:instagram.com "Atomos" {date}'],
+ 'LinkedIn':['site:linkedin.com/posts "Atomos" {date}'],
+ 'X / Twitter':['site:x.com "Atomos" {date}'],
+ 'Camera forums':['site:dpreview.com/forums "Atomos" {month} {year}',
+                  '"Atomos" "CFexpress" camera forum {date}'],
+ 'Industry articles':['site:newsshooter.com "Atomos" {month} {year}',
+                      'site:cined.com "Atomos" {month} {year}',
+                      '"Atomos" camera review {date}'],
+ 'Retailers':['site:bhphotovideo.com "Atomos" Ninja Shogun {month} {year}',
+              'site:cvp.com "Atomos" monitor recorder {month} {year}'],
 }
 
 def iso(value):
@@ -83,7 +83,7 @@ def matches_source_domain(group,url):
         'Camera forums':('dpreview.com','eoshd.com','reduser.net','bmcuser.com',
                          'forum.blackmagicdesign.com','nikonites.com','sonyalpha.blog'),
         'Retailers':('bhphotovideo.com','adorama.com','cvp.com','proav.co.uk',
-                     'downtowncamera.com','ofertasgaming.com','angelbird.com')
+                     'downtowncamera.com','ofertasgaming.com','atomos.com')
     }
     if group=='Industry articles':
         other=tuple(v for k,values in allowed.items() for v in values if k!='Retailers')
@@ -140,7 +140,7 @@ class PublicResearch:
         self.page_limit=int(os.getenv('MAX_SOURCE_PAGES','35'))
         self.image_limit=int(os.getenv('MAX_SOURCE_IMAGES','12'))
         self.s=requests.Session()
-        self.s.headers.update({'User-Agent':'AngelbirdSocialMonitoring/2.1 (public research and attribution)'})
+        self.s.headers.update({'User-Agent':'AtomosSocialMonitoring/2.1 (public research and attribution)'})
         self.audit=[]
         self.candidates={}
         self.findings=[]
@@ -246,7 +246,7 @@ class PublicResearch:
         start=self.day.strftime('%Y%m%d')+'000000'
         finish=(self.day+timedelta(days=1)).strftime('%Y%m%d')+'000000'
         response,state=self.get('https://api.gdeltproject.org/api/v2/doc/doc',
-            params={'query':'"Angelbird"','mode':'artlist','format':'json',
+            params={'query':'"Atomos"','mode':'artlist','format':'json',
                     'startdatetime':start,'enddatetime':finish,
                     'maxrecords':'50','sort':'datedesc'},timeout=16)
         if not response:
@@ -297,8 +297,8 @@ class PublicResearch:
                     url=item.get('url','')
                     group=item.get('platform') or source_group(url,'Industry articles')
                     if group in GROUPS and matches_source_domain(group,url):
-                        self.add({'url':url,'title':item.get('title','Angelbird source'),
-                                  'snippet':item.get('description','Angelbird post')},
+                        self.add({'url':url,'title':item.get('title','Atomos source'),
+                                  'snippet':item.get('description','Atomos post')},
                                  group,'Curated original URL')
             except (OSError,ValueError):pass
 
@@ -312,7 +312,7 @@ class PublicResearch:
         if self.queries<self.limit:
             self.queries+=1
             response,state=self.get('https://news.google.com/rss/search',
-                params={'q':f'Angelbird when:1d after:{self.date} before:{self.end}','hl':'en'})
+                params={'q':f'Atomos when:1d after:{self.date} before:{self.end}','hl':'en'})
             if response:
                 try:
                     rss=ElementTree.fromstring(response.text)
@@ -337,7 +337,7 @@ class PublicResearch:
         finish=(start+timedelta(days=1))
         fmt=lambda t:t.strftime('%Y-%m-%dT%H:%M:%SZ')
         r,state=self.get('https://www.googleapis.com/youtube/v3/search',
-            params={'part':'snippet','q':'Angelbird','type':'video','order':'date',
+            params={'part':'snippet','q':'Atomos','type':'video','order':'date',
                     'publishedAfter':fmt(start),'publishedBefore':fmt(finish),
                     'maxResults':20,'key':key})
         if not r:
@@ -371,7 +371,7 @@ class PublicResearch:
                 for obj in vids[:20] if isinstance(vids,list) else []:
                     vid=obj if isinstance(obj,str) else obj.get('video_id','') if isinstance(obj,dict) else ''
                     if re.fullmatch('[a-zA-Z0-9_-]{11}',str(vid or '')) and vid not in [x[0] for x in selected]:
-                        selected.append((vid,{'title':'Monitored Angelbird video','channelTitle':''},''))
+                        selected.append((vid,{'title':'Monitored Atomos video','channelTitle':''},''))
             except (OSError,ValueError):
                 self.gaps.append('YouTube watchlist parsing failed')
         # One batch videos.list request gives source-traceable public view/like/comment
@@ -544,7 +544,7 @@ class PublicResearch:
                                'title':title[:140]})
             if not when:
                 result.status='unverified'
-                result.verification_note='Original page mentions Angelbird but no original publish date was proven.'
+                result.verification_note='Original page mentions Atomos but no original publish date was proven.'
                 if not any(x.url==result.url for x in self.unverified):
                     self.unverified.append(result)
             elif (self.day-timedelta(days=5)).isoformat()<=when<self.date:
@@ -614,7 +614,7 @@ class PublicResearch:
                          f'{attempted} original source fetch(es), {failed} inaccessible; '
                          f'{verified_count} exact-day source-verified mention(s). '
                          'A blocked index or missing official API is not a negative search result.')))
-        headline=(f'{len(verified)} directly dated Angelbird mention(s) established for {self.date} '
+        headline=(f'{len(verified)} directly dated Atomos mention(s) established for {self.date} '
                  f'from {self.fetched} first-party page attempts; previous five days are listed separately.')
         status='Python public-source monitoring'
         if not self.fetched and not self.counts['YouTube.api_searches']:
@@ -630,7 +630,7 @@ class PublicResearch:
             methodology=(f'Python collector: {self.queries} public search query attempts, '
                          f'{self.fetched} original-page attempts, '
                          f'{self.images} attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. '
-                         'New verified posts require original source dates and direct Angelbird text.'))
+                         'New verified posts require original source dates and direct Atomos text.'))
         return report,[{'scope':'Python public source audit','data':self.audit,
                         'counts':dict(self.counts),'search_queries':self.queries,
                         'original_pages_attempted':self.fetched,'cached_images':self.images,
