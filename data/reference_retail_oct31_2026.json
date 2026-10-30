@@ -1,0 +1,75 @@
+{
+  "source": "Public original retailer URL checked through indexed search on October 31, 2026. Listing price is an indexed reference; not a verified historical October 1-30 price. Original page live revalidation is separate.",
+  "retail_observations": [
+    {
+      "title": "Angelbird AV PRO SE CFexpress v4 Type B 512GB",
+      "url": "https://www.bhphotovideo.com/c/product/1876608-REG/angelbird_avp512cfxbsemk2_512gb_av_pro_se.html",
+      "platform": "Retailers",
+      "publisher": "B&H Photo",
+      "author": "B&H Photo",
+      "product": "AV PRO SE 512GB",
+      "status": "retail",
+      "published_date": "",
+      "reference_date": "2026-10-31",
+      "date_evidence": "Original retailer page indexed on 2026-10-31; no evidence of original listing creation or earlier month price.",
+      "sentiment": "Not applicable",
+      "content_type": "retailer",
+      "summary": "CFexpress Type B v4, 512GB, up to 3700 MB/s read",
+      "source_excerpt": "Reference listing: AV PRO SE 512GB; in stock on indexed retailer page.",
+      "verification_note": "Retail web-index reference captured 2026-10-31; price and availability may change; do not treat as historical sale or actual purchase.",
+      "engagement": {
+        "price": 399.99,
+        "currency": "USD",
+        "availability": "in stock on indexed retailer page"
+      },
+      "image_url": "",
+      "image_files": []
+    },
+    {
+      "title": "Angelbird AV PRO SE CFexpress v4 Type B 256GB",
+      "url": "https://www.bhphotovideo.com/c/product/1993068-REG/angelbird_av256cfxbse_256gb_av_pro_se.html/overview",
+      "platform": "Retailers",
+      "publisher": "B&H Photo",
+      "author": "B&H Photo",
+      "product": "AV PRO SE 256GB",
+      "status": "retail",
+      "published_date": "",
+      "reference_date": "2026-10-31",
+      "date_evidence": "Original retailer page indexed on 2026-10-31; no evidence of original listing creation or earlier month price.",
+      "sentiment": "Not applicable",
+      "content_type": "retailer",
+      "summary": "CFexpress Type B v4, 256GB, 3700 MB/s read",
+      "source_excerpt": "Reference listing: AV PRO SE 256GB; in stock on indexed retailer page.",
+      "verification_note": "Retail web-index reference captured 2026-10-31; price and availability may change; do not treat as historical sale or actual purchase.",
+      "engagement": {
+        "price": 269.99,
+        "currency": "USD",
+        "availability": "in stock on indexed retailer page"
+      },
+      "image_url": "",
+      "image_files": []
+    },
+    {
+      "title": "Angelbird AV PRO SE CFexpress 2.0 Type B legacy 512GB",
+      "url": "https://www.bhphotovideo.com/c/product/1678305-REG/angelbird_avp512cfxbse_av_pro_cfexpress_se.html",
+      "platform": "Retailers",
+      "publisher": "B&H Photo",
+      "author": "B&H Photo",
+      "product": "AV PRO SE legacy 512GB",
+      "status": "retail",
+      "published_date": "",
+      "reference_date": "2026-10-31",
+      "date_evidence": "Original retailer page indexed on 2026-10-31; no evidence of original listing creation or earlier month price.",
+      "sentiment": "Not applicable",
+      "content_type": "retailer",
+      "summary": "Legacy CFexpress 2.0 Type B product comparison reference",
+      "source_excerpt": "Reference listing: AV PRO SE legacy 512GB; no longer available on indexed retailer page.",
+      "verification_note": "Retail web-index reference captured 2026-10-31; price and availability may change; do not treat as historical sale or actual purchase.",
+      "engagement": {
+        "availability": "no longer available on indexed retailer page"
+      },
+      "image_url": "",
+      "image_files": []
+    }
+  ]
+}
