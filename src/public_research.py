@@ -404,7 +404,7 @@ class PublicResearch:
                     self.unverified.append(result)
             elif (self.day-timedelta(days=5)).isoformat()<=when<self.date:
                 result.status='older'
-                result.verification_note='Original page has a previous-five-day publication date, not today's.'
+                result.verification_note="Original page has a previous-five-day publication date, not today's."
                 if not any(x.url==result.url for x in self.older):
                     self.older.append(result)
 
