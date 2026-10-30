@@ -104,7 +104,11 @@ class ResearchReport(BaseModel):
         for bucket in ('today_findings','retail_observations','unverified_leads','older_leads'):
             kept=[]
             for item in d[bucket]:
-                if isinstance(item,dict) and urlparse(text_value(item.get('url'))).scheme in ('http','https') and urlparse(text_value(item.get('url'))).netloc:
+                # Pydantic also accepts already constructed Finding instances.
+                # Do not silently discard valid typed records during revalidation.
+                url = item.url if isinstance(item, Finding) else item.get('url') if isinstance(item, dict) else ''
+                parsed = urlparse(text_value(url))
+                if parsed.scheme in ('http', 'https') and parsed.netloc:
                     kept.append(item)
                 else:
                     rejected+=1
