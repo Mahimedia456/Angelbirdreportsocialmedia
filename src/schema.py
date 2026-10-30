@@ -64,7 +64,7 @@ class Finding(BaseModel):
         if not isinstance(d.get('images'),list): d['images']=[]
         d['images']=[text_value(u) for u in d['images'] if text_value(u).startswith(('https://','http://'))]
         d['image_files']=[text_value(p) for p in d['image_files'] if text_value(p).startswith('assets/') and '..' not in text_value(p)]
-        d['comments']=[c for c in d['comments'] if isinstance(c,dict)][:40]
+        d['comments']=[c for c in d['comments'] if isinstance(c,dict)]
         d['content_type']=d.get('content_type','').lower().replace(' ','_')
         if d['content_type'] not in ('','post','story','reel','mention','tagged_post','comment','video','article','retailer'):
             d['content_type']=''
