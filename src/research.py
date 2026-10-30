@@ -53,7 +53,13 @@ and detail sources checked. Never reuse example JSON, or generic placeholders su
 Return ONE JSON object with keys: report_date, status, headline, today_findings,
 retail_observations, unverified_leads, older_leads, coverage, visibility_gaps, methodology.
 Each finding has keys title, platform, url, author, published_date, date_evidence, summary,
-sentiment, priority, status, image_url, product, details.
+sentiment, priority, status, image_url, product, details, source_excerpt, response_action,
+impact, verification_note, engagement (object), images (list of image URLs).
+source_excerpt must quote or faithfully transcribe actual original post text explicitly naming Angelbird or AV PRO.
+Do not mark a same-day mention verified unless source_excerpt demonstrates DIRECT brand mention.
+Generic Reddit/platform news or speculative implications for Angelbird are irrelevant and excluded.
+For comments, include the original comment permalink and author where available.
+Record response priority, sentiment, creator/reviewer context and metrics only when visible.
 If no same-day verified mentions are found, explain actual platform coverage and evidence gaps.
 Keep independently verified 30 Oct mentions separate from older and undated sources.
 All findings must have original clickable URLs. Do not invent sources.
