@@ -1,5 +1,5 @@
 "use strict";
-const ids=["months","days","viewer","status","heading","subtitle","crumbs","total","search","back","year","viewer-date","viewer-name","open-pdf","download-pdf","pdf-frame","latest"];
+const ids=["months","days","viewer","status","heading","subtitle","crumbs","total","search","back","year","viewer-date","viewer-name","open-pdf","download-pdf","pdf-frame","preview-kpis","latest"];
 const el=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
 const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 const fmt=new Intl.DateTimeFormat("en-US",{timeZone:"UTC",weekday:"long",month:"long",day:"numeric",year:"numeric"});
@@ -30,6 +30,34 @@ if(item){
   el["open-pdf"].href=url.href;
   el["download-pdf"].href=url.href;
   el["pdf-frame"].src=url.href+"#toolbar=1&navpanes=0";
+  el["preview-kpis"].hidden=true;
+  el["preview-kpis"].innerHTML="";
+  if(typeName(item)==="monthly"){
+    const id=item.id;
+    fetch("reports/monthly-latest.json",{cache:"no-store"})
+      .then(r=>r.ok?r.json():Promise.reject(new Error("No report summary")))
+      .then(data=>{
+        if(data.path!==item.path || el.viewer.hidden ||
+           location.hash!=="#/report/"+encodeURIComponent(id))return;
+        const overall=data.overall_kpi||{};
+        const sent=overall.sentiment||{};
+        const metric=overall.metrics||{};
+        const cards=[
+          ["Dated sources",overall.dated_records,"base"],
+          ["Pending leads",overall.pending_leads,"neutral"],
+          ["Views",metric.views,"base"],
+          ["Likes",metric.likes,"base"],
+          ["Positive",sent.positive,"positive"],
+          ["Neutral",sent.neutral,"neutral"],
+          ["Negative",sent.negative,"negative"],
+          ["Questions",sent.question,"neutral"]
+        ];
+        el["preview-kpis"].innerHTML=cards.map(([label,value,style])=>
+          '<div class="report-kpi '+style+'"><strong>'+clean(value===null||value===undefined?"N/A":Number(value).toLocaleString("en-US"))+
+          '</strong><span>'+clean(label)+'</span></div>').join("");
+        el["preview-kpis"].hidden=false;
+      }).catch(()=>{});
+  }
   el.viewer.hidden=false;el.status.textContent="";
 } else if(key){
   const all=records.filter(x=>x.month===key&&(reportType==="all"||typeName(x)===reportType));
