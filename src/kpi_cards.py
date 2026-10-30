@@ -22,7 +22,7 @@ def _theme(label):
         return GREEN,GREEN_BG
     if name in ('negative','complaints'):
         return RED,RED_BG
-    if name in ('neutral','questions','not classified','pending leads','leads','days captured'):
+    if name.startswith(('pending ','reference ')) or name in ('neutral','questions','not classified','leads','days captured'):
         return YELLOW,YELLOW_BG
     return BLUE,BLUE_BG
 
