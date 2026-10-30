@@ -9,3 +9,5 @@ Fix prior-five-day classification string; execute full Python research run again
 Use alternate public search source, fair platform quotas and actual dated-source validation. Third-party API keys remain optional.
 
 Use strict platform-domain checks and separate verified retailer-market observations for final 30 October PDF.
+
+Final monitored-source rerun: source whitelist, first-party sources, source audit and actual photos/comments.
