@@ -147,7 +147,7 @@ def supplement(day, existing):
         from openai import OpenAI
         client=OpenAI(timeout=110,max_retries=0)
         prompt=(
-            f'Research Atomos Technologies and AV PRO memory cards on {day} (Asia/Karachi). '
+            f'Research Atomos monitor-recorders, Ninja, Shogun, Shinobi and AtomOS firmware on {day} (Asia/Karachi). '
             'Use the available web search tool to locate actual original posts, individual public comments, '
             'camera reviews, indexed social posts, and product-related customer complaints. '
             'Use at most 2 targeted, efficient public web searches focused on ORIGINAL post permalinks, '
@@ -160,7 +160,7 @@ def supplement(day, existing):
             'Do not invent findings, authors, quotes, source images or engagement numbers. '
             'Differentiate exact-day sources from older, undated and current retail listings. '
             'For every finding give the exact original post permalink, original post date/date_evidence, '
-            'source_excerpt showing Atomos/AV PRO, title, platform, author, original article publisher, sentiment, priority, '
+            'source_excerpt showing Atomos or AtomOS, title, platform, author, original article publisher, sentiment, priority, '
             'summary, impact, response_action, optional first-party image_url, numeric engagement only when visible '
             '(post views, likes, comments, shares; do not invent website traffic) and relevant comment URLs. '
             'If a timestamp cannot be independently established, label the item unverified. '

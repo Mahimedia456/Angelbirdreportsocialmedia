@@ -23,7 +23,7 @@ BRAND=re.compile(r'\batomos\b|\batomosphere\b|\batom[- ]?os\b',re.I)
 NEG=re.compile(r'overheat|hotter|failure|failed|corrupt|crash|broken|problem|error|not working|complain|recording stop',re.I)
 POS=re.compile(r'recommend|excellent|best|great|reliable|fast|impressive|love|superb|works well',re.I)
 PRICE=re.compile(r'(?:USD|EUR|GBP|CAD|PKR|INR|[$€£₹])\s?\d[\d,.]*',re.I)
-PRODUCT=re.compile(r'(?:Atomos\\s+)?(?:Ninja(?:\\s+(?:TX\\s*GO|TX|RAW|Ultra|V\\+))?|Shogun(?:\\s+(?:Ultra|AV-19M?|Classic))?|Shinobi(?:\\s+(?:7\\s*(?:II|RX)|II|GO))?|Sumo(?:\\s+PRO-19)?|AtomOS(?:phere)?|StudioSonic|TX-RX|UltraSync|A-Eye)[^,.;\\n]{0,65}',re.I)
+PRODUCT=re.compile(r'(?:Atomos\s+)?(?:Ninja(?:\s+(?:TX\s*GO|TX|RAW|Ultra|V\+))?|Shogun(?:\s+(?:Ultra|AV-19M?|Classic))?|Shinobi(?:\s+(?:7\s*(?:II|RX)|II|GO))?|Sumo(?:\s+PRO-19)?|AtomOS(?:phere)?|StudioSonic|TX-RX|UltraSync|A-Eye)[^,.;\n]{0,65}',re.I)
 DOMAINS={'reddit.com':'Reddit','youtube.com':'YouTube','youtu.be':'YouTube',
  'facebook.com':'Facebook','instagram.com':'Instagram','linkedin.com':'LinkedIn',
  'x.com':'X / Twitter','twitter.com':'X / Twitter',
@@ -31,14 +31,14 @@ DOMAINS={'reddit.com':'Reddit','youtube.com':'YouTube','youtu.be':'YouTube',
  'cined.com':'Industry articles','petapixel.com':'Industry articles',
  'bhphotovideo.com':'Retailers','adorama.com':'Retailers','cvp.com':'Retailers'}
 GROUPS={
- 'Reddit':['site:reddit.com "Atomos" {date}','site:reddit.com "Atomos" "card" {month} {year}'],
+ 'Reddit':['site:reddit.com "Atomos" {date}','site:reddit.com "Atomos" "Ninja" "Shogun" {month} {year}'],
  'YouTube':['site:youtube.com/watch "Atomos" {date}','site:youtube.com "Atomos" {month} {year}'],
  'Facebook':['site:facebook.com "Atomos" {date}'],
  'Instagram':['site:instagram.com "Atomos" {date}'],
  'LinkedIn':['site:linkedin.com/posts "Atomos" {date}'],
  'X / Twitter':['site:x.com "Atomos" {date}'],
  'Camera forums':['site:dpreview.com/forums "Atomos" {month} {year}',
-                  '"Atomos" "CFexpress" camera forum {date}'],
+                  '"Atomos" Ninja Shogun firmware camera forum {date}'],
  'Industry articles':['site:newsshooter.com "Atomos" {month} {year}',
                       'site:cined.com "Atomos" {month} {year}',
                       '"Atomos" camera review {date}'],

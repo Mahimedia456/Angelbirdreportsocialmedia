@@ -1,5 +1,5 @@
 """Atomos Report V2: latest dated evidence first, chronological historical dossier.
-Layout derives from the user-provided eight-page Atomos 29 Oct reference report.
+Layout uses an Atomos-inspired black/white technical design with source-linked post cards.
 Rendering uses saved JSON only, no API request or network image fetching.
 """
 from collections import Counter, defaultdict
