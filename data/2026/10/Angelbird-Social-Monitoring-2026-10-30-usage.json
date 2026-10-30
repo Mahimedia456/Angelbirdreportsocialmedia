@@ -1,19 +1,19 @@
 {
   "model": "gpt-4.1-mini",
-  "max_web_calls": 2,
+  "max_web_calls": 4,
   "observed_web_call_events": 1,
   "usage": {
-    "input_tokens": 9714,
+    "input_tokens": 9840,
     "input_tokens_details": {
       "cache_write_tokens": 0,
       "cached_tokens": 0
     },
-    "output_tokens": 413,
+    "output_tokens": 569,
     "output_tokens_details": {
       "reasoning_tokens": 0
     },
-    "total_tokens": 10127
+    "total_tokens": 10409
   },
-  "response_id": "resp_097a9fc1ac3b5604006ae46d65902487d1bff5f8b7bd773d1d",
+  "response_id": "resp_0012a03a9661f8a9006ae47523418487d1b9af974dbe06e445",
   "note": "Token counts are API-reported. Dollar cost requires the account usage dashboard; no hard per-run dollar cap."
 }

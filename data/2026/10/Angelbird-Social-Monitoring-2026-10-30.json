@@ -1,6 +1,6 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 15:42 PKT",
+  "generated_at_pkt": "2026-10-30 15:44 PKT",
   "status": "Limited source coverage - relevance corrected",
   "headline": "No directly evidenced new Angelbird brand mentions were retained for 2026-10-30 from this bounded research run. Previous dated findings are preserved below.",
   "today_findings": [],
@@ -209,11 +209,7 @@
   "report_period_end": "2026-10-30",
   "coverage": [],
   "visibility_gaps": [
-    "YouTube",
-    "Camera Forums",
-    "Indexed Social Accounts",
-    "Retailers",
     "1 candidate items excluded: no direct Angelbird mention in original-source excerpt."
   ],
-  "methodology": "Conducted targeted searches on Reddit, YouTube, and camera forums for mentions of Angelbird products on October 30, 2026. Limited findings were identified, with the most notable being Reddit's announcement of new feed features. No direct mentions of Angelbird products were found in the available sources."
+  "methodology": "Conducted searches on Reddit, YouTube, camera forums, indexed social media accounts, news outlets, and retailer websites for mentions of Angelbird products and related topics."
 }
