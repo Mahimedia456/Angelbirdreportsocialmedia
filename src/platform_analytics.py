@@ -10,7 +10,10 @@ PLATFORMS=(
     'Facebook','Instagram','X / Twitter','LinkedIn','Reddit','YouTube',
     'Camera Forums','Google / News / Articles','Retailers'
 )
-METRICS=('views','likes','reactions','comments','shares','reposts')
+METRIC_ALIASES={'views':('views','post_views','video_views'),
+                'likes':('likes','post_likes','reactions'),
+                'comments':('comments','post_comments'),
+                'shares':('shares','post_shares','reposts')}
 HOSTS={
  'facebook.com':'Facebook','fb.watch':'Facebook',
  'instagram.com':'Instagram',
@@ -59,8 +62,11 @@ def metric_summary(items):
         engagement=getattr(item,'engagement',None) or {}
         if not isinstance(engagement,dict):continue
         seen_metric=False
-        for field in METRICS:
-            n=_number(engagement.get(field))
+        for field,aliases in METRIC_ALIASES.items():
+            # Use only the first grounded value per measurement family;
+            # reactions and likes may refer to the same event.
+            n=next((_number(engagement.get(alias)) for alias in aliases
+                    if _number(engagement.get(alias)) is not None),None)
             if n is None:continue
             available.add(field)
             totals[field]+=n
