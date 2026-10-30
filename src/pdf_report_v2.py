@@ -165,7 +165,7 @@ def evidence_thumbnail(item,max_width=None):
     base=Path(__file__).resolve().parents[1]
     assets=(base/'assets').resolve()
     result=[]
-    for name in list(dict.fromkeys(getattr(item,'image_files',[]) or []))[:4]:
+    for name in list(dict.fromkeys(getattr(item,'image_files',[]) or [])):
         try:
             path=(base/name).resolve()
             if not path.is_relative_to(assets) or not path.is_file():continue
@@ -175,7 +175,7 @@ def evidence_thumbnail(item,max_width=None):
             scale=min(max_width/iw,142/ih,1.0)
             visual=Image(str(path),width=iw*scale,height=ih*scale)
             visual.hAlign='LEFT'
-            result.extend([Spacer(1,8),P('SOURCE VISUAL | '+str(len(result)//5+1),'caption'),
+            result.extend([Spacer(1,8),P('SOURCE VISUAL | '+str(sum(1 for flowable in result if isinstance(flowable, Image))+1),'caption'),
                            Spacer(1,4),visual,Spacer(1,3),
                            P('Thumbnail cached from original source; see original URL for context and rights.','micro')])
         except (OSError,ValueError):continue
