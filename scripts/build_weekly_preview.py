@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from datetime import date, timedelta
 from collections import Counter
-from reportlab.platypus import SimpleDocTemplate, Spacer
+from reportlab.platypus import SimpleDocTemplate, Spacer, KeepTogether
 from reportlab.lib.pagesizes import A4
 from src.schema import ResearchReport
 from src import pdf_report_v2 as pdf
@@ -23,6 +23,31 @@ if (ROOT/'src'/'brand_scope.py').exists():
 def inside(d):
     try:return START<=date.fromisoformat(d)<=END
     except (ValueError,TypeError):return False
+
+
+def continuous_card(item,number):
+    """Split-safe weekly evidence record: NEVER place an entire long item in one table cell."""
+    from xml.sax.saxutils import escape
+    parts=[pdf.band(f'{number} | {item.platform} | {content_type(item).upper()}'),
+           Spacer(1,7),pdf.P(item.title,'item'),Spacer(1,6),
+           pdf.P(f'Author: {item.author or "Not recorded"} | Published: {item.published_date or "Unverified"} | Sentiment: {item.sentiment} | Priority: {item.priority}','meta'),
+           Spacer(1,5),pdf.link(item.url,'OPEN ORIGINAL SOURCE'),
+           pdf.source_url_line(item.url),Spacer(1,7)]
+    images=pdf.evidence_thumbnail(item,max_width=pdf.W-42)
+    if images:parts.extend(images)
+    else:parts.append(pdf.P('Source image not cached or accessible. Do not substitute a fabricated preview.','micro'))
+    for label,value in [('Source excerpt',item.source_excerpt),('Finding',item.summary),('Details',item.details),
+                         ('Impact',item.impact),('Suggested response',item.response_action),
+                         ('Date evidence',item.date_evidence),('Verification',item.verification_note)]:
+        if value:parts.extend([Spacer(1,5),pdf.P(f'<b>{escape(label)}:</b> {escape(str(value))}','small',raw=True)])
+    if item.engagement:
+        parts.extend([Spacer(1,6),pdf.P('Public source metrics: '+', '.join(f'{k}: {v}' for k,v in item.engagement.items()),'small')])
+    for i,comment in enumerate(item.comments or [],1):
+        parts.extend([Spacer(1,7),pdf.P(f'COMMENT {i} | '+str(comment.get('author','Public user')),'caption'),
+                      pdf.P(str(comment.get('text','')),'small')])
+        if comment.get('url'):parts.append(pdf.link(comment['url'],'OPEN COMMENT'))
+    parts.append(Spacer(1,14))
+    return parts
 
 def main():
     findings,offers,leads=[],[],[]
@@ -92,15 +117,15 @@ def main():
         if records:
             for i,item in enumerate(records,1):
                 story.extend([pdf.P('PUBLISHED '+str(item.published_date)+'  |  '+('ARCHIVED REFERENCE | ' if item in reference_findings else 'SOURCE VERIFIED | ')+content_type(item).upper(),'caption'),Spacer(1,5)])
-                story.extend(pdf.finding_card(item,'W'+str(i)))
+                story.extend(continuous_card(item,'W'+str(i)))
         else:
             story.extend([pdf.P('No date-verified item available in the saved weekly dataset. This does not establish that no posts existed.','small'),Spacer(1,7)])
         if uncertain.get(platform):
             story.append(pdf.P('UNVERIFIED LEADS (EXCLUDED FROM KPI COUNTS)','caption'))
-            for i,item in enumerate(uncertain[platform],1):story.extend(pdf.finding_card(item,'U'+str(i)))
+            for i,item in enumerate(uncertain[platform],1):story.extend(continuous_card(item,'U'+str(i)))
         if platform=='Retailers':
             story.extend([pdf.P(f'{len(all_offers)} dated retailer snapshots; {len(reference_offers)} archive-sourced, excluded from post KPIs.','small'),Spacer(1,7)])
-            for i,item in enumerate(all_offers,1):story.extend(pdf.simple_card(item,i))
+            for i,item in enumerate(all_offers,1):story.extend(continuous_card(item,'R'+str(i)))
     story.extend([Spacer(1,10),pdf.P(f'Archived references: {len(reference_findings)} items sourced from the user-provided 29 October reference report; not independently reverified.','small'),Spacer(1,8),pdf.band('WEEKLY COVERAGE AND VERIFICATION NOTES'),Spacer(1,9),
                   pdf.P('This is a one-time manual weekly compilation. The 7-day window is not a claim that seven daily scans were completed. Missing metrics are unavailable, not zero. The saved evidence may contain inaccessible Instagram Stories or other platforms; URLs alone are never proof of content, media or publication date.','small'),
                   Spacer(1,8),pdf.P('No weekly schedule, cron trigger, research API call or modifications to daily reports are introduced.','small')])
