@@ -13,3 +13,4 @@ Use strict platform-domain checks and separate verified retailer-market observat
 Final monitored-source rerun: source whitelist, first-party sources, source audit and actual photos/comments.
 
 FREE_ONLY validation: no Brave Search API, no GPT API, free GDELT and public RSS discovery.\n
+2026-10-30 final validation: connected YouTube API, no Reddit OAuth, no Brave, no paid GPT API; check first-party evidence and PDF.\n
