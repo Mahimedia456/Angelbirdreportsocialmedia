@@ -20,6 +20,14 @@ def verify(day):
     report_file=ROOT/'data'/day[:4]/day[5:7]/f'Angelbird-Social-Monitoring-{day}.json'
     pdf=ROOT/'reports'/day[:4]/day[5:7]/f'Angelbird-Social-Monitoring-{day}.pdf'
     data=ResearchReport.model_validate_json(report_file.read_text(encoding='utf-8'))
+    if data.report_period_start!=day or data.report_period_end!=day:
+        raise RuntimeError('PDF source JSON must represent exactly the selected calendar date.')
+    if data.historical_findings or data.historical_retail or data.older_leads:
+        raise RuntimeError('Previous-date records must not appear in a single-day PDF.')
+    if any(x.published_date!=day for x in data.today_findings):
+        raise RuntimeError('Wrong-date post included in selected-day findings.')
+    if any(x.reference_date!=day for x in data.retail_observations):
+        raise RuntimeError('Wrong-date retail observation included.')
     reader=PdfReader(str(pdf))
     texts=[p.extract_text() or '' for p in reader.pages]
     full_text=clean(' '.join(texts))
@@ -57,7 +65,7 @@ def verify(day):
             if clean(source.title) not in section:
                 raise RuntimeError(f'{platform} source not shown under that platform analytics: {source.title}')
     audit={'date':day,'pages':len(reader.pages),
-           'dated_posts_checked':checked,
+           'dated_posts_checked':checked,'report_scope':'single-day',
            'source_hyperlinks':len(urls),'platform_sections':len(all_positions),
            'result':'passed'}
     out=pdf.with_name(pdf.stem+'-quality.json')
