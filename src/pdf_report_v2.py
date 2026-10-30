@@ -184,6 +184,10 @@ def finding_card(item,number,historical=False):
     if image_src:
         content.extend([Spacer(1,5),link(image_src,'OPEN SOURCE PHOTO'),
                         Spacer(1,3),source_url_line(image_src,'PHOTO URL')])
+        if getattr(item,'image_context',''):
+            content.append(P('Image provenance: '+item.image_context,'micro'))
+        if getattr(item,'image_credit_url',''):
+            content.append(source_url_line(item.image_credit_url,'PHOTO OWNER / CREDIT'))
     embedded_photo=evidence_thumbnail(item,max_width=W-105)
     if embedded_photo:content.extend(embedded_photo)
     elif image_src:
@@ -224,7 +228,11 @@ def simple_card(item,index,kind='retail'):
              P(item.title,'item'),Spacer(1,5),P(item.summary or 'No detail recorded.','small'),
              Spacer(1,5),link(item.url),Spacer(1,3),source_url_line(item.url,'RETAIL POST LINK')]
     image_src=image_provenance(item)
-    if image_src:content.extend([Spacer(1,4),source_url_line(image_src,'SOURCE IMAGE URL')])
+    if image_src:
+        content.extend([Spacer(1,4),source_url_line(image_src,'SOURCE IMAGE URL')])
+        if getattr(item,'image_context',''):content.append(P('Image provenance: '+item.image_context,'micro'))
+        if getattr(item,'image_credit_url',''):
+            content.append(source_url_line(item.image_credit_url,'PHOTO OWNER / CREDIT'))
     embedded=evidence_thumbnail(item,max_width=W-40)
     if embedded:content.extend(embedded)
     elif image_src:content.append(P('Image preview unavailable; original image URL above.','micro'))
@@ -288,7 +296,7 @@ def render_pdf(report,path):
     story.extend(engagement_overview(report.today_findings+report.historical_findings))
     story.extend([band(f'{report.report_date} | Latest verified posts',
                        f'{len(report.today_findings)} new dated source(s)'),Spacer(1,8)])
-    story.extend(grouped_platform_cards(report.today_findings,'N',empty=True))
+    story.extend(grouped_platform_cards(report.today_findings,'N',empty=False))
     if report.unverified_leads:
         story.extend([band('New / unverified leads','Not counted as verified today'),Spacer(1,10)])
         for n,item in enumerate(report.unverified_leads,1):
