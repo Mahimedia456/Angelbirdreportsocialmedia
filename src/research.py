@@ -35,7 +35,7 @@ def research_day(report_date):
     model=os.getenv('OPENAI_MODEL','gpt-4.1-mini')
     if model not in {'gpt-4.1-mini','gpt-4o-mini'}:
         raise RuntimeError('Cost guard: OPENAI_MODEL must be gpt-4.1-mini or gpt-4o-mini. Set GitHub variable OPENAI_MODEL=gpt-4.1-mini.')
-    max_calls=max(1,min(2,int(os.getenv('MAX_WEB_CALLS','2'))))
+    max_calls=max(1,min(4,int(os.getenv('MAX_WEB_CALLS','2'))))
     cache=ROOT/'data'/report_date[:4]/report_date[5:7]/f'Angelbird-Social-Monitoring-{report_date}.json'
     if cache.exists() and os.getenv('FORCE_RESEARCH','').lower() not in {'true','1'}:
         saved=json.loads(cache.read_text(encoding='utf-8'))
@@ -64,7 +64,7 @@ If no same-day verified mentions are found, explain actual platform coverage and
 Keep independently verified 30 Oct mentions separate from older and undated sources.
 All findings must have original clickable URLs. Do not invent sources.
 """
-    request = (f'Angelbird monitoring for {report_date} Asia/Karachi. Prioritize distinct queries: Angelbird Reddit {report_date}; Angelbird YouTube {report_date}; Angelbird camera forum {report_date}. Search public posts/comments '
+    request = (f'Angelbird monitoring for {report_date} Asia/Karachi. Prioritize distinct queries: Angelbird Reddit {report_date}; Angelbird YouTube {report_date}; Angelbird camera forum {report_date}; Angelbird Technologies reviews {report_date}. Search public posts/comments '
                'on Reddit, YouTube, camera forums, indexed social accounts, news and retailers. '
                'Prioritize customer feedback and source dates. Show genuine found leads including '
                'undated leads marked unverified. Provide a specific evidence-driven headline '
