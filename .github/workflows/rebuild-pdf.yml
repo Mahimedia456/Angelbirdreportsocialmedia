@@ -1,5 +1,8 @@
 name: Angelbird PDF Rebuild (No AI Cost)
 on:
+  push:
+    branches: [main]
+    paths: ['config/final_2026_10_30_render.run']
   workflow_dispatch:
     inputs:
       report_date:
