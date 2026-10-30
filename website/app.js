@@ -26,7 +26,12 @@ if(item){
   el["viewer-name"].textContent=item.name;
   const url=new URL(item.source_url||item.path,new URL(".",location.href.split("#")[0]));
   el["open-pdf"].href=url.href;el["download-pdf"].href=url.href;
-  el["pdf-frame"].src=url.href+"#toolbar=1";el.viewer.hidden=false;el.status.textContent="";
+  // GitHub raw serves PDFs with attachment headers in some browsers, causing a download
+  // instead of an iframe preview. Use the public Google Docs PDF viewer as the
+  // embedded renderer; keep the original URL for an explicit download/open action.
+  const preview="https://docs.google.com/gview?embedded=1&url="+encodeURIComponent(url.href);
+  el["pdf-frame"].src=preview;
+  el.viewer.hidden=false;el.status.textContent="";
 } else if(key){
   const all=records.filter(x=>x.month===key&&(reportType==="all"||typeName(x)===reportType));
   const items=all.filter(x=>!query||(x.date+" "+x.name+" "+typeName(x)).toLowerCase().includes(query));
