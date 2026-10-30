@@ -1,0 +1,43 @@
+name: Angelbird Website Build Validation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'scripts/build_website.mjs'
+      - 'scripts/update_report_index.py'
+      - 'reports-index.json'
+      - '.github/workflows/website-health.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check website JS
+        run: node --check website/app.js
+      - name: Build date-based report website
+        run: node scripts/build_website.mjs
+      - name: Verify last report is listed
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          root=pathlib.Path('.')
+          live=json.loads((root/'reports-index.json').read_text(encoding='utf-8'))
+          built=json.loads((root/'_site'/'reports-index.json').read_text(encoding='utf-8'))
+          assert live, 'Root live manifest has no reports'
+          assert built, 'Built website index has no reports'
+          assert live[0]['date']==built[0]['date'], 'Static and live index newest report do not match'
+          for item in live:
+              assert (root/item['path']).exists(), f'Missing PDF for {item["date"]}'
+              assert item.get('source_url','').startswith('https://raw.githubusercontent.com/')
+          print('SUCCESS: website date index and latest PDF links verified',live[0]['date'])
+          PY
