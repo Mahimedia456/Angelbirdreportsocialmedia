@@ -1,0 +1,112 @@
+name: Angelbird Full October 31-Day Research and Retail Final
+on:
+  push:
+    branches: [main]
+    paths: ['config/full_october_2026.run']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: angelbird-full-october-research-final
+  cancel-in-progress: false
+jobs:
+  full-month:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      RESEARCH_ENGINE: python
+      FREE_SOURCES_ONLY: 'false'
+      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+      OPENAI_MODEL: gpt-4.1-mini
+      GPT_MAX_RESEARCH_ROUNDS: '3'
+      GPT_MAX_WEB_CALLS: '2'
+      MAX_SEARCH_QUERIES: '46'
+      MAX_SOURCE_PAGES: '75'
+      MAX_SOURCE_PAGES_PER_GROUP: '9'
+      MAX_SOURCE_IMAGES: '12'
+      MAX_REPORT_IMAGES: '30'
+      DRY_RUN: 'false'
+      REPORT_SINGLE_DAY: 'true'
+      REPORT_PREVIOUS_COMPLETED_DAY: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt pypdf
+      - name: Revisit every missing October 2026 date using Python original-source collectors
+        env:
+          GPT_RESEARCH_ENABLED: 'false'
+          GPT_PLATFORM_SWEEPS: 'false'
+          GPT_FORCE_RESEARCH: 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dd in $(seq -w 1 31); do
+            day="2026-10-$dd"
+            if [ -f "data/2026/10/Angelbird-Social-Monitoring-$day.json" ]; then
+              echo "COVERAGE_EXISTS $day"
+              continue
+            fi
+            echo "FULL_OCTOBER_RESEARCH $day"
+            REPORT_DATE="$day" python -m src.main
+          done
+      - name: Fresh October 31 Python and GPT web source check
+        env:
+          GPT_RESEARCH_ENABLED: 'true'
+          GPT_PLATFORM_SWEEPS: 'true'
+          GPT_FORCE_RESEARCH: 'true'
+        run: REPORT_DATE=2026-10-31 python -m src.main
+      - name: Original retailer page and product image access audit
+        run: |
+          python -m scripts.hydrate_retail_media
+          python -m scripts.cache_periodic_media --period 2026-10
+      - name: Generate full 1-31 October professional PDF no page cap
+        run: python -m scripts.build_periodic_report --period monthly --end 2026-10-31
+      - name: Confirm retail inventory and complete dated research snapshots
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          meta=json.loads(Path('reports/monthly-latest.json').read_text())
+          assert meta['start']=='2026-10-01' and meta['end']=='2026-10-31'
+          assert meta['snapshots']==31, f"Incomplete October daily snapshots: {meta['snapshots']}/31"
+          assert meta['retail_observations_count']>=9, 'Retail catalog missing'
+          path=Path(meta['path'])
+          pages=len(PdfReader(path).pages)
+          assert pages>0
+          print('FULL_MONTH_REPORT',json.dumps({'brand':'Angelbird','snapshots':meta['snapshots'],
+            'retail':meta['retail_observations_count'],'dated':meta['dated_findings'],
+            'leads':meta['unverified_leads'],'pages':pages}))
+          PY
+          python -m scripts.qa_periodic_pdf --period monthly
+      - name: Publish Daily Weekly Monthly source-linked website
+        run: |
+          python scripts/update_report_index.py
+          python scripts/build_website.py
+          node scripts/build_website.mjs
+          node --check website/app.js
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          manifest=json.loads(Path('_site/reports-index.json').read_text())
+          monthly=json.loads(Path('reports/monthly-latest.json').read_text())
+          assert Path('_site',monthly['path']).exists()
+          assert any(x['path']==monthly['path'] for x in manifest)
+          print('SITE_FULL_OCTOBER_OK',monthly['path'])
+          PY
+      - name: Commit all researched dates retailer source evidence images PDF and site index
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ reports/ assets/ reports-index.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Angelbird full October research plus source-attributed retailer catalog and PDF'
+            git pull --rebase origin main
+            git push origin main
+          fi
