@@ -31,24 +31,7 @@ DOMAINS={'reddit.com':'Reddit','youtube.com':'YouTube','youtu.be':'YouTube',
  'dpreview.com':'Camera forums','eoshd.com':'Camera forums','newsshooter.com':'Industry articles',
  'cined.com':'Industry articles','petapixel.com':'Industry articles',
  'bhphotovideo.com':'Retailers','adorama.com':'Retailers','cvp.com':'Retailers'}
-GROUPS={
- 'Reddit':['site:reddit.com "Angelbird" {date}','site:reddit.com "Angelbird" "card" {month} {year}'],
- 'YouTube':['site:youtube.com/watch "Angelbird" {date}','site:youtube.com "Angelbird" {month} {year}'],
- 'Facebook':['site:facebook.com "Angelbird" {date}',
-             'site:facebook.com "Angelbird" story tagged {date}'],
- 'Instagram':['site:instagram.com "Angelbird" {date}',
-              'site:instagram.com/reel "Angelbird" {date}',
-              'site:instagram.com/stories "Angelbird" {date}'],
- 'LinkedIn':['site:linkedin.com/posts "Angelbird" {date}'],
- 'X / Twitter':['site:x.com "Angelbird" {date}'],
- 'Camera forums':['site:dpreview.com/forums "Angelbird" {month} {year}',
-                  '"Angelbird" "CFexpress" camera forum {date}'],
- 'Industry articles':['site:newsshooter.com "Angelbird" {month} {year}',
-                      'site:cined.com "Angelbird" {month} {year}',
-                      '"Angelbird" camera review {date}'],
- 'Retailers':['site:bhphotovideo.com "Angelbird" AV PRO {month} {year}',
-              'site:cvp.com "Angelbird" CFexpress {month} {year}'],
-}
+from .social_search_queries import GROUPS
 
 def iso(value):
     v=str(value or '').strip()
@@ -146,8 +129,8 @@ class PublicResearch:
         self.day=date.fromisoformat(day)
         self.date=day
         self.end=(self.day+timedelta(days=1)).isoformat()
-        self.limit=int(os.getenv('MAX_SEARCH_QUERIES','18'))
-        self.page_limit=int(os.getenv('MAX_SOURCE_PAGES','35'))
+        self.limit=int(os.getenv('MAX_SEARCH_QUERIES','28'))
+        self.page_limit=int(os.getenv('MAX_SOURCE_PAGES','48'))
         self.image_limit=int(os.getenv('MAX_SOURCE_IMAGES','12'))
         self.s=requests.Session()
         self.s.headers.update({'User-Agent':'AngelbirdSocialMonitoring/2.1 (public research and attribution)'})
@@ -453,6 +436,41 @@ class PublicResearch:
         self.findings.append(item)
         self.counts[item.platform+'.verified']+=1
 
+    def retain_index_only(self,entry,reason):
+        """Keep direct-post candidates as explicitly UNVERIFIED when original is blocked."""
+        url=entry.get('url','')
+        path=urlparse(url).path.lower()
+        group=entry.get('group','')
+        direct={
+            'Instagram':('/p/','/reel/','/stories/'),
+            'Facebook':('/posts/','/permalink/','/reel/','/videos/','/story.php'),
+            'LinkedIn':('/posts/','/feed/update/'),
+            'X / Twitter':('/status/',),
+            'Reddit':('/comments/',),
+            'YouTube':('/watch',)
+        }
+        if group not in direct or not any(x in path for x in direct[group]):return
+        if group=='Instagram' and '/stories/' in path and len(
+            [x for x in path.split('/') if x])!=3:return
+        indexed=(str(entry.get('title') or '')+' '+str(entry.get('snippet') or '')).strip()
+        if not indexed or not BRAND.search(indexed):return
+        if group=='YouTube' and not re.search(r'(?:atomos|angelbird)',indexed,re.I):return
+        if sum(x.platform==group and x.verification_note.startswith('Search index only')
+               for x in self.unverified)>=3:return
+        if any(x.url==url for x in self.unverified):return
+        lead=Finding(
+            title=(entry.get('title') or 'Public indexed '+group+' source')[:180],
+            url=url,platform=group,status='unverified',priority='Watch',
+            sentiment='Not applicable',reference_date=self.date,
+            published_date='',source_excerpt='',
+            summary=('Indexed search-result candidate mentioning the brand. '
+                     'Original social post text, author, date, media and metrics NOT verified.'),
+            verification_note=('Search index only; original page inaccessible: '+str(reason)[:110]+
+                               '. Not a verified '+self.date+' post or Story.'),
+            response_action='Requires direct original page or approved platform API evidence.')
+        self.unverified.append(lead)
+        self.counts[group+'.index_only_leads']+=1
+
     def page(self,entry):
         url=entry['url']
         r,state=self.get(url)
@@ -462,14 +480,24 @@ class PublicResearch:
         self.counts[group+'.source_attempts']+=1
         if not r:
             self.counts[group+'.fetch_failed']+=1
+            self.retain_index_only(entry,state)
             return
         if 'html' not in (r.headers.get('content-type') or '').lower():return
         host=urlparse(r.url).hostname or ''
         if 'google.com' in host or 'bing.com' in host or 'login.' in host:
-            self.counts[group+'.inaccessible']+=1;return
+            self.counts[group+'.inaccessible']+=1
+            self.retain_index_only(entry,'Redirected to login/index service')
+            return
         soup=BeautifulSoup(r.text,'html.parser')
+        title_for_access=(soup.title.get_text(' ',strip=True) if soup.title else '').lower()
+        if group in ('Instagram','Facebook','LinkedIn','X / Twitter') and any(x in title_for_access
+                for x in ('log in','login required','sign in','log into')):
+            self.counts[group+'.login_required']+=1
+            self.retain_index_only(entry,'Login wall, no source text available')
+            return
         if soup.find('meta',attrs={'name':'robots','content':re.compile('noindex',re.I)}):
             self.counts[group+'.noindex']+=1
+            self.retain_index_only(entry,'Source marked noindex')
             return
         title_tag=soup.find('h1') or soup.title
         title=title_tag.get_text(' ',strip=True) if title_tag else entry.get('title','')
@@ -554,6 +582,7 @@ class PublicResearch:
                                'title':title[:140]})
             if not when:
                 result.status='unverified'
+                result.reference_date=self.date
                 result.verification_note='Original page mentions Angelbird but no original publish date was proven.'
                 if not any(x.url==result.url for x in self.unverified):
                     self.unverified.append(result)
@@ -629,7 +658,7 @@ class PublicResearch:
         status='Python public-source monitoring'
         if not self.fetched and not self.counts['YouTube.api_searches']:
             status='INCOMPLETE - No original source pages checked'
-            headline='Search indexes returned no usable original sources. The 30 October activity level is unknown, not confirmed zero.'
+            headline='Search indexes returned no usable original sources. Current-day activity is unknown, not confirmed zero.'
             self.gaps.append('No source-page evidence could be checked with current index/API access. Configure provider credentials.')
         report=ResearchReport(report_date=self.date,status=status,
             headline=headline,today_findings=verified,unverified_leads=self.unverified[:15],
