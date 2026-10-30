@@ -352,7 +352,14 @@ def main():
         story.extend([Spacer(1,9),pdf.P('No original dated or pending source records found in saved research for: '
                                       +', '.join(empty_platforms)+'. This does not establish zero real-world activity.',
                                       'small'),Spacer(1,9)])
-    story.extend([Spacer(1,9),pdf.band('RETAIL SOURCE OBSERVATIONS'),Spacer(1,6)])
+    story.extend([Spacer(1,9),pdf.band('RETAIL SOURCES | PRODUCT PRICE AND AVAILABILITY WATCH'),Spacer(1,6),
+                  pdf.P('Retail entries are observations of original product listings, not social posts, reviews, purchases, '
+                        'or historical prices. October 31 references must not be treated as prices from October 1-30.','small'),
+                  Spacer(1,6)])
+    retail_store_counts=Counter((x.publisher or x.author or 'Other retailer') for x in offers)
+    retail_price_observed=sum(isinstance(x.engagement,dict) and isinstance(x.engagement.get('price'),(int,float)) for x in offers)
+    story.extend([pdf.P('Retailer sources: '+(', '.join(f'{k}: {v}' for k,v in retail_store_counts.items()) or 'None')
+                        +' | Listings with indexed price: '+str(retail_price_observed),'small'),Spacer(1,8)])
     retail_counts=Counter(x.platform for x in offers)
     story.extend([pdf.P('Retail evidence KPI: '+str(len(offers))+' dated observations | '
                        +str(len({x.url.rstrip('/').lower() for x in offers}))+' unique original URLs. '
@@ -374,7 +381,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'kpi_card_groups':dashboard_card_groups,'pending_reference_metrics':pending_metrics,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retailer_store_counts':dict(retail_store_counts),'retailer_price_reference_count':retail_price_observed,'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'kpi_card_groups':dashboard_card_groups,'pending_reference_metrics':pending_metrics,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
