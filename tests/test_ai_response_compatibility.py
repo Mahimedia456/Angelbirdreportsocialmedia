@@ -27,7 +27,7 @@ class TestAIResponseCompatibility(unittest.TestCase):
 
     def test_valid_same_date_stays_and_duplicates_removed(self):
         item={"title":"Comment","platform":"Forum","url":"https://example.com/x","published_date":"2026-10-30",
-            "date_evidence":"Original page visibly says 30 Oct 2026","status":"verified","sentiment":"Negative"}
+            "date_evidence":"Original page visibly says 30 Oct 2026","source_excerpt":"Angelbird memory card mentioned in original comment","status":"verified","sentiment":"Negative"}
         report=ResearchReport.model_validate({"report_date":"2026-10-30","today_findings":[item,item]}).enforce_date_guardrails()
         self.assertEqual(len(report.today_findings),1)
 
