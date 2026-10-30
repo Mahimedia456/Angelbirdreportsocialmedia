@@ -135,6 +135,16 @@ def main():
             if ntrue+nfalse:
                 story.extend([pdf.P(f'{platform}: {ntrue} checked / {nfalse} incomplete snapshots','small'),Spacer(1,3)])
         story.append(Spacer(1,7))
+    # Two-tier KPI: source-discovered records must be visible even when the
+    # exact posting date is unavailable. Never mix these with verified dated totals.
+    lead_urls_by_platform={}
+    for platform in PLATFORMS:
+        lead_urls_by_platform[platform]=len({x.url.strip().rstrip('/').lower() for x in unverified.get(platform,[])})
+    story.extend([Spacer(1,8),pdf.band('SOURCE DISCOVERY KPIs | VERIFIED AND PENDING'),Spacer(1,7),
+                  pdf.P('Verified dated entries and source-discovered pending entries are separate. Pending links are real research leads but NOT verified October posts.','small'),Spacer(1,6)])
+    for platform in PLATFORMS:
+        story.extend([pdf.P(f'{platform}: verified dated records {len(grouped[platform])} | original-link leads awaiting validation {lead_urls_by_platform[platform]}','small'),Spacer(1,3)])
+    story.append(Spacer(1,8))
     story.extend(pdf.engagement_overview(gathered))
     story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
     types=Counter(content_type(x) for x in gathered)
@@ -180,7 +190,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered))}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
