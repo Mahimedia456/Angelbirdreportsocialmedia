@@ -1,4 +1,5 @@
 name: Angelbird Website Build Validation
+# Final October source archive: validate 31 daily + weekly + monthly published PDFs.
 on:
   push:
     branches: [main]
