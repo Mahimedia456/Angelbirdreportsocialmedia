@@ -40,7 +40,7 @@ def _normalize_response(raw, day):
             item['url']=str(item.get('url') or item.get('permalink') or '').strip()
             if not item['url'].startswith(('http://','https://')):continue
             host=(urlparse(item['url']).hostname or '').lower()
-            if not re.search(r'\\bangelbird\\b|\\bav[ -]?pro\\b',str(item.get('source_excerpt') or '')):
+            if not re.search(r'\bangelbird\b|\bav[ -]?pro\b',str(item.get('source_excerpt') or '')):
                 continue
             if not isinstance(item.get('engagement'),dict):
                 stats=item.get('engagement')
@@ -50,7 +50,7 @@ def _normalize_response(raw, day):
                                   if isinstance(c,dict)] if isinstance(item.get('relevant_comments'),list) else []
             raw_date=str(item.get('published_date') or '')
             if not raw_date:
-                match=re.search(r'20\\d\\d-\\d\\d-\\d\\d',str(item.get('date_evidence') or ''))
+                match=re.search(r'20\d\d-\d\d-\d\d',str(item.get('date_evidence') or ''))
                 raw_date=match.group(0) if match else ''
             try: candidate_day=date.fromisoformat(raw_date)
             except ValueError:candidate_day=None
