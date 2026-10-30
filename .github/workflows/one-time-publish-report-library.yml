@@ -1,0 +1,36 @@
+name: Publish Angelbird Daily Weekly Monthly Library
+on:
+  push:
+    branches: [main]
+    paths: ['config/report_library_index_2026_10_30.run']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python scripts/update_report_index.py
+          python scripts/build_website.py
+          node --check website/app.js
+      - name: Verify all three categories exist
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          items=json.loads(Path('reports-index.json').read_text())
+          types={x.get('type') for x in items}
+          assert {'daily','weekly','monthly'}<=types,types
+          assert all(x.get('path') and x.get('date') for x in items)
+          print('Published index categories:',types)
+          PY
+      - name: Commit live report library manifest
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports-index.json
+          git diff --cached --quiet || (git commit -m 'Publish three-frequency report library index' && git pull --rebase origin main && git push origin main)
