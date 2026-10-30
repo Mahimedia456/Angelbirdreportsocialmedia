@@ -161,7 +161,19 @@ def main():
         if unverified.get(platform):
             story.append(pdf.P('UNVERIFIED LEADS | EXCLUDED FROM KPIs','caption'))
             for x in unverified[platform]:
-                story.extend([pdf.P(x.title,'small'),pdf.link(x.url,'OPEN SOURCE LEAD'),Spacer(1,5)])
+                story.extend([pdf.P(x.title,'item'),Spacer(1,4),
+                              pdf.P('Evidence status: UNVERIFIED / original publication date not established','small'),
+                              pdf.P('Author: '+(x.author or 'Not recorded')+' | Discovery or reference date: '+(x.reference_date or x.published_date or 'Unknown'),'small'),
+                              pdf.link(x.url,'OPEN SOURCE LEAD'),pdf.source_url_line(x.url),Spacer(1,5)])
+                for label,value in [('Source excerpt',x.source_excerpt),('Research notes',x.summary),
+                                    ('Date limitation',x.date_evidence),('Verification',x.verification_note)]:
+                    if value:story.extend([pdf.P(label+': '+str(value),'small'),Spacer(1,4)])
+                if x.engagement:
+                    story.extend([pdf.P('Public metrics as cited in source archive (not verified this run): '+', '.join(str(k)+': '+str(v) for k,v in x.engagement.items()),'small'),Spacer(1,4)])
+                for i,comment in enumerate(x.comments or [],1):
+                    story.extend([pdf.P('RELATED COMMENT '+str(i)+' | '+str(comment.get('author','')),'caption'),
+                                  pdf.P(str(comment.get('text','')),'small'),Spacer(1,4)])
+                story.append(Spacer(1,12))
     story.extend([Spacer(1,9),pdf.P('Retail price observations: '+str(len(offers))+' (not social posts)','small')])
     for item in offers:
         story.extend([pdf.P(item.title,'small'),pdf.link(item.url,'RETAIL SOURCE'),Spacer(1,5)])
