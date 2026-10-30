@@ -222,10 +222,15 @@ def finding_card(item,number,historical=False):
 def simple_card(item,index,kind='retail'):
     content=[P(f'{kind.upper()} {index}  |  {item.platform}','green'),Spacer(1,4),
              P(item.title,'item'),Spacer(1,5),P(item.summary or 'No detail recorded.','small'),
-             Spacer(1,5),link(item.url)]
-    if item.verification_note: content.extend([Spacer(1,4),P(item.verification_note,'micro')])
+             Spacer(1,5),link(item.url),Spacer(1,3),source_url_line(item.url,'RETAIL POST LINK')]
+    image_src=image_provenance(item)
+    if image_src:content.extend([Spacer(1,4),source_url_line(image_src,'SOURCE IMAGE URL')])
+    embedded=evidence_thumbnail(item,max_width=W-40)
+    if embedded:content.extend(embedded)
+    elif image_src:content.append(P('Image preview unavailable; original image URL above.','micro'))
+    else:content.append(P('Original product photo could not be retrieved.','micro'))
+    if item.verification_note:content.extend([Spacer(1,4),P(item.verification_note,'micro')])
     return [panel(content,accent=AMBER if kind=='retail' else GREEN),Spacer(1,9)]
-
 
 def engagement_overview(items):
     rows=[[P('PLATFORM','caption'),P('POSTS','caption'),P('VIEWS','caption'),
