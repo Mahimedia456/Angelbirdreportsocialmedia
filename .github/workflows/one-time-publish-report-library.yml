@@ -16,10 +16,23 @@ jobs:
       - run: pip install -r requirements.txt pypdf
       - run: python -m scripts.cache_periodic_media --period 2026-10
       - run: python -m scripts.build_periodic_report --period monthly --end 2026-10-30
+      - name: Audit actual PDF pages, sections, links and images
+        run: python -m scripts.qa_periodic_pdf --period monthly
       - run: |
           python scripts/update_report_index.py
           python scripts/build_website.py
           node --check website/app.js
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          entry=json.loads(Path('reports/monthly-latest.json').read_text())
+          assert (Path('_site')/entry['path']).exists(), 'Published website PDF missing'
+          index=json.loads(Path('_site/reports-index.json').read_text())
+          assert any(row['path']==entry['path'] for row in index), 'Monthly PDF missing from UI index'
+          app=Path('_site/app.js').read_text()
+          assert 'item.path' in app and 'pdf-frame' in app, 'Embedded local preview missing'
+          print('Website PDF preview, local file and report index passed')
+          PY
       - name: Verify all three categories exist
         run: |
           python - <<'PY'
