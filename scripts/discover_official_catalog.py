@@ -77,10 +77,37 @@ def main():
                     pending.append(dest)
         except requests.RequestException as e:
             errors.append({'url':url,'error':str(e)[:130]})
+    # An official shop may refuse GitHub-hosted traffic (403). In that case
+    # retain publicly indexed ORIGINAL manufacturer product URLs as provisional
+    # catalog leads, explicitly distinct from pages fetched from the shop.
+    indexed_fallback=0
+    if ATOMOS and not pages:
+        from xml.etree import ElementTree
+        broad_index_terms=('Atomos','monitor','recorder','wireless','audio',
+                           'PTZ','reference','accessory','cable','cloud')
+        for term in broad_index_terms:
+            try:
+                res=session.get('https://www.bing.com/search',
+                    params={'q':'site:atomos.com/product/ '+term,'format':'rss','count':30},
+                    timeout=10)
+                if res.status_code!=200:continue
+                rss=ElementTree.fromstring(res.text)
+                for item in rss.findall('.//item'):
+                    url=absolute(item.findtext('link') or '',BASE)
+                    if not url or not product_page(url) or url in products:continue
+                    title=(item.findtext('title') or fallback_name(url)).strip()
+                    products[url]={'title':title[:190],'url':url,
+                                   'discovered_from':'Bing public RSS index',
+                                   'catalog_status':'Indexed original manufacturer URL; original page inaccessible to runner'}
+                    indexed_fallback+=1
+            except (requests.RequestException,ElementTree.ParseError,ValueError):
+                continue
     now=datetime.now(ZoneInfo('Asia/Karachi')).isoformat(timespec='seconds')
     payload={'brand':BRAND,'source':'Official manufacturer public category/shop pages',
              'observed_at_pkt':now,'historical_price_assertion':False,
              'official_catalog_items':len(products),'list_pages_checked':len(pages),
+             'indexed_fallback_items':indexed_fallback,
+             'original_shop_accessible':bool(pages),
              'truncated_page_budget':bool(pending),'pages':pages,'errors':errors,
              'products':sorted(products.values(),key=lambda x:(x['title'].lower(),x['url']))}
     dest=ROOT/'data'/'official_catalog_latest.json'
