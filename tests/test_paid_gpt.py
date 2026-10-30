@@ -51,6 +51,21 @@ class TestBoundedPaidGPT(unittest.TestCase):
                 self.assertTrue((Path(tmp)/'data'/'2026'/'10'/
                     'Angelbird-Social-Monitoring-2026-10-30-gpt-usage.json').is_file())
 
+    def test_model_permalinks_recovered_as_unverified_retail_candidates(self):
+        raw={'report_date':'2026-10-30','headline':'Source-dependent findings',
+             'today_findings':[{'permalink':'https://www.bhphotovideo.com/c/product/example',
+                 'source_excerpt':'Angelbird AV PRO UHS-II card listing',
+                 'date_evidence':'2026-10-28','engagement':'26 reviews'}],
+             'older_leads':[{'permalink':'https://www.digitalcameraworld.com/post',
+                 'source_excerpt':'Angelbird launch announced',
+                 'date_evidence':'2026-09-19'}]}
+        out=paid_gpt._normalize_response(raw,'2026-10-30')
+        self.assertEqual(len(out['today_findings']),0)
+        self.assertEqual(len(out['unverified_leads']),1)
+        self.assertTrue(out['unverified_leads'][0]['url'].startswith('https://www.bhphotovideo.com'))
+        self.assertEqual(out['unverified_leads'][0]['engagement']['source_note'],'26 reviews')
+        self.assertEqual(len(out['older_leads']),0)
+
     def test_missing_key_does_not_call_api(self):
         with tempfile.TemporaryDirectory() as tmp,patch.object(paid_gpt,'ROOT',Path(tmp)),patch.dict(
             'os.environ',{'OPENAI_API_KEY':''},clear=False):
