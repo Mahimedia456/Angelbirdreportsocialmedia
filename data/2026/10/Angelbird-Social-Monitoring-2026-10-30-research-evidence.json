@@ -1,255 +1,29 @@
 [
   {
-    "scope": "Python public source audit",
-    "data": [
-      {
-        "group": "Reddit",
-        "stage": "search",
-        "query": "site:reddit.com \"Angelbird\" 2026-10-30",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Reddit",
-        "stage": "search",
-        "query": "site:reddit.com \"Angelbird\" \"card\" October 2026",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "YouTube",
-        "stage": "search",
-        "query": "site:youtube.com/watch \"Angelbird\" 2026-10-30",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "YouTube",
-        "stage": "search",
-        "query": "site:youtube.com \"Angelbird\" October 2026",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Facebook",
-        "stage": "search",
-        "query": "site:facebook.com \"Angelbird\" 2026-10-30",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Instagram",
-        "stage": "search",
-        "query": "site:instagram.com \"Angelbird\" 2026-10-30",
-        "results": 5,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "LinkedIn",
-        "stage": "search",
-        "query": "site:linkedin.com/posts \"Angelbird\" 2026-10-30",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "X / Twitter",
-        "stage": "search",
-        "query": "site:x.com \"Angelbird\" 2026-10-30",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Camera forums",
-        "stage": "search",
-        "query": "site:dpreview.com/forums \"Angelbird\" October 2026",
-        "results": 7,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Camera forums",
-        "stage": "search",
-        "query": "\"Angelbird\" \"CFexpress\" camera forum 2026-10-30",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Industry articles",
-        "stage": "search",
-        "query": "site:newsshooter.com \"Angelbird\" October 2026",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Industry articles",
-        "stage": "search",
-        "query": "site:cined.com \"Angelbird\" October 2026",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Industry articles",
-        "stage": "search",
-        "query": "\"Angelbird\" camera review 2026-10-30",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Retailers",
-        "stage": "search",
-        "query": "site:bhphotovideo.com \"Angelbird\" AV PRO October 2026",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "group": "Retailers",
-        "stage": "search",
-        "query": "site:cvp.com \"Angelbird\" CFexpress October 2026",
-        "results": 10,
-        "index": "Bing public RSS, optional DDG fallback"
-      },
-      {
-        "stage": "free-news-search",
-        "provider": "GDELT",
-        "state": "HTTP 429",
-        "source_verified": false
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
-        "result": "HTTP 403",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Facebook",
-        "url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl",
-        "result": "OK",
-        "final_url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Industry articles",
-        "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
-        "result": "OK",
-        "final_url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/"
-      },
-      {
-        "stage": "unverified-date",
-        "group": "Industry articles",
-        "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
-        "source_date": "2026-10-29",
-        "title": "Best SD and CFexpress Cards for Northern Ontario: Where to Spend and Where to Save"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
-        "result": "HTTP 403",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Facebook",
-        "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
-        "result": "OK",
-        "final_url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Facebook",
-        "url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/",
-        "result": "OK",
-        "final_url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/"
-      },
-      {
-        "stage": "image",
-        "url": "https://i.ytimg.com/vi/qAl9K4dgiTc/mqdefault.jpg",
-        "result": "cached attributed thumbnail",
-        "asset": "assets/2026/10/2026-10-30/source_001.jpg"
-      },
-      {
-        "stage": "image",
-        "url": "https://www.netnewsledger.com/wp-content/uploads/2026/10/Winter-camera-memory-card-lineup.jpg",
-        "result": "cached attributed thumbnail",
-        "asset": "assets/2026/10/2026-10-30/source_002.jpg"
-      }
-    ],
-    "counts": {
-      "YouTube.api_searches": 1,
-      "YouTube.verified": 1,
-      "YouTube.statistics_calls": 1,
-      "YouTube.comments_calls": 1,
-      "Reddit.wrong_source_domain": 20,
-      "Reddit.successful_queries": 2,
-      "Reddit.fallback_attempts": 1,
-      "Reddit.queries": 2,
-      "YouTube.wrong_source_domain": 20,
-      "YouTube.successful_queries": 2,
-      "YouTube.fallback_attempts": 1,
-      "YouTube.queries": 2,
-      "Facebook.wrong_source_domain": 10,
-      "Facebook.successful_queries": 1,
-      "Facebook.fallback_attempts": 1,
-      "Facebook.queries": 1,
-      "Instagram.wrong_source_domain": 5,
-      "Instagram.successful_queries": 1,
-      "Instagram.fallback_attempts": 1,
-      "Instagram.queries": 1,
-      "LinkedIn.wrong_source_domain": 10,
-      "LinkedIn.successful_queries": 1,
-      "LinkedIn.fallback_attempts": 1,
-      "LinkedIn.queries": 1,
-      "X / Twitter.wrong_source_domain": 10,
-      "X / Twitter.successful_queries": 1,
-      "X / Twitter.fallback_attempts": 1,
-      "X / Twitter.queries": 1,
-      "Camera forums.wrong_source_domain": 17,
-      "Camera forums.successful_queries": 2,
-      "Camera forums.fallback_attempts": 1,
-      "Camera forums.queries": 2,
-      "Industry articles.irrelevant_index_hits": 30,
-      "Industry articles.successful_queries": 3,
-      "Industry articles.fallback_attempts": 1,
-      "Industry articles.queries": 3,
-      "Retailers.wrong_source_domain": 20,
-      "Retailers.successful_queries": 2,
-      "Retailers.fallback_attempts": 1,
-      "Retailers.queries": 2,
-      "Industry articles.candidates": 1,
-      "Facebook.candidates": 3,
-      "Reddit.candidates": 2,
-      "Reddit.source_attempts": 2,
-      "Reddit.fetch_failed": 2,
-      "Facebook.source_attempts": 3,
-      "Facebook.no_brand_original": 3,
-      "Industry articles.source_attempts": 1,
-      "Industry articles.not_dated_today": 1
-    },
-    "search_queries": 16,
-    "original_pages_attempted": 6,
-    "cached_images": 2,
-    "undated_brand_sources": 0,
-    "previous_five_day_brand_sources": 1
-  },
-  {
-    "scope": "Paid GPT bounded supplement",
+    "scope": "ChatGPT web research JSON import",
     "data": {
-      "cache": "reparsed_original_response",
-      "api_calls": 0,
-      "merged": {
-        "today_findings": 0,
-        "unverified_leads": 3,
+      "found": true,
+      "inserted": 4,
+      "by_bucket": {
+        "today_findings": 1,
+        "unverified_leads": 0,
         "older_leads": 0,
-        "retail_observations": 0
-      }
+        "retail_observations": 3
+      },
+      "source": "data/2026/10/Angelbird-Social-Monitoring-2026-10-30-chatgpt.json"
     }
   },
   {
     "scope": "Historical source image cache",
     "data": {
-      "cached_report_images": 0,
+      "cached_report_images": 3,
       "image_audit": [
+        {
+          "stage": "image",
+          "url": "https://duallcamera.com/cdn/shop/products/Angelbird1597420230_1452851.jpg?v=1674225845",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/10/2026-10-30/verified_001.jpg"
+        },
         {
           "stage": "image",
           "url": "https://www.bhphotovideo.com/images/images500x500/angelbird_avp256msdv60_256gb_av_pro_v60_1583402.jpg",
@@ -264,6 +38,18 @@
           "stage": "image",
           "url": "https://www.x-kom.pl/i/737023/angelbird-256gb-av-pro-sdxc-mk2-v60-280mb-s.jpg",
           "result": "HTTP 403"
+        },
+        {
+          "stage": "image",
+          "url": "https://cdn.cvp.com/images/products/altimage/30-01-20251738258255ssd2go_7.jpg",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/10/2026-10-30/verified_002.jpg"
+        },
+        {
+          "stage": "image",
+          "url": "https://www.fujiya-camera.co.jp/img/goods/L/C9120056587483_l.jpg",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/10/2026-10-30/verified_003.jpg"
         }
       ]
     }
