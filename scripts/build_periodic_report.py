@@ -101,6 +101,14 @@ def main():
                 key=(item.url.strip().lower().rstrip('/')+'#'+item.title.lower(),'lead')
                 if key not in seen:seen.add(key);leads.append(item)
     gathered.sort(key=lambda x:x.published_date or '',reverse=True)
+    # Keep a platform-specific count of supplied source media and observations.
+    media_with_file=lambda x: any((ROOT/path).is_file() for path in x.image_files)
+    media_link=lambda x: bool(x.image_url or x.images or x.image_credit_url)
+    source_media={'embedded_verified':sum(media_with_file(x) for x in gathered),
+                  'linked_verified':sum(media_link(x) for x in gathered),
+                  'embedded_leads':sum(media_with_file(x) for x in leads),
+                  'linked_leads':sum(media_link(x) for x in leads),
+                  'missing_media_verified':sum(not media_with_file(x) and not media_link(x) for x in gathered)}
     grouped=platform_summary(gathered);unverified=platform_summary(leads)
     output=ROOT/'reports'/str(end.year)/f'{end.month:02d}'/f'{brand}-Social-Monitoring-{args.period.title()}-{start}_to_{end}.pdf'
     output.parent.mkdir(parents=True,exist_ok=True)
@@ -162,6 +170,13 @@ def main():
                        +' daily snapshots, '+str(round(100*len(saved)/((end-start).days+1),1))
                        +'% days represented. Missing snapshots mean incomplete monitoring, not zero posts.','small'),
                   Spacer(1,8)])
+    story.extend([pdf.band('IMAGE AND EVIDENCE COVERAGE'),Spacer(1,6),
+                  pdf.P('Embedded visual records: '+str(source_media['embedded_verified'])+' dated, '
+                       +str(source_media['embedded_leads'])+' leads. Source media links: '
+                       +str(source_media['linked_verified'])+' dated, '+str(source_media['linked_leads'])
+                       +' leads. No image evidence supplied: '+str(source_media['missing_media_verified'])
+                       +' dated records. Missing photos are NOT replaced with unrelated images.','small'),
+                  Spacer(1,7)])
     story.extend(pdf.engagement_overview(gathered))
     story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
     types=Counter(content_type(x) for x in gathered)
@@ -179,6 +194,9 @@ def main():
             for label,values in [('Hashtags',item.hashtags),('Mentions',item.mentioned_accounts),('Tagged accounts',item.tagged_accounts)]:
                 if values:story.extend([pdf.P(label+': '+', '.join(values),'small'),Spacer(1,4)])
             if item.engagement:story.extend([pdf.P('Observed metrics: '+', '.join(str(k)+': '+str(v) for k,v in item.engagement.items()),'small'),Spacer(1,4)])
+            for media_url in dict.fromkeys(([item.image_url] if item.image_url else [])+list(item.images or [])+([item.image_credit_url] if item.image_credit_url else [])):
+                if media_url.startswith(('https://','http://')):
+                    story.extend([pdf.link(media_url,'OPEN SOURCE IMAGE / MEDIA'),pdf.source_url_line(media_url),Spacer(1,4)])
             story.extend(pdf.evidence_thumbnail(item,max_width=pdf.W-48))
             for n,c in enumerate(item.comments or [],1):
                 story.extend([pdf.P('COMMENT '+str(n)+' | '+str(c.get('author','')),'caption'),pdf.P(str(c.get('text','')),'small'),Spacer(1,4)])
@@ -195,6 +213,10 @@ def main():
                 for label,value in [('Source excerpt',x.source_excerpt),('Research notes',x.summary),
                                     ('Date limitation',x.date_evidence),('Verification',x.verification_note)]:
                     if value:story.extend([pdf.P(label+': '+str(value),'small'),Spacer(1,4)])
+                for media_url in dict.fromkeys(([x.image_url] if x.image_url else [])+list(x.images or [])+([x.image_credit_url] if x.image_credit_url else [])):
+                    if media_url.startswith(('https://','http://')):
+                        story.extend([pdf.link(media_url,'OPEN SOURCE IMAGE / MEDIA'),pdf.source_url_line(media_url),Spacer(1,4)])
+                story.extend(pdf.evidence_thumbnail(x,max_width=pdf.W-48))
                 if x.engagement:
                     story.extend([pdf.P('Public metrics as cited in source archive (not verified this run): '+', '.join(str(k)+': '+str(v) for k,v in x.engagement.items()),'small'),Spacer(1,4)])
                 for i,comment in enumerate(x.comments or [],1):
@@ -202,12 +224,28 @@ def main():
                                   pdf.P(str(comment.get('text','')),'small'),Spacer(1,4)])
                 story.append(Spacer(1,12))
     story.extend([Spacer(1,9),pdf.P('Retail price observations: '+str(len(offers))+' (not social posts)','small')])
+    retail_counts=Counter(x.platform for x in offers)
+    story.extend([pdf.P('Retail evidence KPI: '+str(len(offers))+' dated observations | '
+                       +str(len({x.url.rstrip('/').lower() for x in offers}))+' unique original URLs. '
+                       'Retail metrics are not social engagement.','small'),Spacer(1,8)])
     for item in offers:
-        story.extend([pdf.P(item.title,'small'),pdf.link(item.url,'RETAIL SOURCE'),Spacer(1,5)])
+        story.extend([pdf.P(item.title,'item'),Spacer(1,5),
+                      pdf.P('Observation date: '+(item.reference_date or item.published_date or 'Unknown'),'small'),
+                      pdf.link(item.url,'RETAIL ORIGINAL SOURCE'),pdf.source_url_line(item.url),Spacer(1,5)])
+        for label,value in [('Description',item.summary),('Product',item.product),
+                            ('Source excerpt',item.source_excerpt),('Verification',item.verification_note)]:
+            if value:story.extend([pdf.P(label+': '+str(value),'small'),Spacer(1,4)])
+        if item.engagement:
+            story.extend([pdf.P('Price / product data (as recorded): '+', '.join(str(k)+': '+str(v) for k,v in item.engagement.items()),'small'),Spacer(1,4)])
+        for media_url in dict.fromkeys(([item.image_url] if item.image_url else [])+list(item.images or [])):
+            if media_url.startswith(('https://','http://')):
+                story.extend([pdf.link(media_url,'OPEN SOURCE IMAGE / MEDIA'),pdf.source_url_line(media_url),Spacer(1,4)])
+        story.extend(pdf.evidence_thumbnail(item,max_width=pdf.W-48))
+        story.append(Spacer(1,12))
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1)}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers})}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
