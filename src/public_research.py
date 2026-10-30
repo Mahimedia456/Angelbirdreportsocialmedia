@@ -258,7 +258,15 @@ class PublicResearch:
             except ElementTree.ParseError:state='Unparseable public RSS feed'
         if not response or state!='OK':
             self.gaps.append(f'{group}: public search index {state}')
-        if self.counts[group+'.candidates']==initial:
+        # Search both public indexes for key Meta queries, if an authorized search API
+        # key is configured. A search-index result remains a lead until source verified.
+        facebook_second_index=(group=='Facebook' and
+                               self.counts['Facebook.brave_attempts']<8 and
+                               bool(os.getenv('BRAVE_SEARCH_API_KEY')))
+        if facebook_second_index:
+            self.counts['Facebook.brave_attempts']+=1
+            self.optional_search_api(group,query)
+        elif self.counts[group+'.candidates']==initial:
             self.optional_search_api(group,query)
         if self.counts[group+'.candidates']==initial:
             if self.counts[group+'.fallback_attempts']<1:
@@ -336,11 +344,16 @@ class PublicResearch:
             except (OSError,ValueError):pass
 
     def search(self):
-        for group,queries in GROUPS.items():
-            for template in queries:
+        # Round-robin prevents an expanded Meta query set from consuming the
+        # entire search budget before Reddit, YouTube, forums, or news are checked.
+        from itertools import zip_longest
+        for batch in zip_longest(*GROUPS.values()):
+            for (group,_),template in zip(GROUPS.items(),batch):
+                if template is None:continue
                 if self.queries>=self.limit:break
-                self.index_query(group,template.format(date=self.date,year=self.day.year,
-                                 month=self.day.strftime('%B')))
+                self.index_query(group,template.format(
+                    date=self.date,year=self.day.year,month=self.day.strftime('%B')))
+            if self.queries>=self.limit:break
         # Google News RSS is a secondary public feed for editorial discovery only.
         if self.queries<self.limit:
             self.queries+=1
