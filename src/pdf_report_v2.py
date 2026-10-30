@@ -156,12 +156,16 @@ def excerpt_text(item):
     return (getattr(item,'source_excerpt','') or '').strip()
 
 def evidence_thumbnail(item,max_width=None):
-    """Embed a safely located cached original-source preview, never remote URL fetch."""
+    """Display all cached original-source images (up to 4), with source links kept elsewhere.
+
+    Never substitute a generic product image for unavailable post imagery.
+    """
     max_width=max_width or (W-103)
     from pathlib import Path
     base=Path(__file__).resolve().parents[1]
     assets=(base/'assets').resolve()
-    for name in getattr(item,'image_files',[])[:2]:
+    result=[]
+    for name in list(dict.fromkeys(getattr(item,'image_files',[]) or []))[:4]:
         try:
             path=(base/name).resolve()
             if not path.is_relative_to(assets) or not path.is_file():continue
@@ -171,11 +175,11 @@ def evidence_thumbnail(item,max_width=None):
             scale=min(max_width/iw,142/ih,1.0)
             visual=Image(str(path),width=iw*scale,height=ih*scale)
             visual.hAlign='LEFT'
-            return [Spacer(1,8),P('SOURCE VISUAL | THUMBNAIL','caption'),
-                    Spacer(1,4),visual,Spacer(1,3),
-                    P('Thumbnail from linked public source. Refer to original post for context and rights.','micro')]
+            result.extend([Spacer(1,8),P('SOURCE VISUAL | '+str(len(result)//5+1),'caption'),
+                           Spacer(1,4),visual,Spacer(1,3),
+                           P('Thumbnail cached from original source; see original URL for context and rights.','micro')])
         except (OSError,ValueError):continue
-    return []
+    return result
 
 def finding_card(item,number,historical=False):
     accent=accent_for(item)
