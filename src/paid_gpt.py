@@ -40,7 +40,7 @@ def _normalize_response(raw, day):
             item['url']=str(item.get('url') or item.get('permalink') or '').strip()
             if not item['url'].startswith(('http://','https://')):continue
             host=(urlparse(item['url']).hostname or '').lower()
-            if not re.search(r'\bangelbird\b|\bav[ -]?pro\b',str(item.get('source_excerpt') or '')):
+            if not re.search(r'\bangelbird\b|\bav[ -]?pro\b',str(item.get('source_excerpt') or ''),re.I):
                 continue
             if not isinstance(item.get('engagement'),dict):
                 stats=item.get('engagement')
