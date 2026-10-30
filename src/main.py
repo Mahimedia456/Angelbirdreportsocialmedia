@@ -62,6 +62,26 @@ def main():
             if paid_report is None:
                 report.visibility_gaps.append('GPT supplement unavailable; see research attempt diagnostics. Free findings preserved.')
     report=scope_to_day(report)
+    # Preserve previously verified original-source records during a same-day rerun.
+    # A temporary search/API failure must not erase valid evidence already saved.
+    if json_path.exists() and not dry and not render_only:
+        try:
+            previous=ResearchReport.model_validate(json.loads(json_path.read_text(encoding='utf-8')))
+            current={(x.url.rstrip('/').lower(),x.published_date) for x in report.today_findings}
+            recovered=0
+            for item in previous.today_findings:
+                key=(item.url.rstrip('/').lower(),item.published_date)
+                if (item.status=='verified' and item.date_evidence and
+                    item.published_date==target and key not in current):
+                    report.today_findings.append(item)
+                    current.add(key)
+                    recovered+=1
+            if recovered:
+                report.visibility_gaps.append(
+                    f'Preserved {recovered} previously verified same-day records from prior JSON; '
+                    'these were not rediscovered in the current run.')
+        except (OSError,ValueError) as exc:
+            report.visibility_gaps.append('Previous evidence merge unavailable: '+str(exc)[:120])
     fetch_images=os.getenv('FETCH_EVIDENCE_IMAGES','').lower() in ('1','true','yes')
     if not dry and engine=='python' and (not render_only or fetch_images):
         image_audit=cache_historical_images(report)
