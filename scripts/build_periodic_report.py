@@ -100,6 +100,15 @@ def main():
                 except Exception:continue
                 key=(item.url.strip().lower().rstrip('/')+'#'+item.title.lower(),'lead')
                 if key not in seen:seen.add(key);leads.append(item)
+    # Reject synthetic sample-style URLs generated in earlier GPT suggestions.
+    # Retain a count in the audit, but never present them as real social sources.
+    def is_synthetic_sample(item):
+        url=(item.url or '').lower()
+        return any(fragment in url for fragment in (
+            '/posts/1234567890', '/comments/abc123/', 'watch?v=def456',
+            '/status/1234567890'))
+    rejected_example_leads=[x.url for x in leads if is_synthetic_sample(x)]
+    leads=[x for x in leads if not is_synthetic_sample(x)]
     gathered.sort(key=lambda x:x.published_date or '',reverse=True)
     # Keep a platform-specific count of supplied source media and observations.
     media_with_file=lambda x: any((ROOT/path).is_file() for path in x.image_files)
@@ -117,6 +126,7 @@ def main():
            Spacer(1,9),pdf.P(f'Saved daily research snapshots: {len(saved)} of {(end-start).days+1}. Missing days are incomplete coverage, NOT zero activity.','small'),
            Spacer(1,8)]
     story.extend([pdf.P(f'Direct collector records: {len(gathered)-archived}; archived dated records: {archived}. Archive provenance is separately labeled, and older linked sources are not newly verified by this run.','small'),Spacer(1,8)])
+    intro_end=len(story)
     # Analytical breakdown only describes collected evidence, not global platform reach.
     sentiments=Counter(x.sentiment for x in gathered)
     products=Counter(str(x.product).strip() for x in gathered if str(x.product or '').strip())
@@ -182,6 +192,10 @@ def main():
     from reportlab.lib import colors
     def dashboard(title, headers, rows, widths):
         out=[Spacer(1,10),pdf.band(title),Spacer(1,7)]
+        # ReportLab does not auto-fit column widths; clamp to the printable page.
+        if sum(widths)>pdf.W:
+            ratio=pdf.W/sum(widths)
+            widths=[w*ratio for w in widths]
         grid=LongTable([[pdf.P(str(v),'caption') for v in headers]]+
                        [[pdf.P(str(v),'small') for v in row] for row in rows],
                        colWidths=widths,repeatRows=1,hAlign='LEFT')
@@ -231,6 +245,7 @@ def main():
     unknown_sentiment=sum(x.sentiment=='Not applicable' for x in gathered)
     def observed(metric):
         return f"{total_metrics[metric]:,}" if total_metrics[metric] is not None else 'N/A'
+    dashboard_start=len(story)
     story.extend(dashboard('OVERALL KPI | ALL RECORDED PLATFORMS',
         ['Dated records','Pending leads','Views','Likes','Comments','Shares'],
         [[len(gathered),len(leads),observed('views'),observed('likes'),
@@ -266,6 +281,18 @@ def main():
     story.extend([pdf.P('Retail observations (separate from social posts): '+str(len(offers))
                        +' | Unique retailer URLs: '+str(len({x.url.rstrip('/').lower() for x in offers}))
                        +'. Dated and discovered source counts must not be added as verified post totals.','small'),Spacer(1,8)])
+    # Reactions and reposts are separate platform-native engagement metrics.
+    # Do not pretend LinkedIn reactions are identical to likes.
+    story.extend(dashboard('ADDITIONAL ENGAGEMENT | OBSERVED ONLY',
+        ['Reactions','Reposts','Recorded replies','Retail items','Cached images','Days sampled'],
+        [[observed('reactions'),observed('reposts'),replies,len(offers),
+          source_media['embedded_verified'],f'{len(saved)}/{(end-start).days+1}']],
+        [85,85,87,85,85,85]))
+    # Make the executive tables the first content after the heading and coverage note.
+    dashboard_end=len(story)
+    early_dashboards=story[dashboard_start:dashboard_end]
+    del story[dashboard_start:dashboard_end]
+    story[intro_end:intro_end]=early_dashboards
     story.extend(pdf.engagement_overview(gathered))
     story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
     types=Counter(content_type(x) for x in gathered)
@@ -334,7 +361,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'rejected_synthetic_example_urls':rejected_example_leads,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
