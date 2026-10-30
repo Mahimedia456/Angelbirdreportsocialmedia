@@ -146,9 +146,37 @@ class PublicResearch:
         self.candidates[url]={**item,'url':url,'group':group,'discovery':discovery,'search_date':search_date}
         self.counts[group+'.candidates']+=1
 
+    def ddg_fallback(self,group,query):
+        """Best-effort second public index. Respect blocks/rate limits; no bypasses."""
+        if getattr(self,'ddg_blocked',False):return
+        response,state=self.get('https://html.duckduckgo.com/html/',params={'q':query},timeout=12)
+        if not response:
+            self.gaps.append(f'{group}: alternate public index {state}')
+            if '429' in state or '403' in state:self.ddg_blocked=True
+            return
+        soup=BeautifulSoup(response.text,'html.parser')
+        count=0
+        for block in soup.select('.result')[:12]:
+            a=block.select_one('a.result__a')
+            if not a:continue
+            href=a.get('href','')
+            parsed=urlparse(urljoin('https://duckduckgo.com',href))
+            redirect=parse_qs(parsed.query).get('uddg',[])
+            original=redirect[0] if redirect else (urljoin('https://duckduckgo.com',href))
+            text=(block.select_one('.result__snippet') or block)
+            snippet=text.get_text(' ',strip=True)
+            if BRAND.search(a.get_text(' ',strip=True)+' '+snippet):
+                self.add({'url':original,'title':a.get_text(' ',strip=True),'snippet':snippet},
+                         group,'DuckDuckGo HTML')
+                count+=1
+        self.audit.append({'group':group,'stage':'search-fallback','query':query,
+                           'relevant_index_candidates':count,'index':'DuckDuckGo HTML'})
+        if count:self.counts[group+'.fallback_candidates']+=count
+
     def index_query(self,group,query):
         self.queries+=1
         found=0
+        initial=self.counts[group+'.candidates']
         # Bing public RSS plus optional commercial Brave Search key. Neither is claimed as direct source proof.
         key=os.getenv('BRAVE_SEARCH_API_KEY','')
         if key:
@@ -181,6 +209,11 @@ class PublicResearch:
                     self.counts[group+'.successful_queries']+=1
                 except ElementTree.ParseError:state='Unparseable index feed'
             if not response or state!='OK':self.gaps.append(f'{group}: Bing index {state}')
+        if not key and self.counts[group+'.candidates']==initial:
+            # One alternate-index attempt per platform prevents search bursts.
+            if self.counts[group+'.fallback_attempts']<1:
+                self.counts[group+'.fallback_attempts']+=1
+                self.ddg_fallback(group,query)
         self.audit.append({'group':group,'stage':'search','query':query,'results':found,
                            'index':'Brave' if key else 'Bing RSS'})
         self.counts[group+'.queries']+=1
