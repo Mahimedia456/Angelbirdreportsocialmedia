@@ -17,3 +17,5 @@ Rebuild monthly with separate Post Analytics and Platform KPI tables, followed b
 Overall engagement and platform sentiment KPI report rebuild.
 
 FINAL 2026-10 evidence tables, unlimited images/comments, PDF QA and embedded website preview.
+
+FINAL QA: validate production Vercel website includes embedded Daily Weekly Monthly PDFs.
