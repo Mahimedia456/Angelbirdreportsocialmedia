@@ -62,6 +62,8 @@ window.addEventListener("hashchange",route);
  records=(Array.isArray(data)?data:[]).filter(x=>dateValid(x.date)&&/^\d{4}-(0[1-9]|1[0-2])$/.test(x.month)&&typeof x.path==="string"&&/^reports\/\d{4}\/\d{2}\/[^/]+\.pdf$/i.test(x.path)).sort((a,b)=>b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
 }catch(e){loadError="Report index could not be loaded. Please refresh the page.";console.error(e)}
 const years=[...new Set([2026,...records.map(x=>Number(x.date.slice(0,4)))])].sort((a,b)=>b-a);
+const realDates=new Set(records.filter(x=>!x.demo).map(x=>x.date));
+records=records.filter(x=>!x.demo||!realDates.has(x.date));
 selectedYear=years[0];el.year.innerHTML=years.map(y=>'<option value="'+y+'">'+y+'</option>').join("");
 route();
 })();
