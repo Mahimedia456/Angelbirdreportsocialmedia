@@ -1,6 +1,5 @@
 {
-  "status": "completed",
+  "status": "failed",
   "scope": "social",
-  "api_calls": 1,
-  "web_search_events": 1
+  "error": "Unterminated string starting at: line 23 column 20 (char 1304)"
 }

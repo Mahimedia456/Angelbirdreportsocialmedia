@@ -1,7 +1,7 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 23:03 PKT",
-  "research_as_of_pkt": "2026-10-30 23:03 PKT",
+  "generated_at_pkt": "2026-10-30 23:25 PKT",
+  "research_as_of_pkt": "2026-10-30 23:25 PKT",
   "status": "PARTIAL DAY | original-source research remains time-limited until midnight PKT",
   "headline": "2 date-verified Angelbird post/article finding(s) and 4 dated retail observation(s) on 2026-10-30. Earlier dates are excluded; inaccessible networks cannot be claimed fully monitored.",
   "today_findings": [
@@ -342,69 +342,37 @@
       "checked": true
     },
     {
-      "platform": "LinkedIn",
-      "summary": "Angelbird Technologies' LinkedIn page has a recent post about their participation in IBC 2026.",
-      "checked": true
-    },
-    {
       "platform": "DPReview",
-      "summary": "DPReview provides in-depth reviews and discussions on various camera models, including their compatibility with different media cards. However, there are no specific mentions of Angelbird media cards in the latest reviews.",
-      "checked": true
-    },
-    {
-      "platform": "Reddit",
-      "summary": "Reddit hosts numerous discussions on camera equipment and media cards. A search for 'Angelbird media' yields no posts or comments from October 30, 2026.",
-      "checked": true
-    },
-    {
-      "platform": "YouTube",
-      "summary": "YouTube features numerous reviews and demonstrations of camera equipment. A search for 'Angelbird media' reveals no new videos or comments from October 30, 2026.",
-      "checked": true
-    },
-    {
-      "platform": "Blackmagic Design Forum",
-      "summary": "The Blackmagic Design Forum is a hub for discussions on video production equipment. A search for 'Angelbird media' shows no new threads or posts from October 30, 2026.",
-      "checked": true
-    },
-    {
-      "platform": "RED Digital Cinema Forum",
-      "summary": "The RED Digital Cinema Forum is a platform for discussions on RED cameras and accessories. A search for 'Angelbird media' reveals no new posts or comments from October 30, 2026.",
-      "checked": true
-    },
-    {
-      "platform": "Sony Cine Forum",
-      "summary": "The Sony Cine Forum is dedicated to discussions on Sony's cinema products. A search for 'Angelbird media' yields no new threads or posts from October 30, 2026.",
+      "summary": "DPReview provides detailed reviews and discussions on camera equipment, including insights into overheating issues and app functionalities.",
       "checked": true
     },
     {
       "platform": "Website",
-      "summary": "The Photographer Guy published a detailed review on Angelbird's data recovery service, highlighting its effectiveness in retrieving lost footage from a Canon R5 II camera.",
+      "summary": "The Photographer Guy published a detailed review on Angelbird's recovery service on May 29, 2026.",
       "checked": true
     }
   ],
   "visibility_gaps": [
-    "Facebook: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
-    "Instagram: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
-    "LinkedIn: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
-    "X / Twitter: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
-    "Reddit: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
-    "YouTube: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
-    "Camera forums: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
-    "Industry articles: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
-    "Retailers: alternate public index HTTPSConnectionPool(host='html.duckduckgo.com', port=443): Max retries exceeded with url: /html/?q=s",
+    "Facebook: alternate public index HTTP 202",
+    "Instagram: alternate public index HTTP 202",
+    "LinkedIn: alternate public index HTTP 202",
+    "X / Twitter: alternate public index HTTP 202",
+    "Reddit: alternate public index HTTP 202",
+    "YouTube: alternate public index HTTP 202",
+    "Camera forums: alternate public index HTTP 202",
+    "Industry articles: alternate public index HTTP 202",
+    "Retailers: alternate public index HTTP 202",
     "GDELT free news index: HTTP 429",
     "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
     "No result does not establish no brand activity on a platform.",
     "Further Facebook, Instagram, X, LinkedIn and Reddit posts for 30 October could not be independently dated via available public indexes in this research pass.",
     "Product images may originate from matching third-party reseller catalogs; each one is separately credited and is not claimed to be the article author's original image.",
     "Price-board sources document observed offers, not visits, referral traffic, conversions or engagement analytics.",
-    "Facebook",
-    "Instagram",
-    "X/Twitter",
+    "social research unavailable; API attempt guarded against repeat billing.",
     "GPT retail/product sources are treated as unverified leads, not new verified social mentions.",
-    "No new discussions or feedback on Angelbird media products were found on the specified platforms for October 30, 2026.",
-    "Social media platforms",
-    "Retailer websites"
+    "Social Media",
+    "News Articles",
+    "Retailer Listings"
   ],
-  "methodology": "Python collector: 35 public search query attempts, 6 original-page attempts, 2 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text. | ChatGPT interactive web-research findings imported from reviewed source-linked JSON; no OpenAI API request performed by GitHub Actions. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence."
+  "methodology": "Python collector: 35 public search query attempts, 6 original-page attempts, 2 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text. | ChatGPT interactive web-research findings imported from reviewed source-linked JSON; no OpenAI API request performed by GitHub Actions. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence."
 }

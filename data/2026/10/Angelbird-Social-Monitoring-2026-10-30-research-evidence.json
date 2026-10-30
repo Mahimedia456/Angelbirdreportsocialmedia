@@ -41,7 +41,7 @@
         "group": "Facebook",
         "stage": "search",
         "query": "site:facebook.com/groups/ \"Angelbird\" \"card\" October 2026",
-        "results": 7,
+        "results": 2,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -55,7 +55,7 @@
         "group": "Instagram",
         "stage": "search",
         "query": "site:instagram.com/reel/ \"Angelbird\" October 2026",
-        "results": 7,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -76,7 +76,7 @@
         "group": "Instagram",
         "stage": "search",
         "query": "site:instagram.com/p/ \"angelbird\" \"CFexpress\" October 2026",
-        "results": 3,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -97,7 +97,7 @@
         "group": "LinkedIn",
         "stage": "search",
         "query": "site:linkedin.com/posts/ \"Angelbird\" 2026-10-30",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -118,7 +118,7 @@
         "group": "LinkedIn",
         "stage": "search",
         "query": "site:linkedin.com/posts/ \"Angelbird\" \"AV PRO\" October 2026",
-        "results": 5,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -132,14 +132,14 @@
         "group": "X / Twitter",
         "stage": "search",
         "query": "site:twitter.com \"Angelbird\" review mention October 2026",
-        "results": 7,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "X / Twitter",
         "stage": "search",
         "query": "site:x.com/ \"Angelbird\" \"CFexpress\" October 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -167,7 +167,7 @@
         "group": "YouTube",
         "stage": "search",
         "query": "site:youtube.com/watch \"Angelbird\" 2026-10-30",
-        "results": 1,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -188,7 +188,7 @@
         "group": "Camera forums",
         "stage": "search",
         "query": "site:dpreview.com/forums \"Angelbird\" \"card\" October 2026",
-        "results": 7,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -209,7 +209,7 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "site:newsshooter.com \"Angelbird\" October 2026",
-        "results": 7,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -223,7 +223,7 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "\"Angelbird\" video production review article 2026-10-30",
-        "results": 3,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -251,7 +251,7 @@
         "group": "Facebook",
         "url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl",
         "result": "OK",
-        "final_url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
+        "final_url": "https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fkrisjonnes%2Fposts%2Fpfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
       },
       {
         "stage": "source-fetch",
@@ -313,19 +313,19 @@
       "YouTube.verified": 1,
       "YouTube.statistics_calls": 1,
       "YouTube.comments_calls": 1,
-      "Facebook.wrong_source_domain": 57,
+      "Facebook.wrong_source_domain": 52,
       "Facebook.successful_queries": 6,
       "Facebook.fallback_attempts": 1,
       "Facebook.queries": 6,
-      "Instagram.wrong_source_domain": 60,
+      "Instagram.wrong_source_domain": 70,
       "Instagram.successful_queries": 7,
       "Instagram.fallback_attempts": 1,
       "Instagram.queries": 7,
-      "LinkedIn.wrong_source_domain": 35,
+      "LinkedIn.wrong_source_domain": 31,
       "LinkedIn.successful_queries": 4,
       "LinkedIn.fallback_attempts": 1,
       "LinkedIn.queries": 4,
-      "X / Twitter.wrong_source_domain": 37,
+      "X / Twitter.wrong_source_domain": 31,
       "X / Twitter.successful_queries": 4,
       "X / Twitter.fallback_attempts": 1,
       "X / Twitter.queries": 4,
@@ -334,19 +334,18 @@
       "Reddit.fallback_attempts": 1,
       "Reddit.queries": 2,
       "Reddit.irrelevant_index_hits": 8,
-      "YouTube.wrong_source_domain": 1,
+      "YouTube.wrong_source_domain": 10,
       "YouTube.successful_queries": 1,
       "YouTube.fallback_attempts": 1,
       "YouTube.queries": 1,
-      "Camera forums.wrong_source_domain": 47,
+      "Camera forums.wrong_source_domain": 50,
       "Camera forums.successful_queries": 5,
       "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 5,
-      "Industry articles.irrelevant_index_hits": 10,
+      "Industry articles.irrelevant_index_hits": 30,
       "Industry articles.successful_queries": 3,
       "Industry articles.fallback_attempts": 1,
       "Industry articles.queries": 3,
-      "Industry articles.wrong_source_domain": 10,
       "Retailers.wrong_source_domain": 20,
       "Retailers.successful_queries": 2,
       "Retailers.fallback_attempts": 1,
@@ -387,19 +386,15 @@
     "data": [
       {
         "scope": "social",
-        "status": "cached_evidence",
-        "api_calls": 0,
-        "merged": {
-          "today_findings": 0,
-          "unverified_leads": 0,
-          "older_leads": 0,
-          "retail_observations": 0
-        }
+        "status": "failed",
+        "api_calls": "attempted",
+        "reason": "Unterminated string starting at: line 23 column 20 (char 1304)"
       },
       {
         "scope": "community",
-        "status": "cached_evidence",
-        "api_calls": 0,
+        "status": "completed",
+        "api_calls": 1,
+        "search_events": 1,
         "merged": {
           "today_findings": 0,
           "unverified_leads": 0,
@@ -409,8 +404,9 @@
       },
       {
         "scope": "editorial",
-        "status": "cached_evidence",
-        "api_calls": 0,
+        "status": "completed",
+        "api_calls": 1,
+        "search_events": 1,
         "merged": {
           "today_findings": 0,
           "unverified_leads": 0,

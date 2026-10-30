@@ -15,14 +15,15 @@
   "coverage": [
     {
       "platform": "Website",
-      "summary": "The Photographer Guy published a detailed review on Angelbird's data recovery service, highlighting its effectiveness in retrieving lost footage from a Canon R5 II camera.",
+      "summary": "The Photographer Guy published a detailed review on Angelbird's recovery service on May 29, 2026.",
       "checked": true
     }
   ],
   "visibility_gaps": [
-    "Social media platforms",
-    "Retailer websites",
+    "Social Media",
+    "News Articles",
+    "Retailer Listings",
     "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
   ],
-  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 30, 2026, focusing on editorial articles, product announcements, camera reviews, and retailer price snapshots. Verified publication dates and content relevance to ensure accuracy."
+  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 30, 2026, focusing on editorial content, product announcements, camera reviews, and retailer price snapshots. Found no new content matching these criteria for the specified date."
 }

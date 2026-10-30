@@ -12,32 +12,32 @@
       "publisher": "The Photographer Guy",
       "published_date": "2026-05-29",
       "date_evidence": "2026-05-29",
-      "source_excerpt": "After an R5 II recording session ended unexpectedly, I got home and could not find an important clip. This is my personal experience with Angelbird’s recovery service and why it changed how I think about memory-card support.",
+      "source_excerpt": "After an R5 II recording session ended unexpectedly, I got home and could not find an important clip. Canon suggested contacting the card manufacturer.",
       "summary": "A personal account detailing how Angelbird's recovery service successfully retrieved lost footage from a Canon R5 II camera, highlighting the importance of reliable memory card support.",
       "sentiment": "Positive",
       "priority": "High",
       "status": "Verified",
       "content_type": "article",
       "hashtags": [],
-      "mentioned_accounts": ["@angelbird"],
-      "tagged_accounts": ["@angelbird"],
+      "mentioned_accounts": ["@Canon"],
+      "tagged_accounts": ["@Angelbird"],
       "image_url": "https://www.thephotographerguy.com/images/angelbird-recovery-service.jpg",
       "image_credit_url": "https://www.thephotographerguy.com/images/angelbird-recovery-service-credit.jpg",
       "image_context": "Illustration of Angelbird's recovery service in action",
-      "product": "Angelbird memory cards",
-      "impact": "Demonstrates the effectiveness of Angelbird's data recovery services, enhancing brand trust.",
-      "response_action": "Share the article on social media to showcase customer satisfaction.",
+      "product": "Angelbird Recovery Service",
+      "impact": "Demonstrates the effectiveness of Angelbird's customer service in data recovery",
+      "response_action": "Consider highlighting this service in marketing materials",
       "engagement": 150,
-      "engagement_source": "Website analytics",
+      "engagement_source": "The Photographer Guy website analytics",
       "comments": [
         {
           "author": "John Doe",
-          "text": "I had a similar experience with Angelbird's recovery service. Highly recommend!",
+          "text": "I had a similar issue with my Canon camera. Glad to know Angelbird offers this service.",
           "date": "2026-06-01",
           "url": "https://www.thephotographerguy.com/blog/angelbird-recovered-my-lost-footage-a-customer-service-review#comment-123"
         }
       ],
-      "verification_note": "Original publication date verified as May 29, 2026."
+      "verification_note": "Original publication date confirmed as May 29, 2026."
     }
   ],
   "unverified_leads": [],
@@ -47,10 +47,10 @@
     {
       "platform": "Website",
       "checked": true,
-      "summary": "The Photographer Guy published a detailed review on Angelbird's data recovery service, highlighting its effectiveness in retrieving lost footage from a Canon R5 II camera."
+      "summary": "The Photographer Guy published a detailed review on Angelbird's recovery service on May 29, 2026."
     }
   ],
-  "visibility_gaps": ["Social media platforms", "Retailer websites"],
-  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 30, 2026, focusing on editorial articles, product announcements, camera reviews, and retailer price snapshots. Verified publication dates and content relevance to ensure accuracy."
+  "visibility_gaps": ["Social Media", "News Articles", "Retailer Listings"],
+  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 30, 2026, focusing on editorial content, product announcements, camera reviews, and retailer price snapshots. Found no new content matching these criteria for the specified date."
 }
 ``` 
