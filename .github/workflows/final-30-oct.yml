@@ -1,9 +1,6 @@
-name: Final Angelbird 30 October Real Report
+name: Legacy 30 October Report Rebuild (No API)
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'config/final_2026_10_30.run'
+  workflow_dispatch:
 permissions:
   contents: write
 concurrency:
@@ -15,13 +12,11 @@ jobs:
     timeout-minutes: 45
     env:
       PYTHONUNBUFFERED: '1'
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      OPENAI_MODEL: 'gpt-4.1-mini'
       REPORT_DATE: '2026-10-30'
       DRY_RUN: 'false'
-      REPORT_ONLY: 'false'
-      FORCE_RESEARCH: 'true'
-      MAX_WEB_CALLS: '4'
+      REPORT_ONLY: 'true'
+      RESEARCH_ENGINE: 'python'
+      FREE_SOURCES_ONLY: 'true'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,7 +27,7 @@ jobs:
           cache: pip
       - name: Install report dependencies
         run: pip install -r requirements.txt
-      - name: Actual dated research and latest-plus-five PDF generation
+      - name: Regenerate dated PDF from existing evidence, no research charges
         run: python -m src.main
       - name: Commit actual 30 October evidence and PDF
         run: |
