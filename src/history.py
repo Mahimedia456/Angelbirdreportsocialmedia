@@ -29,9 +29,9 @@ def _load_finding(raw):
 
 def compile_history(report: ResearchReport, root: Path):
     target=report.report_date
-    historic=list(report.historical_findings)
+    historic=list(report.historical_findings)+[f for f in report.older_leads if _older(f,report.report_date)]
     retail=list(report.historical_retail)
-    watch=list(report.older_leads)
+    watch=[]
     seed=root/'data'/'reference_history_2026_10_29.json'
     if seed.is_file():
         raw=json.loads(seed.read_text(encoding='utf-8'))
