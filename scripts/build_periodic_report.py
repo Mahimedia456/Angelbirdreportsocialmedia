@@ -145,6 +145,23 @@ def main():
     for platform in PLATFORMS:
         story.extend([pdf.P(f'{platform}: verified dated records {len(grouped[platform])} | original-link leads awaiting validation {lead_urls_by_platform[platform]}','small'),Spacer(1,3)])
     story.append(Spacer(1,8))
+    # Platform scorecards count source records. Also show genuine format-level KPIs.
+    social_types=Counter(content_type(x) for x in gathered)
+    distinct_threads={x.url.split('/comment/')[0].split('&lc=')[0].rstrip('/').lower()
+                      for x in gathered if x.url and x.platform not in ('Google / News / Articles','Retailers')}
+    replies=sum(len(x.comments or []) for x in gathered)
+    story.extend([pdf.band('SOURCE MIX | CONTENT AND PROVENANCE'),Spacer(1,8),
+                  pdf.P('Source records: '+str(len(gathered))+' | Unique social-source URL groups: '+str(len(distinct_threads))
+                        +' | Standalone comment records: '+str(social_types.get('comment',0))
+                        +' | Linked reply excerpts: '+str(replies),'small'),
+                  Spacer(1,5),pdf.P('Breakdown: '+', '.join(k+': '+str(v) for k,v in sorted(social_types.items())),'small'),
+                  Spacer(1,5),pdf.P('Evidence: '+str(len(gathered)-archived)+' saved direct collector entries; '
+                       +str(archived)+' dated source-archive entries; '+str(len(leads))+' unverified leads. '
+                       'Archived/mirror provenance is not the same as a fresh original-site/API verification.','small'),
+                  Spacer(1,5),pdf.P('Coverage completeness: '+str(len(saved))+' of '+str((end-start).days+1)
+                       +' daily snapshots, '+str(round(100*len(saved)/((end-start).days+1),1))
+                       +'% days represented. Missing snapshots mean incomplete monitoring, not zero posts.','small'),
+                  Spacer(1,8)])
     story.extend(pdf.engagement_overview(gathered))
     story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
     types=Counter(content_type(x) for x in gathered)
@@ -190,7 +207,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1)}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
