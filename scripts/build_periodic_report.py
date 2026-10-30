@@ -53,6 +53,13 @@ def main():
             try:valid=start<=date.fromisoformat(str(stamp))<=end
             except (ValueError,TypeError):valid=False
             if not valid or not raw.get('date_evidence'):continue
+            evidence=str(raw.get('date_evidence','')).lower()
+            if any(marker in evidence for marker in ('date uncertain','original posting date not established','original post date uncertain','found 28 october','discovery to 28 october')):
+                try:lead=Finding.model_validate(dict(raw,status='unverified',published_date=''))
+                except Exception:continue
+                key=(lead.url.strip().lower().rstrip('/'),'lead')
+                if key not in seen:seen.add(key);leads.append(lead)
+                continue
             try:item=Finding.model_validate(dict(raw,status='older'))
             except Exception:continue
             key=(item.url.strip().lower().rstrip('/'),'finding')
