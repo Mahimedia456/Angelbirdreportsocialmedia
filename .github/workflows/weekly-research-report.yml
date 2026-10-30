@@ -48,6 +48,8 @@ jobs:
         run: python -m src.main
       - name: Build full weekly report and source KPIs
         run: python -m scripts.build_periodic_report --period weekly --end "$END"
+      - name: Audit PDF contents, original links and embedded images
+        run: python -m scripts.qa_periodic_pdf --period weekly
       - name: Check PDF and report inventory
         run: |
           python - <<'PY'
@@ -64,6 +66,10 @@ jobs:
           PY
       - name: Rebuild searchable website reports index
         run: python scripts/update_report_index.py
+      - name: Validate Vercel site report archive
+        run: |
+          node scripts/build_website.mjs
+          node --check website/app.js
       - name: Commit research, evidence, reports and UI index
         run: |
           git config user.name 'github-actions[bot]'
