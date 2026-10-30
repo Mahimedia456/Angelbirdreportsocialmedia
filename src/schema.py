@@ -38,6 +38,10 @@ class Finding(BaseModel):
     reference_date: str = ''
     engagement_source: str = ''
     publisher: str = ''
+    content_type: str = ''
+    hashtags: list[str] = Field(default_factory=list)
+    mentioned_accounts: list[str] = Field(default_factory=list)
+    tagged_accounts: list[str] = Field(default_factory=list)
     engagement: dict = Field(default_factory=dict)
     images: list[str] = Field(default_factory=list)
     image_files: list[str] = Field(default_factory=list)
@@ -49,7 +53,7 @@ class Finding(BaseModel):
         if not isinstance(data, dict):
             raise ValueError('Finding must be an object')
         d = dict(data)
-        for key in ('title','platform','url','author','published_date','date_evidence','summary','image_url','product','details','source_excerpt','response_action','impact','verification_note','reference_date','engagement_source','publisher','image_context','image_credit_url'):
+        for key in ('title','platform','url','author','published_date','date_evidence','summary','image_url','product','details','source_excerpt','response_action','impact','verification_note','reference_date','engagement_source','publisher','image_context','image_credit_url','content_type'):
             if key in d:
                 d[key] = text_value(d[key])
         if isinstance(d.get('published_date'), str) and d['published_date'].lower() in ('none','null','unknown','undated','n/a'):
@@ -61,6 +65,13 @@ class Finding(BaseModel):
         d['images']=[text_value(u) for u in d['images'] if text_value(u).startswith(('https://','http://'))]
         d['image_files']=[text_value(p) for p in d['image_files'] if text_value(p).startswith('assets/') and '..' not in text_value(p)]
         d['comments']=[c for c in d['comments'] if isinstance(c,dict)][:40]
+        d['content_type']=d.get('content_type','').lower().replace(' ','_')
+        if d['content_type'] not in ('','post','story','reel','mention','tagged_post','comment','video','article','retailer'):
+            d['content_type']=''
+        for field in ('hashtags','mentioned_accounts','tagged_accounts'):
+            raw=d.get(field)
+            if not isinstance(raw,list):raw=[]
+            d[field]=list(dict.fromkeys(text_value(x)[:70] for x in raw if isinstance(x,str) and x.strip()))[:15]
         raw_sent = text_value(d.get('sentiment')).lower()
         sentiments = {x.lower():x for x in ('Positive','Negative','Neutral','Question','Not applicable')}
         # Composite/unclear sentiments must NOT silently become positive or negative.
