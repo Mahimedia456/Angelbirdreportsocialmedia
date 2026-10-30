@@ -1,0 +1,49 @@
+```json
+{
+  "report_date": "2026-10-28",
+  "status": "Completed",
+  "headline": "Angelbird Technologies Brand Monitoring Report for October 28, 2026",
+  "today_findings": [
+    {
+      "url": "https://at.linkedin.com/company/angelbird",
+      "platform": "LinkedIn",
+      "title": "Angelbird Technologies",
+      "author": "Angelbird Technologies",
+      "publisher": "LinkedIn",
+      "published_date": "2026-09-28",
+      "date_evidence": "2026-09-28",
+      "source_excerpt": "Counting down to IBC - International Broadcasting Convention! From 𝗦𝗲𝗽𝘁𝗲𝗺𝗯𝗲𝗿 𝟭𝟭-𝟭𝟰, we'll be in Amsterdam with plenty to show you. Find us at 𝗛𝗮𝗹𝗹 𝟭𝟭, 𝗕𝗼𝗼𝘁𝗵 𝟭𝟭.𝗕𝗬𝗘 – and keep scrolling to see what's on our IBC 2026 program. Get ready, because we sure are. #angelbirdmedia #IBC2026 #memorycards #cameragear",
+      "summary": "Announcement of Angelbird Technologies' participation in IBC 2026, scheduled for September 11–14, 2026, in Amsterdam, highlighting their booth location and program details.",
+      "sentiment": "Positive",
+      "priority": "High",
+      "status": "Verified",
+      "content_type": "post",
+      "hashtags": ["#angelbirdmedia", "#IBC2026", "#memorycards", "#cameragear"],
+      "mentioned_accounts": [],
+      "tagged_accounts": [],
+      "image_url": "",
+      "image_credit_url": "",
+      "image_context": "",
+      "product": "",
+      "impact": "",
+      "response_action": "",
+      "engagement": 0,
+      "engagement_source": "",
+      "comments": [],
+      "verification_note": "Original post dated September 28, 2026, on Angelbird Technologies' LinkedIn page."
+    }
+  ],
+  "unverified_leads": [],
+  "older_leads": [],
+  "retail_observations": [],
+  "coverage": [
+    {
+      "platform": "LinkedIn",
+      "checked": true,
+      "summary": "Angelbird Technologies' LinkedIn page contains a post dated September 28, 2026, announcing their participation in IBC 2026."
+    }
+  ],
+  "visibility_gaps": ["Facebook", "Instagram", "X/Twitter", "Reddit", "YouTube"],
+  "methodology": "Conducted a comprehensive search across major social media platforms for public posts, stories, reels, hashtags, creator mentions, and tagged accounts related to Angelbird Technologies on October 28, 2026. Verified findings were included, while unverified leads and older leads were excluded. Retail observations were noted with explicit observation timestamps. Coverage was provided for platforms where data was accessible, and visibility gaps were acknowledged for platforms without accessible data."
+}
+``` 

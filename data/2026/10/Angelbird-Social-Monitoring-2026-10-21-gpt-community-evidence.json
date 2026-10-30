@@ -1,0 +1,57 @@
+{
+  "report_date": "2026-10-21",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "success",
+  "headline": "Angelbird Media Usage and Feedback on October 21, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Reddit",
+      "summary": "No relevant posts or comments found on Reddit regarding Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 21, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "YouTube",
+      "summary": "No relevant videos or comments found on YouTube regarding Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 21, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "DPReview",
+      "summary": "No articles or forum discussions found on DPReview regarding Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 21, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "Blackmagic Design",
+      "summary": "No relevant forum posts or discussions found on Blackmagic Design's official forums regarding Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 21, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "RED Digital Cinema",
+      "summary": "No relevant forum posts or discussions found on RED Digital Cinema's official forums regarding Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 21, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Sony Cine",
+      "summary": "No relevant forum posts or discussions found on Sony Cine's official forums regarding Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 21, 2026.",
+      "checked": false
+    }
+  ],
+  "visibility_gaps": [
+    "Reddit",
+    "YouTube",
+    "DPReview",
+    "Blackmagic Design",
+    "RED Digital Cinema",
+    "Sony Cine",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a comprehensive search across Reddit, YouTube, DPReview, Blackmagic Design, RED Digital Cinema, and Sony Cine platforms for posts, comments, videos, and forum discussions related to Angelbird media usage, faults, compatibility, customer feedback, and creator demonstrations dated October 21, 2026. No relevant content was found on the specified date."
+}

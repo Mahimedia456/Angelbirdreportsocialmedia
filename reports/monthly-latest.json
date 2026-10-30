@@ -3,10 +3,10 @@
   "start": "2026-10-01",
   "end": "2026-10-30",
   "path": "reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-30.pdf",
-  "snapshots": 1,
+  "snapshots": 5,
   "archived_findings": 4,
   "dated_findings": 6,
-  "unverified_leads": 3,
+  "unverified_leads": 5,
   "platform_counts": {
     "Facebook": 0,
     "Instagram": 0,
