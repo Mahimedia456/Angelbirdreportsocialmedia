@@ -3,7 +3,7 @@ Layout derives from the user-provided eight-page Angelbird 29 Oct reference repo
 Rendering uses saved JSON only, no API request or network image fetching.
 """
 from collections import Counter, defaultdict
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from xml.sax.saxutils import escape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether, HRFlowable, Image
@@ -207,17 +207,24 @@ def render_pdf(report,path):
     if report.visibility_gaps:
         story.extend([Spacer(1,6),P('Access limitations: '+'; '.join(report.visibility_gaps[:10]),'micro')])
     story.extend([Spacer(1,18),band('Earlier social highlights',
-                  f'{report.report_period_start or report.report_date} to previous day'),Spacer(1,11),
+                  f'{report.report_period_start or report.report_date} through previous day | five-day history'),Spacer(1,11),
                   P('Historical items below are sourced from the previous reference report and earlier saved daily JSON. '
                     'They remain separate from the newest-day findings and must not be counted again as new.','small')])
     groups=defaultdict(list)
     for item in report.historical_findings:
         groups[item.published_date].append(item)
-    if groups:
-        for day in sorted(groups,reverse=True):
-            story.extend([Spacer(1,9),band(day,f'{len(groups[day])} historical mention(s)'),Spacer(1,10)])
-            for n,item in enumerate(groups[day],1):story.extend(finding_card(item,f'H{day[-2:]}-{n}',historical=True))
-    else:story.extend([panel(P('No source-linked historical mentions are available yet.','small')),Spacer(1,10)])
+    # Always display exactly five preceding dates, whether or not records exist.
+    for offset in range(1,6):
+        day=(date.fromisoformat(report.report_date)-timedelta(days=offset)).isoformat()
+        items=groups.get(day,[])
+        story.extend([Spacer(1,9),band(day,f'{len(items)} saved historical mention(s)'),Spacer(1,10)])
+        if items:
+            for n,item in enumerate(items,1):
+                story.extend(finding_card(item,f'H{day[-2:]}-{n}',historical=True))
+        else:
+            story.extend([panel(P('No source-linked dated entry saved for this day. '
+                                  'This does not establish that no Angelbird activity occurred.','small')),
+                          Spacer(1,8)])
     if report.historical_retail:
         story.extend([Spacer(1,10),band('Earlier retailer observations','Historical prices are not current quotes'),Spacer(1,9)])
         for n,item in enumerate(report.historical_retail,1):story.extend(simple_card(item,n))
