@@ -1,8 +1,7 @@
 name: Angelbird Daily Social Monitoring
 on:
   schedule:
-    - cron: '0 19 * * *'
-      timezone: 'Asia/Karachi'
+    - cron: '0 14 * * *' # UTC; 19:00 Pakistan time (UTC+05)
   workflow_dispatch:
     inputs:
       report_date:
