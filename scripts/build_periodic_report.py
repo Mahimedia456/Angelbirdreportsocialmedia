@@ -177,6 +177,55 @@ def main():
                        +' leads. No image evidence supplied: '+str(source_media['missing_media_verified'])
                        +' dated records. Missing photos are NOT replaced with unrelated images.','small'),
                   Spacer(1,7)])
+    # Two separate, auditable tabular dashboards above the complete source cards.
+    from reportlab.platypus import LongTable, TableStyle
+    from reportlab.lib import colors
+    def dashboard(title, headers, rows, widths):
+        out=[Spacer(1,10),pdf.band(title),Spacer(1,7)]
+        grid=LongTable([[pdf.P(str(v),'caption') for v in headers]]+
+                       [[pdf.P(str(v),'small') for v in row] for row in rows],
+                       colWidths=widths,repeatRows=1,hAlign='LEFT')
+        grid.setStyle(TableStyle([
+            ('BACKGROUND',(0,0),(-1,0),colors.HexColor('#E9EDF0')),
+            ('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,colors.HexColor('#F6F8F9')]),
+            ('VALIGN',(0,0),(-1,-1),'TOP'),
+            ('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),
+            ('LEFTPADDING',(0,0),(-1,-1),5),('RIGHTPADDING',(0,0),(-1,-1),5)]))
+        out.extend([grid,Spacer(1,7)])
+        return out
+    post_rows=[]
+    kpi_rows=[]
+    for platform in PLATFORMS:
+        items=grouped[platform]
+        types=Counter(content_type(x) for x in items)
+        metrics={}
+        for field in ('views','likes','comments','shares'):
+            values=[x.engagement.get(field) for x in items
+                    if isinstance(x.engagement,dict) and
+                    isinstance(x.engagement.get(field),(int,float))]
+            metrics[field]=str(int(sum(values))) if values else 'N/A'
+        post_rows.append([platform,types.get('post',0),types.get('video',0),
+                          types.get('reel',0),types.get('story',0),
+                          types.get('comment',0),sum(len(x.comments or []) for x in items),
+                          metrics['views'],metrics['likes'],metrics['comments']])
+        leads_in_platform=unverified.get(platform,[])
+        known_media=sum(media_with_file(x) for x in items)
+        linked_media=sum(media_link(x) for x in items)
+        kpi_rows.append([platform,len(items),lead_urls_by_platform[platform],
+                         len({x.url.rstrip('/').lower() for x in items}|{
+                             x.url.rstrip('/').lower() for x in leads_in_platform}),
+                         known_media,linked_media,
+                         sum(len(x.comments or []) for x in leads_in_platform)])
+    story.extend(dashboard('POST ANALYTICS | FORMAT AND ENGAGEMENT',
+        ['Platform','Posts','Videos','Reels','Stories','Comments','Replies','Views','Likes','Comments metric'],
+        post_rows,[87,42,42,41,42,53,44,51,44,55]))
+    story.extend([pdf.P('Comment records and quoted replies are separate. Engagement shows numeric observations only; N/A is not zero.','small'),Spacer(1,6)])
+    story.extend(dashboard('PLATFORM KPI | VERIFIED, DISCOVERED AND MEDIA',
+        ['Platform','Dated','Leads','Source URLs','Images','Media links','Lead replies'],
+        kpi_rows,[110,55,55,72,58,75,65]))
+    story.extend([pdf.P('Retail observations (separate from social posts): '+str(len(offers))
+                       +' | Unique retailer URLs: '+str(len({x.url.rstrip('/').lower() for x in offers}))
+                       +'. Dated and discovered source counts must not be added as verified post totals.','small'),Spacer(1,8)])
     story.extend(pdf.engagement_overview(gathered))
     story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
     types=Counter(content_type(x) for x in gathered)
@@ -245,7 +294,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers})}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
