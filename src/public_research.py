@@ -202,46 +202,65 @@ class PublicResearch:
         self.queries+=1
         found=0
         initial=self.counts[group+'.candidates']
-        # Bing public RSS plus optional commercial Brave Search key. Neither is claimed as direct source proof.
-        key=os.getenv('BRAVE_SEARCH_API_KEY','')
-        if key:
-            response,state=self.get('https://api.search.brave.com/res/v1/web/search',
-                params={'q':query,'count':12},headers={'X-Subscription-Token':key})
-            if response:
-                try:
-                    for item in response.json().get('web',{}).get('results',[]):
-                        self.add({'url':item.get('url',''),'title':item.get('title',''),
-                                  'snippet':BeautifulSoup(item.get('description',''),'html.parser').get_text(' ',strip=True)},
-                                 group,'Brave index')
-                        found+=1
-                    self.counts[group+'.successful_queries']+=1
-                except ValueError:state='Invalid search API response'
-            else:self.gaps.append(f'{group}: Brave search {state}')
-        else:
-            response,state=self.get('https://www.bing.com/search',
-                                    params={'q':query,'format':'rss','count':'20'})
-            if response:
-                try:
-                    root=ElementTree.fromstring(response.text)
-                    for item in root.findall('.//item'):
-                        url=item.findtext('link') or ''
-                        title=item.findtext('title') or ''
-                        desc=item.findtext('description') or ''
-                        self.add({'url':url,'title':html.unescape(title),
-                                  'snippet':BeautifulSoup(desc,'html.parser').get_text(' ',strip=True)},
-                                 group,'Bing RSS',item.findtext('pubDate') or '')
-                        found+=1
-                    self.counts[group+'.successful_queries']+=1
-                except ElementTree.ParseError:state='Unparseable index feed'
-            if not response or state!='OK':self.gaps.append(f'{group}: Bing index {state}')
-        if not key and self.counts[group+'.candidates']==initial:
-            # One alternate-index attempt per platform prevents search bursts.
+        # Public search discovery only: no paid search API, no GPT/API billing.
+        response,state=self.get('https://www.bing.com/search',
+                                params={'q':query,'format':'rss','count':'20'})
+        if response:
+            try:
+                root=ElementTree.fromstring(response.text)
+                for item in root.findall('.//item'):
+                    url=item.findtext('link') or ''
+                    title=item.findtext('title') or ''
+                    desc=item.findtext('description') or ''
+                    self.add({'url':url,'title':html.unescape(title),
+                              'snippet':BeautifulSoup(desc,'html.parser').get_text(' ',strip=True)},
+                             group,'Bing public RSS',item.findtext('pubDate') or '')
+                    found+=1
+                self.counts[group+'.successful_queries']+=1
+            except ElementTree.ParseError:state='Unparseable public RSS feed'
+        if not response or state!='OK':
+            self.gaps.append(f'{group}: public search index {state}')
+        if self.counts[group+'.candidates']==initial:
             if self.counts[group+'.fallback_attempts']<1:
                 self.counts[group+'.fallback_attempts']+=1
                 self.ddg_fallback(group,query)
         self.audit.append({'group':group,'stage':'search','query':query,'results':found,
-                           'index':'Brave' if key else 'Bing RSS'})
+                           'index':'Bing public RSS, optional DDG fallback'})
         self.counts[group+'.queries']+=1
+
+    def free_gdelt_news(self):
+        """GDELT public DOC feed: discovered articles still require original-page proof."""
+        start=self.day.strftime('%Y%m%d')+'000000'
+        finish=(self.day+timedelta(days=1)).strftime('%Y%m%d')+'000000'
+        response,state=self.get('https://api.gdeltproject.org/api/v2/doc/doc',
+            params={'query':'"Angelbird"','mode':'artlist','format':'json',
+                    'startdatetime':start,'enddatetime':finish,
+                    'maxrecords':'50','sort':'datedesc'},timeout=16)
+        if not response:
+            self.audit.append({'stage':'free-news-search','provider':'GDELT',
+                               'state':state,'source_verified':False})
+            self.gaps.append('GDELT free news index: '+state)
+            return
+        try:
+            payload=response.json()
+            articles=payload.get('articles',[]) if isinstance(payload,dict) else []
+            accepted=0
+            for obj in articles[:50]:
+                url=str(obj.get('url') or '')
+                title=str(obj.get('title') or '')
+                if not valid_url(url) or not BRAND.search(title):continue
+                if not matches_source_domain('Industry articles',url):continue
+                previous=self.counts['Industry articles.candidates']
+                self.add({'url':url,'title':title,'snippet':title},
+                         'Industry articles','GDELT open news index',
+                         obj.get('seendate',''))
+                if self.counts['Industry articles.candidates']>previous:accepted+=1
+            self.counts['Industry articles.gdelt_queries']+=1
+            self.audit.append({'stage':'free-news-search','provider':'GDELT',
+                               'returned':len(articles),'candidates':accepted,
+                               'source_verified':False})
+        except (ValueError,TypeError,AttributeError):
+            self.gaps.append('GDELT free news response could not be parsed')
 
     def known_sources(self):
         """Revisit supplied original post URLs even if public search indexes miss them."""
@@ -289,6 +308,7 @@ class PublicResearch:
                                   'snippet':item.findtext('description')},'Industry articles','Google News RSS')
                 except ElementTree.ParseError:self.gaps.append('Google News feed parsing failed')
             else:self.gaps.append('Google News index: '+state)
+        self.free_gdelt_news()
         self.known_sources()
         return len(self.candidates)
 
