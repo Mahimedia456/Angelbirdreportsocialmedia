@@ -22,7 +22,10 @@
         "sustained_write": "1,050 MB/s"
       },
       "date_evidence": "29 October 2026 publication date recorded in reference PDF",
-      "verification_note": "Imported from user's 29-Oct reference PDF; source should be rechecked before treating as new."
+      "verification_note": "Imported from user's 29-Oct reference PDF; source should be rechecked before treating as new.",
+      "image_files": [
+        "assets/periodic-source-images/2026-10/11f6760b9277d633d129f6.jpg"
+      ]
     },
     {
       "title": "Photographer shares Arctic photos captured using Angelbird cards",
@@ -69,7 +72,8 @@
           "sentiment": "Positive",
           "source": "User-supplied 29 Oct PDF"
         }
-      ]
+      ],
+      "image_files": []
     },
     {
       "title": "ComLine France names Angelbird as SATIS 2026 partner",
@@ -89,7 +93,8 @@
         "reposts": "8"
       },
       "verification_note": "Reference report notes the post was edited; original date should be rechecked.",
-      "date_evidence": "27 October attribution in 29-Oct reference PDF"
+      "date_evidence": "27 October attribution in 29-Oct reference PDF",
+      "image_files": []
     },
     {
       "title": "Community member recommends Angelbird cards for Pocket OG",
@@ -103,7 +108,8 @@
       "summary": "Short product recommendation in an ongoing conversation about SD cards for the original Blackmagic Pocket Cinema Camera.",
       "impact": "Positive peer recommendation; no independently confirmed technical test.",
       "response_action": "Not required.",
-      "date_evidence": "Comment dated 28 October in supplied reference report"
+      "date_evidence": "Comment dated 28 October in supplied reference report",
+      "image_files": []
     },
     {
       "title": "Used Angelbird card bundle listed in Facebook cinematography group",
@@ -118,7 +124,8 @@
       "impact": "Used-market observation, not a verified card fault or rating.",
       "response_action": "Not required.",
       "date_evidence": "Found 28 October; exact original posting date not established in reference",
-      "verification_note": "Historical report discovery date, NOT independently verified post date."
+      "verification_note": "Historical report discovery date, NOT independently verified post date.",
+      "image_files": []
     },
     {
       "title": "Used RED KOMODO kit includes two Angelbird CF cards and reader",
@@ -134,7 +141,8 @@
       "impact": "Resale bundle visibility, not customer sentiment about quality.",
       "response_action": "Not required.",
       "date_evidence": "Found 28 October, original post date uncertain",
-      "verification_note": "Reference report discovery date only."
+      "verification_note": "Reference report discovery date only.",
+      "image_files": []
     },
     {
       "title": "User reports Angelbird Type B media heats up during BURANO RAW recording",
@@ -149,7 +157,8 @@
       "product": "CFexpress Type B / BURANO RAW",
       "impact": "Potential heat concern, unconfirmed hardware defect.",
       "response_action": "Required - High: ask for exact model, recording mode, ambient conditions and measured temperatures.",
-      "date_evidence": "22 October user comment in reference report"
+      "date_evidence": "22 October user comment in reference report",
+      "image_files": []
     },
     {
       "title": "User reports fast offload with Angelbird 1TB Type A card",
@@ -164,7 +173,8 @@
       "product": "Angelbird Type A 1TB / Sony FX3",
       "impact": "Positive offload-workflow anecdote.",
       "response_action": "Not required.",
-      "date_evidence": "22 October user comment in reference report"
+      "date_evidence": "22 October user comment in reference report",
+      "image_files": []
     },
     {
       "title": "Question about Angelbird Type A metal casing",
@@ -179,7 +189,8 @@
       "product": "CFexpress Type A construction",
       "impact": "Open product specification question; not a complaint against Angelbird.",
       "response_action": "Required - Medium: answer with verified product construction information.",
-      "date_evidence": "22 October user comment in reference report"
+      "date_evidence": "22 October user comment in reference report",
+      "image_files": []
     },
     {
       "title": "Short comment supports Angelbird over Sony media",
@@ -193,7 +204,8 @@
       "summary": "Brief preference for Angelbird without model details or supporting technical explanation.",
       "impact": "Positive brand sentiment, low evidentiary weight.",
       "response_action": "Not required.",
-      "date_evidence": "24 October user comment in reference report"
+      "date_evidence": "24 October user comment in reference report",
+      "image_files": []
     }
   ],
   "retail_observations": [
