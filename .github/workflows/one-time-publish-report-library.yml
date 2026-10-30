@@ -44,6 +44,25 @@ jobs:
           assert all(x.get('path') and x.get('date') for x in items)
           print('Published index categories:',types)
           PY
+      - name: Validate production Vercel build including monthly in-site PDF viewer
+        run: |
+          node scripts/build_website.mjs
+          node --check website/app.js
+          node --input-type=module - <<'JS'
+          import {readFileSync,existsSync} from 'node:fs';
+          import assert from 'node:assert/strict';
+          const manifest=JSON.parse(readFileSync('_site/reports-index.json','utf8'));
+          const kinds=new Set(manifest.map(x=>x.type));
+          assert(kinds.has('daily')&&kinds.has('weekly')&&kinds.has('monthly'), 'Production website lost one or more frequencies');
+          for(const m of manifest){
+            assert(existsSync('_site/'+m.path), 'Missing public PDF '+m.path);
+          }
+          const monthly=manifest.find(x=>x.type==='monthly'&&x.date==='2026-10-30');
+          assert(monthly, 'October monthly PDF missing from production UI');
+          const ui=readFileSync('_site/app.js','utf8');
+          assert(ui.includes('new URL(item.path'), 'Production site not using embedded same-origin PDF');
+          console.log('VERCEL_UI_QA_PASS',JSON.stringify({types:[...kinds],monthly:monthly.path,count:manifest.length}));
+          JS
       - name: Commit live report library manifest
         run: |
           git config user.name 'github-actions[bot]'
