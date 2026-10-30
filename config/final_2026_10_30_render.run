@@ -11,3 +11,5 @@ Final sourced retail dates, photo attribution and low-priority undated retailer 
 Platform-first PDF acceptance run: Facebook 3 posts directly below Facebook KPI, LinkedIn 1, Reddit 1, YouTube 1, articles and retailers with their links. No paid GPT API calls.
 
 Final platform-first PDF production audit with pypdf: source URL annotations, 9 platform sections, Facebook/LinkedIn/Reddit/YouTube cards immediately under matching analytics. No paid GPT API.
+
+Strict single-day Oct 30 only. Remove all Oct25-29 history, Facebook old metrics, previous social cards, and old retail. Include same-day YouTube, sourced article, four retail checks. Date-guard audit, no extra GPT charges.
