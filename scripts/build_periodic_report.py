@@ -265,9 +265,17 @@ def main():
     story.extend([pdf.P('Retail observations (separate from social posts): '+str(len(offers))
                        +' | Unique retailer URLs: '+str(len({x.url.rstrip('/').lower() for x in offers}))
                        +'. Dated and discovered source counts must not be added as verified post totals.','small'),Spacer(1,8)])
+    empty_platforms=[]
     for platform in PLATFORMS:
         items=grouped.get(platform,[])
-        story.extend([Spacer(1,13)]+pdf.platform_scorecard(platform,items,f'{start} TO {end}'))
+        pending=unverified.get(platform,[])
+        if not items and not pending and platform not in ('Facebook',):
+            empty_platforms.append(platform)
+            continue
+        story.extend([Spacer(1,14),
+                      pdf.band(platform+' | SOURCE EVIDENCE',
+                               f'{len(items)} dated | {len(pending)} pending'),
+                      Spacer(1,8)])
         for index,item in enumerate(items,1):
             story.extend([Spacer(1,8),pdf.P(f'{platform.upper()} | {content_type(item).upper()} | {item.published_date}','caption'),
                           pdf.P(item.title,'item'),Spacer(1,4),pdf.P('Author: '+(item.author or 'Not available'),'meta'),
@@ -316,7 +324,11 @@ def main():
                     story.extend([pdf.P('RELATED COMMENT '+str(i)+' | '+str(comment.get('author','')),'caption'),
                                   pdf.P(str(comment.get('text','')),'small'),Spacer(1,4)])
                 story.append(Spacer(1,12))
-    story.extend([Spacer(1,9),pdf.P('Retail price observations: '+str(len(offers))+' (not social posts)','small')])
+    if empty_platforms:
+        story.extend([Spacer(1,9),pdf.P('No original dated or pending source records found in saved research for: '
+                                      +', '.join(empty_platforms)+'. This does not establish zero real-world activity.',
+                                      'small'),Spacer(1,9)])
+    story.extend([Spacer(1,9),pdf.band('RETAIL SOURCE OBSERVATIONS'),Spacer(1,6)])
     retail_counts=Counter(x.platform for x in offers)
     story.extend([pdf.P('Retail evidence KPI: '+str(len(offers))+' dated observations | '
                        +str(len({x.url.rstrip('/').lower() for x in offers}))+' unique original URLs. '
