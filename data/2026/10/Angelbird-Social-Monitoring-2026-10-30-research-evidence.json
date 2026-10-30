@@ -13,7 +13,7 @@
         "group": "Reddit",
         "stage": "search",
         "query": "site:reddit.com \"Angelbird\" \"card\" October 2026",
-        "results": 10,
+        "results": 7,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -34,7 +34,7 @@
         "group": "Facebook",
         "stage": "search",
         "query": "site:facebook.com \"Angelbird\" 2026-10-30",
-        "results": 1,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -55,7 +55,7 @@
         "group": "Camera forums",
         "stage": "search",
         "query": "site:dpreview.com/forums \"Angelbird\" October 2026",
-        "results": 4,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -69,7 +69,7 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "site:newsshooter.com \"Angelbird\" October 2026",
-        "results": 10,
+        "results": 2,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -118,7 +118,7 @@
         "group": "Facebook",
         "url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl",
         "result": "OK",
-        "final_url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
+        "final_url": "https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fkrisjonnes%2Fposts%2Fpfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
       },
       {
         "stage": "source-fetch",
@@ -157,23 +157,30 @@
       },
       {
         "stage": "image",
-        "url": "https://www.netnewsledger.com/wp-content/uploads/2026/10/Winter-camera-memory-card-lineup.jpg",
+        "url": "https://i.ytimg.com/vi/qAl9K4dgiTc/mqdefault.jpg",
         "result": "cached attributed thumbnail",
         "asset": "assets/2026/10/2026-10-30/source_001.jpg"
+      },
+      {
+        "stage": "image",
+        "url": "https://www.netnewsledger.com/wp-content/uploads/2026/10/Winter-camera-memory-card-lineup.jpg",
+        "result": "cached attributed thumbnail",
+        "asset": "assets/2026/10/2026-10-30/source_002.jpg"
       }
     ],
     "counts": {
       "YouTube.api_searches": 1,
-      "Reddit.wrong_source_domain": 20,
+      "YouTube.verified": 1,
+      "YouTube.comments_calls": 1,
+      "Reddit.wrong_source_domain": 17,
       "Reddit.successful_queries": 2,
       "Reddit.fallback_attempts": 1,
       "Reddit.queries": 2,
-      "YouTube.wrong_source_domain": 19,
+      "YouTube.wrong_source_domain": 20,
       "YouTube.successful_queries": 2,
       "YouTube.fallback_attempts": 1,
       "YouTube.queries": 2,
-      "YouTube.irrelevant_index_hits": 1,
-      "Facebook.wrong_source_domain": 1,
+      "Facebook.wrong_source_domain": 10,
       "Facebook.successful_queries": 1,
       "Facebook.fallback_attempts": 1,
       "Facebook.queries": 1,
@@ -185,14 +192,15 @@
       "LinkedIn.successful_queries": 1,
       "LinkedIn.fallback_attempts": 1,
       "LinkedIn.queries": 1,
-      "Camera forums.wrong_source_domain": 14,
+      "Camera forums.wrong_source_domain": 20,
       "Camera forums.successful_queries": 2,
       "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 2,
-      "Industry articles.irrelevant_index_hits": 30,
+      "Industry articles.irrelevant_index_hits": 20,
       "Industry articles.successful_queries": 3,
       "Industry articles.fallback_attempts": 1,
       "Industry articles.queries": 3,
+      "Industry articles.wrong_source_domain": 2,
       "Retailers.wrong_source_domain": 20,
       "Retailers.successful_queries": 2,
       "Retailers.fallback_attempts": 1,
@@ -209,14 +217,14 @@
     },
     "search_queries": 15,
     "original_pages_attempted": 6,
-    "cached_images": 1,
+    "cached_images": 2,
     "undated_brand_sources": 0,
     "previous_five_day_brand_sources": 1
   },
   {
     "scope": "Historical source image cache",
     "data": {
-      "cached_historical_images": 0,
+      "cached_report_images": 0,
       "image_audit": []
     }
   }
