@@ -5,19 +5,19 @@ Daily *actual* Angelbird post and media monitoring, not AI-invented findings. Th
 
 ## Research modes
 - `RESEARCH_ENGINE=python` (default): no OpenAI API calls. Python requests, BeautifulSoup, public search indexes, and configured official platform APIs.
-- `RESEARCH_ENGINE=openai` (explicit opt-in only): paid OpenAI model/search workflow; not used in the default GitHub cron.
+- `RESEARCH_ENGINE=openai` (legacy explicit opt-in): this uses **paid** OpenAI API calls and is NOT a free alternative. Do not select it when avoiding paid credits.
 - `DRY_RUN=true`: demonstration without live source collection.
 - `REPORT_ONLY=true`: regenerate saved JSON/PDF without research calls or fetching images.
 
 ## Recommended GitHub Actions secrets
 | Secret | Use |
 |---|---|
-| `BRAVE_SEARCH_API_KEY` | Reliable public search index for platforms, groups, articles and retailers. Without it, Bing RSS best-effort fallback may block or miss results. Check the provider's own pricing and quotas. |
+| No search key needed | Public Bing RSS, Google News RSS and GDELT open news-index discovery (no paid search service). Pages are independently checked for Angelbird text and publication dates. |
 | `YOUTUBE_API_KEY` | Official YouTube Data API: videos and public top-level comments. Access/quota subject to Google policy. |
 | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET` | Reddit authenticated Data API, only for apps granted the necessary access. |
 | `REDDIT_USER_AGENT` (repository variable) | Descriptive Reddit app identifier and contact/user, as required by Reddit's policy. |
 
-Do not paste API keys into source code. The Python run still works *best-effort* without these credentials, but cannot promise broad social coverage or direct comment access.
+Do not paste API keys into source code. The Python run works *best-effort* without these optional platform credentials, but cannot promise broad social coverage or direct comment access.
 
 ## Evidence acceptance rules
 1. Discovery snippets are candidate leads only, not confirmed posts.
@@ -51,3 +51,10 @@ Production cron is 19:00 Asia/Karachi and the PDF filename follows the selected 
 
 ## Quality and visual template
 29 October 2026 eight-page reference PDF determines the visual system. Five sentiment metrics, direct evidence cards, source photos where available, author/date, comment rows, product details, engagement, Angelbird impact, response recommendation, QR/linked originals, and cumulative feedback are rendered. Page length increases with actual findings.
+
+## Strict zero-cost search policy
+- Scheduled GitHub workflow: `RESEARCH_ENGINE=python`, `FREE_SOURCES_ONLY=true`, no Brave secret and no OpenAI API usage.
+- Discovery uses public RSS/search-index pages and free GDELT DOC results (original publisher URLs). GDELT is news/editorial coverage, not an exhaustive Reddit/Facebook/Instagram post index.
+- Official YouTube Data API provides a quota allocation when enabled, but access and eligibility depend on Google. Only use within free quota; keep billing disabled if necessary.
+- ChatGPT web search inside the ChatGPT app cannot be directly reused as a free GitHub Actions API. OpenAI API web searches are metered; avoid them to meet the no-paid requirement.
+- A successful RSS response does not mean the original source was checked. Each report retains query audit and coverage limitations. Unavailable platforms remain explicitly unverified.
