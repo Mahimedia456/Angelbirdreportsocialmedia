@@ -389,11 +389,12 @@ class PublicResearch:
             self.audit.append({'stage':'unverified-date','group':group,'url':r.url,'source_date':when,
                                'title':title[:140]})
 
-    def download_images(self):
+    def download_images(self,prefix='source'):
         from PIL import Image as PILImage, ImageOps
         from io import BytesIO
         for f in self.findings:
             if self.images>=self.image_limit:break
+            if f.image_files:continue
             u=f.image_url
             if not valid_url(u):continue
             r,status=self.get(u)
@@ -406,7 +407,7 @@ class PublicResearch:
                 im.thumbnail((850,600))
                 if im.width<80 or im.height<60:continue
                 if im.mode not in ('RGB','L'):im=im.convert('RGB')
-                dest=self.root/('source_'+str(self.images+1).zfill(3)+'.jpg')
+                dest=self.root/(prefix+'_'+str(self.images+1).zfill(3)+'.jpg')
                 im.save(dest,format='JPEG',quality=80,optimize=True)
                 f.image_files=[dest.relative_to(ROOT).as_posix()]
                 self.images+=1
@@ -453,3 +454,13 @@ class PublicResearch:
                         'original_pages_attempted':self.fetched,'cached_images':self.images}]
 def collect_day(day):
     return PublicResearch(day).run()
+
+
+def cache_historical_images(report):
+    """Best-effort preview thumbnails for prior dated sources; never invent photos."""
+    engine=PublicResearch(report.report_date)
+    engine.findings=[f for f in (report.historical_findings+report.historical_retail)
+                     if (f.image_url and not f.image_files)]
+    engine.image_limit=min(7,int(os.getenv('MAX_HISTORICAL_IMAGES','5')))
+    engine.download_images(prefix='historical')
+    return {'cached_historical_images':engine.images,'image_audit':engine.audit}
