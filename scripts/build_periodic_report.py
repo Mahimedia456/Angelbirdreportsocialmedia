@@ -216,6 +216,46 @@ def main():
                              x.url.rstrip('/').lower() for x in leads_in_platform}),
                          known_media,linked_media,
                          sum(len(x.comments or []) for x in leads_in_platform)])
+    # Overall KPI is based on observed source data, never a platform-wide estimate.
+    total_metrics={}
+    measured_sources={}
+    for metric in ('views','likes','comments','shares','reactions','reposts'):
+        values=[x.engagement.get(metric) for x in gathered if isinstance(x.engagement,dict)
+                and isinstance(x.engagement.get(metric),(int,float))]
+        total_metrics[metric]=int(sum(values)) if values else None
+        measured_sources[metric]=len(values)
+    positive=sum(x.sentiment=='Positive' for x in gathered)
+    negative=sum(x.sentiment=='Negative' for x in gathered)
+    neutral=sum(x.sentiment=='Neutral' for x in gathered)
+    question=sum(x.sentiment=='Question' for x in gathered)
+    unknown_sentiment=sum(x.sentiment=='Not applicable' for x in gathered)
+    def observed(metric):
+        return f"{total_metrics[metric]:,}" if total_metrics[metric] is not None else 'N/A'
+    story.extend(dashboard('OVERALL KPI | ALL RECORDED PLATFORMS',
+        ['Dated records','Pending leads','Views','Likes','Comments','Shares'],
+        [[len(gathered),len(leads),observed('views'),observed('likes'),
+          observed('comments'),observed('shares')]],
+        [92,87,87,87,87,87]))
+    story.extend(dashboard('OVERALL SENTIMENT | SOURCE RECORDS',
+        ['Positive','Negative','Neutral','Questions','Not classified','Total'],
+        [[positive,negative,neutral,question,unknown_sentiment,len(gathered)]],
+        [88,88,88,88,88,88]))
+    story.extend([pdf.P('Engagement totals include only sources with recorded numeric values. '
+                      +'Views measured on '+str(measured_sources['views'])+' source record(s), '
+                      +'likes on '+str(measured_sources['likes'])+', comments on '
+                      +str(measured_sources['comments'])+'. N/A means no observed metrics, not zero activity.','small'),
+                  Spacer(1,7)])
+    sentiment_rows=[]
+    for platform in PLATFORMS:
+        items=grouped[platform]
+        sentiment_rows.append([platform,sum(x.sentiment=='Positive' for x in items),
+                               sum(x.sentiment=='Negative' for x in items),
+                               sum(x.sentiment=='Neutral' for x in items),
+                               sum(x.sentiment=='Question' for x in items),
+                               sum(x.sentiment=='Not applicable' for x in items)])
+    story.extend(dashboard('SOCIAL MEDIA SENTIMENT | BY PLATFORM',
+        ['Platform','Positive','Negative','Neutral','Questions','N/A'],
+        sentiment_rows,[137,79,79,79,79,75]))
     story.extend(dashboard('POST ANALYTICS | FORMAT AND ENGAGEMENT',
         ['Platform','Posts','Videos','Reels','Stories','Comments','Replies','Views','Likes','Comments metric'],
         post_rows,[87,42,42,41,42,53,44,51,44,55]))
@@ -294,7 +334,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered)),'platform_discovery_leads':lead_urls_by_platform,'unique_social_url_groups':len(distinct_threads),'linked_reply_excerpts':replies,'daily_coverage_percent':round(100*len(saved)/((end-start).days+1),1),'source_media':source_media,'retail_observations_count':len(offers),'retail_unique_urls':len({x.url.rstrip('/').lower() for x in offers}),'post_analytics_rows':post_rows,'platform_kpi_rows':kpi_rows,'overall_kpi':{'dated_records':len(gathered),'pending_leads':len(leads),'metrics':total_metrics,'metric_source_counts':measured_sources,'sentiment':{'positive':positive,'negative':negative,'neutral':neutral,'question':question,'not_applicable':unknown_sentiment}},'platform_sentiment_rows':sentiment_rows}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
