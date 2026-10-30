@@ -1,0 +1,38 @@
+{
+  "report_date": "2026-10-24",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "Completed",
+  "headline": "Angelbird Brand Monitoring Report for 2026-10-24",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Yodobashi",
+      "summary": "Yodobashi community reviews provide user feedback on Angelbird products, including the USB 3.1 Type-A to Type-C adapter.",
+      "checked": true
+    },
+    {
+      "platform": "Adorama",
+      "summary": "Adorama customer reviews highlight the performance of Angelbird media with various camera systems.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "Reddit",
+    "YouTube",
+    "DPReview",
+    "Blackmagic",
+    "RED",
+    "Sony camera forums",
+    "videography discussions",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a targeted search for Angelbird-related discussions and reviews on Reddit, YouTube, DPReview, Blackmagic, RED, Sony camera forums, and videography discussions, focusing on posts and comments dated October 24, 2026. Extracted individual author comments with original URLs and dates, ensuring the newest verified findings are dated precisely October 24, 2026. Verified sources include Yodobashi community reviews and Adorama customer reviews. No relevant posts or comments were found on Reddit, YouTube, DPReview, Blackmagic, RED, Sony camera forums, or videography discussions for the specified date."
+}

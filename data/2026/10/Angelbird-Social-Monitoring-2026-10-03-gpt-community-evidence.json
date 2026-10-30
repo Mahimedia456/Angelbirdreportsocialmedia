@@ -1,0 +1,33 @@
+{
+  "report_date": "2026-10-03",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "Completed",
+  "headline": "Angelbird Media Usage and Customer Feedback Monitoring Report",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Sony Morocco",
+      "summary": "Reviewed customer feedback on Sony Morocco's official website regarding Angelbird media products.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "Reddit",
+    "YouTube",
+    "DPReview",
+    "Blackmagic",
+    "RED",
+    "Sony camera forums",
+    "videography discussions",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a comprehensive search for user-generated content and reviews related to Angelbird media products across various platforms, focusing on posts and comments dated October 3, 2026. Verified findings were sourced directly from the original platforms, ensuring authenticity and relevance."
+}

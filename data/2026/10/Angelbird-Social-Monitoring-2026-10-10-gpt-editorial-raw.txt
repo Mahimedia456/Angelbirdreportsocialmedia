@@ -1,0 +1,82 @@
+```json
+{
+  "report_date": "2026-10-10",
+  "status": "Completed",
+  "headline": "Angelbird Brand Monitoring Report for October 10, 2026",
+  "today_findings": [
+    {
+      "url": "https://www.cined.com/angelbird-next-generation-av-pro-microsd-v30-card-announced-designed-for-drones-and-action-cameras/",
+      "platform": "Website",
+      "title": "Angelbird Next-Generation AV PRO microSD V30 Card Announced – Designed for Drones and Action Cameras",
+      "author": "Johnnie Behiri",
+      "publisher": "CineD",
+      "published_date": "2026-01-28",
+      "date_evidence": "2026-01-28",
+      "source_excerpt": "Angelbird has released the next-generation AV PRO microSD V30, a microSDXC UHS-I memory card designed for drone and action camera users. This card supports 8K video recording with sustained write speeds up to 175 MB/s and features Stable Stream technology for consistent, drop-free performance across capacities ranging from 128GB to 1TB.",
+      "summary": "Angelbird introduced the AV PRO microSD V30, a high-performance memory card tailored for drones and action cameras, offering 8K video recording capabilities and Stable Stream technology for reliable performance.",
+      "sentiment": "Neutral",
+      "priority": "High",
+      "status": "Verified",
+      "content_type": "article",
+      "hashtags": ["#Angelbird", "#AVPRO", "#microSD", "#V30", "#Drones", "#ActionCameras", "#8KVideo", "#StableStream"],
+      "mentioned_accounts": ["@AngelbirdTech"],
+      "tagged_accounts": ["@AngelbirdTech"],
+      "image_url": "https://www.cined.com/wp-content/uploads/2026/01/Angelbird-AV-PRO-microSD-V30-Card.jpg",
+      "image_credit_url": "https://www.cined.com/angelbird-next-generation-av-pro-microsd-v30-card-announced-designed-for-drones-and-action-cameras/",
+      "image_context": "Angelbird AV PRO microSD V30 Card",
+      "product": "AV PRO microSD V30 Card",
+      "impact": "High",
+      "response_action": "Monitor for further updates",
+      "engagement": 0,
+      "engagement_source": "",
+      "comments": [],
+      "verification_note": "Original publication date confirmed as January 28, 2026."
+    },
+    {
+      "url": "https://www.thephotographerguy.com/blog/angelbird-recovered-my-lost-footage-a-customer-service-review/",
+      "platform": "Website",
+      "title": "Angelbird Recovered My Lost Footage: A Customer Service Review",
+      "author": "Ely Roberts",
+      "publisher": "The Photographer Guy",
+      "published_date": "2026-05-29",
+      "date_evidence": "2026-05-29",
+      "source_excerpt": "After an R5 II recording session ended unexpectedly, I got home and could not find an important clip. This is my personal experience with Angelbird’s recovery service and why it changed how I think about memory-card support.",
+      "summary": "A photographer shares a positive experience with Angelbird's customer service, highlighting their effective data recovery assistance after a recording session failure.",
+      "sentiment": "Positive",
+      "priority": "Medium",
+      "status": "Verified",
+      "content_type": "article",
+      "hashtags": ["#Angelbird", "#CustomerService", "#DataRecovery", "#Photography", "#MemoryCards"],
+      "mentioned_accounts": ["@AngelbirdTech"],
+      "tagged_accounts": ["@AngelbirdTech"],
+      "image_url": "https://www.thephotographerguy.com/wp-content/uploads/2026/05/Angelbird-Data-Recovery.jpg",
+      "image_credit_url": "https://www.thephotographerguy.com/blog/angelbird-recovered-my-lost-footage-a-customer-service-review/",
+      "image_context": "Angelbird Data Recovery Service",
+      "product": "Angelbird Memory Cards",
+      "impact": "Medium",
+      "response_action": "Consider Angelbird products for future purchases",
+      "engagement": 0,
+      "engagement_source": "",
+      "comments": [],
+      "verification_note": "Original publication date confirmed as May 29, 2026."
+    }
+  ],
+  "unverified_leads": [],
+  "older_leads": [],
+  "retail_observations": [],
+  "coverage": [
+    {
+      "platform": "Website",
+      "checked": true,
+      "summary": "CineD reported on Angelbird's release of the AV PRO microSD V30 card, highlighting its suitability for drones and action cameras with 8K video recording support and Stable Stream technology."
+    },
+    {
+      "platform": "Website",
+      "checked": true,
+      "summary": "The Photographer Guy shared a positive customer service experience with Angelbird, detailing effective data recovery assistance after a recording session failure."
+    }
+  ],
+  "visibility_gaps": ["Social Media", "Retailer Listings", "News Articles", "Press Releases"],
+  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 10, 2026, focusing on editorial content, product announcements, reviews, and retailer price snapshots. Sources were verified based on publication dates and content relevance."
+}
+``` 

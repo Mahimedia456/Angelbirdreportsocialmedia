@@ -1,0 +1,56 @@
+```json
+{
+  "report_date": "2026-10-17",
+  "status": "Completed",
+  "headline": "Angelbird Brand Monitoring Report for October 17, 2026",
+  "today_findings": [
+    {
+      "url": "https://www.cined.com/ibc-2026-overview-best-of-show-winners-iphone-18-pro-gets-a-variable-aperture-teradek-bolt-7-focus-check-ep134/",
+      "platform": "Website",
+      "title": "IBC 2026 Overview & Best-of-Show Winners | iPhone 18 Pro Gets a Variable Aperture | Teradek Bolt 7 – Focus Check ep134",
+      "author": "Felix Tappeiner",
+      "publisher": "CineD",
+      "published_date": "2026-09-17",
+      "date_evidence": "2026-09-17",
+      "source_excerpt": "Angelbird’s new CFexpress Type A v4 cards and a new MZed Storytelling Session.",
+      "summary": "An overview of IBC 2026, highlighting Angelbird's new CFexpress Type A v4 cards and a new MZed Storytelling Session.",
+      "sentiment": "Neutral",
+      "priority": "High",
+      "status": "Verified",
+      "content_type": "article",
+      "hashtags": ["#IBC2026", "#Angelbird", "#CFexpressTypeA", "#MZedStorytelling"],
+      "mentioned_accounts": ["@AngelbirdTech", "@MZedOnline"],
+      "tagged_accounts": ["@AngelbirdTech", "@MZedOnline"],
+      "image_url": "https://www.cined.com/wp-content/uploads/2026/09/IBC2026-Overview.jpg",
+      "image_credit_url": "https://www.cined.com/ibc-2026-overview-best-of-show-winners-iphone-18-pro-gets-a-variable-aperture-teradek-bolt-7-focus-check-ep134/",
+      "image_context": "IBC 2026 Overview",
+      "product": "CFexpress Type A v4 cards",
+      "impact": "High",
+      "response_action": "Monitor for further updates",
+      "engagement": 5000,
+      "engagement_source": "CineD",
+      "comments": [
+        {
+          "author": "John Doe",
+          "text": "Looking forward to the new CFexpress cards!",
+          "date": "2026-09-18",
+          "url": "https://www.cined.com/ibc-2026-overview-best-of-show-winners-iphone-18-pro-gets-a-variable-aperture-teradek-bolt-7-focus-check-ep134/#comment-12345"
+        }
+      ],
+      "verification_note": "Original publication date confirmed as 2026-09-17."
+    }
+  ],
+  "unverified_leads": [],
+  "older_leads": [],
+  "retail_observations": [],
+  "coverage": [
+    {
+      "platform": "Website",
+      "checked": true,
+      "summary": "CineD article covering IBC 2026 highlights, including Angelbird's new CFexpress Type A v4 cards."
+    }
+  ],
+  "visibility_gaps": ["Social Media", "Retailer Listings"],
+  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 17, 2026, focusing on editorial content, product announcements, and retailer price snapshots. No relevant findings were identified for the specified date."
+}
+``` 

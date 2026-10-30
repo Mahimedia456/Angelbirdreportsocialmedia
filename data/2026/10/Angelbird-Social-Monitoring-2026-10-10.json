@@ -1,0 +1,230 @@
+{
+  "report_date": "2026-10-10",
+  "generated_at_pkt": "2026-10-31 02:03 PKT",
+  "research_as_of_pkt": "2026-10-31 02:03 PKT",
+  "status": "Completed calendar day | coverage limited to accessible public sources",
+  "headline": "1 date-verified Angelbird post/article finding(s) and 0 dated retail observation(s) on 2026-10-10. Earlier dates are excluded; inaccessible networks cannot be claimed fully monitored.",
+  "today_findings": [
+    {
+      "title": "Angelbird CFexpressA Behind the Scenes | Smoke, Speed &amp; 2 Tiny Powerful Cards",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=CjImP73lRTE",
+      "author": "David Nassim",
+      "published_date": "2026-10-10",
+      "date_evidence": "YouTube Data API publishedAt converted to PKT",
+      "summary": "Angelbird CFexpressA Behind the Scenes | Smoke, Speed & 2 Tiny Powerful Cards Ever wondered what goes into 40 seconds of launch film? Turns out: a spinning glass table, a lot of smoke, one very patient intern ...",
+      "sentiment": "Question",
+      "priority": "Medium",
+      "status": "verified",
+      "image_url": "https://i.ytimg.com/vi/CjImP73lRTE/mqdefault.jpg",
+      "image_context": "",
+      "image_credit_url": "",
+      "product": "Angelbird CFexpress",
+      "details": "",
+      "source_excerpt": "Angelbird CFexpressA Behind the Scenes | Smoke, Speed & 2 Tiny Powerful Cards Ever wondered what goes into 40 seconds of launch film? Turns out: a spinning glass table, a lot of smoke, one very patient intern ...",
+      "response_action": "Optional review.",
+      "impact": "Public brand or product mention; contextual relevance only.",
+      "verification_note": "YouTube official API original video metadata",
+      "reference_date": "",
+      "engagement_source": "YouTube Data API videos.list statistics",
+      "publisher": "",
+      "content_type": "video",
+      "hashtags": [],
+      "mentioned_accounts": [],
+      "tagged_accounts": [],
+      "engagement": {
+        "views": 65,
+        "likes": 1,
+        "comments": 0
+      },
+      "images": [],
+      "image_files": [
+        "assets/2026/10/2026-10-10/source_001.jpg"
+      ],
+      "comments": []
+    }
+  ],
+  "retail_observations": [],
+  "unverified_leads": [
+    {
+      "title": "Community member recommends Angelbird cards for Pocket OG",
+      "platform": "Reddit",
+      "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+      "author": "",
+      "published_date": "",
+      "date_evidence": "",
+      "summary": "Indexed search-result candidate mentioning the brand. Original social post text, author, date, media and metrics NOT verified.",
+      "sentiment": "Not applicable",
+      "priority": "Watch",
+      "status": "unverified",
+      "image_url": "",
+      "image_context": "",
+      "image_credit_url": "",
+      "product": "",
+      "details": "",
+      "source_excerpt": "",
+      "response_action": "Requires direct original page or approved platform API evidence.",
+      "impact": "",
+      "verification_note": "Search index only; original page inaccessible: HTTP 403. Not a verified 2026-10-10 post or Story.",
+      "reference_date": "2026-10-10",
+      "engagement_source": "",
+      "publisher": "",
+      "content_type": "",
+      "hashtags": [],
+      "mentioned_accounts": [],
+      "tagged_accounts": [],
+      "engagement": {},
+      "images": [],
+      "image_files": [],
+      "comments": []
+    },
+    {
+      "title": "User reports Angelbird Type B media heats up during BURANO RAW recording",
+      "platform": "Reddit",
+      "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+      "author": "",
+      "published_date": "",
+      "date_evidence": "",
+      "summary": "Indexed search-result candidate mentioning the brand. Original social post text, author, date, media and metrics NOT verified.",
+      "sentiment": "Not applicable",
+      "priority": "Watch",
+      "status": "unverified",
+      "image_url": "",
+      "image_context": "",
+      "image_credit_url": "",
+      "product": "",
+      "details": "",
+      "source_excerpt": "",
+      "response_action": "Requires direct original page or approved platform API evidence.",
+      "impact": "",
+      "verification_note": "Search index only; original page inaccessible: HTTP 403. Not a verified 2026-10-10 post or Story.",
+      "reference_date": "2026-10-10",
+      "engagement_source": "",
+      "publisher": "",
+      "content_type": "",
+      "hashtags": [],
+      "mentioned_accounts": [],
+      "tagged_accounts": [],
+      "engagement": {},
+      "images": [],
+      "image_files": [],
+      "comments": []
+    }
+  ],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "2026-10-10",
+  "report_period_end": "2026-10-10",
+  "coverage": [
+    {
+      "platform": "Facebook",
+      "summary": "16 indexed query attempt(s), 16 index response(s), 3 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Instagram",
+      "summary": "7 indexed query attempt(s), 7 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "LinkedIn",
+      "summary": "4 indexed query attempt(s), 4 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "X / Twitter",
+      "summary": "4 indexed query attempt(s), 4 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "Reddit",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 2 original source fetch(es), 2 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "YouTube",
+      "summary": "1 indexed query attempt(s), 1 index response(s), 0 original source fetch(es), 0 inaccessible; 1 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Camera forums",
+      "summary": "5 indexed query attempt(s), 5 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "Industry articles",
+      "summary": "3 indexed query attempt(s), 3 index response(s), 1 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Retailers",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "LinkedIn",
+      "summary": "Angelbird Technologies has active LinkedIn profiles with recent posts about their participation in IBC 2026.",
+      "checked": true
+    },
+    {
+      "platform": "DPReview",
+      "summary": "No articles or forum discussions were published on DPReview on October 10, 2026, concerning Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations.",
+      "checked": true
+    },
+    {
+      "platform": "Blackmagic Design",
+      "summary": "No new posts or discussions were found on Blackmagic Design's forums regarding Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 10, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "RED Digital Cinema",
+      "summary": "No relevant posts or discussions were found on RED Digital Cinema's forums about Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 10, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "Sony Cine",
+      "summary": "No new posts or discussions were found on Sony Cine's forums regarding Angelbird media usage, faults, compatibility, customer feedback, or creator demonstrations on October 10, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "Website",
+      "summary": "CineD reported on Angelbird's release of the AV PRO microSD V30 card, highlighting its suitability for drones and action cameras with 8K video recording support and Stable Stream technology.",
+      "checked": true
+    },
+    {
+      "platform": "Website",
+      "summary": "The Photographer Guy shared a positive customer service experience with Angelbird, detailing effective data recovery assistance after a recording session failure.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "Facebook: alternate public index HTTP 202",
+    "Instagram: alternate public index HTTP 202",
+    "LinkedIn: alternate public index HTTP 202",
+    "X / Twitter: alternate public index HTTP 202",
+    "Reddit: alternate public index HTTP 202",
+    "YouTube: alternate public index HTTP 202",
+    "Camera forums: alternate public index HTTP 202",
+    "Industry articles: alternate public index HTTP 202",
+    "Retailers: alternate public index HTTP 202",
+    "GDELT free news index: HTTP 429",
+    "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
+    "No result does not establish no brand activity on a platform.",
+    "Facebook",
+    "Instagram",
+    "X/Twitter",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions.",
+    "Reddit",
+    "YouTube",
+    "DPReview",
+    "Blackmagic Design",
+    "RED Digital Cinema",
+    "Sony Cine",
+    "Social Media",
+    "Retailer Listings",
+    "News Articles",
+    "Press Releases"
+  ],
+  "methodology": "Python collector: 45 public search query attempts, 6 original-page attempts, 1 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence."
+}

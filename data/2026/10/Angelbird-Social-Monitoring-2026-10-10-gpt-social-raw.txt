@@ -1,0 +1,77 @@
+```json
+{
+  "report_date": "2026-10-10",
+  "status": "Completed",
+  "headline": "Angelbird Technologies Brand Monitoring Report for October 10, 2026",
+  "today_findings": [
+    {
+      "url": "https://www.linkedin.com/company/angelbird",
+      "platform": "LinkedIn",
+      "title": "Counting down to IBC - International Broadcasting Convention!",
+      "author": "Angelbird Technologies",
+      "publisher": "Angelbird Technologies",
+      "published_date": "2026-09-10",
+      "date_evidence": "2026-09-10",
+      "source_excerpt": "Counting down to IBC - International Broadcasting Convention! From September 11-14, we'll be in Amsterdam with plenty to show you. Find us at Hall 11, Booth 11.B02 – and keep scrolling to see what's on our IBC 2026 program. Get ready, because we sure are. #angelbirdmedia #IBC2026 #memorycards #cameragear",
+      "summary": "Announcement of Angelbird Technologies' participation in IBC 2026 in Amsterdam from September 11-14, showcasing their latest products at Booth 11.B02.",
+      "sentiment": "Positive",
+      "priority": "High",
+      "status": "Verified",
+      "content_type": "post",
+      "hashtags": ["#angelbirdmedia", "#IBC2026", "#memorycards", "#cameragear"],
+      "mentioned_accounts": [],
+      "tagged_accounts": [],
+      "image_url": "",
+      "image_credit_url": "",
+      "image_context": "",
+      "product": "",
+      "impact": "High",
+      "response_action": "Monitor for updates and engagement metrics post-event.",
+      "engagement": 0,
+      "engagement_source": "",
+      "comments": [],
+      "verification_note": "Original post date verified as September 10, 2026."
+    },
+    {
+      "url": "https://www.linkedin.com/company/angelbird",
+      "platform": "LinkedIn",
+      "title": "From September 11-14, you'll find us in Amsterdam, bringing the latest from Angelbird to IBC 2026.",
+      "author": "Angelbird Technologies",
+      "publisher": "Angelbird Technologies",
+      "published_date": "2026-09-03",
+      "date_evidence": "2026-09-03",
+      "source_excerpt": "From September 11-14, you'll find us in Amsterdam, bringing the latest from Angelbird to IBC 2026. Join us at Booth 11.B02 to meet the people behind the gear, get hands-on with our latest products, and see how Angelbird keeps up with the demands of professional workflows. We're looking forward to great conversations and new connections. #angelbirdmedia #IBC2026 #memorycards #media",
+      "summary": "Invitation to IBC 2026 in Amsterdam, highlighting Angelbird Technologies' booth and product demonstrations.",
+      "sentiment": "Positive",
+      "priority": "High",
+      "status": "Verified",
+      "content_type": "post",
+      "hashtags": ["#angelbirdmedia", "#IBC2026", "#memorycards", "#media"],
+      "mentioned_accounts": [],
+      "tagged_accounts": [],
+      "image_url": "",
+      "image_credit_url": "",
+      "image_context": "",
+      "product": "",
+      "impact": "High",
+      "response_action": "Monitor for updates and engagement metrics post-event.",
+      "engagement": 0,
+      "engagement_source": "",
+      "comments": [],
+      "verification_note": "Original post date verified as September 3, 2026."
+    }
+  ],
+  "unverified_leads": [],
+  "older_leads": [],
+  "retail_observations": [],
+  "coverage": [
+    {
+      "platform": "LinkedIn",
+      "checked": true,
+      "summary": "Angelbird Technologies has active LinkedIn profiles with recent posts about their participation in IBC 2026."
+    }
+  ],
+  "visibility_gaps": ["Facebook", "Instagram", "X/Twitter"],
+  "methodology": "Conducted a targeted search for Angelbird Technologies' posts on LinkedIn, Facebook, Instagram, and X/Twitter for October 10, 2026. Verified posts were included; unverified leads were excluded. No relevant posts were found on Facebook, Instagram, or X/Twitter for the specified date."
+}
+``` 

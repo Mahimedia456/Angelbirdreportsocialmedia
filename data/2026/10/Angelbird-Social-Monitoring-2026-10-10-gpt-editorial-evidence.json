@@ -1,0 +1,35 @@
+{
+  "report_date": "2026-10-10",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "Completed",
+  "headline": "Angelbird Brand Monitoring Report for October 10, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Website",
+      "summary": "CineD reported on Angelbird's release of the AV PRO microSD V30 card, highlighting its suitability for drones and action cameras with 8K video recording support and Stable Stream technology.",
+      "checked": true
+    },
+    {
+      "platform": "Website",
+      "summary": "The Photographer Guy shared a positive customer service experience with Angelbird, detailing effective data recovery assistance after a recording session failure.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "Social Media",
+    "Retailer Listings",
+    "News Articles",
+    "Press Releases",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 10, 2026, focusing on editorial content, product announcements, reviews, and retailer price snapshots. Sources were verified based on publication dates and content relevance."
+}
