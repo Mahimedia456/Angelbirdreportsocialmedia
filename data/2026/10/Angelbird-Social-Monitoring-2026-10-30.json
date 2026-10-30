@@ -1,6 +1,6 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 17:51 PKT",
+  "generated_at_pkt": "2026-10-30 18:04 PKT",
   "status": "Python public-source monitoring",
   "headline": "2 dated new Angelbird source finding(s), 3 current-day price/retail observations, 6 previous-five-day references. Coverage limited to source-accessible results; retail snapshots are not social posts.",
   "today_findings": [
@@ -141,9 +141,9 @@
       "sentiment": "Not applicable",
       "priority": "Low",
       "status": "retail",
-      "image_url": "",
-      "image_context": "",
-      "image_credit_url": "",
+      "image_url": "https://ratiodb.com/og/memory-cards/cfast.png",
+      "image_context": "Public original-post preview from source og:image / twitter:image metadata.",
+      "image_credit_url": "https://ratiodb.com/memory-cards/cfast/",
       "product": "Angelbird AV PRO CF 256GB CFast",
       "details": "Price USD 793.94 as reported by ratioDB, source Amazon, as of 30 October 09:17 UTC.",
       "source_excerpt": "Angelbird AV PRO CF 256 GB CFast ... $793.94",
@@ -155,7 +155,9 @@
       "publisher": "ratioDB",
       "engagement": {},
       "images": [],
-      "image_files": [],
+      "image_files": [
+        "assets/2026/10/2026-10-30/original_004.jpg"
+      ],
       "comments": []
     }
   ],
@@ -297,7 +299,7 @@
       "sentiment": "Positive",
       "priority": "Low",
       "status": "older",
-      "image_url": "",
+      "image_url": "https://www.facebook.com/photo?fbid=1575983300996022",
       "image_context": "",
       "image_credit_url": "",
       "product": "AV PRO CFexpress Type A 512GB (as identified in reference)",
@@ -381,9 +383,9 @@
       "sentiment": "Neutral",
       "priority": "Low",
       "status": "older",
-      "image_url": "",
-      "image_context": "",
-      "image_credit_url": "",
+      "image_url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=OftL985-u1kQ7kNvwGoX4DP&_nc_oc=AdpX6ioJFw-6AwoC2IJeuKrEZPzcCz1q0PXTjEXQxCuIjMGpIQUMmuGoLvR8-HvaeN4&_nc_zt=23&se=-1&_nc_ht=scontent-sea5-1.xx&_nc_gid=56kfcV-aTt2ty19xjC_s1w&_nc_ss=7b20f&oh=00_AQTI2quaTuMe76Zgqb0fzaKfmPvHcCyHuuyXslo2z1tqZQ&oe=6AEA729B",
+      "image_context": "Public original-post preview from source og:image / twitter:image metadata.",
+      "image_credit_url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
       "product": "",
       "details": "",
       "source_excerpt": "This is a 2 x Angelbird card bundle. In great shape.",
@@ -395,7 +397,9 @@
       "publisher": "",
       "engagement": {},
       "images": [],
-      "image_files": [],
+      "image_files": [
+        "assets/2026/10/2026-10-30/original_001.jpg"
+      ],
       "comments": []
     },
     {
@@ -409,9 +413,9 @@
       "sentiment": "Neutral",
       "priority": "Low",
       "status": "older",
-      "image_url": "",
-      "image_context": "",
-      "image_credit_url": "",
+      "image_url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/862849457_29168875079408638_8235969788667906307_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=p600x600&_nc_cat=107&ccb=1-7&_nc_sid=6376bf&_nc_ohc=DRya_jCpt2EQ7kNvwHLUao9&_nc_oc=AdokBmsoa-xlmV6P0OpZ5vxdZYgunGETegQPu4WVXiVPSDugmzhvnVSgYw9rgPw_EBE&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=-4bmdi2Ud23sb_Ku2lsWBg&_nc_ss=7b20f&oh=00_AQSRuP4iH1acDXP5gXM-ZBQDoYow6QKX_--1QF2DwKppgQ&oe=6AEA5A6E",
+      "image_context": "Public original-post preview from source og:image / twitter:image metadata.",
+      "image_credit_url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/",
       "product": "AV PRO CF media and card reader",
       "details": "",
       "source_excerpt": "2 x Angelbird 512GB AV PRO CF Cards, Angelbird Card Reader",
@@ -423,7 +427,9 @@
       "publisher": "",
       "engagement": {},
       "images": [],
-      "image_files": [],
+      "image_files": [
+        "assets/2026/10/2026-10-30/original_002.jpg"
+      ],
       "comments": []
     },
     {
@@ -437,9 +443,9 @@
       "sentiment": "Positive",
       "priority": "Low",
       "status": "older",
-      "image_url": "",
-      "image_context": "",
-      "image_credit_url": "",
+      "image_url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQFMM3PcJj7GFA/thumbnail-with-play-button-overlay-high/B4EaF9hreDJ0C8-/0/1793107345333?e=2147483647&v=beta&t=BWGbPsEuAl6N4gQPhveii_N_yFHMa5hrIM0vGWqTUV4",
+      "image_context": "Public original-post preview from source og:image / twitter:image metadata.",
+      "image_credit_url": "https://www.linkedin.com/posts/comline-distributeurvad-satis2026-ugcPost-7520837291087433728-A7WT/",
       "product": "",
       "details": "",
       "source_excerpt": "AJA Video Systems | Angelbird Technologies | Bitfocus | Elgato",
@@ -455,7 +461,9 @@
         "reposts": "8"
       },
       "images": [],
-      "image_files": [],
+      "image_files": [
+        "assets/2026/10/2026-10-30/original_003.jpg"
+      ],
       "comments": []
     }
   ],

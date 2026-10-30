@@ -16,8 +16,72 @@
   {
     "scope": "Historical source image cache",
     "data": {
-      "cached_report_images": 0,
+      "cached_report_images": 4,
+      "original_post_preview_checks": 7,
       "image_audit": [
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
+          "status": "original page advertised source preview",
+          "image_url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=OftL985-u1kQ7kNvwGoX4DP&_nc_oc=AdpX6ioJFw-6AwoC2IJeuKrEZPzcCz1q0PXTjEXQxCuIjMGpIQUMmuGoLvR8-HvaeN4&_nc_zt=23&se=-1&_nc_ht=scontent-sea5-1.xx&_nc_gid=56kfcV-aTt2ty19xjC_s1w&_nc_ss=7b20f&oh=00_AQTI2quaTuMe76Zgqb0fzaKfmPvHcCyHuuyXslo2z1tqZQ&oe=6AEA729B"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/",
+          "status": "original page advertised source preview",
+          "image_url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/862849457_29168875079408638_8235969788667906307_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=p600x600&_nc_cat=107&ccb=1-7&_nc_sid=6376bf&_nc_ohc=DRya_jCpt2EQ7kNvwHLUao9&_nc_oc=AdokBmsoa-xlmV6P0OpZ5vxdZYgunGETegQPu4WVXiVPSDugmzhvnVSgYw9rgPw_EBE&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=-4bmdi2Ud23sb_Ku2lsWBg&_nc_ss=7b20f&oh=00_AQSRuP4iH1acDXP5gXM-ZBQDoYow6QKX_--1QF2DwKppgQ&oe=6AEA5A6E"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.linkedin.com/posts/comline-distributeurvad-satis2026-ugcPost-7520837291087433728-A7WT/",
+          "status": "original page advertised source preview",
+          "image_url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQFMM3PcJj7GFA/thumbnail-with-play-button-overlay-high/B4EaF9hreDJ0C8-/0/1793107345333?e=2147483647&v=beta&t=BWGbPsEuAl6N4gQPhveii_N_yFHMa5hrIM0vGWqTUV4"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://ratiodb.com/memory-cards/cfast/",
+          "status": "original page advertised source preview",
+          "image_url": "https://ratiodb.com/og/memory-cards/cfast.png"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://ofertasgaming.com/producto/tarjeta-microsd-angelbird-av-pro-microsd-v30-mkii-512-gb-rapida-y-resistente",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "image",
+          "url": "https://www.facebook.com/photo?fbid=1575983300996022",
+          "result": "not image"
+        },
+        {
+          "stage": "image",
+          "url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=OftL985-u1kQ7kNvwGoX4DP&_nc_oc=AdpX6ioJFw-6AwoC2IJeuKrEZPzcCz1q0PXTjEXQxCuIjMGpIQUMmuGoLvR8-HvaeN4&_nc_zt=23&se=-1&_nc_ht=scontent-sea5-1.xx&_nc_gid=56kfcV-aTt2ty19xjC_s1w&_nc_ss=7b20f&oh=00_AQTI2quaTuMe76Zgqb0fzaKfmPvHcCyHuuyXslo2z1tqZQ&oe=6AEA729B",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/10/2026-10-30/original_001.jpg"
+        },
+        {
+          "stage": "image",
+          "url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/862849457_29168875079408638_8235969788667906307_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=p600x600&_nc_cat=107&ccb=1-7&_nc_sid=6376bf&_nc_ohc=DRya_jCpt2EQ7kNvwHLUao9&_nc_oc=AdokBmsoa-xlmV6P0OpZ5vxdZYgunGETegQPu4WVXiVPSDugmzhvnVSgYw9rgPw_EBE&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=-4bmdi2Ud23sb_Ku2lsWBg&_nc_ss=7b20f&oh=00_AQSRuP4iH1acDXP5gXM-ZBQDoYow6QKX_--1QF2DwKppgQ&oe=6AEA5A6E",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/10/2026-10-30/original_002.jpg"
+        },
+        {
+          "stage": "image",
+          "url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQFMM3PcJj7GFA/thumbnail-with-play-button-overlay-high/B4EaF9hreDJ0C8-/0/1793107345333?e=2147483647&v=beta&t=BWGbPsEuAl6N4gQPhveii_N_yFHMa5hrIM0vGWqTUV4",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/10/2026-10-30/original_003.jpg"
+        },
+        {
+          "stage": "image",
+          "url": "https://ratiodb.com/og/memory-cards/cfast.png",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/10/2026-10-30/original_004.jpg"
+        },
         {
           "stage": "image",
           "url": "https://www.bhphotovideo.com/images/images500x500/angelbird_avp256msdv60_256gb_av_pro_v60_1583402.jpg",
