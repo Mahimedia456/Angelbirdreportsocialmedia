@@ -1,0 +1,550 @@
+{
+  "period": "monthly",
+  "start": "2026-10-01",
+  "end": "2026-10-31",
+  "path": "reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-31.pdf",
+  "snapshots": 31,
+  "archived_findings": 3,
+  "dated_findings": 14,
+  "unverified_leads": 4,
+  "platform_counts": {
+    "Facebook": 0,
+    "Instagram": 0,
+    "X / Twitter": 0,
+    "LinkedIn": 1,
+    "Reddit": 2,
+    "YouTube": 8,
+    "Camera Forums": 0,
+    "Google / News / Articles": 3,
+    "Retailers": 0
+  },
+  "sentiment_counts": {
+    "Question": 3,
+    "Neutral": 7,
+    "Positive": 3,
+    "Negative": 1
+  },
+  "observed_product_labels": {
+    "Angelbird AV PRO": 3,
+    "Angelbird AV PRO CF CFast 2.0 1TB": 1,
+    "Angelbird AV Pro": 1,
+    "CFexpress Type B / BURANO RAW": 1,
+    "Angelbird AV-Pro-SE CFexpress": 1,
+    "Angelbird CFexpress": 1,
+    "ANGELBIRD AVPRO": 1
+  },
+  "record_type_counts": {
+    "video": 8,
+    "article": 3,
+    "post": 3
+  },
+  "platform_discovery_leads": {
+    "Facebook": 3,
+    "Instagram": 0,
+    "X / Twitter": 0,
+    "LinkedIn": 0,
+    "Reddit": 0,
+    "YouTube": 0,
+    "Camera Forums": 0,
+    "Google / News / Articles": 1,
+    "Retailers": 0
+  },
+  "unique_social_url_groups": 13,
+  "linked_reply_excerpts": 6,
+  "daily_coverage_percent": 100.0,
+  "source_media": {
+    "embedded_verified": 11,
+    "linked_verified": 11,
+    "embedded_leads": 0,
+    "linked_leads": 2,
+    "missing_media_verified": 3
+  },
+  "retail_observations_count": 9,
+  "official_catalog_items": 79,
+  "official_catalog_pages": 36,
+  "brand_scope_mode": "brand_wide_all_products_services_and_mentions",
+  "retailer_store_counts": {
+    "billigxxl": 1,
+    "Geizhals \u00d6sterreich": 1,
+    "ratioDB": 1,
+    "Fotoforma.pl": 1,
+    "Other retailer": 2,
+    "B&H Photo": 3
+  },
+  "retailer_price_reference_count": 2,
+  "retail_unique_urls": 9,
+  "post_analytics_rows": [
+    [
+      "Facebook",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Instagram",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "X / Twitter",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "LinkedIn",
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Reddit",
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "YouTube",
+      0,
+      8,
+      0,
+      0,
+      0,
+      6,
+      "5790",
+      "38",
+      "10"
+    ],
+    [
+      "Camera Forums",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Google / News / Articles",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Retailers",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ]
+  ],
+  "platform_kpi_rows": [
+    [
+      "Facebook",
+      0,
+      3,
+      3,
+      0,
+      0,
+      3
+    ],
+    [
+      "Instagram",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "X / Twitter",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "LinkedIn",
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      "Reddit",
+      2,
+      0,
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      "YouTube",
+      8,
+      0,
+      8,
+      8,
+      8,
+      0
+    ],
+    [
+      "Camera Forums",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Google / News / Articles",
+      3,
+      1,
+      4,
+      3,
+      3,
+      0
+    ],
+    [
+      "Retailers",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "kpi_card_groups": [
+    [
+      "SOURCE COVERAGE",
+      [
+        [
+          "Dated sources",
+          14
+        ],
+        [
+          "Pending leads",
+          4
+        ],
+        [
+          "Unique source URLs",
+          18
+        ],
+        [
+          "Days captured",
+          "31/31"
+        ]
+      ]
+    ],
+    [
+      "OBSERVED ENGAGEMENT",
+      [
+        [
+          "Views",
+          5790
+        ],
+        [
+          "Likes",
+          38
+        ],
+        [
+          "Comments",
+          10
+        ],
+        [
+          "Shares",
+          null
+        ]
+      ]
+    ],
+    [
+      "OVERALL SENTIMENT",
+      [
+        [
+          "Positive",
+          3
+        ],
+        [
+          "Negative",
+          1
+        ],
+        [
+          "Neutral",
+          7
+        ],
+        [
+          "Questions",
+          3
+        ]
+      ]
+    ],
+    [
+      "POST FORMATS",
+      [
+        [
+          "Posts",
+          3
+        ],
+        [
+          "Videos",
+          8
+        ],
+        [
+          "Reels",
+          0
+        ],
+        [
+          "Stories",
+          0
+        ]
+      ]
+    ],
+    [
+      "ADDITIONAL ENGAGEMENT AND EVIDENCE",
+      [
+        [
+          "Reactions",
+          null
+        ],
+        [
+          "Reposts",
+          null
+        ],
+        [
+          "Linked replies",
+          6
+        ],
+        [
+          "Cached images",
+          11
+        ]
+      ]
+    ],
+    [
+      "SUPPORTING RECORDS",
+      [
+        [
+          "Retail entries",
+          9
+        ],
+        [
+          "Articles",
+          3
+        ],
+        [
+          "Comment findings",
+          0
+        ],
+        [
+          "Not classified",
+          0
+        ]
+      ]
+    ],
+    [
+      "UNVERIFIED REFERENCE METRICS",
+      [
+        [
+          "Reference views",
+          575
+        ],
+        [
+          "Reference likes",
+          127
+        ],
+        [
+          "Reference comments",
+          3
+        ],
+        [
+          "Reference shares",
+          3
+        ]
+      ]
+    ],
+    [
+      "OFFICIAL PRODUCT CATALOG | SEPARATE SNAPSHOT",
+      [
+        [
+          "Catalog products",
+          79
+        ],
+        [
+          "Catalog pages",
+          36
+        ],
+        [
+          "Listing access errors",
+          0
+        ],
+        [
+          "Catalog source",
+          "Manufacturer"
+        ]
+      ]
+    ]
+  ],
+  "pending_reference_metrics": {
+    "views": 575,
+    "likes": 127,
+    "comments": 3,
+    "shares": 3
+  },
+  "rejected_synthetic_example_urls": [
+    "https://www.reddit.com/r/videography/comments/abc123/angelbird_media_performance_in_real_world/",
+    "https://www.youtube.com/watch?v=def456"
+  ],
+  "overall_kpi": {
+    "dated_records": 14,
+    "pending_leads": 4,
+    "metrics": {
+      "views": 5790,
+      "likes": 38,
+      "comments": 10,
+      "shares": null,
+      "reactions": null,
+      "reposts": null
+    },
+    "metric_source_counts": {
+      "views": 8,
+      "likes": 7,
+      "comments": 8,
+      "shares": 0,
+      "reactions": 0,
+      "reposts": 0
+    },
+    "sentiment": {
+      "positive": 3,
+      "negative": 1,
+      "neutral": 7,
+      "question": 3,
+      "not_applicable": 0
+    }
+  },
+  "platform_sentiment_rows": [
+    [
+      "Facebook",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Instagram",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "X / Twitter",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "LinkedIn",
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Reddit",
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      "YouTube",
+      0,
+      0,
+      5,
+      3,
+      0
+    ],
+    [
+      "Camera Forums",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Google / News / Articles",
+      1,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      "Retailers",
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ]
+}

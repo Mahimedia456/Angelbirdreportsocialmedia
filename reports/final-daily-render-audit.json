@@ -1,0 +1,194 @@
+{
+  "brand": "Angelbird",
+  "month": "2026-10",
+  "daily_count": 31,
+  "origin": "existing original daily JSON; no network/API used",
+  "records": [
+    {
+      "day": "2026-10-01",
+      "pages": 9,
+      "bytes": 99576,
+      "sha256": "2ff85099af171d58248c4eb12e92b2df410c550ed5c2b10aa98c7905b9b2393a"
+    },
+    {
+      "day": "2026-10-02",
+      "pages": 8,
+      "bytes": 77492,
+      "sha256": "98758162e2ee1e5199e7eec6d98f4d911a9302b20a6062b0e05d985e5e1bb1fa"
+    },
+    {
+      "day": "2026-10-03",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "a938f820fae939a4a6276fb1ce3f700ce0e5f54afcf74c15303ac7539edde2fe"
+    },
+    {
+      "day": "2026-10-04",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "d5f2b7d547ec670815425299afd027002f35948a9b8a2b3f4a263cac6a24d20e"
+    },
+    {
+      "day": "2026-10-05",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "e38fbb2d2aa4dbf5e8b5e112b73c9f0b05863463d520818135c0b1f2539c951d"
+    },
+    {
+      "day": "2026-10-06",
+      "pages": 10,
+      "bytes": 182725,
+      "sha256": "5d77b460671cd9d68e5588b65e90fd2127c186080a06473a459b733475f3b084"
+    },
+    {
+      "day": "2026-10-07",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "4a93208afd7c2e6e8bd5831fc8c8f5c0a5ba83cf520c0d9824e3568fbdbc0c20"
+    },
+    {
+      "day": "2026-10-08",
+      "pages": 9,
+      "bytes": 181626,
+      "sha256": "c4de30fc9d93b876d5c7b9c013bbc61397b2958015e7a716634721667cb50e94"
+    },
+    {
+      "day": "2026-10-09",
+      "pages": 9,
+      "bytes": 94013,
+      "sha256": "cc79b87890742044823e3b41239cca860ec708ff720e42321f485d37d6d7cf88"
+    },
+    {
+      "day": "2026-10-10",
+      "pages": 9,
+      "bytes": 180825,
+      "sha256": "db0136f06cb03af5716af2e2982f853b88379626ef9b8ed052897b56122d8a34"
+    },
+    {
+      "day": "2026-10-11",
+      "pages": 8,
+      "bytes": 77490,
+      "sha256": "f7ade55d994ba24eabd37a2050022815f21830ae01ea0073a441a797f8dbbe8c"
+    },
+    {
+      "day": "2026-10-12",
+      "pages": 8,
+      "bytes": 77492,
+      "sha256": "a7a10b050620db751c024d9a95010ff0f72dca5c508db58cc4c83c6a3a968394"
+    },
+    {
+      "day": "2026-10-13",
+      "pages": 8,
+      "bytes": 77492,
+      "sha256": "6998cbd237cf4c7bf74991eb0e5e8b385c4c0e10fad65b16d9537d7f47b08528"
+    },
+    {
+      "day": "2026-10-14",
+      "pages": 8,
+      "bytes": 77490,
+      "sha256": "672071e36fa0a9ada1d67fe77ad56cba85f9c05dca2e83d386dc5952781d1090"
+    },
+    {
+      "day": "2026-10-15",
+      "pages": 9,
+      "bytes": 95136,
+      "sha256": "ac3ac23a0b84ee7ad900b37a05bf78217d26e718115ebbaf6002b6b95ab99683"
+    },
+    {
+      "day": "2026-10-16",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "999af5612b9f6330b7668ab8539acc21e4e568cb6588958550a39b052eb76de0"
+    },
+    {
+      "day": "2026-10-17",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "bb9fead91e5a6840e33bf6f4810215ca2111373b2f223e11698b337728e5d1e1"
+    },
+    {
+      "day": "2026-10-18",
+      "pages": 9,
+      "bytes": 93124,
+      "sha256": "e7c325b26a1d9045573aa165826505c769e6ac77bca9a0788f366c256dbf78f3"
+    },
+    {
+      "day": "2026-10-19",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "62ab669f2bdfaf78284df7b356811c8b78c57d52e906f4341ef6a05cb032dc94"
+    },
+    {
+      "day": "2026-10-20",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "4d67ae8d2a5f95cabe0d9a4ddf1d88725f2c47e4c75c5253e2db32b4e542a012"
+    },
+    {
+      "day": "2026-10-21",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "02c31889c51507468514f55569ad5cfc1e90fa5458dfe04408dc2b9c0e64e86f"
+    },
+    {
+      "day": "2026-10-22",
+      "pages": 8,
+      "bytes": 77494,
+      "sha256": "d45e08ce1e7778953ea9301d99eb612f310437ab28d6585ba29731025dcec7c2"
+    },
+    {
+      "day": "2026-10-23",
+      "pages": 8,
+      "bytes": 77491,
+      "sha256": "5900ecaa54d3be385518ae03fe29e59a4285f8e6def938d4b2e315bb14e06eb3"
+    },
+    {
+      "day": "2026-10-24",
+      "pages": 8,
+      "bytes": 77490,
+      "sha256": "f6ac8b5fa56af64ce360096d651c6fe98bd0dedb80957fcadaf5d3b64d03d1d2"
+    },
+    {
+      "day": "2026-10-25",
+      "pages": 8,
+      "bytes": 77490,
+      "sha256": "d78350c77b441178b3faf198855e4196a70c84bdcc8ee034aa324544d1785aec"
+    },
+    {
+      "day": "2026-10-26",
+      "pages": 8,
+      "bytes": 77490,
+      "sha256": "3c0fa3724979b28bd9adc41e59fb1ade8eae2b9b7f410e2bb136b747acb4a27d"
+    },
+    {
+      "day": "2026-10-27",
+      "pages": 8,
+      "bytes": 77490,
+      "sha256": "6c8a247cf4e55f059aaef553eae79d82e20b1111c690e67091115305f63f7a22"
+    },
+    {
+      "day": "2026-10-28",
+      "pages": 8,
+      "bytes": 77490,
+      "sha256": "1367a2f30acb175d1e5c675e546ef6bc98fc30afc1506184eab849f1df768a0d"
+    },
+    {
+      "day": "2026-10-29",
+      "pages": 10,
+      "bytes": 225292,
+      "sha256": "69fd64ea48036aaeae98a7162eb98f9b51125d575e6360bc31dc1abd0c43b3be"
+    },
+    {
+      "day": "2026-10-30",
+      "pages": 9,
+      "bytes": 320106,
+      "sha256": "4a33a65b13f31f3a8ddbe69ec6fb4e2d4fcbbb821fb78d2d0fa726574a9e4c99"
+    },
+    {
+      "day": "2026-10-31",
+      "pages": 8,
+      "bytes": 77490,
+      "sha256": "809de233e1bad5d3cb63c8a18ae7777a291b0bfe1ca52e3defa23e3b278a4757"
+    }
+  ]
+}
