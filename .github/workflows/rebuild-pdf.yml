@@ -38,11 +38,13 @@ jobs:
         env:
           REPORT_DATE: ${{ inputs.report_date || '2026-10-30' }}
         run: python -m src.verify_pdf "$REPORT_DATE"
+      - name: Refresh public website reports index
+        run: python scripts/update_report_index.py
       - name: Commit regenerated PDF and cumulative JSON
         run: |
           git config user.name 'angelbird-report-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/ data/ assets/ || true
+          git add reports/ data/ assets/ reports-index.json || true
           if ! git diff --cached --quiet; then
             git commit -m "Rebuild Angelbird PDF ${{ inputs.report_date }} (without AI)"
             git pull --rebase origin "${GITHUB_REF_NAME}"
