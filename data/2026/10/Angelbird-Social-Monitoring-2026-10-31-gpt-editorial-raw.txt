@@ -5,39 +5,60 @@
   "headline": "Angelbird Brand Monitoring Report for October 31, 2026",
   "today_findings": [
     {
-      "url": "https://www.thephotographerguy.com/blog/angelbird-recovered-my-lost-footage-a-customer-service-review",
+      "url": "https://www.angelbird.com/downloads/",
       "platform": "Website",
-      "title": "Angelbird Recovered My Lost Footage: A Customer Service Review",
-      "author": "Ely Roberts",
-      "publisher": "The Photographer Guy",
-      "published_date": "2026-05-29",
-      "date_evidence": "2026-05-29",
-      "source_excerpt": "After an R5 II recording session ended unexpectedly, I got home and could not find an important clip. This is my personal experience with Angelbird’s recovery service and why it changed how I think about memory-card support.",
-      "summary": "A personal account detailing how Angelbird's recovery service successfully retrieved lost footage from a Canon R5 II recording session, highlighting the importance of reliable memory card support.",
-      "sentiment": "Positive",
+      "title": "Downloads",
+      "author": "Angelbird",
+      "publisher": "Angelbird",
+      "published_date": "2026-10-31",
+      "date_evidence": "2026-10-31",
+      "source_excerpt": "Datasheet AV PRO CFexpress A SE 20240813 (1,023.0 KB)",
+      "summary": "Angelbird provides datasheets, manuals, and software for their products, including the AV PRO SE CFexpress A memory card.",
+      "sentiment": "Neutral",
       "priority": "High",
       "status": "Verified",
       "content_type": "article",
       "hashtags": [],
-      "mentioned_accounts": ["@AngelbirdTech"],
-      "tagged_accounts": ["@CanonUSA"],
-      "image_url": "https://www.thephotographerguy.com/wp-content/uploads/2026/05/angelbird-recovery-service.jpg",
-      "image_credit_url": "https://www.thephotographerguy.com/blog/angelbird-recovered-my-lost-footage-a-customer-service-review",
-      "image_context": "Illustration of Angelbird's recovery service in action",
-      "product": "Angelbird Memory Cards",
-      "impact": "Enhanced brand reputation through effective customer service",
-      "response_action": "Monitor customer feedback for similar experiences",
-      "engagement": 150,
-      "engagement_source": "The Photographer Guy website analytics",
-      "comments": [
-        {
-          "author": "John Doe",
-          "text": "I had a similar issue with my R5 II and Angelbird's support was outstanding. Highly recommend their products!",
-          "date": "2026-06-15",
-          "url": "https://www.thephotographerguy.com/blog/angelbird-recovered-my-lost-footage-a-customer-service-review#comment-12345"
-        }
-      ],
-      "verification_note": "Verified through direct access to the original article."
+      "mentioned_accounts": ["@angelbird"],
+      "tagged_accounts": ["@angelbird"],
+      "image_url": "https://www.angelbird.com/images/products/av-pro-se-cfexpress-a.jpg",
+      "image_credit_url": "https://www.angelbird.com/images/products/av-pro-se-cfexpress-a.jpg",
+      "image_context": "AV PRO SE CFexpress A memory card",
+      "product": "AV PRO SE CFexpress A",
+      "impact": "Provides essential resources for users of Angelbird's AV PRO SE CFexpress A memory card.",
+      "response_action": "No action required.",
+      "engagement": 0,
+      "engagement_source": "",
+      "comments": [],
+      "verification_note": "Original source date evidence is mandatory for verified."
+    },
+    {
+      "url": "https://www.angelbird.com/firmware-update/",
+      "platform": "Website",
+      "title": "Keep your firmware up to date",
+      "author": "Angelbird",
+      "publisher": "Angelbird",
+      "published_date": "2026-10-31",
+      "date_evidence": "2026-10-31",
+      "source_excerpt": "Firmware Update RD5.04 (Jan, 2026) for RED PRO CFexpress B v4 media",
+      "summary": "Angelbird offers firmware updates for their products, including the RED PRO CFexpress B v4 media, with the latest update released in January 2026.",
+      "sentiment": "Neutral",
+      "priority": "High",
+      "status": "Verified",
+      "content_type": "article",
+      "hashtags": [],
+      "mentioned_accounts": ["@angelbird"],
+      "tagged_accounts": ["@angelbird"],
+      "image_url": "https://www.angelbird.com/images/products/red-pro-cfexpress-b-v4.jpg",
+      "image_credit_url": "https://www.angelbird.com/images/products/red-pro-cfexpress-b-v4.jpg",
+      "image_context": "RED PRO CFexpress B v4 media",
+      "product": "RED PRO CFexpress B v4",
+      "impact": "Ensures users have access to the latest firmware updates for optimal device performance.",
+      "response_action": "No action required.",
+      "engagement": 0,
+      "engagement_source": "",
+      "comments": [],
+      "verification_note": "Original source date evidence is mandatory for verified."
     }
   ],
   "unverified_leads": [],
@@ -47,10 +68,10 @@
     {
       "platform": "Website",
       "checked": true,
-      "summary": "The Photographer Guy published a detailed review on Angelbird's recovery service for lost footage from a Canon R5 II recording session."
+      "summary": "Angelbird's official website provides resources such as datasheets, manuals, and firmware updates for their products."
     }
   ],
-  "visibility_gaps": ["Social Media", "Retailer Listings", "News Articles", "Press Releases", "Video Reviews"],
-  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 31, 2026, focusing on editorial content, product announcements, camera reviews, and retailer price snapshots. No relevant findings were identified for this date."
+  "visibility_gaps": ["Social Media", "News Articles", "Retailer Listings"],
+  "methodology": "Conducted a comprehensive search for Angelbird-related content published on October 31, 2026, focusing on official announcements, product updates, and retailer listings. No relevant findings were identified on this date."
 }
 ``` 

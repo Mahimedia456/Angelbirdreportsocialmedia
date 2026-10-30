@@ -1,0 +1,554 @@
+[
+  {
+    "scope": "Python public source audit",
+    "data": [
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/posts/ \"Angelbird\" 2026-10-18",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com/p/ \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/posts/ \"Angelbird\" 2026-10-18",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:x.com/status/ \"Angelbird\" 2026-10-18",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com/r/ \"Angelbird\" 2026-10-18",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search",
+        "query": "site:youtube.com/watch \"Angelbird\" 2026-10-18",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "site:dpreview.com/forums \"Angelbird\" 2026-10-18",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "site:newsshooter.com \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "site:bhphotovideo.com \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" camera creator tagged mentions October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com/reel/ \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/feed/update/ \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:twitter.com \"Angelbird\" review mention October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com/r/ \"Angelbird\" camera product problems October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "\"Angelbird\" hands-on camera production forum October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "site:cined.com \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "site:cvp.com \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/reel/ \"Angelbird\" video production October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com/stories/ \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/posts/ \"Angelbird\" \"CFexpress\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:x.com/ \"Angelbird\" \"CFexpress\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "site:dpreview.com/forums \"Angelbird\" \"card\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "\"Angelbird\" video production review article 2026-10-18",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" \"CFexpress\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com \"Angelbird\" hashtag mention tagged creator 2026-10-18",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/posts/ \"Angelbird\" \"AV PRO\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:x.com/ \"Angelbird\" \"AV PRO\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "site:forum.blackmagicdesign.com \"Angelbird\" \"October\" \"2026\"",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"AV PRO\" \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com/p/ \"angelbird\" \"CFexpress\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "site:reddit.com/r/cinematography \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/groups/ \"Angelbird\" \"card\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com/reel/ \"angelbird\" \"SSD\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" \"CFexpress\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com \"angelbirdmedia\" \"October\" \"2026\"",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" \"AV PRO\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" \"CFast\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" \"SSD2GO\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/angelbirdmedia/posts/ October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/AngelbirdTechnologies/posts/ October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/reel/ \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/groups/ \"Angelbird\" \"card\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/photo/ \"Angelbird\" October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "\"Angelbird\" Facebook filmmaker review October 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "stage": "free-news-search",
+        "provider": "GDELT",
+        "state": "HTTP 429",
+        "source_verified": false
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/",
+        "source_date": "",
+        "title": "Memory cards, SSDs, SD cards & more | Angelbird"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/category/memory-cards-29/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/category/memory-cards-29/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/category/memory-cards-29/",
+        "source_date": "",
+        "title": "Memory cards"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.bhphotovideo.com/c/browse/angelbird/ci/51210",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/our-story/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/our-story/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/our-story/",
+        "source_date": "",
+        "title": "Storage media that unlocks your creative freedom"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/prod/av-pro-cfexpress-mk2-type-b-2893/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/prod/av-pro-cfexpress-mk2-type-b-2893/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/prod/av-pro-cfexpress-mk2-type-b-2893/",
+        "source_date": "",
+        "title": "AV PRO CFexpress B 4 TB"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/login/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/login/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/contact/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/contact/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.angelbird.com/contact/",
+        "source_date": "",
+        "title": "Contact"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.bestbuy.com/site/searchpage.jsp?id=pcat17071&st=Angelbird",
+        "result": "HTTPSConnectionPool(host='www.bestbuy.com', port=443): Read timed out. (read timeout=13)",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
+        "result": "OK",
+        "final_url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
+        "source_date": "2026-10-29",
+        "title": "Best SD and CFexpress Cards for Northern Ontario: Where to Spend and Where to Save"
+      },
+      {
+        "stage": "image",
+        "url": "https://i.ytimg.com/vi/ZJqEKSfvirs/mqdefault.jpg",
+        "result": "cached attributed thumbnail",
+        "asset": "assets/2026/10/2026-10-18/source_001.jpg"
+      }
+    ],
+    "counts": {
+      "YouTube.api_searches": 1,
+      "YouTube.verified": 1,
+      "YouTube.statistics_calls": 1,
+      "YouTube.comments_calls": 1,
+      "Facebook.wrong_source_domain": 64,
+      "Facebook.successful_queries": 16,
+      "Facebook.brave_not_configured": 16,
+      "Facebook.fallback_attempts": 1,
+      "Facebook.queries": 16,
+      "Instagram.wrong_source_domain": 30,
+      "Instagram.successful_queries": 7,
+      "Instagram.brave_not_configured": 7,
+      "Instagram.fallback_attempts": 1,
+      "Instagram.queries": 7,
+      "LinkedIn.wrong_source_domain": 16,
+      "LinkedIn.successful_queries": 4,
+      "LinkedIn.brave_not_configured": 4,
+      "LinkedIn.fallback_attempts": 1,
+      "LinkedIn.queries": 4,
+      "X / Twitter.wrong_source_domain": 16,
+      "X / Twitter.successful_queries": 4,
+      "X / Twitter.brave_not_configured": 4,
+      "X / Twitter.fallback_attempts": 1,
+      "X / Twitter.queries": 4,
+      "Reddit.wrong_source_domain": 12,
+      "Reddit.successful_queries": 2,
+      "Reddit.brave_not_configured": 2,
+      "Reddit.fallback_attempts": 1,
+      "Reddit.queries": 2,
+      "YouTube.wrong_source_domain": 10,
+      "YouTube.successful_queries": 1,
+      "YouTube.brave_not_configured": 1,
+      "YouTube.fallback_attempts": 1,
+      "YouTube.queries": 1,
+      "Camera forums.wrong_source_domain": 18,
+      "Camera forums.successful_queries": 5,
+      "Camera forums.brave_not_configured": 5,
+      "Camera forums.fallback_attempts": 1,
+      "Camera forums.queries": 5,
+      "Industry articles.candidates": 9,
+      "Industry articles.wrong_source_domain": 6,
+      "Industry articles.successful_queries": 3,
+      "Industry articles.queries": 3,
+      "Retailers.wrong_source_domain": 4,
+      "Retailers.successful_queries": 2,
+      "Retailers.brave_not_configured": 2,
+      "Retailers.fallback_attempts": 1,
+      "Retailers.queries": 2,
+      "Industry articles.brave_not_configured": 2,
+      "Industry articles.fallback_attempts": 1,
+      "Facebook.candidates": 3,
+      "Reddit.candidates": 2,
+      "Facebook.source_attempts": 3,
+      "Facebook.no_brand_original": 3,
+      "Reddit.source_attempts": 2,
+      "Reddit.fetch_failed": 2,
+      "Reddit.index_only_leads": 2,
+      "Industry articles.source_attempts": 9,
+      "Industry articles.not_dated_today": 6,
+      "Industry articles.fetch_failed": 2,
+      "Industry articles.no_brand_original": 1
+    },
+    "search_queries": 45,
+    "original_pages_attempted": 14,
+    "cached_images": 1,
+    "undated_brand_sources": 7,
+    "previous_five_day_brand_sources": 0
+  },
+  {
+    "scope": "Historical source image cache",
+    "data": {
+      "cached_report_images": 0,
+      "original_post_preview_checks": 7,
+      "image_audit": [
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+          "status": "HTTP 403"
+        }
+      ]
+    }
+  }
+]

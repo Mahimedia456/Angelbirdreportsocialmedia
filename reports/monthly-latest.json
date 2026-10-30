@@ -1,37 +1,40 @@
 {
   "period": "monthly",
   "start": "2026-10-01",
-  "end": "2026-10-30",
-  "path": "reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-30.pdf",
-  "snapshots": 9,
-  "archived_findings": 4,
-  "dated_findings": 7,
-  "unverified_leads": 3,
+  "end": "2026-10-31",
+  "path": "reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-31.pdf",
+  "snapshots": 31,
+  "archived_findings": 3,
+  "dated_findings": 13,
+  "unverified_leads": 4,
   "platform_counts": {
     "Facebook": 0,
     "Instagram": 0,
     "X / Twitter": 0,
     "LinkedIn": 1,
     "Reddit": 2,
-    "YouTube": 2,
+    "YouTube": 8,
     "Camera Forums": 0,
     "Google / News / Articles": 2,
     "Retailers": 0
   },
   "sentiment_counts": {
-    "Question": 2,
-    "Neutral": 1,
+    "Question": 3,
+    "Neutral": 6,
     "Positive": 3,
     "Negative": 1
   },
   "observed_product_labels": {
+    "Angelbird AV PRO": 2,
     "Angelbird AV PRO CF CFast 2.0 1TB": 1,
-    "AV PRO SE CFexpress B v4 512GB": 1,
+    "Angelbird AV Pro": 1,
     "CFexpress Type B / BURANO RAW": 1,
-    "Angelbird CFexpress": 1
+    "Angelbird AV-Pro-SE CFexpress": 1,
+    "Angelbird CFexpress": 1,
+    "ANGELBIRD AVPRO": 1
   },
   "record_type_counts": {
-    "video": 2,
+    "video": 8,
     "article": 2,
     "post": 3
   },
@@ -43,21 +46,30 @@
     "Reddit": 0,
     "YouTube": 0,
     "Camera Forums": 0,
-    "Google / News / Articles": 0,
+    "Google / News / Articles": 1,
     "Retailers": 0
   },
-  "unique_social_url_groups": 6,
-  "linked_reply_excerpts": 0,
-  "daily_coverage_percent": 30.0,
+  "unique_social_url_groups": 12,
+  "linked_reply_excerpts": 6,
+  "daily_coverage_percent": 100.0,
   "source_media": {
-    "embedded_verified": 4,
-    "linked_verified": 4,
+    "embedded_verified": 10,
+    "linked_verified": 10,
     "embedded_leads": 0,
-    "linked_leads": 1,
+    "linked_leads": 2,
     "missing_media_verified": 3
   },
-  "retail_observations_count": 6,
-  "retail_unique_urls": 6,
+  "retail_observations_count": 9,
+  "retailer_store_counts": {
+    "billigxxl": 1,
+    "Geizhals \u00d6sterreich": 1,
+    "ratioDB": 1,
+    "Fotoforma.pl": 1,
+    "Other retailer": 2,
+    "B&H Photo": 3
+  },
+  "retailer_price_reference_count": 2,
+  "retail_unique_urls": 9,
   "post_analytics_rows": [
     [
       "Facebook",
@@ -122,14 +134,14 @@
     [
       "YouTube",
       0,
-      2,
+      8,
       0,
       0,
       0,
-      0,
-      "68",
-      "1",
-      "0"
+      6,
+      "5790",
+      "38",
+      "10"
     ],
     [
       "Camera Forums",
@@ -216,11 +228,11 @@
     ],
     [
       "YouTube",
-      2,
+      8,
       0,
-      2,
-      2,
-      2,
+      8,
+      8,
+      8,
       0
     ],
     [
@@ -235,8 +247,8 @@
     [
       "Google / News / Articles",
       2,
-      0,
-      2,
+      1,
+      3,
       2,
       2,
       0
@@ -257,19 +269,19 @@
       [
         [
           "Dated sources",
-          7
+          13
         ],
         [
           "Pending leads",
-          3
+          4
         ],
         [
           "Unique source URLs",
-          10
+          17
         ],
         [
           "Days captured",
-          "9/30"
+          "31/31"
         ]
       ]
     ],
@@ -278,15 +290,15 @@
       [
         [
           "Views",
-          68
+          5790
         ],
         [
           "Likes",
-          1
+          38
         ],
         [
           "Comments",
-          0
+          10
         ],
         [
           "Shares",
@@ -307,11 +319,11 @@
         ],
         [
           "Neutral",
-          1
+          6
         ],
         [
           "Questions",
-          2
+          3
         ]
       ]
     ],
@@ -324,7 +336,7 @@
         ],
         [
           "Videos",
-          2
+          8
         ],
         [
           "Reels",
@@ -349,11 +361,11 @@
         ],
         [
           "Linked replies",
-          0
+          6
         ],
         [
           "Cached images",
-          4
+          10
         ]
       ]
     ],
@@ -362,7 +374,7 @@
       [
         [
           "Retail entries",
-          6
+          9
         ],
         [
           "Articles",
@@ -411,20 +423,20 @@
     "https://www.youtube.com/watch?v=def456"
   ],
   "overall_kpi": {
-    "dated_records": 7,
-    "pending_leads": 3,
+    "dated_records": 13,
+    "pending_leads": 4,
     "metrics": {
-      "views": 68,
-      "likes": 1,
-      "comments": 0,
+      "views": 5790,
+      "likes": 38,
+      "comments": 10,
       "shares": null,
       "reactions": null,
       "reposts": null
     },
     "metric_source_counts": {
-      "views": 2,
-      "likes": 2,
-      "comments": 2,
+      "views": 8,
+      "likes": 7,
+      "comments": 8,
       "shares": 0,
       "reactions": 0,
       "reposts": 0
@@ -432,8 +444,8 @@
     "sentiment": {
       "positive": 3,
       "negative": 1,
-      "neutral": 1,
-      "question": 2,
+      "neutral": 6,
+      "question": 3,
       "not_applicable": 0
     }
   },
@@ -482,8 +494,8 @@
       "YouTube",
       0,
       0,
-      0,
-      2,
+      5,
+      3,
       0
     ],
     [

@@ -1,13 +1,13 @@
 {
   "period": "monthly",
-  "report": "reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-30.pdf",
-  "pages": 9,
-  "pdf_bytes": 472220,
-  "expected_dated_records": 7,
-  "expected_leads": 3,
-  "original_source_links_in_pdf": 50,
-  "embedded_pdf_image_xobjects": 7,
-  "images_reported_in_manifest": 4,
+  "report": "reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-31.pdf",
+  "pages": 14,
+  "pdf_bytes": 568527,
+  "expected_dated_records": 13,
+  "expected_leads": 4,
+  "original_source_links_in_pdf": 84,
+  "embedded_pdf_image_xobjects": 13,
+  "images_reported_in_manifest": 10,
   "required_sections_checked": [
     "EXECUTIVE KPI DASHBOARD",
     "OVERALL SENTIMENT",
@@ -27,5 +27,5 @@
   "missing_sections": [],
   "synthetic_placeholder_urls_found": false,
   "no_page_cap": true,
-  "source_dated_coverage_percent": 30.0
+  "source_dated_coverage_percent": 100.0
 }
