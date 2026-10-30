@@ -30,13 +30,15 @@ jobs:
       - name: Regenerate latest-date PDF from saved JSON + prior references
         env:
           REPORT_ONLY: 'true'
+          FETCH_EVIDENCE_IMAGES: 'true'
+          MAX_REPORT_IMAGES: '10'
           REPORT_DATE: ${{ inputs.report_date || '2026-10-30' }}
         run: python -m src.main
       - name: Commit regenerated PDF and cumulative JSON
         run: |
           git config user.name 'angelbird-report-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/ data/ || true
+          git add reports/ data/ assets/ || true
           if ! git diff --cached --quiet; then
             git commit -m "Rebuild Angelbird PDF ${{ inputs.report_date }} (without AI)"
             git pull --rebase origin "${GITHUB_REF_NAME}"
