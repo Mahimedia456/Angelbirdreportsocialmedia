@@ -39,7 +39,8 @@ def kpi_dashboard(pdf, groups):
                 value='N/A' if value is None else f'{value:,}' if isinstance(value,(int,float)) else str(value)
                 # Avoid fitting narrow-card text into two lines unexpectedly.
                 if len(value)>14:value=value[:13]+'...'
-                cards.append([pdf.P(f'<font color="{'#%02X%02X%02X' % (int(color.red*255),int(color.green*255),int(color.blue*255))}">{value}</font>','kpi',raw=True),
+                rgb='#%02X%02X%02X' % (int(color.red*255),int(color.green*255),int(color.blue*255))
+                cards.append([pdf.P(f'<font color="{rgb}">{value}</font>','kpi',raw=True),
                               Spacer(1,3),pdf.P(str(label),'kpilabel')])
                 commands += [('BACKGROUND',(i,0),(i,0),bg),
                              ('LINEBEFORE',(i,0),(i,0),2,color)]
