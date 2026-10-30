@@ -2,3 +2,5 @@ Production hybrid: 2026-10-30, one GPT-4.1-mini Responses request (up to 2 web s
 
 Cost-free recovery of saved GPT response: normalize permalink fields, preserve retail leads, no new OpenAI call.\n
 Rebuild from previous paid GPT raw JSON and fixed case-insensitive brand matching, zero additional paid requests.
+
+Publish V4 nine-platform PDF and YouTube public statistics from cached GPT response. GPT cache reuse; no second paid call.
