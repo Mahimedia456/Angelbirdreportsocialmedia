@@ -1,0 +1,62 @@
+name: One-time Angelbird October Historical Research Backfill
+on:
+  push:
+    branches: [main]
+    paths: ['config/october_deep_backfill_2026.run']
+permissions:
+  contents: write
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      RESEARCH_ENGINE: python
+      FREE_SOURCES_ONLY: 'false'
+      GPT_RESEARCH_ENABLED: 'true'
+      GPT_PLATFORM_SWEEPS: 'true'
+      GPT_MAX_RESEARCH_ROUNDS: '2'
+      GPT_MAX_WEB_CALLS: '3'
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: 'gpt-4.1-mini'
+      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      MAX_SEARCH_QUERIES: '56'
+      MAX_SOURCE_PAGES: '100'
+      MAX_SOURCE_PAGES_PER_GROUP: '12'
+      MAX_SOURCE_IMAGES: '12'
+      MAX_REPORT_IMAGES: '12'
+      REPORT_SINGLE_DAY: 'true'
+      DRY_RUN: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt pypdf
+      - name: Dated source searches and AI verification
+        run: |
+          for day in 2026-10-07 2026-10-14 2026-10-21 2026-10-28; do
+            echo "Researching $day"
+            REPORT_DATE="$day" python -m src.main
+          done
+      - name: Build and validate October monthly PDF
+        run: |
+          python -m scripts.build_periodic_report --period monthly --end 2026-10-30
+          python scripts/update_report_index.py
+          python scripts/build_website.py
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          import json
+          meta=json.loads(Path('reports/monthly-latest.json').read_text())
+          pdf=Path(meta['path'])
+          pages=PdfReader(pdf, strict=True).pages
+          assert len(pages)>0
+          assert len(meta.get('platform_counts',{}))>=7
+          print('October PDF',len(pages),'pages,',meta['dated_findings'],'dated sources,',meta['snapshots'],'saved days')
+          PY
+      - name: Publish source records, PDFs, and website index
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ assets/ reports/ reports-index.json || true
+          git diff --cached --quiet || (git commit -m 'Angelbird October dated research backfill and monthly report' && git pull --rebase origin main && git push origin main)
