@@ -1,0 +1,208 @@
+{
+  "source": "User-provided Angelbird_Report_29_Oct_2026.pdf (8 pages)",
+  "period": "2026-10-22 to 2026-10-29",
+  "source_note": "Archival reference only. These are not independently revalidated by the automated agent and never count as newly verified on later dates.",
+  "findings": [
+    {
+      "title": "Angelbird AV PRO SE CFexpress B 512GB included in Canadian camera-card guide",
+      "platform": "NetNewsLedger / Editorial",
+      "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
+      "published_date": "2026-10-29",
+      "author": "James Murray",
+      "sentiment": "Positive",
+      "priority": "Low",
+      "source_excerpt": "Angelbird AV PRO SE CFexpress B v4 512GB",
+      "summary": "Canadian camera-card shortlist includes the Angelbird AV PRO SE 512GB as a conditional Type B recommendation. Editorial comparison, not independent field testing.",
+      "product": "AV PRO SE CFexpress B v4 512GB",
+      "impact": "Positive editorial visibility with product-specific context.",
+      "response_action": "Optional: share the editorial mention.",
+      "image_url": "https://www.avshop.ca/images/angelbird/CFexpressBSEMK2512GB_1.jpeg",
+      "engagement": {
+        "price": "CAD $529",
+        "sustained_write": "1,050 MB/s"
+      },
+      "date_evidence": "29 October 2026 publication date recorded in reference PDF",
+      "verification_note": "Imported from user's 29-Oct reference PDF; source should be rechecked before treating as new."
+    },
+    {
+      "title": "Photographer shares Arctic photos captured using Angelbird cards",
+      "platform": "Facebook / Kristian Gillies Photography",
+      "url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl",
+      "published_date": "2026-10-28",
+      "author": "Kristian Gillies Photography",
+      "sentiment": "Positive",
+      "priority": "Low",
+      "source_excerpt": "Shot on #sonyalpha using Angelbird Technologies cards",
+      "summary": "Wildlife photographer showed Arctic imagery and described Angelbird media used with a Sony Alpha. Reference PDF reports card visible in the third photo; comments discuss the photographs rather than card performance.",
+      "product": "AV PRO CFexpress Type A 512GB (as identified in reference)",
+      "engagement": {
+        "page_followers": "17K",
+        "page_likes": "1.1K",
+        "post_views": "575",
+        "post_likes": "127",
+        "shares": "3",
+        "comments": "3"
+      },
+      "impact": "Real-world creator use and potential opportunity for relationship building.",
+      "response_action": "Optional: reach out to the photographer.",
+      "images": [
+        "https://www.facebook.com/photo?fbid=1575983300996022"
+      ],
+      "verification_note": "Metrics and quotation transcribed from user-supplied 29-Oct report; not independently refreshed.",
+      "date_evidence": "Reference report attributes discovery to 28 October 2026"
+    },
+    {
+      "title": "ComLine France names Angelbird as SATIS 2026 partner",
+      "platform": "LinkedIn / ComLine France",
+      "url": "https://www.linkedin.com/posts/comline-distributeurvad-satis2026-ugcPost-7520837291087433728-A7WT/",
+      "published_date": "2026-10-27",
+      "author": "ComLine France",
+      "sentiment": "Positive",
+      "priority": "Low",
+      "source_excerpt": "AJA Video Systems | Angelbird Technologies | Bitfocus | Elgato",
+      "summary": "French distributor includes Angelbird among partners appearing at SATIS 2026 in Paris.",
+      "impact": "Trade-event visibility; no customer complaint in the referenced post.",
+      "response_action": "Not required.",
+      "engagement": {
+        "reactions": "32",
+        "comments": "3",
+        "reposts": "8"
+      },
+      "verification_note": "Reference report notes the post was edited; original date should be rechecked.",
+      "date_evidence": "27 October attribution in 29-Oct reference PDF"
+    },
+    {
+      "title": "Community member recommends Angelbird cards for Pocket OG",
+      "platform": "Reddit / r/bmpcc",
+      "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+      "published_date": "2026-10-28",
+      "author": "u/InComingMess2478",
+      "sentiment": "Positive",
+      "priority": "Low",
+      "source_excerpt": "The Angelbird cards are the best for the OG.",
+      "summary": "Short product recommendation in an ongoing conversation about SD cards for the original Blackmagic Pocket Cinema Camera.",
+      "impact": "Positive peer recommendation; no independently confirmed technical test.",
+      "response_action": "Not required.",
+      "date_evidence": "Comment dated 28 October in supplied reference report"
+    },
+    {
+      "title": "Used Angelbird card bundle listed in Facebook cinematography group",
+      "platform": "Facebook / cinematography group",
+      "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
+      "published_date": "2026-10-28",
+      "author": "Dan Stilling Dff",
+      "sentiment": "Neutral",
+      "priority": "Low",
+      "source_excerpt": "This is a 2 x Angelbird card bundle. In great shape.",
+      "summary": "Second-hand Angelbird card bundle is included in a cinematography equipment listing, not a user review.",
+      "impact": "Used-market observation, not a verified card fault or rating.",
+      "response_action": "Not required.",
+      "date_evidence": "Found 28 October; exact original posting date not established in reference",
+      "verification_note": "Historical report discovery date, NOT independently verified post date."
+    },
+    {
+      "title": "Used RED KOMODO kit includes two Angelbird CF cards and reader",
+      "platform": "Facebook / Camera Market UAE",
+      "url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/",
+      "published_date": "2026-10-28",
+      "author": "Valeriy Pecherskiy",
+      "sentiment": "Neutral",
+      "priority": "Low",
+      "source_excerpt": "2 x Angelbird 512GB AV PRO CF Cards, Angelbird Card Reader",
+      "summary": "Used camera kit listing includes two Angelbird cards and the brand's reader.",
+      "product": "AV PRO CF media and card reader",
+      "impact": "Resale bundle visibility, not customer sentiment about quality.",
+      "response_action": "Not required.",
+      "date_evidence": "Found 28 October, original post date uncertain",
+      "verification_note": "Reference report discovery date only."
+    },
+    {
+      "title": "User reports Angelbird Type B media heats up during BURANO RAW recording",
+      "platform": "Reddit / r/SONYFX5",
+      "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+      "published_date": "2026-10-22",
+      "author": "u/mynameisntziming",
+      "sentiment": "Negative",
+      "priority": "High",
+      "source_excerpt": "the angel bird comes off significantly hotter from recording raw in camera",
+      "summary": "One camera rental user describes hotter operation than Sony Type B media on a BURANO; no temperatures, reproducible test, confirmed card failure or damage provided.",
+      "product": "CFexpress Type B / BURANO RAW",
+      "impact": "Potential heat concern, unconfirmed hardware defect.",
+      "response_action": "Required - High: ask for exact model, recording mode, ambient conditions and measured temperatures.",
+      "date_evidence": "22 October user comment in reference report"
+    },
+    {
+      "title": "User reports fast offload with Angelbird 1TB Type A card",
+      "platform": "Reddit / r/SONYFX5",
+      "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+      "published_date": "2026-10-22",
+      "author": "u/Arturio55",
+      "sentiment": "Positive",
+      "priority": "Low",
+      "source_excerpt": "1tb CFA card from angelbird",
+      "summary": "User reports moving approximately 200GB through a cable connected to an FX3 in about 1.5 minutes. Unverified user measurement.",
+      "product": "Angelbird Type A 1TB / Sony FX3",
+      "impact": "Positive offload-workflow anecdote.",
+      "response_action": "Not required.",
+      "date_evidence": "22 October user comment in reference report"
+    },
+    {
+      "title": "Question about Angelbird Type A metal casing",
+      "platform": "Reddit / r/SONYFX5",
+      "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+      "published_date": "2026-10-22",
+      "author": "u/IMIMMK85",
+      "sentiment": "Question",
+      "priority": "Medium",
+      "source_excerpt": "Are the angel birds metal cased too?",
+      "summary": "Commenter asks whether Angelbird Type A cards have metal enclosures while discussing observed heat on another brand.",
+      "product": "CFexpress Type A construction",
+      "impact": "Open product specification question; not a complaint against Angelbird.",
+      "response_action": "Required - Medium: answer with verified product construction information.",
+      "date_evidence": "22 October user comment in reference report"
+    },
+    {
+      "title": "Short comment supports Angelbird over Sony media",
+      "platform": "Reddit / r/SONYFX5",
+      "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+      "published_date": "2026-10-24",
+      "author": "u/MrKillerKiller_",
+      "sentiment": "Positive",
+      "priority": "Low",
+      "source_excerpt": "Angelbird. Fvck sony",
+      "summary": "Brief preference for Angelbird without model details or supporting technical explanation.",
+      "impact": "Positive brand sentiment, low evidentiary weight.",
+      "response_action": "Not required.",
+      "date_evidence": "24 October user comment in reference report"
+    }
+  ],
+  "retail_observations": [
+    {
+      "title": "AV PRO microSD V30 MkII 512GB price tracker",
+      "platform": "OfertasGaming / Spain",
+      "url": "https://ofertasgaming.com/producto/tarjeta-microsd-angelbird-av-pro-microsd-v30-mkii-512-gb-rapida-y-resistente",
+      "published_date": "2026-10-29",
+      "sentiment": "Not applicable",
+      "priority": "Low",
+      "source_excerpt": "Angelbird AV PRO microSD V30 MkII 512GB",
+      "summary": "Reference report notes EUR 253.80 price, as checked 29 October. Market observation, not new user sentiment.",
+      "product": "AV PRO microSD V30 MkII 512GB",
+      "engagement": {
+        "price": "EUR 253.80"
+      },
+      "verification_note": "Historical price check as of 29-Oct report; current price may differ."
+    },
+    {
+      "title": "Canon EOS R10 promotion included Angelbird 128GB SD card",
+      "platform": "Downtown Camera / Canada",
+      "url": "https://downtowncamera.com/shop/categories/digital-cameras/a58a8268-4946-4121-8912-f53ba8efa0ea?offers=Rebates",
+      "published_date": "2026-10-29",
+      "sentiment": "Not applicable",
+      "priority": "Low",
+      "source_excerpt": "Angelbird 128GB AV PRO V30 SD",
+      "summary": "A Canon camera-kit promotion includes an Angelbird 128GB card as a gift. Offer ended 29 Oct; start date unverified.",
+      "product": "128GB AV PRO V30 SD",
+      "verification_note": "Offer end date, not original publishing date."
+    }
+  ]
+}
