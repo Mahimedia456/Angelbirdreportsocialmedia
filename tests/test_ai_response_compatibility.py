@@ -19,7 +19,7 @@ class TestAIResponseCompatibility(unittest.TestCase):
     def test_unverified_today_does_not_enter_verified_totals(self):
         payload={"report_date":"2026-10-30","today_findings":[{
             "title":"Uncertain claim","platform":"Reddit","url":"https://reddit.com/r/example/comments/test",
-            "published_date":"2026-10-30","date_evidence":"","status":"verified", "sentiment":"negative/mixed"}]}
+            "published_date":"2026-10-30","date_evidence":"","source_excerpt":"Angelbird card mentioned in user comment","status":"verified", "sentiment":"negative/mixed"}]}
         report=ResearchReport.model_validate(payload).enforce_date_guardrails()
         self.assertEqual(len(report.today_findings),0)
         self.assertEqual(len(report.unverified_leads),1)
