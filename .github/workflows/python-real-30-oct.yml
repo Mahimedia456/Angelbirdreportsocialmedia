@@ -24,6 +24,7 @@ jobs:
       MAX_SOURCE_IMAGES: '12'
       MAX_HISTORICAL_IMAGES: '5'
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      YT_MAX_COMMENT_VIDEOS: '6'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
