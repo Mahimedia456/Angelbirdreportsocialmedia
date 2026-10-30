@@ -1,14 +1,7 @@
 name: Angelbird Reports Website
+# GitHub Pages must first be enabled in repository Settings > Pages.
+# Vercel remains the primary published website; this optional deployment is manual.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'website/**'
-      - 'scripts/build_website.py'
-      - 'reports/**'
-      - 'reports-index.json'
-      - 'scripts/build_website.mjs'
-      - '.github/workflows/pages.yml'
   workflow_dispatch:
 permissions:
   contents: read
