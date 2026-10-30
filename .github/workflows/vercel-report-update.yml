@@ -1,13 +1,6 @@
-name: Angelbird Vercel Update After Report Publish
+name: Angelbird Vercel Manual Publication
+# Angelbird GitHub research/PDF commits should not deploy Vercel.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'reports/**'
-      - 'reports-index.json'
-      - 'website/**'
-      - 'scripts/build_website.mjs'
-      - '.github/workflows/vercel-report-update.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -15,15 +8,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Vercel redeploy if hook is configured
+      - name: Manually publish website through configured Vercel hook
         env:
           VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         shell: bash
         run: |
           if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
-            echo "::notice::Vercel deploy hook is not configured. Ensure the Vercel project is linked to the main GitHub branch, or add VERCEL_DEPLOY_HOOK under Actions Secrets."
-            exit 0
+            echo "::error::VERCEL_DEPLOY_HOOK is missing; manual deployment cannot start."
+            exit 1
           fi
-          curl --fail-with-body --silent --show-error --retry 2 --retry-delay 3 \
-            --request POST "$VERCEL_DEPLOY_HOOK"
-          echo "Vercel rebuild requested; verify completion in the Vercel Deployments dashboard."
+          curl --fail-with-body --silent --show-error --retry 2 --request POST "$VERCEL_DEPLOY_HOOK"
