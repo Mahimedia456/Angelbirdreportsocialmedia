@@ -96,6 +96,10 @@ class ResearchReport(BaseModel):
     retail_observations: list[Finding] = Field(default_factory=list)
     unverified_leads: list[Finding] = Field(default_factory=list)
     older_leads: list[Finding] = Field(default_factory=list)
+    historical_findings: list[Finding] = Field(default_factory=list)
+    historical_retail: list[Finding] = Field(default_factory=list)
+    report_period_start: str = ''
+    report_period_end: str = ''
     coverage: list[Coverage] = Field(default_factory=list)
     visibility_gaps: list[str] = Field(default_factory=list)
     methodology: str = ''
@@ -106,13 +110,13 @@ class ResearchReport(BaseModel):
         if not isinstance(data, dict):
             raise ValueError('Report must be a JSON object')
         d=dict(data)
-        for key in ('report_date','generated_at_pkt','status','headline','methodology'):
+        for key in ('report_date','generated_at_pkt','status','headline','methodology','report_period_start','report_period_end'):
             if key in d: d[key]=text_value(d[key])
-        for bucket in ('today_findings','retail_observations','unverified_leads','older_leads','coverage','visibility_gaps'):
+        for bucket in ('today_findings','retail_observations','unverified_leads','older_leads','historical_findings','historical_retail','coverage','visibility_gaps'):
             if not isinstance(d.get(bucket), list): d[bucket]=[]
         # Invalid or missing source URLs are not evidence. Keep summary note, not a fabricated record.
         rejected=0
-        for bucket in ('today_findings','retail_observations','unverified_leads','older_leads'):
+        for bucket in ('today_findings','retail_observations','unverified_leads','older_leads','historical_findings','historical_retail'):
             kept=[]
             for item in d[bucket]:
                 # Pydantic also accepts already constructed Finding instances.
