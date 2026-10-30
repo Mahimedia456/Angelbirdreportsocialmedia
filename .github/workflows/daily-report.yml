@@ -28,6 +28,7 @@ jobs:
       RESEARCH_ENGINE: 'python'
       FREE_SOURCES_ONLY: 'true'
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      YT_MAX_COMMENT_VIDEOS: '6'
       MAX_SEARCH_QUERIES: '18'
       MAX_SOURCE_PAGES: '35'
       MAX_SOURCE_IMAGES: '12'
