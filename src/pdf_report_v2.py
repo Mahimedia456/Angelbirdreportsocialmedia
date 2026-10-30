@@ -182,7 +182,7 @@ def finding_card(item,number,historical=False):
     content=[P(f'{escape(number)}   |   {escape(item.platform.upper())}   |   {escape(item.sentiment.upper())}   |   {escape(item.priority.upper())}','green',raw=True),
              Spacer(1,4),P(item.title,'item'),
              Spacer(1,5),P('CONTENT TYPE: '+LABELS[content_type(item)].upper(),'caption'),
-             Spacer(1,6),P('Source: +item.platform+(' | '+item.author if item.author else '')+
+             Spacer(1,6),P('Source: '+item.platform+(' | '+item.author if item.author else '')+
                           (' | '+item.published_date if item.published_date else ' | Date not verified'),'meta'),
              link(item.url),Spacer(1,3),source_url_line(item.url,'POST / ARTICLE LINK')]
     if getattr(item,'publisher',''):content.extend([Spacer(1,3),P('Publisher: '+item.publisher,'micro')])
