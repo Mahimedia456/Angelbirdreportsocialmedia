@@ -5,7 +5,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from .schema import ResearchReport,Coverage
 from .research import research_day
-from .public_research import collect_day
+from .public_research import collect_day,cache_historical_images
 from .history import compile_history
 from .pdf_report_v2 import render_pdf
 
@@ -22,6 +22,7 @@ def main():
     base=f'Angelbird-Social-Monitoring-{target}'+('-DEMO' if dry else '')
     json_path=data/(base+'.json')
     sweeps=[]
+    engine=os.getenv('RESEARCH_ENGINE','python').strip().lower()
     if render_only:
         if not json_path.exists():
             raise FileNotFoundError('No saved research JSON for '+target+'. Render-only does not call the API.')
@@ -34,7 +35,6 @@ def main():
                 for p in ('Reddit / forums','YouTube','Facebook / Instagram / LinkedIn','News / resellers')],
              visibility_gaps=['No live research performed in demo mode.'])
     else:
-        engine=os.getenv('RESEARCH_ENGINE','python').strip().lower()
         if engine=='python':
             print('Starting Python-first public website collection (no OpenAI calls).',flush=True)
             report,sweeps=collect_day(target)
@@ -44,6 +44,9 @@ def main():
         else:
             raise ValueError('RESEARCH_ENGINE must be python or openai')
     report=compile_history(report,ROOT)
+    if not render_only and not dry and engine=='python':
+        image_audit=cache_historical_images(report)
+        sweeps.append({'scope':'Historical source image cache','data':image_audit})
     # A previously saved model run counted unrelated Reddit platform news as an
     # Angelbird mention. When relevance guardrails exclude all such candidates,
     # replace the stale source-summary language with an accurate limited-coverage note.
