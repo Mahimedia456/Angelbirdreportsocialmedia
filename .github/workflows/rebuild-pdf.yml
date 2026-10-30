@@ -34,6 +34,10 @@ jobs:
           MAX_REPORT_IMAGES: '10'
           REPORT_DATE: ${{ inputs.report_date || '2026-10-30' }}
         run: python -m src.main
+      - name: Verify PDF contains each source link under its platform
+        env:
+          REPORT_DATE: ${{ inputs.report_date || '2026-10-30' }}
+        run: python -m src.verify_pdf "$REPORT_DATE"
       - name: Commit regenerated PDF and cumulative JSON
         run: |
           git config user.name 'angelbird-report-bot'
