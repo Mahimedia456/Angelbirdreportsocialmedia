@@ -1,0 +1,29 @@
+{
+  "source": "Original dated public articles independently checked on 2026-10-31. Source-type editorial/case-study; all author positions labeled. Do not conflate manufacturer-created editorial with independent social sentiment.",
+  "findings": [
+    {
+      "reference_date": "2026-10-31",
+      "verification_note": "Original page date visible; source publication type identified. Archived research reference, not social API engagement.",
+      "image_files": [],
+      "images": [],
+      "image_url": "",
+      "engagement": {},
+      "title": "Fujifilm CFexpress Type B updated recommendations: Angelbird AV PRO MK2 compatibility watch",
+      "platform": "Industry articles",
+      "url": "https://www.fujirumors.com/fujifilm-updates-cfexpress-type-b-recommendations-this-is-whats-changed/",
+      "author": "Fuji Rumors editorial",
+      "publisher": "Fuji Rumors",
+      "published_date": "2026-10-06",
+      "date_evidence": "Original Fuji Rumors post explicitly dated October 6, 2026; original article accessed and details reviewed.",
+      "summary": "The article reports that Fujifilm's recommended CFexpress Type B list removed Angelbird AV PRO MK2 models after identified compatibility issues; the article also lists other Angelbird cards still recommended. This reports the publisher's interpretation, not independent verification of every camera/card configuration.",
+      "sentiment": "Negative",
+      "priority": "High",
+      "status": "older",
+      "product": "AV PRO MK2 CFexpress Type B",
+      "content_type": "article",
+      "source_excerpt": "Article discusses removed AV PRO MK2 compatibility entries in an updated Fujifilm card recommendation list.",
+      "impact": "Potential card-camera compatibility concern requiring confirmation against Fujifilm's current official approved-media list.",
+      "response_action": "Verify exact AV PRO MK2 SKU and Fujifilm camera firmware compatibility; do not characterize all Angelbird cards as incompatible."
+    }
+  ]
+}
