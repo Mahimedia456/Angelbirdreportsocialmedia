@@ -204,6 +204,38 @@ class PublicResearch:
                            'relevant_index_candidates':count,'index':'DuckDuckGo HTML'})
         if count:self.counts[group+'.fallback_candidates']+=count
 
+    def optional_search_api(self,group,query):
+        """Additional independently indexed public candidates via an authorized API.
+
+        Does not bypass authenticated platform pages or validate engagement/date.
+        BRAVE_SEARCH_API_KEY can be configured in GitHub Actions secrets.
+        """
+        token=os.getenv('BRAVE_SEARCH_API_KEY','').strip()
+        if not token:
+            self.counts[group+'.brave_not_configured']+=1
+            return 0
+        response,state=self.get('https://api.search.brave.com/res/v1/web/search',
+            params={'q':query,'count':20,'safesearch':'off'},
+            headers={'Accept':'application/json','X-Subscription-Token':token},timeout=15)
+        if not response:
+            self.gaps.append(group+': Brave Search API '+state)
+            return 0
+        try:
+            entries=(response.json().get('web') or {}).get('results',[])
+        except (ValueError,AttributeError,TypeError):
+            self.gaps.append(group+': Brave Search response invalid')
+            return 0
+        start=self.counts[group+'.candidates']
+        for item in entries:
+            if not isinstance(item,dict):continue
+            snippet=BeautifulSoup(str(item.get('description','')),'html.parser').get_text(' ',strip=True)
+            self.add({'url':item.get('url'),'title':item.get('title'),
+                      'snippet':snippet},group,'Brave public index (original verification required)')
+        count=self.counts[group+'.candidates']-start
+        self.audit.append({'group':group,'stage':'search-provider','provider':'Brave Search API',
+                           'returned':len(entries),'accepted_candidates':count})
+        return count
+
     def index_query(self,group,query):
         self.queries+=1
         found=0
@@ -226,6 +258,8 @@ class PublicResearch:
             except ElementTree.ParseError:state='Unparseable public RSS feed'
         if not response or state!='OK':
             self.gaps.append(f'{group}: public search index {state}')
+        if self.counts[group+'.candidates']==initial:
+            self.optional_search_api(group,query)
         if self.counts[group+'.candidates']==initial:
             if self.counts[group+'.fallback_attempts']<1:
                 self.counts[group+'.fallback_attempts']+=1
