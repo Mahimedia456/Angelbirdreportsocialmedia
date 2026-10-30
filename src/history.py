@@ -15,7 +15,7 @@ def _older(f: Finding, target: str):
 
 def _relevant(f: Finding):
     # Reject unrelated news articles inherited from faulty earlier runs.
-    return bool(re.search(r'\\bangelbird\\b|\\bav[ -]?pro\\b',f.title+' '+f.source_excerpt+' '+f.product,re.I))
+    return bool(re.search(r'\bangelbird\b|\bav[ -]?pro\b',f.title+' '+f.source_excerpt+' '+f.product,re.I))
 
 def _load_finding(raw):
     try: return Finding.model_validate(raw)
@@ -50,7 +50,7 @@ def compile_history(report: ResearchReport, root: Path):
         for entry in raw.get('today_findings',[]):
             f=_load_finding(entry)
             # Earlier model outputs without a direct excerpt are not verified archive evidence.
-            if f is not None and _older(f,target) and _relevant(f) and re.search(r'\\bangelbird\\b|\\bav[ -]?pro\\b', f.source_excerpt,re.I):
+            if f is not None and _older(f,target) and _relevant(f) and re.search(r'\bangelbird\b|\bav[ -]?pro\b', f.source_excerpt,re.I):
                 f.status='older';historic.append(f)
         for entry in raw.get('retail_observations',[]):
             f=_load_finding(entry)
