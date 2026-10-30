@@ -121,27 +121,32 @@ def metric(value,name,bg,fg):
     return tab
 
 def summary_header(report):
-    start=report.report_period_start or report.report_date
-    top=Table([[P('ANGELBIRD | SOCIAL MONITORING','subtitle')],
-               [P('Social Media Monitoring Report','title')],
-               [P(f'Report date: {report.report_date}  |  Cumulative period: {start} to {report.report_date}  |  {report.generated_at_pkt}','subtitle')]],colWidths=[W])
-    top.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),DARK),('LEFTPADDING',(0,0),(-1,-1),18),
-       ('TOPPADDING',(0,0),(-1,0),13),('BOTTOMPADDING',(0,-1),(-1,-1),13)]))
-    # The 29 October reference uses five sentiment KPI cards.
-    listed=list(report.today_findings)+list(report.historical_findings)
-    totals=Counter(i.sentiment for i in listed)
-    vals=[(len(listed),'Mentions found',DARK,WHITE),
-         (totals['Positive'],'Positive',GREEN_PALE,GREEN),
-         (totals['Neutral'],'Neutral',GREY,DARK),
-         (totals['Negative'],'Negative',RED_PALE,RED),
-         (totals['Question'],'Question',GREY,DARK)]
-    metrics=Table([[metric(*x) for x in vals]],colWidths=[W/5]*5)
-    metrics.setStyle(TableStyle([('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),2),
-       ('VALIGN',(0,0),(-1,-1),'MIDDLE')]))
-    return [top,Spacer(1,12),metrics,Spacer(1,13),
-            P(f'Latest day: {len(report.today_findings)} verified mention(s) on {report.report_date}. '
-              f'{len(report.historical_findings)} earlier historical mention(s) are shown below and NOT counted as new today.'),
-            P('In one line: '+(report.headline or 'No source-specific daily summary available.'),'small')]
+    """Only same-day post metrics. Historical numbers never appear in this PDF."""
+    top=Table([[P('ANGELBIRD | DAILY SOCIAL MONITORING','subtitle')],
+               [P(f'Angelbird Social & Web Report | {report.report_date}','title')],
+               [P(f'Coverage: {report.report_date} ONLY | Research: {report.research_as_of_pkt or "cutoff not recorded"} | Rendered: {report.generated_at_pkt}','subtitle')]],colWidths=[W])
+    top.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),DARK),
+         ('LEFTPADDING',(0,0),(-1,-1),18),
+         ('TOPPADDING',(0,0),(-1,0),13),
+         ('BOTTOMPADDING',(0,-1),(-1,-1),13)]))
+    todays=list(report.today_findings)
+    sentiments=Counter(i.sentiment for i in todays)
+    items=[(len(todays),'Dated sources',DARK,WHITE),
+           (sentiments['Positive'],'Positive',GREEN_PALE,GREEN),
+           (sentiments['Neutral'],'Neutral',GREY,DARK),
+           (sentiments['Negative'],'Negative',RED_PALE,RED),
+           (sentiments['Question'],'Questions',GREY,DARK)]
+    grid=Table([[metric(*x) for x in items]],colWidths=[W/5]*5)
+    grid.setStyle(TableStyle([('LEFTPADDING',(0,0),(-1,-1),0),
+         ('RIGHTPADDING',(0,0),(-1,-1),2),
+         ('VALIGN',(0,0),(-1,-1),'MIDDLE')]))
+    return [top,Spacer(1,11),P('VERIFIED NEW MENTIONS | ORIGINAL DATE '+report.report_date,'caption'),
+            Spacer(1,7),grid,Spacer(1,10),
+            P(f'{len(report.retail_observations)} separate dated retailer price/offer observation(s). '
+              'Catalog listings and old posts do not count as newly published social mentions.','small'),
+            Spacer(1,6),P('Summary: '+(report.headline or 'Limited search coverage'),'small'),
+            Spacer(1,4),P('Report is a dated public-source monitoring snapshot, not a complete '
+                        'inventory of inaccessible/private social activity.','micro')]
 
 def accent_for(item):
     return {'Positive':GREEN,'Negative':RED,'Question':AMBER,'Neutral':colors.HexColor('#798892')}.get(item.sentiment,DARK)
@@ -377,41 +382,80 @@ def platform_dossier(report):
     return section
 
 def render_pdf(report,path):
-    path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
-    doc=SimpleDocTemplate(str(path),pagesize=A4,topMargin=34,bottomMargin=60,leftMargin=MARGIN,rightMargin=MARGIN,
-        title=f'Angelbird Social Monitoring {report.report_date}',author='Angelbird Social Monitoring')
-    current=list(report.today_findings)
-    previous=list(report.historical_findings)
-    all_dated=current+previous
+    """Professional single-day social report; each platform KPI immediately precedes its sources."""
+    path=Path(path)
+    path.parent.mkdir(parents=True,exist_ok=True)
+    doc=SimpleDocTemplate(str(path),pagesize=A4,topMargin=34,bottomMargin=60,
+        leftMargin=MARGIN,rightMargin=MARGIN,
+        title=f'Angelbird Social Monitoring {report.report_date} (only)',
+        author='Angelbird Social Monitoring')
+    day=report.report_date
+    todays=[f for f in report.today_findings if f.published_date==day]
+    retail=[f for f in report.retail_observations if f.reference_date==day]
+    undated=[f for f in report.unverified_leads if f.reference_date==day]
+    groups=platform_summary(todays)
+    uncertain=platform_summary(undated)
     story=summary_header(report)
     story.extend([Spacer(1,12)])
-    story.extend(engagement_overview(all_dated))
-    story.extend([Spacer(1,7),P('Every platform listed in the analytics table has a matching source-detail section below. '
-                    'Platform totals include current and five previous dates; post cards show the exact original date.','small')])
-    story.extend([Spacer(1,10),band('Platform by platform | analytics + posts + original media'),Spacer(1,9)])
-    story.extend(platform_dossier(report))
-    if report.older_leads:
-        story.extend([Spacer(1,10),band('Historical response watchlist | older dated sources'),Spacer(1,9)])
-        for i,item in enumerate(report.older_leads,1):story.extend(finding_card(item,'W'+str(i)))
-    story.extend([Spacer(1,12),band('Daily source coverage | actual checks and limitations'),Spacer(1,9)])
+    story.extend(engagement_overview(todays))
+    story.extend([P('Analytics above covers ONLY original posts/articles dated '+day+
+                     '. Metrics appear only when original sources or authorized APIs supplied '
+                     'numeric observations, not as cross-platform traffic estimates.','small'),
+                  Spacer(1,9),band(day+' | Platform findings and evidence'),
+                  Spacer(1,7)])
+    for platform in PLATFORMS:
+        records=groups[platform]
+        candidates=uncertain[platform]
+        if platform=='Retailers':
+            story.extend([Spacer(1,10),band('RETAIL / PRICE OBSERVATIONS | '+day,
+                                          str(len(retail))+' dated price snapshots'),
+                          Spacer(1,7),P('Retail observations are neither customer reviews nor '
+                                         'newly published social posts.','small'),Spacer(1,8)])
+            if retail:
+                for n,item in enumerate(retail,1):story.extend(simple_card(item,n))
+            else:
+                story.extend([P('No retailer price or product snapshot with a '
+                                'verified '+day+' observation timestamp was retained.','small'),
+                              Spacer(1,9)])
+            continue
+        story.extend([Spacer(1,10)])
+        story.extend(platform_scorecard(platform,records,day+' ONLY'))
+        if records:
+            for n,item in enumerate(records,1):
+                story.extend(finding_card(item,'D'+str(n)))
+        else:
+            story.extend([P('No independently dated '+day+' Angelbird post/article was '
+                            'confirmed in the accessible material for this platform. '
+                            'This does not prove no posts exist.','small'),Spacer(1,8)])
+        if candidates:
+            story.extend([P('SEARCHED ON '+day+' | original publication date unverified','caption'),
+                          Spacer(1,6)])
+            for n,item in enumerate(candidates,1):
+                story.extend(finding_card(item,'U'+str(n)))
+    story.extend([Spacer(1,13),band('Search and access audit | '+day),
+                  Spacer(1,8)])
     if report.coverage:
-        for c in report.coverage:
-            status='ORIGINAL / PROVIDER CHECK' if c.checked else 'INDEX ONLY / NOT VERIFIED'
-            story.extend([P(status+' | '+c.platform+': '+c.summary,'small'),Spacer(1,5)])
-    else:story.append(P('No platform-specific source access log. The report is incomplete.','small'))
+        for entry in report.coverage:
+            label='Original/API source checked' if entry.checked else 'Index only / not fully checked'
+            story.extend([P(label+': '+entry.platform+' | '+entry.summary,'small'),Spacer(1,5)])
+    else:
+        story.append(P('Search audit unavailable; do not interpret missing platform '
+                       'findings as zero activity.','small'))
     if report.visibility_gaps:
-        story.extend([Spacer(1,7),P('Source limits: '+'; '.join(report.visibility_gaps[:12]),'micro')])
-    counts=Counter(item.sentiment for item in all_dated)
-    actions=[item for item in all_dated if item.priority in ('Urgent','High','Medium')
-             and 'required' in (item.response_action or '').lower()]
-    story.extend([Spacer(1,13),band('Overall source-grounded feedback'),Spacer(1,9),
-       panel([P(f'{len(current)} new dated source(s) on {report.report_date}; '
-                f'{len(previous)} historical dated source(s) in the previous five calendar days.','small'),
-              Spacer(1,6),P(f'Sentiment across dated sources: {counts["Positive"]} positive, '
-                f'{counts["Neutral"]} neutral, {counts["Negative"]} negative, '
-                f'{counts["Question"]} questions.','small'),
-              Spacer(1,6),P(f'{len(actions)} response-action sources. '
-                'Undated posts and price listings are outside the verified post count.','small')],bg=GREY),
-       Spacer(1,10),P(traffic_disclaimer(),'micro'),
-       Spacer(1,5),P('Source URLs, original publication dates, named authors, image provenance and public comments are included where observed.','micro')])
+        story.extend([Spacer(1,8),P('Limits: '+'; '.join(report.visibility_gaps[:12]),'micro')])
+    counts=Counter(x.sentiment for x in todays)
+    actions=[x for x in todays if x.priority in ('Urgent','High','Medium')
+             and 'required' in (x.response_action or '').lower()]
+    story.extend([Spacer(1,13),band('30 October | Summary and response actions'),
+                  Spacer(1,9),
+                  panel([P(f'{len(todays)} original-date verified new source(s) on {day}; '
+                           f'{len(retail)} same-day retail price observations.','small'),
+                         Spacer(1,6),
+                         P(f'{counts["Positive"]} positive, {counts["Neutral"]} neutral, '
+                           f'{counts["Negative"]} negative, {counts["Question"]} questions. '
+                           'Unavailable social metrics are not zero.','small'),
+                         Spacer(1,6),
+                         P(f'{len(actions)} posts have an evidence-backed response action. '
+                           'No previous-date findings have been counted or displayed.','small')],bg=GREY),
+                  Spacer(1,8),P(traffic_disclaimer(),'micro')])
     doc.build(story,onFirstPage=footer,onLaterPages=footer)
