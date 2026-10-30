@@ -3,12 +3,12 @@
     "scope": "ChatGPT web research JSON import",
     "data": {
       "found": true,
-      "inserted": 4,
+      "inserted": 0,
       "by_bucket": {
-        "today_findings": 1,
+        "today_findings": 0,
         "unverified_leads": 0,
         "older_leads": 0,
-        "retail_observations": 3
+        "retail_observations": 0
       },
       "source": "data/2026/10/Angelbird-Social-Monitoring-2026-10-30-chatgpt.json"
     }
@@ -16,14 +16,8 @@
   {
     "scope": "Historical source image cache",
     "data": {
-      "cached_report_images": 3,
+      "cached_report_images": 0,
       "image_audit": [
-        {
-          "stage": "image",
-          "url": "https://duallcamera.com/cdn/shop/products/Angelbird1597420230_1452851.jpg?v=1674225845",
-          "result": "cached attributed thumbnail",
-          "asset": "assets/2026/10/2026-10-30/verified_001.jpg"
-        },
         {
           "stage": "image",
           "url": "https://www.bhphotovideo.com/images/images500x500/angelbird_avp256msdv60_256gb_av_pro_v60_1583402.jpg",
@@ -38,18 +32,6 @@
           "stage": "image",
           "url": "https://www.x-kom.pl/i/737023/angelbird-256gb-av-pro-sdxc-mk2-v60-280mb-s.jpg",
           "result": "HTTP 403"
-        },
-        {
-          "stage": "image",
-          "url": "https://cdn.cvp.com/images/products/altimage/30-01-20251738258255ssd2go_7.jpg",
-          "result": "cached attributed thumbnail",
-          "asset": "assets/2026/10/2026-10-30/verified_002.jpg"
-        },
-        {
-          "stage": "image",
-          "url": "https://www.fujiya-camera.co.jp/img/goods/L/C9120056587483_l.jpg",
-          "result": "cached attributed thumbnail",
-          "asset": "assets/2026/10/2026-10-30/verified_003.jpg"
         }
       ]
     }
