@@ -352,13 +352,39 @@ class PublicResearch:
         # actual date so a 31-day report does NOT sample the same few models
         # on every day. This works without a predefined product shortlist.
         schedules={}
-        for group,queries in GROUPS.items():
+        catalog_path=ROOT/'data'/'official_catalog_latest.json'
+        try:
+            catalog=json.loads(catalog_path.read_text(encoding='utf-8')) if catalog_path.exists() else {}
+        except (OSError,ValueError):
+            catalog={}
+        # Every item from the observed manufacturer catalog is eligible for
+        # focused research. Spread items deterministically across ALL platforms
+        # and days; brand-generic searches always run even without this catalog.
+        catalog_items=[x for x in catalog.get('products',[]) if isinstance(x,dict) and
+                       str(x.get('url','')).startswith('https://')]
+        catalog_brand='Atomos' if 'smratomos' in str(ROOT).lower() else 'Angelbird'
+        source_sites={'Facebook':'site:facebook.com','Instagram':'site:instagram.com',
+                      'LinkedIn':'site:linkedin.com','X / Twitter':'site:x.com',
+                      'Reddit':'site:reddit.com','YouTube':'site:youtube.com',
+                      'Camera forums':'','Industry articles':'','Retailers':''}
+        for group_index,(group,queries) in enumerate(GROUPS.items()):
             stable=list(queries[:2])
             optional=list(queries[2:])
             if optional:
                 offset=(self.day.toordinal()+sum(ord(x) for x in group))%len(optional)
                 optional=optional[offset:]+optional[:offset]
-            schedules[group]=stable+optional
+            extra_catalog=[]
+            if catalog_items:
+                idx=((self.day.day-1)*len(GROUPS)+group_index)%len(catalog_items)
+                product=catalog_items[idx]
+                title=re.sub(r'\s+',' ',str(product.get('title',''))).strip()
+                # Product keywords supplement brand-first searches; not required
+                # for accepting an original source or company-wide mention.
+                if title:
+                    site=source_sites.get(group,'')
+                    extra_catalog=[f'{site} "{catalog_brand}" "{title[:85]}" '
+                                   f'{self.day.strftime("%B")} {self.day.year}'.strip()]
+            schedules[group]=stable+extra_catalog+optional
         for batch in zip_longest(*schedules.values()):
             for (group,_),template in zip(schedules.items(),batch):
                 if template is None:continue
