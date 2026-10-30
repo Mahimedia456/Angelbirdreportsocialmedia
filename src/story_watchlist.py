@@ -40,20 +40,24 @@ def watchlist_leads(day,root=None):
         username=story_handle(url)
         if not username or url in used:continue
         used.add(url)
+        story_link_has_id=len([p for p in urlparse(url).path.split('/') if p])==3
         result.append(Finding(
-            title='Instagram Story research lead: @'+username,
+            title=('Instagram Story link: @' if story_link_has_id else 'Instagram Story account page: @')+username,
             platform='Instagram',url=url,author='@'+username,
             content_type='story',status='unverified',
             published_date='',date_evidence='',
             reference_date=day,priority='Watch',sentiment='Not applicable',
             source_excerpt='',
-            summary=('Original Story URL supplied for investigation. '
-                     'Original photo/video, caption, any brand mention or tag, '
-                     'and publication date have not been independently verified.'),
+            summary=(('Original Story link supplied for investigation. ' if story_link_has_id
+                      else 'Account-level Stories URL only; specific Story ID absent. ')
+                     +'Original photo/video, caption, brand mention/tag and publication '
+                       'date have not been independently verified.'),
             verification_note=(
               'USER-SUPPLIED STORY LINK ONLY. Not counted in verified posts, '
               'stories, reach, engagement, brand mentions or tags. '
-              'Story may have expired or require Instagram login.'),
+              'Story may have expired or require Instagram login. '
+              +('Specific original Story URL supplied.' if story_link_has_id
+                else 'Only account Story endpoint was supplied, not a specific Story permalink.')),
             response_action='Check original Story with authorized access before classifying brand mention.',
         ))
     return result
