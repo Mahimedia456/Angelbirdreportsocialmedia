@@ -21,6 +21,7 @@ ROOT=Path(__file__).resolve().parents[1]
 BRAND=re.compile(r'\bangelbird\b|\bav[\s-]?pro\b',re.I)
 NEG=re.compile(r'overheat|hotter|failure|failed|corrupt|crash|broken|problem|error|not working|complain|recording stop',re.I)
 POS=re.compile(r'recommend|excellent|best|great|reliable|fast|impressive|love|superb|works well',re.I)
+PRICE=re.compile(r'(?:USD|EUR|GBP|CAD|PKR|INR|[$€£₹])\s?\d[\d,.]*',re.I)
 PRODUCT=re.compile(r'(Angelbird\s+.{0,45}?(?:CFexpress|microSD|SD\s*card|card reader|SSD|AV\s*PRO)|AV\s*PRO[^.,;\n]{0,60})',re.I)
 DOMAINS={'reddit.com':'Reddit','youtube.com':'YouTube','youtu.be':'YouTube',
  'facebook.com':'Facebook','instagram.com':'Instagram','linkedin.com':'LinkedIn',
@@ -132,6 +133,7 @@ class PublicResearch:
         self.findings=[]
         self.unverified=[]
         self.older=[]
+        self.retail=[]
         self.gaps=[]
         self.counts=Counter()
         self.seen=set()
@@ -445,6 +447,25 @@ class PublicResearch:
         content=area.get_text(' ',strip=True)[:50000]
         # Read original-source body, never treat a search snippet or a crawl date as source proof.
         result=classify(r.url,content,group,when,evidence,title,author,img)
+        if group=='Retailers' and result:
+            # A checked product/offer is market data, never a newly published social post.
+            path=urlparse(r.url).path.lower().rstrip('/')
+            if path in ('','/','/shop','/category/memory-cards-29') or '/search' in path:
+                self.audit.append({'group':group,'stage':'retail-skip','url':r.url,
+                                   'reason':'Brand/category homepage, not an individual offer'})
+                return
+            price=PRICE.search(result.source_excerpt)
+            result.status='retail'
+            result.sentiment='Not applicable'
+            result.published_date=''
+            result.reference_date=self.date
+            result.date_evidence='Listing observed '+self.date+'; this is NOT a publishing date'
+            result.verification_note='Product/retail source observed on report date; prices and availability may change.'
+            result.details='Visible price near brand entry: '+price.group(0) if price else 'No reliable individual listing price established'
+            if not any(x.url==result.url for x in self.retail):
+                self.retail.append(result)
+                self.counts['Retailers.observations']+=1
+            return
         if not result:
             self.counts[group+'.no_brand_original']+=1;return
         if when==self.date:
@@ -467,7 +488,7 @@ class PublicResearch:
     def download_images(self,prefix='source'):
         from PIL import Image as PILImage, ImageOps
         from io import BytesIO
-        for f in self.findings+self.unverified[:6]+self.older[:6]:
+        for f in self.findings+self.unverified[:6]+self.older[:6]+self.retail[:5]:
             if self.images>=self.image_limit:break
             if f.image_files:continue
             u=f.image_url
@@ -530,7 +551,7 @@ class PublicResearch:
                  f'from accessible public sources. Source coverage and access limitations follow.')
         report=ResearchReport(report_date=self.date,status='Python public-source monitoring',
             headline=headline,today_findings=verified,unverified_leads=self.unverified[:15],
-            older_leads=self.older[:20],coverage=coverage,
+            older_leads=self.older[:20],retail_observations=self.retail[:15],coverage=coverage,
             visibility_gaps=self.gaps+[
               'Public indexes do not expose all posts and comments; private/login-only content is not collected.',
               'No result does not establish no brand activity on a platform.'],
