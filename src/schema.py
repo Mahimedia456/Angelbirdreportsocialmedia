@@ -34,6 +34,8 @@ class Finding(BaseModel):
     impact: str = ''
     verification_note: str = ''
     reference_date: str = ''
+    engagement_source: str = ''
+    publisher: str = ''
     engagement: dict = Field(default_factory=dict)
     images: list[str] = Field(default_factory=list)
     image_files: list[str] = Field(default_factory=list)
@@ -45,7 +47,7 @@ class Finding(BaseModel):
         if not isinstance(data, dict):
             raise ValueError('Finding must be an object')
         d = dict(data)
-        for key in ('title','platform','url','author','published_date','date_evidence','summary','image_url','product','details','source_excerpt','response_action','impact','verification_note','reference_date'):
+        for key in ('title','platform','url','author','published_date','date_evidence','summary','image_url','product','details','source_excerpt','response_action','impact','verification_note','reference_date','engagement_source','publisher'):
             if key in d:
                 d[key] = text_value(d[key])
         if isinstance(d.get('published_date'), str) and d['published_date'].lower() in ('none','null','unknown','undated','n/a'):
