@@ -1,5 +1,8 @@
 name: Angelbird Monthly Social Research and Reports
 on:
+  push:
+    branches: [main]
+    paths: ['config/monthly_now_2026_10_30.run']
   schedule:
     - cron: '0 3 1 * *'
   workflow_dispatch:
@@ -41,7 +44,7 @@ jobs:
       - name: Set report end date in Pakistan time
         run: |
           END=$(TZ=Asia/Karachi date +%F)
-          END=$(TZ=Asia/Karachi date -d yesterday +%F)
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then END=2026-10-30; else END=$(TZ=Asia/Karachi date -d yesterday +%F); fi
           echo "END=$END" >> "$GITHUB_ENV"
           echo "REPORT_DATE=$END" >> "$GITHUB_ENV"
       - name: Fresh Python discovery and OpenAI platform research
