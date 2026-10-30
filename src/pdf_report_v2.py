@@ -5,6 +5,7 @@ Rendering uses saved JSON only, no API request or network image fetching.
 from collections import Counter, defaultdict
 from datetime import date, timedelta
 from pathlib import Path
+from urllib.parse import urlparse, unquote
 from PIL import Image as PILImage
 from .platform_analytics import PLATFORMS, platform_summary, analytics_rows, traffic_disclaimer
 from xml.sax.saxutils import escape
@@ -69,6 +70,22 @@ def link(url,label='OPEN ORIGINAL SOURCE'):
     if not str(url).startswith(('https://','http://')):return P('Original source URL not available','micro')
     u=escape(url,{'"':'&quot;'})
     return P(f'<link href="{u}" color="#24835c"><b>{escape(label)} &gt;</b></link>','green',raw=True)
+
+def source_url_line(url, label='ORIGINAL URL'):
+    # Visible and clickable URL rather than a generic action label.
+    if not str(url).startswith(('http://','https://')):
+        return P(label+': not available','micro')
+    uri=escape(str(url),{'"':'&quot;'})
+    parsed=urlparse(url)
+    display=parsed.netloc+unquote(parsed.path)
+    if parsed.query:display+='?'+parsed.query
+    if len(display)>105:display=display[:99]+'...'
+    return P('<b>'+escape(label)+':</b> <link href="'+uri+'" color="#24835c">'+escape(display)+'</link>','micro',raw=True)
+
+def image_provenance(item):
+    if item.image_url:return item.image_url
+    if item.images:return item.images[0]
+    return ''
 
 def qr_image(url,size=48):
     q=qr.QrCodeWidget(url)
