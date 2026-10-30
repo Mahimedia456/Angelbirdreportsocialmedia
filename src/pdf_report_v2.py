@@ -301,7 +301,7 @@ def platform_scorecard(platform,items,day_label):
         ('LEFTPADDING',(0,0),(-1,-1),4),('RIGHTPADDING',(0,0),(-1,-1),4),
         ('VALIGN',(0,0),(-1,-1),'TOP')]))
     note=P('Metrics reflect only accessible original-source/API observations as of the report run. N/A = not available.','micro')
-    return [band(platform,day_label+' | '+str(len(items))+' source(s)'),Spacer(1,7),tab,Spacer(1,5),note,Spacer(1,9)]
+    return [band(platform+' | source details',day_label+' | '+str(len(items))+' source(s)'),Spacer(1,7),tab,Spacer(1,5),note,Spacer(1,9)]
 
 def source_sections(items,tag,day_label,include_empty=False):
     # The source cards go DIRECTLY below that platform's analytics scorecard.
