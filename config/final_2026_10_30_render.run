@@ -5,3 +5,5 @@ Regenerate final 30 October PDF with deduplicated original editorial article and
 Regenerate platform-by-platform PDF with sourced public metrics, YouTube count fields, article bylines and evidence images. No API calls.
 
 2026-10-30 actual additions: source-dated Yajmin Angelbird CFast roundup, ratioDB, Geizhals, billigxxl price snapshots, credited original product photos, explicit URLs. Zero paid research API; render-only from sourced JSON.
+
+Final sourced retail dates, photo attribution and low-priority undated retailer leads; regenerate PDF-only with no GPT call.
