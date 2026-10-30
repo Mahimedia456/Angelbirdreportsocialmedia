@@ -1,12 +1,5 @@
 name: Angelbird PDF Rebuild (No AI Cost)
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'src/**'
-      - 'tests/**'
-      - 'data/reference_history_2026_10_29.json'
-      - '.github/workflows/rebuild-pdf.yml'
   workflow_dispatch:
     inputs:
       report_date:
