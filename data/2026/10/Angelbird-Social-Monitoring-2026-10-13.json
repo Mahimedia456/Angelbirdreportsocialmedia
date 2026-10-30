@@ -282,13 +282,59 @@
       "platform": "Retailers",
       "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": false
+    },
+    {
+      "platform": "Facebook",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 3 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Instagram",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "LinkedIn",
+      "summary": "8 indexed query attempt(s), 8 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "X / Twitter",
+      "summary": "8 indexed query attempt(s), 8 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "Reddit",
+      "summary": "6 indexed query attempt(s), 6 index response(s), 2 original source fetch(es), 2 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "YouTube",
+      "summary": "5 indexed query attempt(s), 5 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "Camera forums",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
+    },
+    {
+      "platform": "Industry articles",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 10 original source fetch(es), 2 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": true
+    },
+    {
+      "platform": "Retailers",
+      "summary": "9 indexed query attempt(s), 9 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "checked": false
     }
   ],
   "visibility_gaps": [
     "Facebook: alternate public index HTTP 403",
     "GDELT free news index: HTTP 429",
     "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
-    "No result does not establish no brand activity on a platform."
+    "No result does not establish no brand activity on a platform.",
+    "YouTube official API search HTTP 429"
   ],
-  "methodology": "Python collector: 45 public search query attempts, 14 original-page attempts, 0 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text."
+  "methodology": "Python collector: 45 public search query attempts, 14 original-page attempts, 0 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text. | Brand-wide original-source refresh: all available products and general brand topics"
 }
