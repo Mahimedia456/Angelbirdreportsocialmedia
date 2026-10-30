@@ -3,12 +3,12 @@
     "scope": "ChatGPT web research JSON import",
     "data": {
       "found": true,
-      "inserted": 0,
+      "inserted": 1,
       "by_bucket": {
         "today_findings": 0,
         "unverified_leads": 0,
         "older_leads": 0,
-        "retail_observations": 0
+        "retail_observations": 1
       },
       "source": "data/2026/10/Angelbird-Social-Monitoring-2026-10-30-chatgpt.json"
     }
@@ -17,37 +17,12 @@
     "scope": "Historical source image cache",
     "data": {
       "cached_report_images": 0,
-      "original_post_preview_checks": 3,
+      "original_post_preview_checks": 1,
       "image_audit": [
         {
           "stage": "post-image-discovery",
-          "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+          "url": "https://fotoforma.pl/festiwal-fotoforma-2026-oferta-specjalna-angelbird/1/default/2",
           "status": "HTTP 403"
-        },
-        {
-          "stage": "post-image-discovery",
-          "url": "https://ofertasgaming.com/producto/tarjeta-microsd-angelbird-av-pro-microsd-v30-mkii-512-gb-rapida-y-resistente",
-          "status": "HTTP 403"
-        },
-        {
-          "stage": "image",
-          "url": "https://www.facebook.com/photo?fbid=1575983300996022",
-          "result": "not image"
-        },
-        {
-          "stage": "image",
-          "url": "https://www.bhphotovideo.com/images/images500x500/angelbird_avp256msdv60_256gb_av_pro_v60_1583402.jpg",
-          "result": "HTTP 403"
-        },
-        {
-          "stage": "image",
-          "url": "https://www.galaxus.de/de/s1/product/angelbird-av-pro-type-a-1000-gb-cfexpress-typ-a-speicherkarte-30252127/image/angelbird-av-pro-type-a-1000-gb-cfexpress-typ-a-speicherkarte-30252127.jpg",
-          "result": "HTTP 403"
-        },
-        {
-          "stage": "image",
-          "url": "https://www.x-kom.pl/i/737023/angelbird-256gb-av-pro-sdxc-mk2-v60-280mb-s.jpg",
-          "result": "HTTP 403"
         }
       ]
     }
