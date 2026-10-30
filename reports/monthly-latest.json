@@ -44,5 +44,8 @@
     "Camera Forums": 0,
     "Google / News / Articles": 0,
     "Retailers": 0
-  }
+  },
+  "unique_social_url_groups": 5,
+  "linked_reply_excerpts": 0,
+  "daily_coverage_percent": 16.7
 }
