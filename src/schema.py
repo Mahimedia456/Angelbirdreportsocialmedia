@@ -112,6 +112,13 @@ class ResearchReport(BaseModel):
         d=dict(data)
         for key in ('report_date','generated_at_pkt','status','headline','methodology','report_period_start','report_period_end'):
             if key in d: d[key]=text_value(d[key])
+        # LLMs sometimes return source coverage as a {platform: summary} map.
+        # Preserve it as unverified index-search notes, not proof of direct platform reads.
+        if isinstance(d.get('coverage'), dict):
+            d['coverage']=[{'platform':str(k),'summary':text_value(v),'checked':False}
+                           for k,v in d['coverage'].items()]
+        if isinstance(d.get('visibility_gaps'), str):
+            d['visibility_gaps']=[d['visibility_gaps']]
         for bucket in ('today_findings','retail_observations','unverified_leads','older_leads','historical_findings','historical_retail','coverage','visibility_gaps'):
             if not isinstance(d.get(bucket), list): d[bucket]=[]
         # Invalid or missing source URLs are not evidence. Keep summary note, not a fabricated record.
