@@ -1,0 +1,75 @@
+name: Angelbird Weekly Social Research and Reports
+on:
+  schedule:
+    - cron: '15 18 * * 0'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: angelbird-periodic-reports-main
+  cancel-in-progress: false
+jobs:
+  research-and-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      RESEARCH_ENGINE: python
+      FREE_SOURCES_ONLY: 'false'
+      GPT_RESEARCH_ENABLED: 'true'
+      GPT_PLATFORM_SWEEPS: 'true'
+      GPT_FORCE_RESEARCH: 'true'
+      GPT_MAX_RESEARCH_ROUNDS: '3'
+      GPT_MAX_WEB_CALLS: '3'
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: 'gpt-4.1-mini'
+      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      MAX_SEARCH_QUERIES: '56'
+      MAX_SOURCE_PAGES: '100'
+      MAX_SOURCE_PAGES_PER_GROUP: '12'
+      MAX_SOURCE_IMAGES: '18'
+      MAX_REPORT_IMAGES: '16'
+      REPORT_SINGLE_DAY: 'true'
+      REPORT_PREVIOUS_COMPLETED_DAY: 'false'
+      DRY_RUN: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt pypdf
+      - name: Set report end date in Pakistan time
+        run: |
+          END=$(TZ=Asia/Karachi date +%F)
+          echo "END=$END" >> "$GITHUB_ENV"
+          echo "REPORT_DATE=$END" >> "$GITHUB_ENV"
+      - name: Fresh Python discovery and OpenAI platform research
+        run: python -m src.main
+      - name: Build full weekly report and source KPIs
+        run: python -m scripts.build_periodic_report --period weekly --end "$END"
+      - name: Check PDF and report inventory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          meta=json.loads(Path('reports/weekly-latest.json').read_text())
+          path=Path(meta['path'])
+          reader=PdfReader(path,strict=True)
+          assert len(reader.pages)>0
+          text=' '.join(page.extract_text() or '' for page in reader.pages)
+          assert 'WEEKLY' in text.upper()
+          print(f"Validated {len(reader.pages)} pages, {meta['dated_findings']} dated records: {path}")
+          PY
+      - name: Rebuild searchable website reports index
+        run: python scripts/update_report_index.py
+      - name: Commit research, evidence, reports and UI index
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ assets/ reports/ reports-index.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Angelbird weekly research and PDF'
+            git pull --rebase origin main
+            git push origin main
+          fi
