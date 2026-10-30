@@ -110,6 +110,8 @@ class PublicResearch:
         self.audit=[]
         self.candidates={}
         self.findings=[]
+        self.unverified=[]
+        self.older=[]
         self.gaps=[]
         self.counts=Counter()
         self.seen=set()
@@ -395,11 +397,21 @@ class PublicResearch:
             self.counts[group+'.not_dated_today']+=1
             self.audit.append({'stage':'unverified-date','group':group,'url':r.url,'source_date':when,
                                'title':title[:140]})
+            if not when:
+                result.status='unverified'
+                result.verification_note='Original page mentions Angelbird but no original publish date was proven.'
+                if not any(x.url==result.url for x in self.unverified):
+                    self.unverified.append(result)
+            elif (self.day-timedelta(days=5)).isoformat()<=when<self.date:
+                result.status='older'
+                result.verification_note='Original page has a previous-five-day publication date, not today's.'
+                if not any(x.url==result.url for x in self.older):
+                    self.older.append(result)
 
     def download_images(self,prefix='source'):
         from PIL import Image as PILImage, ImageOps
         from io import BytesIO
-        for f in self.findings:
+        for f in self.findings+self.unverified[:6]+self.older[:6]:
             if self.images>=self.image_limit:break
             if f.image_files:continue
             u=f.image_url
@@ -461,7 +473,8 @@ class PublicResearch:
         headline=(f'{len(verified)} direct Angelbird mention(s) independently dated {self.date} '
                  f'from accessible public sources. Source coverage and access limitations follow.')
         report=ResearchReport(report_date=self.date,status='Python public-source monitoring',
-            headline=headline,today_findings=verified,coverage=coverage,
+            headline=headline,today_findings=verified,unverified_leads=self.unverified[:15],
+            older_leads=self.older[:20],coverage=coverage,
             visibility_gaps=self.gaps+[
               'Public indexes do not expose all posts and comments; private/login-only content is not collected.',
               'No result does not establish no brand activity on a platform.'],
@@ -471,7 +484,9 @@ class PublicResearch:
                          'New verified posts require original source dates and direct Angelbird text.'))
         return report,[{'scope':'Python public source audit','data':self.audit,
                         'counts':dict(self.counts),'search_queries':self.queries,
-                        'original_pages_attempted':self.fetched,'cached_images':self.images}]
+                        'original_pages_attempted':self.fetched,'cached_images':self.images,
+                        'undated_brand_sources':len(self.unverified),
+                        'previous_five_day_brand_sources':len(self.older)}]
 def collect_day(day):
     return PublicResearch(day).run()
 
