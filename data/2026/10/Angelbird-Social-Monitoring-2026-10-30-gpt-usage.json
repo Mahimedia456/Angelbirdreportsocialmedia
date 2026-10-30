@@ -1,0 +1,19 @@
+{
+  "model": "gpt-4.1-mini",
+  "observed_search_events": 1,
+  "max_web_calls": 2,
+  "usage": {
+    "input_tokens": 9115,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1867,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 10982
+  },
+  "response_id": "resp_0a2eeb85e068fdaa006ae489135ddc87d1b75e4983afff0593",
+  "cost_note": "Actual charges only in OpenAI API Usage; no fixed dollar cap."
+}

@@ -13,7 +13,7 @@
         "group": "Reddit",
         "stage": "search",
         "query": "site:reddit.com \"Angelbird\" \"card\" October 2026",
-        "results": 7,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -69,7 +69,7 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "site:newsshooter.com \"Angelbird\" October 2026",
-        "results": 2,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -118,7 +118,7 @@
         "group": "Facebook",
         "url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl",
         "result": "OK",
-        "final_url": "https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fkrisjonnes%2Fposts%2Fpfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
+        "final_url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
       },
       {
         "stage": "source-fetch",
@@ -172,7 +172,7 @@
       "YouTube.api_searches": 1,
       "YouTube.verified": 1,
       "YouTube.comments_calls": 1,
-      "Reddit.wrong_source_domain": 17,
+      "Reddit.wrong_source_domain": 20,
       "Reddit.successful_queries": 2,
       "Reddit.fallback_attempts": 1,
       "Reddit.queries": 2,
@@ -196,11 +196,10 @@
       "Camera forums.successful_queries": 2,
       "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 2,
-      "Industry articles.irrelevant_index_hits": 20,
+      "Industry articles.irrelevant_index_hits": 30,
       "Industry articles.successful_queries": 3,
       "Industry articles.fallback_attempts": 1,
       "Industry articles.queries": 3,
-      "Industry articles.wrong_source_domain": 2,
       "Retailers.wrong_source_domain": 20,
       "Retailers.successful_queries": 2,
       "Retailers.fallback_attempts": 1,
@@ -220,6 +219,20 @@
     "cached_images": 2,
     "undated_brand_sources": 0,
     "previous_five_day_brand_sources": 1
+  },
+  {
+    "scope": "Paid GPT bounded supplement",
+    "data": {
+      "status": "finished",
+      "observed_search_events": 1,
+      "api_calls": 1,
+      "merged": {
+        "today_findings": 0,
+        "unverified_leads": 0,
+        "older_leads": 0,
+        "retail_observations": 0
+      }
+    }
   },
   {
     "scope": "Historical source image cache",

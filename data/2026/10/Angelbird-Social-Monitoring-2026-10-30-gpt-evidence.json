@@ -1,0 +1,42 @@
+{
+  "report_date": "2026-10-30",
+  "generated_at_pkt": "",
+  "status": "complete",
+  "headline": "Angelbird Technologies and AV PRO Memory Cards: Recent Insights and User Feedback",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "B&H Photo Video",
+      "summary": "Product listings and reviews for Angelbird AV PRO memory cards.",
+      "checked": true
+    },
+    {
+      "platform": "Digital Camera World",
+      "summary": "Article introducing Angelbird's new CFexpress Type A cards.",
+      "checked": true
+    },
+    {
+      "platform": "Galaxus",
+      "summary": "Product listing for Angelbird Av Pro Type A 1000 GB CFexpress Type A card.",
+      "checked": true
+    },
+    {
+      "platform": "x-kom.pl",
+      "summary": "Product listing for Angelbird 256GB AV PRO SDXC MK2 V60 memory card.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "No recent user-generated content or reviews from social media platforms such as Reddit, Facebook, Instagram, or LinkedIn were identified within the specified timeframe.",
+    "No recent technical forum discussions or customer complaints regarding Angelbird AV PRO memory cards were found within the specified timeframe.",
+    "5 candidate records without valid original URLs excluded from report."
+  ],
+  "methodology": "The search focused on identifying recent reviews, user comments, and product-related discussions about Angelbird AV PRO memory cards from various platforms, including B&H Photo Video, Digital Camera World, Galaxus, x-kom.pl, and others. The search excluded generic platform news, Angelbird's corporate homepage, and undated catalog/search pages. The findings were categorized based on their relevance and recency, with a distinction made between exact-day sources, older leads, and current retail listings."
+}
