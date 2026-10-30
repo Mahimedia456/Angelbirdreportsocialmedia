@@ -488,14 +488,33 @@ class PublicResearch:
         author=''
         by=soup.find('meta',attrs={'name':'author'})
         if by:author=by.get('content','')
+        if not author:
+            for node in soup.select('script[type="application/ld+json"]')[:8]:
+                try:
+                    doc=json.loads(node.get_text())
+                    for record in doc if isinstance(doc,list) else [doc]:
+                        if not isinstance(record,dict):continue
+                        person=record.get('author',{})
+                        if isinstance(person,list):person=person[0] if person else {}
+                        if isinstance(person,dict) and person.get('name'):
+                            author=str(person['name'])[:100]
+                            break
+                        if isinstance(person,str):author=person[:100];break
+                except (ValueError,TypeError):pass
+                if author:break
+        publisher=''
+        name_tag=soup.find('meta',attrs={'property':'og:site_name'})
+        if name_tag:publisher=str(name_tag.get('content') or '')[:100]
         img=''
         m=soup.find('meta',attrs={'property':'og:image'})
+        if not m:m=soup.find('meta',attrs={'name':'twitter:image'})
         if m:img=urljoin(r.url,m.get('content',''))
         for t in soup(['script','style','noscript','svg','nav','footer','header']):t.decompose()
         area=soup.find('article') or soup.find('main') or soup.body or soup
         content=area.get_text(' ',strip=True)[:50000]
         # Read original-source body, never treat a search snippet or a crawl date as source proof.
         result=classify(r.url,content,group,when,evidence,title,author,img)
+        if result: result.publisher=publisher or (urlparse(r.url).hostname or '')
         if group=='Retailers' and result:
             # A checked product/offer is market data, never a newly published social post.
             path=urlparse(r.url).path.lower().rstrip('/')
