@@ -29,7 +29,7 @@ def main():
         try:doc=json.loads(file.read_text(encoding='utf-8'))
         except (OSError,ValueError):continue
         changed=False
-        for item in doc.get('findings',[]):
+        for item in list(doc.get('findings',[]))+list(doc.get('retail_observations',[])):
             if not isinstance(item,dict):continue
             urls=([item.get('image_url')] if item.get('image_url') else [])+list(item.get('images') or [])
             current=list(item.get('image_files') or [])
