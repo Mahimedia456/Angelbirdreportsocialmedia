@@ -252,14 +252,11 @@ def render_pdf(report,path):
     doc=SimpleDocTemplate(str(path),pagesize=A4,topMargin=34,bottomMargin=60,leftMargin=MARGIN,rightMargin=MARGIN,
         title=f'Angelbird Social Monitoring {report.report_date}',author='Angelbird Social Monitoring')
     story=summary_header(report)
-    story.extend([Spacer(1,12),band(f'{report.report_date} | New findings first',
-                   f'{len(report.today_findings)} verified new mention(s)'),Spacer(1,12)])
-    if report.today_findings:
-        for n,item in enumerate(report.today_findings,1):story.extend(finding_card(item,f'N{n}'))
-    else:
-        story.extend([panel([P('NO DATE-VERIFIED NEW ANGELBIRD MENTIONS','caption'),Spacer(1,5),
-            P('No qualifying same-day Angelbird source was confirmed in the accessible research results. '
-              'This does not imply universal absence of social activity.','small')]),Spacer(1,12)])
+    story.extend([Spacer(1,12)])
+    story.extend(engagement_overview(report.today_findings+report.historical_findings))
+    story.extend([band(f'{report.report_date} | Latest verified posts',
+                       f'{len(report.today_findings)} new dated source(s)'),Spacer(1,8)])
+    story.extend(grouped_platform_cards(report.today_findings,'N',empty=True))
     if report.unverified_leads:
         story.extend([band('New / unverified leads','Not counted as verified today'),Spacer(1,10)])
         for n,item in enumerate(report.unverified_leads,1):
@@ -289,8 +286,7 @@ def render_pdf(report,path):
         items=groups.get(day,[])
         story.extend([Spacer(1,9),band(day,f'{len(items)} saved historical mention(s)'),Spacer(1,10)])
         if items:
-            for n,item in enumerate(items,1):
-                story.extend(finding_card(item,f'H{day[-2:]}-{n}',historical=True))
+            story.extend(grouped_platform_cards(items,f'H{day[-2:]}',empty=False))
         else:
             story.extend([panel(P('No source-linked dated entry saved for this day. '
                                   'This does not establish that no Angelbird activity occurred.','small')),
