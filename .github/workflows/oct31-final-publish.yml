@@ -1,0 +1,65 @@
+name: Angelbird October 31 Final Source-Rich PDF and UI Publication
+on:
+  push:
+    branches: [main]
+    paths: ['config/october31_final_publish.run']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: angelbird-full-october-research-final
+  cancel-in-progress: false
+jobs:
+  publish-final:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt pypdf
+      - name: Source-first product image refresh
+        run: |
+          python -m scripts.hydrate_retail_media
+          python -m scripts.cache_periodic_media --period 2026-10
+      - name: Full October 31 daily evidence and retailer PDF
+        run: python -m scripts.build_periodic_report --period monthly --end 2026-10-31
+      - name: Validate original social dates and retail sources
+        run: |
+          python -m scripts.qa_periodic_pdf --period monthly
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          summary=json.loads(Path('reports/monthly-latest.json').read_text())
+          assert summary['end']=='2026-10-31'
+          assert summary['snapshots']==31, f"Missing daily October dates: {summary['snapshots']}"
+          assert summary['retail_observations_count']>=9,summary
+          assert summary['retailer_price_reference_count']>=2,summary
+          print('OCT31_FINAL_QA',summary['dated_findings'],summary['unverified_leads'],
+                summary['retail_observations_count'])
+          PY
+      - name: Publish inline PDF viewer website
+        run: |
+          python scripts/update_report_index.py
+          python scripts/build_website.py
+          node scripts/build_website.mjs
+          node --check website/app.js
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('reports/monthly-latest.json').read_text())
+          assert Path('_site',data['path']).is_file()
+          print('OCT31_SITE_QA_PASS',data['path'])
+          PY
+      - name: Commit final October PDF images and report manifest
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ assets/ reports/ reports-index.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Angelbird October 31 original-source retail and social report final publication'
+            git pull --rebase origin main
+            git push origin main
+          fi
