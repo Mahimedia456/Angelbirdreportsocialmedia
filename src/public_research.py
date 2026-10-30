@@ -594,10 +594,11 @@ def collect_day(day):
 
 
 def cache_historical_images(report):
-    """Best-effort preview thumbnails for prior dated sources; never invent photos."""
+    """Cache limited original-source thumbnails for GPT, YouTube, and historical findings."""
     engine=PublicResearch(report.report_date)
-    engine.findings=[f for f in (report.historical_findings+report.historical_retail)
-                     if (f.image_url and not f.image_files)]
-    engine.image_limit=min(7,int(os.getenv('MAX_HISTORICAL_IMAGES','5')))
-    engine.download_images(prefix='historical')
-    return {'cached_historical_images':engine.images,'image_audit':engine.audit}
+    items=(report.today_findings+report.unverified_leads+report.retail_observations+
+           report.historical_findings+report.historical_retail)
+    engine.findings=[f for f in items if f.image_url and not f.image_files]
+    engine.image_limit=min(12,int(os.getenv('MAX_REPORT_IMAGES','8')))
+    engine.download_images(prefix='verified')
+    return {'cached_report_images':engine.images,'image_audit':engine.audit}
