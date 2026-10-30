@@ -1,6 +1,6 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 16:19 PKT",
+  "generated_at_pkt": "2026-10-30 16:51 PKT",
   "status": "Python public-source monitoring",
   "headline": "0 directly dated Angelbird mention(s) established for 2026-10-30 from 6 first-party page attempts; previous five days are listed separately.",
   "today_findings": [],
@@ -253,7 +253,7 @@
     {
       "platform": "YouTube",
       "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
-      "checked": false
+      "checked": true
     },
     {
       "platform": "Facebook",
@@ -287,7 +287,6 @@
     }
   ],
   "visibility_gaps": [
-    "YouTube: Data API key not configured; direct comments unavailable",
     "Reddit OAuth not configured; direct comment thread access not guaranteed",
     "Reddit: alternate public index HTTP 202",
     "YouTube: alternate public index HTTP 202",
@@ -297,6 +296,7 @@
     "Camera forums: alternate public index HTTP 202",
     "Industry articles: alternate public index HTTP 202",
     "Retailers: alternate public index HTTP 202",
+    "GDELT free news index: HTTP 429",
     "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
     "No result does not establish no brand activity on a platform."
   ],

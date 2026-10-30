@@ -7,98 +7,104 @@
         "stage": "search",
         "query": "site:reddit.com \"Angelbird\" 2026-10-30",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Reddit",
         "stage": "search",
         "query": "site:reddit.com \"Angelbird\" \"card\" October 2026",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "YouTube",
         "stage": "search",
         "query": "site:youtube.com/watch \"Angelbird\" 2026-10-30",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "YouTube",
         "stage": "search",
         "query": "site:youtube.com \"Angelbird\" October 2026",
-        "results": 1,
-        "index": "Bing RSS"
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Facebook",
         "stage": "search",
         "query": "site:facebook.com \"Angelbird\" 2026-10-30",
-        "results": 10,
-        "index": "Bing RSS"
+        "results": 1,
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Instagram",
         "stage": "search",
         "query": "site:instagram.com \"Angelbird\" 2026-10-30",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "LinkedIn",
         "stage": "search",
         "query": "site:linkedin.com/posts \"Angelbird\" 2026-10-30",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Camera forums",
         "stage": "search",
         "query": "site:dpreview.com/forums \"Angelbird\" October 2026",
-        "results": 10,
-        "index": "Bing RSS"
+        "results": 4,
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Camera forums",
         "stage": "search",
         "query": "\"Angelbird\" \"CFexpress\" camera forum 2026-10-30",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Industry articles",
         "stage": "search",
         "query": "site:newsshooter.com \"Angelbird\" October 2026",
-        "results": 1,
-        "index": "Bing RSS"
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Industry articles",
         "stage": "search",
         "query": "site:cined.com \"Angelbird\" October 2026",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Industry articles",
         "stage": "search",
         "query": "\"Angelbird\" camera review 2026-10-30",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Retailers",
         "stage": "search",
         "query": "site:bhphotovideo.com \"Angelbird\" AV PRO October 2026",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
       },
       {
         "group": "Retailers",
         "stage": "search",
         "query": "site:cvp.com \"Angelbird\" CFexpress October 2026",
         "results": 10,
-        "index": "Bing RSS"
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "stage": "free-news-search",
+        "provider": "GDELT",
+        "state": "HTTP 429",
+        "source_verified": false
       },
       {
         "stage": "source-fetch",
@@ -157,15 +163,17 @@
       }
     ],
     "counts": {
+      "YouTube.api_searches": 1,
       "Reddit.wrong_source_domain": 20,
       "Reddit.successful_queries": 2,
       "Reddit.fallback_attempts": 1,
       "Reddit.queries": 2,
-      "YouTube.wrong_source_domain": 11,
+      "YouTube.wrong_source_domain": 19,
       "YouTube.successful_queries": 2,
       "YouTube.fallback_attempts": 1,
       "YouTube.queries": 2,
-      "Facebook.wrong_source_domain": 10,
+      "YouTube.irrelevant_index_hits": 1,
+      "Facebook.wrong_source_domain": 1,
       "Facebook.successful_queries": 1,
       "Facebook.fallback_attempts": 1,
       "Facebook.queries": 1,
@@ -177,15 +185,14 @@
       "LinkedIn.successful_queries": 1,
       "LinkedIn.fallback_attempts": 1,
       "LinkedIn.queries": 1,
-      "Camera forums.wrong_source_domain": 20,
+      "Camera forums.wrong_source_domain": 14,
       "Camera forums.successful_queries": 2,
       "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 2,
-      "Industry articles.irrelevant_index_hits": 20,
+      "Industry articles.irrelevant_index_hits": 30,
       "Industry articles.successful_queries": 3,
       "Industry articles.fallback_attempts": 1,
       "Industry articles.queries": 3,
-      "Industry articles.wrong_source_domain": 1,
       "Retailers.wrong_source_domain": 20,
       "Retailers.successful_queries": 2,
       "Retailers.fallback_attempts": 1,
@@ -209,15 +216,8 @@
   {
     "scope": "Historical source image cache",
     "data": {
-      "cached_historical_images": 1,
-      "image_audit": [
-        {
-          "stage": "image",
-          "url": "https://www.avshop.ca/images/angelbird/CFexpressBSEMK2512GB_1.jpeg",
-          "result": "cached attributed thumbnail",
-          "asset": "assets/2026/10/2026-10-30/historical_001.jpg"
-        }
-      ]
+      "cached_historical_images": 0,
+      "image_audit": []
     }
   }
 ]
