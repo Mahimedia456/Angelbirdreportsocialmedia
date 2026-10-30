@@ -42,6 +42,14 @@ function walk(dir){
   }
 }
 walk(join(root,'reports'));
+for(const period of ['monthly','weekly']){
+  const src=join(root,'reports',period+'-latest.json');
+  if(!existsSync(src))continue;
+  const dest=join(out,'reports',period+'-latest.json');
+  mkdirSync(dirname(dest),{recursive:true});
+  copyFileSync(src,dest);
+}
+
 const typeRank={monthly:0,weekly:1,daily:2};
 items.sort((a,b)=>b.date.localeCompare(a.date)||(typeRank[a.type]-typeRank[b.type])||a.name.localeCompare(b.name));
 writeFileSync(join(out,'reports-index.json'),JSON.stringify(items,null,2)+'\n');
