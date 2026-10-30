@@ -20,6 +20,25 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Generate weekly PDF from saved evidence without external API calls
         run: python -m scripts.build_weekly_preview
+      - name: Validate weekly PDF readability, pages and content
+        run: |
+          python -m pip install pypdf
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          pdfs=list(Path("reports/2026/10").glob("*-Weekly-2026-10-24_to_2026-10-30.pdf"))
+          assert len(pdfs)==1, f"Expected one weekly PDF: {pdfs}"
+          pdf=pdfs[0]
+          with pdf.open("rb") as f: assert f.read(5)==b"%PDF-"
+          reader=PdfReader(str(pdf),strict=True)
+          pages=len(reader.pages)
+          assert pages >= 1
+          extracted=" ".join((p.extract_text() or "") for p in reader.pages)
+          assert "YOUTUBE" in extracted.upper(), "YouTube section was not rendered"
+          assert "WEEKLY" in extracted.upper()
+          assert len(extracted)>1000, f"Report text unexpectedly short: {len(extracted)}"
+          print(f"VALID PDF: {pdf}, pages={pages}, bytes={pdf.stat().st_size}, text_chars={len(extracted)}")
+          PY
       - name: Save weekly PDF and manifest without altering daily indexes
         run: |
           git config user.name 'github-actions[bot]'
