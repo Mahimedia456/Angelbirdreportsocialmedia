@@ -45,6 +45,9 @@ def verify(day):
         if source.url not in urls:
             raise RuntimeError(f'Original source hyperlink absent from generated PDF: {source.url}')
         checked+=1
+    for source in data.retail_observations:
+        if source.url not in urls:
+            raise RuntimeError(f'Original dated retailer URL absent from generated PDF: {source.url}')
     all_sources=data.today_findings+data.historical_findings
     groups=platform_summary(all_sources)
     # Source cards must live between their own platform section heading and the
@@ -54,10 +57,10 @@ def verify(day):
     all_positions=[]
     for platform in PLATFORMS:
         heading=platform.casefold()
-        match=re.search(r'(?<!\w)'+re.escape(heading)+r'\s*\|\s*source\s+details',low) if platform!='Retailers' else re.search(r'retailers\s*\|\s*observed',low)
+        match=re.search(r'(?<!\w)'+re.escape(heading)+r'\s*\|\s*source\s+details',low) if platform!='Retailers' else re.search(r'retail\s*/\s*price\s+observations',low)
         if match:all_positions.append((platform,match.start()))
-    if len(all_positions)<7:
-        raise RuntimeError('Platform-specific scorecard headings missing.')
+    if len(all_positions)!=len(PLATFORMS):
+        raise RuntimeError(f'Expected {len(PLATFORMS)} date-scoped platform sections; found {len(all_positions)}.')
     for index,(platform,start) in enumerate(all_positions):
         finish=all_positions[index+1][1] if index+1<len(all_positions) else len(pdf_text)
         section=clean(pdf_text[start:finish])
