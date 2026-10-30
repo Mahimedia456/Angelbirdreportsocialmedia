@@ -250,6 +250,134 @@
       0
     ]
   ],
+  "kpi_card_groups": [
+    [
+      "SOURCE COVERAGE",
+      [
+        [
+          "Dated sources",
+          6
+        ],
+        [
+          "Pending leads",
+          3
+        ],
+        [
+          "Unique source URLs",
+          9
+        ],
+        [
+          "Days captured",
+          "5/30"
+        ]
+      ]
+    ],
+    [
+      "OBSERVED ENGAGEMENT",
+      [
+        [
+          "Views",
+          3
+        ],
+        [
+          "Likes",
+          0
+        ],
+        [
+          "Comments",
+          0
+        ],
+        [
+          "Shares",
+          null
+        ]
+      ]
+    ],
+    [
+      "OVERALL SENTIMENT",
+      [
+        [
+          "Positive",
+          3
+        ],
+        [
+          "Negative",
+          1
+        ],
+        [
+          "Neutral",
+          1
+        ],
+        [
+          "Questions",
+          1
+        ]
+      ]
+    ],
+    [
+      "POST FORMATS",
+      [
+        [
+          "Posts",
+          3
+        ],
+        [
+          "Videos",
+          1
+        ],
+        [
+          "Reels",
+          0
+        ],
+        [
+          "Stories",
+          0
+        ]
+      ]
+    ],
+    [
+      "ADDITIONAL ENGAGEMENT AND EVIDENCE",
+      [
+        [
+          "Reactions",
+          null
+        ],
+        [
+          "Reposts",
+          null
+        ],
+        [
+          "Linked replies",
+          0
+        ],
+        [
+          "Cached images",
+          3
+        ]
+      ]
+    ],
+    [
+      "SUPPORTING RECORDS",
+      [
+        [
+          "Retail entries",
+          6
+        ],
+        [
+          "Articles",
+          2
+        ],
+        [
+          "Comment findings",
+          0
+        ],
+        [
+          "Not classified",
+          0
+        ]
+      ]
+    ]
+  ],
   "rejected_synthetic_example_urls": [
     "https://www.reddit.com/r/videography/comments/abc123/angelbird_media_performance_in_real_world/",
     "https://www.youtube.com/watch?v=def456"
