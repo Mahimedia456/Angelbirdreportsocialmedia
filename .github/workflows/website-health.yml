@@ -1,7 +1,7 @@
 name: Atomos Website Build Validation
 on:
   push:
-    branches: [main]
+    branches: [main, atomos-report-clone-ready]
     paths:
       - 'website/**'
       - 'scripts/build_website.mjs'
@@ -24,6 +24,13 @@ jobs:
           python-version: '3.12'
       - name: Check website JS
         run: node --check website/app.js
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Atomos reporting dependencies and run brand/date tests
+        run: |
+          pip install -r requirements.txt
+          python -m unittest discover -s tests -v
       - name: Build date-based report website
         run: node scripts/build_website.mjs
       - name: Verify last report is listed
