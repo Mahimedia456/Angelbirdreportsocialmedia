@@ -55,7 +55,7 @@
         "group": "Camera forums",
         "stage": "search",
         "query": "site:dpreview.com/forums \"Angelbird\" October 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing RSS"
       },
       {
@@ -83,14 +83,14 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "\"Angelbird\" camera review 2026-10-30",
-        "results": 7,
+        "results": 10,
         "index": "Bing RSS"
       },
       {
         "group": "Retailers",
         "stage": "search",
         "query": "site:bhphotovideo.com \"Angelbird\" AV PRO October 2026",
-        "results": 10,
+        "results": 3,
         "index": "Bing RSS"
       },
       {
@@ -99,287 +99,39 @@
         "query": "site:cvp.com \"Angelbird\" CFexpress October 2026",
         "results": 10,
         "index": "Bing RSS"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/find-your-phone?hl=ca",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S857887476:1793358388251031"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/find-your-phone?hl=pt-BR",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-737341838:1793358388560038"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/find-your-phone?hl=zh-CN",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S840923357:1793358388845244"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/find-your-phone?hl=ms",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1861678612:1793358389163953"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/find-your-phone?hl=sl",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-317208851:1793358389432929"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/find-your-phone?hl=lv",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1407862273:1793358389689783"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/find-your-phone?hl=zh-TW",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1377426665:1793358389999379"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/personal-info",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-2096180102:1793358390271328"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/find-your-phone?hl=en",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-987213259:1793358390549960"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://myaccount.google.com/intro/dashboard?hl=en-US",
-        "result": "OK",
-        "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://myaccount.google.com/general-light&followup=https://myaccount.google.com/general-light&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-452882888:1793358390834247"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.fedex.com/en-us/tracking.html",
-        "result": "OK",
-        "final_url": "https://www.fedex.com/en-us/tracking.html"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.fedex.com/en-us/home.html",
-        "result": "OK",
-        "final_url": "https://www.fedex.com/en-us/home.html"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.fedexfreight.com/en-us/tracking",
-        "result": "OK",
-        "final_url": "https://www.fedexfreight.com/en-us/tracking"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.fedex.com/en-ca/tracking.html",
-        "result": "OK",
-        "final_url": "https://www.fedex.com/en-ca/tracking.html"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.fedex.com/en-gb/tracking.html",
-        "result": "OK",
-        "final_url": "https://www.fedex.com/en-gb/tracking.html"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.fedex.com/en-in/tracking.html",
-        "result": "OK",
-        "final_url": "https://www.fedex.com/en-in/tracking.html"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://local.fedex.com/en-us/track",
-        "result": "OK",
-        "final_url": "https://www.fedex.com/en-us/tracking.html"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.fedex.com/en-us/tracking/advanced.html",
-        "result": "OK",
-        "final_url": "https://www.fedex.com/en-us/tracking/advanced.html"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://images.fedex.com/wtrk/fedextracking/",
-        "result": "OK",
-        "final_url": "https://images.fedex.com/wtrk/fedextracking/"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "Reddit",
-        "url": "https://www.fedexfreight.com/en-us",
-        "result": "OK",
-        "final_url": "https://www.fedexfreight.com/en-us"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://www.linkedin.com/in/ahmed-hakami-mba-ma-a4a10b181",
-        "result": "HTTP 999",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://www.linkedin.com/in/ahmedhakami-",
-        "result": "HTTP 999",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://sa.linkedin.com/in/ahmed-al-hakami",
-        "result": "HTTP 999",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://sa.linkedin.com/in/ahmed-hakami-394a4b135",
-        "result": "HTTP 999",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://patents.justia.com/inventor/ahmed-hakami",
-        "result": "HTTP 403",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://www.whitepages.com/name/Ahmed-Hakami",
-        "result": "HTTP 403",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://www.arabnews.com/saudi-arabia/whos-who-ahmed-hakami-founder-and-ceo-of-supplyfield-2395526",
-        "result": "HTTP 403",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://www.linkedin.com/pub/dir/Ahmed+/Hakami",
-        "result": "HTTP 999",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://www.linkedin.com/pub/dir/ahmed/hakami",
-        "result": "HTTP 999",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://www.linkedin.com/pub/dir/Ahmed+%F0%9F%A7%91%F0%9F%8F%BB%E2%80%8D%F0%9F%A6%BD/HAKAMI+",
-        "result": "HTTP 999",
-        "final_url": null
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://techcommunity.microsoft.com/blog/exchange/released-september-2026-exchange-server-security-updates/4554411",
-        "result": "OK",
-        "final_url": "https://techcommunity.microsoft.com/blog/exchange/released-september-2026-exchange-server-security-updates/4554411"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://techcommunity.microsoft.com/blog/skills-hub-blog/new-microsoft-certified-azure-ai-apps-and-agents-developer-associate/4494126",
-        "result": "OK",
-        "final_url": "https://techcommunity.microsoft.com/blog/skills-hub-blog/new-microsoft-certified-azure-ai-apps-and-agents-developer-associate/4494126"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://support.microsoft.com/en-us/sharepoint/platform/what-is-sharepoint",
-        "result": "OK",
-        "final_url": "https://support.microsoft.com/en-us/sharepoint/platform/what-is-sharepoint"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://support.microsoft.com/en-au/support/index",
-        "result": "OK",
-        "final_url": "https://support.microsoft.com/en-au/support/index"
-      },
-      {
-        "stage": "source-fetch",
-        "group": "YouTube",
-        "url": "https://techcommunity.microsoft.com/blog/azurearchitectureblog/how-ms-discovery-is-empowering-scientists-to-do-more/4516670",
-        "result": "OK",
-        "final_url": "https://techcommunity.microsoft.com/blog/azurearchitectureblog/how-ms-discovery-is-empowering-scientists-to-do-more/4516670"
       }
     ],
     "counts": {
-      "Reddit.candidates": 20,
+      "Reddit.irrelevant_index_hits": 20,
       "Reddit.successful_queries": 2,
       "Reddit.queries": 2,
-      "YouTube.candidates": 20,
+      "YouTube.irrelevant_index_hits": 20,
       "YouTube.successful_queries": 2,
       "YouTube.queries": 2,
-      "Facebook.candidates": 10,
+      "Facebook.irrelevant_index_hits": 10,
       "Facebook.successful_queries": 1,
       "Facebook.queries": 1,
+      "Instagram.irrelevant_index_hits": 10,
       "Instagram.successful_queries": 1,
       "Instagram.queries": 1,
-      "LinkedIn.candidates": 10,
+      "LinkedIn.irrelevant_index_hits": 10,
       "LinkedIn.successful_queries": 1,
       "LinkedIn.queries": 1,
-      "Camera forums.candidates": 20,
+      "Camera forums.irrelevant_index_hits": 11,
       "Camera forums.successful_queries": 2,
       "Camera forums.queries": 2,
+      "Industry articles.irrelevant_index_hits": 30,
       "Industry articles.successful_queries": 3,
       "Industry articles.queries": 3,
-      "Industry articles.candidates": 17,
+      "Retailers.irrelevant_index_hits": 13,
       "Retailers.successful_queries": 2,
-      "Retailers.queries": 2,
-      "Retailers.candidates": 10,
-      "Reddit.source_attempts": 20,
-      "Reddit.inaccessible": 10,
-      "Reddit.no_brand_original": 10,
-      "YouTube.source_attempts": 15,
-      "YouTube.fetch_failed": 10,
-      "YouTube.no_brand_original": 5
+      "Retailers.queries": 2
     },
     "search_queries": 15,
-    "original_pages_attempted": 35,
-    "cached_images": 0
+    "original_pages_attempted": 0,
+    "cached_images": 0,
+    "undated_brand_sources": 0,
+    "previous_five_day_brand_sources": 0
   },
   {
     "scope": "Historical source image cache",

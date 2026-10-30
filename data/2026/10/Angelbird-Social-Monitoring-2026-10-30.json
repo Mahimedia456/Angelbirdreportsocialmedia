@@ -1,6 +1,6 @@
 {
   "report_date": "2026-10-30",
-  "generated_at_pkt": "2026-10-30 16:06 PKT",
+  "generated_at_pkt": "2026-10-30 16:10 PKT",
   "status": "Python public-source monitoring",
   "headline": "0 direct Angelbird mention(s) independently dated 2026-10-30 from accessible public sources. Source coverage and access limitations follow.",
   "today_findings": [],
@@ -54,7 +54,7 @@
       "source_excerpt": "Shot on #sonyalpha using Angelbird Technologies cards",
       "response_action": "Optional: reach out to the photographer.",
       "impact": "Real-world creator use and potential opportunity for relationship building.",
-      "verification_note": "Metrics and quotation transcribed from user-supplied 29-Oct report; not independently refreshed.",
+      "verification_note": "Comments and dated metrics transcribed from supplied 29 October report. All three comments concern photos, not card performance. Original source may require authentication.",
       "reference_date": "",
       "engagement": {
         "page_followers": "17K",
@@ -68,7 +68,26 @@
         "https://www.facebook.com/photo?fbid=1575983300996022"
       ],
       "image_files": [],
-      "comments": []
+      "comments": [
+        {
+          "author": "De Rizzo",
+          "text": "What is the method you used to shoot these bears?",
+          "sentiment": "Question",
+          "source": "User-supplied 29 Oct PDF"
+        },
+        {
+          "author": "Elizabeth Nicole Honey",
+          "text": "Beautiful",
+          "sentiment": "Positive",
+          "source": "User-supplied 29 Oct PDF"
+        },
+        {
+          "author": "Barbara Cummings",
+          "text": "Fabulous photos",
+          "sentiment": "Positive",
+          "source": "User-supplied 29 Oct PDF"
+        }
+      ]
     },
     {
       "title": "Community member recommends Angelbird cards for Pocket OG",
@@ -228,12 +247,12 @@
   "coverage": [
     {
       "platform": "Reddit",
-      "summary": "2 indexed query attempt(s), 2 index response(s), 20 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
       "platform": "YouTube",
-      "summary": "2 indexed query attempt(s), 2 index response(s), 15 original source fetch(es), 10 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
+      "summary": "2 indexed query attempt(s), 2 index response(s), 0 original source fetch(es), 0 inaccessible; 0 exact-day source-verified mention(s). A blocked index or missing official API is not a negative search result.",
       "checked": true
     },
     {
@@ -273,5 +292,5 @@
     "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
     "No result does not establish no brand activity on a platform."
   ],
-  "methodology": "Python collector: 15 public search query attempts, 35 original-page attempts, 0 attributable image thumbnails; optional Reddit/YouTube APIs. New verified posts require original source dates and direct Angelbird text."
+  "methodology": "Python collector: 15 public search query attempts, 0 original-page attempts, 0 attributable image thumbnails; optional Reddit/YouTube APIs. New verified posts require original source dates and direct Angelbird text."
 }
