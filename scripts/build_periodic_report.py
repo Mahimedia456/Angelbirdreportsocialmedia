@@ -109,6 +109,19 @@ def main():
             '/status/1234567890'))
     rejected_example_leads=[x.url for x in leads if is_synthetic_sample(x)]
     leads=[x for x in leads if not is_synthetic_sample(x)]
+    # A URL already represented in the dated-source dossier is not a second
+    # pending lead. Keep distinct company-feed observations by URL plus title.
+    dated_urls={x.url.strip().lower().rstrip('/') for x in gathered}
+    deduped_leads=[]
+    lead_keys=set()
+    for item in leads:
+        canonical=item.url.strip().lower().rstrip('/')
+        if canonical in dated_urls:continue
+        key=(canonical,item.title.strip().lower())
+        if key in lead_keys:continue
+        lead_keys.add(key)
+        deduped_leads.append(item)
+    leads=deduped_leads
     gathered.sort(key=lambda x:x.published_date or '',reverse=True)
     # Keep a platform-specific count of supplied source media and observations.
     media_with_file=lambda x: any((ROOT/path).is_file() for path in x.image_files)
