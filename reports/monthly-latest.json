@@ -5,7 +5,7 @@
   "path": "reports/2026/10/Angelbird-Social-Monitoring-Monthly-2026-10-01_to_2026-10-31.pdf",
   "snapshots": 31,
   "archived_findings": 3,
-  "dated_findings": 13,
+  "dated_findings": 14,
   "unverified_leads": 4,
   "platform_counts": {
     "Facebook": 0,
@@ -15,17 +15,17 @@
     "Reddit": 2,
     "YouTube": 8,
     "Camera Forums": 0,
-    "Google / News / Articles": 2,
+    "Google / News / Articles": 3,
     "Retailers": 0
   },
   "sentiment_counts": {
     "Question": 3,
-    "Neutral": 6,
+    "Neutral": 7,
     "Positive": 3,
     "Negative": 1
   },
   "observed_product_labels": {
-    "Angelbird AV PRO": 2,
+    "Angelbird AV PRO": 3,
     "Angelbird AV PRO CF CFast 2.0 1TB": 1,
     "Angelbird AV Pro": 1,
     "CFexpress Type B / BURANO RAW": 1,
@@ -35,7 +35,7 @@
   },
   "record_type_counts": {
     "video": 8,
-    "article": 2,
+    "article": 3,
     "post": 3
   },
   "platform_discovery_leads": {
@@ -49,17 +49,20 @@
     "Google / News / Articles": 1,
     "Retailers": 0
   },
-  "unique_social_url_groups": 12,
+  "unique_social_url_groups": 13,
   "linked_reply_excerpts": 6,
   "daily_coverage_percent": 100.0,
   "source_media": {
-    "embedded_verified": 10,
-    "linked_verified": 10,
+    "embedded_verified": 11,
+    "linked_verified": 11,
     "embedded_leads": 0,
     "linked_leads": 2,
     "missing_media_verified": 3
   },
   "retail_observations_count": 9,
+  "official_catalog_items": 79,
+  "official_catalog_pages": 36,
+  "brand_scope_mode": "brand_wide_all_products_services_and_mentions",
   "retailer_store_counts": {
     "billigxxl": 1,
     "Geizhals \u00d6sterreich": 1,
@@ -246,11 +249,11 @@
     ],
     [
       "Google / News / Articles",
-      2,
-      1,
       3,
-      2,
-      2,
+      1,
+      4,
+      3,
+      3,
       0
     ],
     [
@@ -269,7 +272,7 @@
       [
         [
           "Dated sources",
-          13
+          14
         ],
         [
           "Pending leads",
@@ -277,7 +280,7 @@
         ],
         [
           "Unique source URLs",
-          17
+          18
         ],
         [
           "Days captured",
@@ -319,7 +322,7 @@
         ],
         [
           "Neutral",
-          6
+          7
         ],
         [
           "Questions",
@@ -365,7 +368,7 @@
         ],
         [
           "Cached images",
-          10
+          11
         ]
       ]
     ],
@@ -378,7 +381,7 @@
         ],
         [
           "Articles",
-          2
+          3
         ],
         [
           "Comment findings",
@@ -410,6 +413,27 @@
           3
         ]
       ]
+    ],
+    [
+      "OFFICIAL PRODUCT CATALOG | SEPARATE SNAPSHOT",
+      [
+        [
+          "Catalog products",
+          79
+        ],
+        [
+          "Catalog pages",
+          36
+        ],
+        [
+          "Listing access errors",
+          0
+        ],
+        [
+          "Catalog source",
+          "Manufacturer"
+        ]
+      ]
     ]
   ],
   "pending_reference_metrics": {
@@ -423,7 +447,7 @@
     "https://www.youtube.com/watch?v=def456"
   ],
   "overall_kpi": {
-    "dated_records": 13,
+    "dated_records": 14,
     "pending_leads": 4,
     "metrics": {
       "views": 5790,
@@ -444,7 +468,7 @@
     "sentiment": {
       "positive": 3,
       "negative": 1,
-      "neutral": 6,
+      "neutral": 7,
       "question": 3,
       "not_applicable": 0
     }
@@ -510,7 +534,7 @@
       "Google / News / Articles",
       1,
       0,
-      1,
+      2,
       0,
       0
     ],
