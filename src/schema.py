@@ -27,6 +27,8 @@ class Finding(BaseModel):
     priority: Literal['Urgent','High','Medium','Low','Watch'] = 'Watch'
     status: Literal['verified','unverified','older','retail'] = 'unverified'
     image_url: str = ''
+    image_context: str = ''
+    image_credit_url: str = ''
     product: str = ''
     details: str = ''
     source_excerpt: str = ''
@@ -47,7 +49,7 @@ class Finding(BaseModel):
         if not isinstance(data, dict):
             raise ValueError('Finding must be an object')
         d = dict(data)
-        for key in ('title','platform','url','author','published_date','date_evidence','summary','image_url','product','details','source_excerpt','response_action','impact','verification_note','reference_date','engagement_source','publisher'):
+        for key in ('title','platform','url','author','published_date','date_evidence','summary','image_url','product','details','source_excerpt','response_action','impact','verification_note','reference_date','engagement_source','publisher','image_context','image_credit_url'):
             if key in d:
                 d[key] = text_value(d[key])
         if isinstance(d.get('published_date'), str) and d['published_date'].lower() in ('none','null','unknown','undated','n/a'):
