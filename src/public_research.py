@@ -758,8 +758,8 @@ class PublicResearch:
             headline='Search indexes returned no usable original sources. Current-day activity is unknown, not confirmed zero.'
             self.gaps.append('No source-page evidence could be checked with current index/API access. Configure provider credentials.')
         report=ResearchReport(report_date=self.date,status=status,
-            headline=headline,today_findings=verified,unverified_leads=self.unverified[:15],
-            older_leads=self.older[:20],retail_observations=self.retail[:15],coverage=coverage,
+            headline=headline,today_findings=verified,unverified_leads=self.unverified,
+            older_leads=self.older,retail_observations=self.retail,coverage=coverage,
             visibility_gaps=self.gaps+[
               'Public indexes do not expose all posts and comments; private/login-only content is not collected.',
               'No result does not establish no brand activity on a platform.'],
