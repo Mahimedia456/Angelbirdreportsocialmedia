@@ -17,5 +17,21 @@
     "Camera Forums": 0,
     "Google / News / Articles": 2,
     "Retailers": 0
+  },
+  "sentiment_counts": {
+    "Question": 1,
+    "Neutral": 1,
+    "Positive": 3,
+    "Negative": 1
+  },
+  "observed_product_labels": {
+    "Angelbird AV PRO CF CFast 2.0 1TB": 1,
+    "AV PRO SE CFexpress B v4 512GB": 1,
+    "CFexpress Type B / BURANO RAW": 1
+  },
+  "record_type_counts": {
+    "video": 1,
+    "article": 2,
+    "post": 3
   }
 }
