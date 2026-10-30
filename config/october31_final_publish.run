@@ -1,3 +1,5 @@
 After the full October collector, publish October 1-31 PDF with original-linked retailer catalog, dated journalism, complete source details, and website UI KPI cards.
 
 Rebuild after 31-day research persisted; include 79 manufacturer catalog URLs and 9 retailer observations. Run quality checks against current committed source.
+
+Final one-time October 2026 evidence archive build: rebuild 31 dated daily PDFs, weekly 24-30, monthly 1-31; validate original links, media, archived Facebook coverage gaps, and production static website. Vercel deployment stays manual. Generated strictly from saved source JSON.
