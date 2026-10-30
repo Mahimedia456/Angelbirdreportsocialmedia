@@ -15,6 +15,7 @@ jobs:
     timeout-minutes: 45
     env:
       RESEARCH_ENGINE: python
+      FREE_SOURCES_ONLY: 'true'
       REPORT_DATE: '2026-10-30'
       DRY_RUN: 'false'
       REPORT_ONLY: 'false'
@@ -22,7 +23,6 @@ jobs:
       MAX_SOURCE_PAGES: '35'
       MAX_SOURCE_IMAGES: '12'
       MAX_HISTORICAL_IMAGES: '5'
-      BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
       REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
