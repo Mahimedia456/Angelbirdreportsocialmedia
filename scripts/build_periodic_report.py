@@ -20,7 +20,7 @@ def main():
     end=date.fromisoformat(args.end) if args.end else date.today()
     start=end-timedelta(days=6) if args.period=='weekly' else end.replace(day=1)
     brand='Atomos' if 'smratomos' in str(ROOT).lower() else 'Angelbird'
-    gathered=[];leads=[];offers=[];saved=[];seen=set()
+    gathered=[];leads=[];offers=[];saved=[];seen=set();coverage_checks=[]
     for n in range((end-start).days+1):
         d=start+timedelta(days=n)
         p=ROOT/'data'/d.strftime('%Y')/d.strftime('%m')/(f'{brand}-Social-Monitoring-{d}.json')
@@ -29,6 +29,8 @@ def main():
         except Exception as e:
             print('INVALID DAILY EVIDENCE',p,str(e));continue
         saved.append(str(d))
+        for status in report.coverage:
+            coverage_checks.append((str(d),status.platform,bool(status.checked),str(status.summary or '')))
         for field,target in [('today_findings',gathered),('historical_findings',gathered),
                              ('unverified_leads',leads),('retail_observations',offers),('historical_retail',offers)]:
             for item in getattr(report,field):
@@ -107,6 +109,32 @@ def main():
            Spacer(1,9),pdf.P(f'Saved daily research snapshots: {len(saved)} of {(end-start).days+1}. Missing days are incomplete coverage, NOT zero activity.','small'),
            Spacer(1,8)]
     story.extend([pdf.P(f'Direct collector records: {len(gathered)-archived}; archived dated records: {archived}. Archive provenance is separately labeled, and older linked sources are not newly verified by this run.','small'),Spacer(1,8)])
+    # Analytical breakdown only describes collected evidence, not global platform reach.
+    sentiments=Counter(x.sentiment for x in gathered)
+    products=Counter(str(x.product).strip() for x in gathered if str(x.product or '').strip())
+    weekly_buckets=Counter('Week '+str(1+(int(x.published_date[8:10])-1)//7) for x in gathered if x.published_date)
+    measured=Counter()
+    for item in gathered:
+        for key in ('views','likes','comments','shares','reactions','reposts'):
+            val=item.engagement.get(key) if item.engagement else None
+            if isinstance(val,(int,float)) and val>=0:measured[key]+=val
+    story.extend([Spacer(1,8),pdf.band('EVIDENCE QUALITY AND DEEP ANALYTICS'),Spacer(1,8),
+                  pdf.P('These KPIs describe captured original-source records only. Posts column in platform scorecards includes comments and articles and must NOT be interpreted as unique social posts.','small'),
+                  Spacer(1,6),pdf.P('Sentiment of observed records: '+', '.join(str(k)+': '+str(v) for k,v in sorted(sentiments.items())),'small'),
+                  Spacer(1,5),pdf.P('Source date distribution: '+', '.join(str(k)+': '+str(v) for k,v in sorted(weekly_buckets.items())),'small'),
+                  Spacer(1,5),pdf.P('Most frequently mentioned product labels: '+(', '.join(k[:55]+' ('+str(v)+')' for k,v in products.most_common(8)) or 'Not supplied'),'small'),
+                  Spacer(1,5),pdf.P('Observed numeric engagement (partial coverage): '+(', '.join(k+': '+str(v) for k,v in sorted(measured.items())) or 'No comparable cross-platform metrics'),'small'),
+                  Spacer(1,5),pdf.P('Duplicate threads or repeated complaint crossposts can inflate record counts; do not infer unique incidents or unique reach.','small'),Spacer(1,10)])
+    if coverage_checks:
+        counts=Counter((platform,checked) for _,platform,checked,_ in coverage_checks)
+        story.extend([pdf.band('PLATFORM SEARCH COVERAGE AUDIT'),Spacer(1,8),
+                      pdf.P('Public-source checks per saved research day (not proof of exhaustive coverage):','small')])
+        for platform in PLATFORMS:
+            ntrue=counts[(platform,True)]
+            nfalse=counts[(platform,False)]
+            if ntrue+nfalse:
+                story.extend([pdf.P(f'{platform}: {ntrue} checked / {nfalse} incomplete snapshots','small'),Spacer(1,3)])
+        story.append(Spacer(1,7))
     story.extend(pdf.engagement_overview(gathered))
     story.extend([Spacer(1,6),pdf.P(f'Additional original-link leads awaiting date/source confirmation: {len(leads)}. Leads excluded from the verified source KPI above.','small'),Spacer(1,7)])
     types=Counter(content_type(x) for x in gathered)
@@ -140,7 +168,7 @@ def main():
     doc.build(story,onFirstPage=pdf.footer,onLaterPages=pdf.footer)
     result={'period':args.period,'start':str(start),'end':str(end),'path':output.relative_to(ROOT).as_posix(),
             'snapshots':len(saved),'archived_findings':archived,'dated_findings':len(gathered),'unverified_leads':len(leads),
-            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS}}
+            'platform_counts':{p:len(grouped[p]) for p in PLATFORMS},'sentiment_counts':dict(sentiments),'observed_product_labels':dict(products.most_common(10)),'record_type_counts':dict(Counter(content_type(x) for x in gathered))}
     (ROOT/'reports'/f'{args.period}-latest.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()
