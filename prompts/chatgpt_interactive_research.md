@@ -1,23 +1,23 @@
-# Angelbird interactive ChatGPT research (NO OpenAI API billing)
+# Atomos interactive ChatGPT research (NO OpenAI API billing)
 
 Run this prompt **inside this ChatGPT conversation with web search**, not in GitHub Actions and not with an OpenAI API key.
 
-Research Angelbird Technologies for **{{REPORT_DATE}}**, and preserve the five earlier calendar days **{{PREVIOUS_FIVE_DATES}}**.
+Research Atomos Technologies for **{{REPORT_DATE}}**, and preserve the five earlier calendar days **{{PREVIOUS_FIVE_DATES}}**.
 
 Find original dated public posts, video reviews, individual comments, creator demonstrations, camera forum discussions, industry coverage, product compatibility and genuine retail promotions across YouTube, publicly indexed Reddit posts (no Reddit OAuth), Facebook/Instagram/LinkedIn public posts, camera forums, editorial and regional reseller websites. Prefer substantive user feedback over generic brand/product catalog entries. Use targeted independent queries and inspect original URLs; do not claim unindexed or private groups were inspected.
 
-For **each find** extract original permalink, actual author, original post timestamp with timezone (NOT crawl/update date), direct Angelbird source excerpt, product, concise context, sentiment (Positive/Negative/Neutral/Question/Not applicable), urgency (Urgent/High/Medium/Low/Watch), engagement if visible, source image/thumbnail URL, individual attributable comments if visible, and actionable response advice. Do not fabricate image URLs or counts.
+For **each find** extract original permalink, actual author, original post timestamp with timezone (NOT crawl/update date), direct Atomos source excerpt, product, concise context, sentiment (Positive/Negative/Neutral/Question/Not applicable), urgency (Urgent/High/Medium/Low/Watch), engagement if visible, source image/thumbnail URL, individual attributable comments if visible, and actionable response advice. Do not fabricate image URLs or counts.
 
 Strict evidence rules:
-- Only exact-day directly dated posts/comments can be `today_findings`, with `status: verified`, original URL, direct source excerpt explicitly mentioning Angelbird/AV PRO, `published_date: {{REPORT_DATE}}` and a specific `date_evidence` describing original timestamp verification.
+- Only exact-day directly dated posts/comments can be `today_findings`, with `status: verified`, original URL, direct source excerpt explicitly mentioning Atomos/AV PRO, `published_date: {{REPORT_DATE}}` and a specific `date_evidence` describing original timestamp verification.
 - If source date is uncertain, only put it in `unverified_leads` (`status: unverified`). An older article updated today is NOT a new post. Current prices are observations, not new social sentiment.
 - Older dated finds in the preceding five days belong in `older_leads` and will appear chronologically below today's section.
-- An article about Reddit/YouTube platform features without Angelbird mention is not a brand mention.
+- An article about Reddit/YouTube platform features without Atomos mention is not a brand mention.
 - Cite source links, and report which platforms were actually checked vs inaccessible. If no exact-day source was verified, be explicit about limited evidence; do not claim global zero mentions.
 - Don't repeat already saved URLs unnecessarily; prefer new evidence.
 
 **Output:** Give a readable review, then a complete machine-readable JSON object intended for:
-`data/YYYY/MM/Angelbird-Social-Monitoring-YYYY-MM-DD-chatgpt.json`.
+`data/YYYY/MM/Atomos-Social-Monitoring-YYYY-MM-DD-chatgpt.json`.
 
 JSON shape:
 ```json

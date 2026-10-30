@@ -1,4 +1,4 @@
-"""Optional one-request paid GPT research supplement for public Angelbird findings.
+"""Optional one-request paid GPT research supplement for public Atomos findings.
 
 Zero repeat billing for the same report day unless explicitly forced. One Responses
 request with max 2 web calls; fail-open to YouTube/free results on API errors.
@@ -40,7 +40,7 @@ def _normalize_response(raw, day):
             item['url']=str(item.get('url') or item.get('permalink') or '').strip()
             if not item['url'].startswith(('http://','https://')):continue
             host=(urlparse(item['url']).hostname or '').lower()
-            if not re.search(r'\bangelbird\b|\bav[ -]?pro\b',str(item.get('source_excerpt') or ''),re.I):
+            if not re.search(r'\batomos\b|\batomosphere\b',str(item.get('source_excerpt') or ''),re.I):
                 continue
             if not isinstance(item.get('engagement'),dict):
                 stats=item.get('engagement')
@@ -59,7 +59,7 @@ def _normalize_response(raw, day):
                 # A currently indexed product page is not a newly published review.
                 item['published_date']=''
                 item['status']='unverified'
-                item['verification_note']='GPT discovered an Angelbird retailer listing; current listing date/review date not independently verified.'
+                item['verification_note']='GPT discovered an Atomos retailer listing; current listing date/review date not independently verified.'
                 buckets['unverified_leads'].append(item)
             elif candidate_day and candidate_day<today-timedelta(days=5):
                 # Outside requested current + 5 previous-day window.
@@ -83,7 +83,7 @@ def _normalize_response(raw, day):
     return out
 
 def _cache_paths(day):
-    prefix=ROOT/'data'/day[:4]/day[5:7]/f'Angelbird-Social-Monitoring-{day}-gpt'
+    prefix=ROOT/'data'/day[:4]/day[5:7]/f'Atomos-Social-Monitoring-{day}-gpt'
     prefix.parent.mkdir(parents=True,exist_ok=True)
     return {name:Path(str(prefix)+extension) for name,extension in
            [('evidence','-evidence.json'),('attempt','-attempt.json'),
@@ -147,7 +147,7 @@ def supplement(day, existing):
         from openai import OpenAI
         client=OpenAI(timeout=110,max_retries=0)
         prompt=(
-            f'Research Angelbird Technologies and AV PRO memory cards on {day} (Asia/Karachi). '
+            f'Research Atomos Technologies and AV PRO memory cards on {day} (Asia/Karachi). '
             'Use the available web search tool to locate actual original posts, individual public comments, '
             'camera reviews, indexed social posts, and product-related customer complaints. '
             'Use at most 2 targeted, efficient public web searches focused on ORIGINAL post permalinks, '
@@ -156,11 +156,11 @@ def supplement(day, existing):
             'and retailer sources when included in the returned results. State exactly which platforms were '
             'actually searched; do not claim exhaustive coverage of the others. '
             'Also include worthwhile evidence dated in the previous 5 calendar days as older_leads. '
-            'Exclude generic platform news, Angelbird corporate homepage and undated catalog/search pages. '
+            'Exclude generic platform news, Atomos corporate homepage and undated catalog/search pages. '
             'Do not invent findings, authors, quotes, source images or engagement numbers. '
             'Differentiate exact-day sources from older, undated and current retail listings. '
             'For every finding give the exact original post permalink, original post date/date_evidence, '
-            'source_excerpt showing Angelbird/AV PRO, title, platform, author, original article publisher, sentiment, priority, '
+            'source_excerpt showing Atomos/AV PRO, title, platform, author, original article publisher, sentiment, priority, '
             'summary, impact, response_action, optional first-party image_url, numeric engagement only when visible '
             '(post views, likes, comments, shares; do not invent website traffic) and relevant comment URLs. '
             'If a timestamp cannot be independently established, label the item unverified. '

@@ -1,4 +1,4 @@
-name: Angelbird PDF Rebuild (No AI Cost)
+name: Atomos PDF Rebuild (No AI Cost)
 on:
   push:
     branches: [main]
@@ -8,12 +8,12 @@ on:
       report_date:
         description: 'Existing report date (YYYY-MM-DD)'
         required: true
-        default: '2026-10-30'
+        default: ''
         type: string
 permissions:
   contents: write
 concurrency:
-  group: angelbird-report-main
+  group: atomos-report-main
   cancel-in-progress: false
 jobs:
   rebuild:
@@ -32,21 +32,23 @@ jobs:
           REPORT_ONLY: 'true'
           FETCH_EVIDENCE_IMAGES: 'true'
           MAX_REPORT_IMAGES: '10'
-          REPORT_DATE: ${{ inputs.report_date || '2026-10-30' }}
+          REPORT_DATE: ${{ inputs.report_date }}
         run: python -m src.main
       - name: Verify PDF contains each source link under its platform
         env:
           REPORT_DATE: ${{ inputs.report_date || '2026-10-30' }}
-        run: python -m src.verify_pdf "$REPORT_DATE"
+        run: |
+          DAY="${REPORT_DATE:-$(TZ=Asia/Karachi date +%F)}"
+          python -m src.verify_pdf "$DAY"
       - name: Refresh public website reports index
         run: python scripts/update_report_index.py
       - name: Commit regenerated PDF and cumulative JSON
         run: |
-          git config user.name 'angelbird-report-bot'
+          git config user.name 'atomos-report-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add reports/ data/ assets/ reports-index.json || true
           if ! git diff --cached --quiet; then
-            git commit -m "Rebuild Angelbird PDF ${{ inputs.report_date }} (without AI)"
+            git commit -m "Rebuild Atomos PDF ${{ inputs.report_date }} (without AI)"
             git pull --rebase origin "${GITHUB_REF_NAME}"
             git push origin "${GITHUB_REF_NAME}"
           fi

@@ -17,7 +17,7 @@ def _key(item):
 
 def import_chatgpt_evidence(report: ResearchReport, root: Path):
     path=(root/'data'/report.report_date[:4]/report.report_date[5:7]/
-          f'Angelbird-Social-Monitoring-{report.report_date}-chatgpt.json')
+          f'Atomos-Social-Monitoring-{report.report_date}-chatgpt.json')
     if not path.is_file():
         return report,{'found':False,'inserted':0,'source':'No ChatGPT evidence file'}
     raw=json.loads(path.read_text(encoding='utf-8'))

@@ -1,4 +1,4 @@
-name: Angelbird Daily Social Monitoring
+name: Atomos Daily Social Monitoring
 on:
   schedule:
     - cron: '0 14 * * *' # UTC; 19:00 Pakistan time, reports today's partial-day snapshot
@@ -16,7 +16,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: angelbird-report-main
+  group: atomos-report-main
   cancel-in-progress: false
 jobs:
   monitor:
@@ -67,11 +67,11 @@ jobs:
       - name: Save dated reports to GitHub
         if: success()
         run: |
-          git config user.name 'angelbird-report-bot'
+          git config user.name 'atomos-report-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add reports/ data/ assets/ reports-index.json || true
           if ! git diff --cached --quiet; then
-            git commit -m "Angelbird daily monitoring ${REPORT_DATE:-PKT-today}"
+            git commit -m "Atomos daily monitoring ${REPORT_DATE:-PKT-today}"
             git pull --rebase origin "${GITHUB_REF_NAME}"
             git push origin "${GITHUB_REF_NAME}"
           fi
@@ -79,7 +79,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: angelbird-failed-run
+          name: atomos-failed-run
           path: |
             data/
             reports/

@@ -16,7 +16,7 @@ SWEEPS=(
     ('social',(
         'Facebook public posts/groups where indexed, Instagram public posts, '
         'X/Twitter public posts, LinkedIn public pages/creators. Discover original '
-        'Angelbird Technologies post or comment PERMALINKS, not homepages or '
+        'Atomos Technologies post or comment PERMALINKS, not homepages or '
         'generic search pages. Include authors, source post dates, views, likes, '
         'reactions, comments, reposts/shares when actually visible, image URLs '
         'owned by the original source, and verbatim-short brand excerpts. '
@@ -25,12 +25,12 @@ SWEEPS=(
     ('community',(
         'Reddit public indexed posts and comment PERMALINKS (NO Reddit API), '
         'YouTube reviewers and comments, DPReview/Blackmagic/RED/Sony camera forums, '
-        'videography discussions. Target real usage and faults of Angelbird media, '
-        'product compatibility, customer feedback and creator demonstrations. '
+        'videography discussions. Target real usage and faults of Atomos media, '
+        'product compatibility, customer feedback and creator demonstrations of Ninja, Shogun, Shinobi, Sumo, AtomOS firmware, TX-RX, UltraSync and ATOMOSphere. '
         'Extract individual author comments with original comment URL and date.'
     )),
     ('editorial',(
-        'Google-indexed news and original journalism, Angelbird product announcements '
+        'Google-indexed news and original journalism, Atomos firmware and product announcements '
         'from independent publishers, original journalist/byline, dated camera '
         'review articles, original source thumbnail credits, and retailer price '
         'snapshots with observation timestamp. Price/stock is not social sentiment '
@@ -39,7 +39,7 @@ SWEEPS=(
 )
 
 def _paths(day, scope,root):
-    prefix=root/'data'/day[:4]/day[5:7]/f'Angelbird-Social-Monitoring-{day}-gpt-{scope}'
+    prefix=root/'data'/day[:4]/day[5:7]/f'Atomos-Social-Monitoring-{day}-gpt-{scope}'
     prefix.parent.mkdir(parents=True,exist_ok=True)
     return {suffix:Path(str(prefix)+'-'+suffix+'.'+ext) for suffix,ext in (
         ('attempt','json'),('raw','txt'),('usage','json'),('evidence','json'))}
@@ -49,7 +49,7 @@ def _write(path,data):
 
 def _instructions(day, scope, targets):
     return (
-        f'You are doing SCHEDULED Angelbird brand monitoring for {day}, in Asia/Karachi. '
+        f'You are doing SCHEDULED Atomos brand monitoring for {day}, in Asia/Karachi. '
         'Do the public web search NOW; never give advice to search later. '
         f'This sweep targets {scope}: {targets} '
         'Explore at least two distinct targeted query themes with the available '
@@ -64,7 +64,7 @@ def _instructions(day, scope, targets):
         'product listings and price snapshots go in retail_observations only with an '
         'explicit observation timestamp for the reporting date. Include reference_date. '
         'Keep original article publication vs a price last-updated field distinct. '
-        'A source excerpt must mention Angelbird or AV PRO directly. '
+        'A source excerpt must mention Atomos or AV PRO directly. '
         'Never invent author, quote, original URL, engagement, photo or full traffic. '
         'If publisher original date is not visible, mark the source unverified. '
         'For each item return: url, platform, title, author, publisher, published_date, '
