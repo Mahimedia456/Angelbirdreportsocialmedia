@@ -51,7 +51,8 @@ def main():
         if paid_report is None:
             report.visibility_gaps.append('Optional paid GPT supplement unavailable: see GPT attempt diagnostics; free findings preserved.')
     report=compile_history(report,ROOT)
-    if not render_only and not dry and engine=='python':
+    fetch_images=os.getenv('FETCH_EVIDENCE_IMAGES','').lower() in ('1','true','yes')
+    if not dry and engine=='python' and (not render_only or fetch_images):
         image_audit=cache_historical_images(report)
         sweeps.append({'scope':'Historical source image cache','data':image_audit})
     # A previously saved model run counted unrelated Reddit platform news as an
@@ -61,6 +62,10 @@ def main():
         report.headline=(f'No directly evidenced new Angelbird brand mentions were retained for {target} '
                          f'from this bounded research run. Previous dated findings are preserved below.')
         report.status='Limited source coverage - relevance corrected'
+    report.headline=(f'{len(report.today_findings)} dated new Angelbird source finding(s), '
+                     f'{len(report.retail_observations)} current-day price/retail observations, '
+                     f'{len(report.historical_findings)} previous-five-day references. '
+                     'Coverage limited to source-accessible results; retail snapshots are not social posts.')
     report.generated_at_pkt=now.strftime('%Y-%m-%d %H:%M PKT')
     dest=ROOT/'reports'/target[:4]/target[5:7]
     dest.mkdir(parents=True,exist_ok=True)
