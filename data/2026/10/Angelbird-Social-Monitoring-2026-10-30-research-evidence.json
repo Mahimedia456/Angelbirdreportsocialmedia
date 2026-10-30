@@ -3,12 +3,12 @@
     "scope": "ChatGPT web research JSON import",
     "data": {
       "found": true,
-      "inserted": 1,
+      "inserted": 0,
       "by_bucket": {
         "today_findings": 0,
         "unverified_leads": 0,
         "older_leads": 0,
-        "retail_observations": 1
+        "retail_observations": 0
       },
       "source": "data/2026/10/Angelbird-Social-Monitoring-2026-10-30-chatgpt.json"
     }
