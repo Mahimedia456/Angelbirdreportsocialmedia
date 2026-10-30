@@ -1,6 +1,7 @@
 """Research evidence data contract and conservative AI-output normalization."""
 import json
 from datetime import date
+import re
 from typing import Literal
 from urllib.parse import urlparse
 from pydantic import BaseModel, Field, field_validator, model_validator
@@ -28,6 +29,13 @@ class Finding(BaseModel):
     image_url: str = ''
     product: str = ''
     details: str = ''
+    source_excerpt: str = ''
+    response_action: str = ''
+    impact: str = ''
+    verification_note: str = ''
+    reference_date: str = ''
+    engagement: dict = Field(default_factory=dict)
+    images: list[str] = Field(default_factory=list)
 
     @model_validator(mode='before')
     @classmethod
@@ -35,11 +43,14 @@ class Finding(BaseModel):
         if not isinstance(data, dict):
             raise ValueError('Finding must be an object')
         d = dict(data)
-        for key in ('title','platform','url','author','published_date','date_evidence','summary','image_url','product','details'):
+        for key in ('title','platform','url','author','published_date','date_evidence','summary','image_url','product','details','source_excerpt','response_action','impact','verification_note','reference_date'):
             if key in d:
                 d[key] = text_value(d[key])
         if isinstance(d.get('published_date'), str) and d['published_date'].lower() in ('none','null','unknown','undated','n/a'):
             d['published_date'] = ''
+        if not isinstance(d.get('engagement'),dict): d['engagement']={}
+        if not isinstance(d.get('images'),list): d['images']=[]
+        d['images']=[text_value(u) for u in d['images'] if text_value(u).startswith(('https://','http://'))]
         raw_sent = text_value(d.get('sentiment')).lower()
         sentiments = {x.lower():x for x in ('Positive','Negative','Neutral','Question','Not applicable')}
         # Composite/unclear sentiments must NOT silently become positive or negative.
@@ -127,13 +138,23 @@ class ResearchReport(BaseModel):
 
     def enforce_date_guardrails(self):
         verified=[]
+        exclusions=0
         for item in self.today_findings:
+            # A generic platform article is NOT an Angelbird mention. An excerpt
+            # of the actual source wording is required before the verified KPI.
+            excerpt=item.source_excerpt or ''
+            direct=bool(re.search(r'\\bangelbird\\b|\\bav[ -]?pro\\b',excerpt,re.I))
+            if not direct:
+                exclusions+=1
+                continue
             if (item.status=='verified' and item.published_date==self.report_date
-                and item.date_evidence.strip()):
+                and len(item.date_evidence.strip())>=12):
                 verified.append(item)
             else:
                 item.status='unverified'
                 self.unverified_leads.append(item)
+        if exclusions:
+            self.visibility_gaps.append(f'{exclusions} candidate items excluded: no direct Angelbird mention in original-source excerpt.')
         seen=set()
         self.today_findings=[]
         for item in verified:
