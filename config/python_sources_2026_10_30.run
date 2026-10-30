@@ -5,3 +5,5 @@ Date parser fix verified; run Python source collector with 2026-10-30.
 Round-robin original-page verification, undated leads and historical comment embedding verified in source.
 
 Fix prior-five-day classification string; execute full Python research run again.
+
+Use alternate public search source, fair platform quotas and actual dated-source validation. Third-party API keys remain optional.
