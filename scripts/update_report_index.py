@@ -10,7 +10,9 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 NAME=re.compile(r'Angelbird-Social-Monitoring-(\d{4}-\d{2}-\d{2})(-DEMO)?\.pdf$',re.I)
 
-PERIOD_NAME=re.compile(r'Angelbird-Social-Monitoring-(Weekly|Monthly)-(\\d{4}-\\d{2}-\\d{2})_to_(\\d{4}-\\d{2}-\\d{2})\\.pdf:
+PERIOD_NAME=re.compile(r'Angelbird-Social-Monitoring-(Weekly|Monthly)-(\d{4}-\d{2}-\d{2})_to_(\d{4}-\d{2}-\d{2})\.pdf$',re.I)
+
+def build():
     out=[]
     for pdf in sorted((ROOT/'reports').glob('*/*/*.pdf')):
         m=NAME.fullmatch(pdf.name)
