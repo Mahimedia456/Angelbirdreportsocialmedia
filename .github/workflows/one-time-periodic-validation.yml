@@ -1,0 +1,46 @@
+name: One-time Angelbird three-frequency validation
+on:
+  push:
+    branches: [main]
+    paths: ['config/periodic_validation_2026_10_30.run']
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt pypdf
+      - name: Compile source and run unit tests
+        run: |
+          python -m compileall -q src scripts
+          python -m unittest discover -s tests -q
+      - name: Generate and validate weekly and monthly
+        run: |
+          python -m scripts.build_periodic_report --period weekly --end 2026-10-30
+          python -m scripts.build_periodic_report --period monthly --end 2026-10-30
+          python scripts/update_report_index.py
+          python scripts/build_website.py
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          import json
+          idx=json.loads(Path('reports-index.json').read_text())
+          kinds={x.get('type','daily') for x in idx}
+          assert {'daily','weekly','monthly'} <= kinds, kinds
+          for kind in ('weekly','monthly'):
+              meta=json.loads(Path('reports',kind+'-latest.json').read_text())
+              p=Path(meta['path'])
+              reader=PdfReader(p,strict=True)
+              assert len(reader.pages)>0
+              print(kind,len(reader.pages),'pages',meta['dated_findings'],'dated records')
+          site=json.loads(Path('_site/reports-index.json').read_text())
+          assert {'weekly','monthly'} <= {x.get('type') for x in site}
+          assert 'report-type-filter' in Path('_site/index.html').read_text()
+          print('UI and PDFs validated')
+          PY
+      - name: Check JavaScript syntax
+        run: node --check website/app.js
