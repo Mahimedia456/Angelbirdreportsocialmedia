@@ -147,7 +147,7 @@ class ResearchReport(BaseModel):
             # A generic platform article is NOT an Angelbird mention. An excerpt
             # of the actual source wording is required before the verified KPI.
             excerpt=item.source_excerpt or ''
-            direct=bool(re.search(r'\\bangelbird\\b|\\bav[ -]?pro\\b',excerpt,re.I))
+            direct=bool(re.search(r'\bangelbird\b|\bav[ -]?pro\b',excerpt,re.I))
             if not direct:
                 exclusions+=1
                 continue
