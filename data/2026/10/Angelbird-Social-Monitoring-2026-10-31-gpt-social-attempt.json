@@ -1,5 +1,5 @@
 {
   "status": "failed",
   "scope": "social",
-  "error": "Unterminated string starting at: line 23 column 20 (char 1277)"
+  "error": "Expecting value: line 1 column 1 (char 0)"
 }

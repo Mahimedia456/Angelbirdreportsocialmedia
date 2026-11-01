@@ -6,7 +6,7 @@
   "snapshots": 31,
   "archived_findings": 3,
   "dated_findings": 14,
-  "unverified_leads": 4,
+  "unverified_leads": 3,
   "platform_counts": {
     "Facebook": 0,
     "Instagram": 0,
@@ -46,7 +46,7 @@
     "Reddit": 0,
     "YouTube": 0,
     "Camera Forums": 0,
-    "Google / News / Articles": 1,
+    "Google / News / Articles": 0,
     "Retailers": 0
   },
   "unique_social_url_groups": 13,
@@ -56,7 +56,7 @@
     "embedded_verified": 11,
     "linked_verified": 11,
     "embedded_leads": 0,
-    "linked_leads": 2,
+    "linked_leads": 1,
     "missing_media_verified": 3
   },
   "retail_observations_count": 9,
@@ -250,8 +250,8 @@
     [
       "Google / News / Articles",
       3,
-      1,
-      4,
+      0,
+      3,
       3,
       3,
       0
@@ -276,11 +276,11 @@
         ],
         [
           "Pending leads",
-          4
+          3
         ],
         [
           "Unique source URLs",
-          18
+          17
         ],
         [
           "Days captured",
@@ -448,7 +448,7 @@
   ],
   "overall_kpi": {
     "dated_records": 14,
-    "pending_leads": 4,
+    "pending_leads": 3,
     "metrics": {
       "views": 5790,
       "likes": 38,

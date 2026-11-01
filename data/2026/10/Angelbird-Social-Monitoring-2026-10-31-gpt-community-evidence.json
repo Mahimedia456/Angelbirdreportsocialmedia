@@ -15,43 +15,43 @@
   "coverage": [
     {
       "platform": "Reddit",
-      "summary": "No relevant posts or comments mentioning Angelbird media found on Reddit for October 31, 2026.",
-      "checked": false
+      "summary": "No relevant posts or comments mentioning Angelbird or AV PRO were found on Reddit for October 31, 2026.",
+      "checked": true
     },
     {
       "platform": "YouTube",
-      "summary": "No new reviews or comments discussing Angelbird media published on YouTube on October 31, 2026.",
-      "checked": false
+      "summary": "No new reviews or comments about Angelbird products were published on YouTube on October 31, 2026.",
+      "checked": true
     },
     {
       "platform": "DPReview",
-      "summary": "No articles or forum discussions mentioning Angelbird media published on DPReview on October 31, 2026.",
+      "summary": "No discussions or reviews regarding Angelbird products were posted on DPReview on October 31, 2026.",
       "checked": true
     },
     {
-      "platform": "Blackmagic Design",
-      "summary": "No forum posts or discussions mentioning Angelbird media found on Blackmagic Design's official forums for October 31, 2026.",
+      "platform": "Blackmagic Forum",
+      "summary": "No threads or comments mentioning Angelbird or AV PRO were found on the Blackmagic Forum for October 31, 2026.",
       "checked": true
     },
     {
-      "platform": "RED Digital Cinema",
-      "summary": "No forum posts or discussions mentioning Angelbird media found on RED Digital Cinema's official forums for October 31, 2026.",
+      "platform": "RED Camera Forum",
+      "summary": "No relevant posts or discussions about Angelbird products were found on the RED Camera Forum on October 31, 2026.",
       "checked": true
     },
     {
-      "platform": "Sony Cine",
-      "summary": "No forum posts or discussions mentioning Angelbird media found on Sony Cine's official forums for October 31, 2026.",
+      "platform": "Sony Camera Forum",
+      "summary": "No threads or comments mentioning Angelbird or AV PRO were found on the Sony Camera Forum for October 31, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "Videography Discussions",
+      "summary": "No new discussions or mentions of Angelbird products were found in videography forums on October 31, 2026.",
       "checked": true
     }
   ],
   "visibility_gaps": [
-    "Reddit",
-    "YouTube",
-    "DPReview",
-    "Blackmagic Design",
-    "RED Digital Cinema",
-    "Sony Cine",
+    "No new user-generated content or discussions about Angelbird products were found on major platforms on October 31, 2026.",
     "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
   ],
-  "methodology": "Conducted a comprehensive search across Reddit, YouTube, DPReview, Blackmagic Design, RED Digital Cinema, and Sony Cine for posts, comments, reviews, and forum discussions mentioning Angelbird media, focusing on real usage, faults, product compatibility, customer feedback, and creator demonstrations, all dated October 31, 2026. No relevant content was found on the specified date."
+  "methodology": "A comprehensive search was conducted across Reddit, YouTube, DPReview, Blackmagic Forum, RED Camera Forum, Sony Camera Forum, and various videography forums for posts, comments, reviews, and discussions mentioning Angelbird or AV PRO products on October 31, 2026. No relevant content was identified on this date."
 }
