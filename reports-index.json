@@ -1,5 +1,27 @@
 [
   {
+    "id": "2026-11-02",
+    "date": "2026-11-02",
+    "month": "2026-11",
+    "name": "Angelbird-Social-Monitoring-2026-11-02.pdf",
+    "type": "daily",
+    "demo": false,
+    "path": "reports/2026/11/Angelbird-Social-Monitoring-2026-11-02.pdf",
+    "source_url": "https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/reports/2026/11/Angelbird-Social-Monitoring-2026-11-02.pdf"
+  },
+  {
+    "id": "weekly-2026-10-27-2026-11-02",
+    "date": "2026-11-02",
+    "month": "2026-11",
+    "type": "weekly",
+    "start": "2026-10-27",
+    "end": "2026-11-02",
+    "name": "Angelbird-Social-Monitoring-Weekly-2026-10-27_to_2026-11-02.pdf",
+    "demo": false,
+    "path": "reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-10-27_to_2026-11-02.pdf",
+    "source_url": "https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-10-27_to_2026-11-02.pdf"
+  },
+  {
     "id": "2026-10-31",
     "date": "2026-10-31",
     "month": "2026-10",

@@ -1,0 +1,41 @@
+{
+  "report_date": "2026-11-02",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "success",
+  "headline": "Angelbird Technologies Brand Monitoring Report for November 2, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "LinkedIn",
+      "summary": "No new posts or mentions of Angelbird Technologies were found on LinkedIn as of November 2, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "Facebook",
+      "summary": "No new posts or mentions of Angelbird Technologies were found on Facebook as of November 2, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "Instagram",
+      "summary": "No new posts or mentions of Angelbird Technologies were found on Instagram as of November 2, 2026.",
+      "checked": true
+    },
+    {
+      "platform": "X/Twitter",
+      "summary": "No new posts or mentions of Angelbird Technologies were found on X/Twitter as of November 2, 2026.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "A comprehensive search was conducted across LinkedIn, Facebook, Instagram, and X/Twitter for any new posts, mentions, or discussions related to Angelbird Technologies on November 2, 2026. This included monitoring official company pages, public groups, and relevant hashtags. No new information was identified during this search."
+}

@@ -1,10 +1,10 @@
 {
   "period": "weekly",
-  "report": "reports/2026/10/Angelbird-Social-Monitoring-Weekly-2026-10-24_to_2026-10-30.pdf",
+  "report": "reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-10-27_to_2026-11-02.pdf",
   "pages": 10,
-  "pdf_bytes": 461437,
-  "expected_dated_records": 7,
-  "expected_leads": 4,
+  "pdf_bytes": 461915,
+  "expected_dated_records": 6,
+  "expected_leads": 3,
   "original_source_links_in_pdf": 54,
   "embedded_pdf_image_xobjects": 7,
   "images_reported_in_manifest": 4,
@@ -27,5 +27,5 @@
   "missing_sections": [],
   "synthetic_placeholder_urls_found": false,
   "no_page_cap": true,
-  "source_dated_coverage_percent": 100.0
+  "source_dated_coverage_percent": 85.7
 }
