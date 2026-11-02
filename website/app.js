@@ -16,6 +16,11 @@ const key=parts[0]==="month"&&/^\d{4}-(0[1-9]|1[0-2])$/.test(parts[1]||"")?parts
 const item=parts[0]==="report"?records.find(x=>x.id===parts[1]):null;
 const query=el.search.value.trim().toLowerCase();
 el.months.hidden=el.days.hidden=el.viewer.hidden=true;
+if(!item){
+  ++pdfRequestId;
+  if(pdfObjectUrl){URL.revokeObjectURL(pdfObjectUrl);pdfObjectUrl=null;}
+  el["pdf-frame"].src="about:blank";
+}
 el.back.hidden=!key&&!item;
 el.back.onclick=()=>location.hash=item?"#/month/"+item.month:"#/";
 let crumb='<a href="#/">All Months</a>';
@@ -24,12 +29,10 @@ if(item){
   el.heading.textContent=typeTitle(item)+" Monitoring Report";el.subtitle.textContent="View the source-linked "+typeName(item)+" research PDF.";
   el["viewer-date"].textContent=dayTitle(item.date)+(item.demo?" · DEMO":"");
   el["viewer-name"].textContent=item.name;
-  // Served PDFs are copied into the site on build. Use the same-origin file
-  // for inline browser preview so GitHub Raw attachment headers cannot force a download.
+  // Local files can be absent on older deployments. Fetch the original
+  // current PDF from GitHub and create a same-origin Blob URL for inline viewing.
   const url=new URL(item.path,new URL(".",location.href.split("#")[0]));
-  el["open-pdf"].href=url.href;
-  el["download-pdf"].href=url.href;
-  el["pdf-frame"].src=url.href+"#toolbar=1&navpanes=0";
+  loadPdfPreview(item,url.href);
   el["preview-kpis"].hidden=true;
   el["preview-kpis"].innerHTML="";
   if(typeName(item)==="monthly"){
@@ -101,6 +104,46 @@ el.year.addEventListener("change",()=>{selectedYear=Number(el.year.value);locati
 window.addEventListener("hashchange",route);
 // GitHub's public manifest is the live source of truth. Vercel deployments can lag;
 // a client can still list the latest dated PDF and open it directly from the repo.
+// Github-backed PDF viewer keeps new daily/weekly/monthly reports usable
+// even when Vercel has not rebuilt the static PDF files.
+const RAW_PDF_PREFIX="https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/";
+let pdfRequestId=0;
+let pdfObjectUrl=null;
+async function loadPdfPreview(item,localUrl){
+  const requestId=++pdfRequestId;
+  if(pdfObjectUrl){ URL.revokeObjectURL(pdfObjectUrl); pdfObjectUrl=null; }
+  el["pdf-frame"].src="about:blank";
+  const sourceUrl=RAW_PDF_PREFIX+item.path;
+  el["open-pdf"].href=sourceUrl;
+  el["download-pdf"].href=sourceUrl;
+  el["download-pdf"].removeAttribute("download");
+  el.status.textContent="Loading the current source PDF from GitHub...";
+  try{
+    const response=await fetch(sourceUrl,{cache:"no-store"});
+    if(!response.ok)throw new Error("GitHub PDF HTTP "+response.status);
+    const sourceBlob=await response.blob();
+    if(!sourceBlob.size)throw new Error("Empty PDF response");
+    const localBlob=new Blob([sourceBlob],{type:"application/pdf"});
+    const inlineUrl=URL.createObjectURL(localBlob);
+    if(requestId!==pdfRequestId || el.viewer.hidden){
+      URL.revokeObjectURL(inlineUrl);
+      return;
+    }
+    pdfObjectUrl=inlineUrl;
+    el["pdf-frame"].src=inlineUrl+"#toolbar=1&navpanes=0";
+    el["open-pdf"].href=inlineUrl;
+    el["download-pdf"].href=inlineUrl;
+    el["download-pdf"].setAttribute("download",item.name);
+    el.status.textContent="";
+  }catch(error){
+    if(requestId!==pdfRequestId)return;
+    console.warn("Live PDF preview unavailable",error);
+    el["pdf-frame"].src=localUrl+"#toolbar=1&navpanes=0";
+    el["open-pdf"].href=sourceUrl;
+    el["download-pdf"].href=sourceUrl;
+    el.status.textContent="Live PDF preview unavailable. Use Open PDF above for the GitHub source.";
+  }
+}
 const LIVE_INDEX="https://raw.githubusercontent.com/Mahimedia456/Angelbirdreportsocialmedia/main/reports-index.json";
 const LOCAL_INDEX="reports-index.json";
 const normalizeIndex=data=>{
