@@ -4,6 +4,6 @@
   "buildCommand": "node scripts/build_website.mjs",
   "outputDirectory": "_site",
   "git": {
-    "deploymentEnabled": true
+    "deploymentEnabled": false
   }
 }
