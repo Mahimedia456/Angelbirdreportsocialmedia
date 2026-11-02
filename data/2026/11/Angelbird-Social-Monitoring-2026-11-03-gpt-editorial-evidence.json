@@ -1,0 +1,31 @@
+{
+  "report_date": "2026-11-03",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "Completed",
+  "headline": "Angelbird Brand Monitoring Report for November 3, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Twitter",
+      "summary": "A user inquired about the availability of Angelbird's AV PRO CFexpress Type B cards in 512GB capacity. Angelbird's official Twitter account responded, confirming that the 512GB variant is available and provided a link to the product page.",
+      "checked": true
+    },
+    {
+      "platform": "Reddit",
+      "summary": "A Reddit user shared their experience using Angelbird's AV PRO SD UHS-II V90 memory card in a Panasonic GH5 camera. They reported excellent performance, noting faster write speeds and improved reliability compared to previous cards.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "The monitoring was conducted by searching for Angelbird-related content published on November 3, 2026, across various platforms, including Twitter and Reddit. The search focused on official announcements, product reviews, customer feedback, and retailer listings. Only content directly mentioning Angelbird or AV PRO products was considered. Engagement metrics were sourced directly from the platforms."
+}
