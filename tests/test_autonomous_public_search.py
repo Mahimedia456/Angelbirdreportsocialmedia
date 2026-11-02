@@ -16,7 +16,10 @@ class TestRealSourceSearch(unittest.TestCase):
             self.assertTrue(any('site:' in x for x in GROUPS[platform]))
         self.assertTrue(any('/reel/' in x for x in GROUPS['Instagram']))
         self.assertTrue(any('/stories/' in x for x in GROUPS['Instagram']))
-        self.assertEqual(len(GROUPS['Industry articles']),3)
+        # Broad brand search extends beyond the original 3 industry queries.
+        self.assertGreaterEqual(len(GROUPS['Industry articles']),3)
+        self.assertTrue(any('site:newsshooter.com' in q for q in GROUPS['Industry articles']))
+        self.assertTrue(any('site:cined.com' in q for q in GROUPS['Industry articles']))
     def test_search_index_only_is_not_verified(self):
         engine=PublicResearch('2026-10-30')
         entry=dict(url='https://www.instagram.com/reel/ABC1234/',

@@ -161,18 +161,17 @@ const getManifest=async url=>{
  return normalizeIndex(await response.json());
 };
 async function refreshReports(){
- let live=[],local=[];
- try{live=await getManifest(LIVE_INDEX)}catch(error){
+ let live=[],local=[],liveAvailable=false;
+ try{live=await getManifest(LIVE_INDEX);liveAvailable=true}catch(error){
    console.warn("Live GitHub reports manifest temporarily unavailable",error);
  }
  try{local=await getManifest(LOCAL_INDEX)}catch(error){
    console.warn("Local archive manifest unavailable",error);
  }
- // Same-date live PDF wins over an older static Vercel copy.
- const all=new Map();
- for(const report of local)all.set(report.id,report);
- for(const report of live)all.set(report.id,report);
- const next=[...all.values()].sort((a,b)=>b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
+ // GitHub is authoritative. Never merge deleted historical reports from
+ // a stale Vercel deployment back into the public archive.
+ const next=(liveAvailable?live:local).slice().sort((a,b)=>
+   b.date.localeCompare(a.date)||Number(a.demo)-Number(b.demo));
  if(!next.length){
    loadError="Report index temporarily unavailable. See GitHub reports directly.";
  }else{
