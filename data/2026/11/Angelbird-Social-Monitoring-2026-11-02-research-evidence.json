@@ -20,7 +20,7 @@
         "group": "LinkedIn",
         "stage": "search",
         "query": "site:linkedin.com/posts/ \"Angelbird\" November 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -41,7 +41,7 @@
         "group": "YouTube",
         "stage": "search",
         "query": "site:youtube.com/watch \"Angelbird\" 2026-11-02",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -83,7 +83,7 @@
         "group": "LinkedIn",
         "stage": "search",
         "query": "site:linkedin.com \"Angelbird\" product OR partnership OR event November 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -118,7 +118,7 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "\"Angelbird\" review or release or firmware November 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -139,7 +139,7 @@
         "group": "Instagram",
         "stage": "search",
         "query": "site:instagram.com \"Angelbird\" \"Av Pro Cfexpress A V4 Mk3 3915\" November 2026",
-        "results": 10,
+        "results": 9,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -209,7 +209,7 @@
         "group": "LinkedIn",
         "stage": "search",
         "query": "site:linkedin.com/posts/ \"Angelbird\" \"AV PRO\" November 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -223,7 +223,7 @@
         "group": "Reddit",
         "stage": "search",
         "query": "site:reddit.com \"Angelbird\" firmware OR problem OR recommendation November 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -244,7 +244,7 @@
         "group": "Industry articles",
         "stage": "search",
         "query": "site:newsshooter.com \"Angelbird\" November 2026",
-        "results": 10,
+        "results": 6,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -342,7 +342,7 @@
         "group": "X / Twitter",
         "stage": "search",
         "query": "site:x.com/ \"Angelbird\" \"CFexpress\" November 2026",
-        "results": 3,
+        "results": 10,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -397,7 +397,8 @@
       {
         "stage": "free-news-search",
         "provider": "GDELT",
-        "state": "HTTP 429",
+        "returned": 0,
+        "candidates": 0,
         "source_verified": false
       },
       {
@@ -477,27 +478,27 @@
       "Facebook.brave_not_configured": 7,
       "Facebook.fallback_attempts": 1,
       "Facebook.queries": 7,
-      "Instagram.wrong_source_domain": 70,
+      "Instagram.wrong_source_domain": 69,
       "Instagram.successful_queries": 7,
       "Instagram.brave_not_configured": 7,
       "Instagram.fallback_attempts": 1,
       "Instagram.queries": 7,
-      "LinkedIn.wrong_source_domain": 70,
+      "LinkedIn.wrong_source_domain": 43,
       "LinkedIn.successful_queries": 7,
       "LinkedIn.brave_not_configured": 7,
       "LinkedIn.fallback_attempts": 1,
       "LinkedIn.queries": 7,
-      "X / Twitter.wrong_source_domain": 53,
+      "X / Twitter.wrong_source_domain": 60,
       "X / Twitter.successful_queries": 6,
       "X / Twitter.brave_not_configured": 6,
       "X / Twitter.fallback_attempts": 1,
       "X / Twitter.queries": 6,
-      "Reddit.wrong_source_domain": 60,
+      "Reddit.wrong_source_domain": 51,
       "Reddit.successful_queries": 6,
       "Reddit.brave_not_configured": 6,
       "Reddit.fallback_attempts": 1,
       "Reddit.queries": 6,
-      "YouTube.wrong_source_domain": 50,
+      "YouTube.wrong_source_domain": 31,
       "YouTube.successful_queries": 5,
       "YouTube.brave_not_configured": 5,
       "YouTube.fallback_attempts": 1,
@@ -507,7 +508,7 @@
       "Camera forums.brave_not_configured": 6,
       "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 6,
-      "Industry articles.irrelevant_index_hits": 40,
+      "Industry articles.irrelevant_index_hits": 45,
       "Industry articles.successful_queries": 6,
       "Industry articles.brave_not_configured": 6,
       "Industry articles.fallback_attempts": 1,
@@ -517,7 +518,9 @@
       "Retailers.brave_not_configured": 6,
       "Retailers.fallback_attempts": 1,
       "Retailers.queries": 6,
-      "Industry articles.wrong_source_domain": 20,
+      "Industry articles.wrong_source_domain": 2,
+      "YouTube.irrelevant_index_hits": 10,
+      "Industry articles.gdelt_queries": 1,
       "Industry articles.candidates": 2,
       "Facebook.candidates": 3,
       "Reddit.candidates": 2,
@@ -542,9 +545,8 @@
     "data": [
       {
         "scope": "social",
-        "status": "completed",
-        "api_calls": 1,
-        "search_events": 1,
+        "status": "cached_evidence",
+        "api_calls": 0,
         "merged": {
           "today_findings": 0,
           "unverified_leads": 0,
@@ -554,9 +556,8 @@
       },
       {
         "scope": "community",
-        "status": "completed",
-        "api_calls": 1,
-        "search_events": 1,
+        "status": "cached_evidence",
+        "api_calls": 0,
         "merged": {
           "today_findings": 0,
           "unverified_leads": 0,
@@ -566,9 +567,8 @@
       },
       {
         "scope": "editorial",
-        "status": "completed",
-        "api_calls": 1,
-        "search_events": 1,
+        "status": "cached_evidence",
+        "api_calls": 0,
         "merged": {
           "today_findings": 0,
           "unverified_leads": 0,
@@ -593,7 +593,7 @@
           "stage": "post-image-discovery",
           "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
           "status": "original page advertised source preview",
-          "image_url": "https://scontent-sjc3-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=hxmb-DvuB5IQ7kNvwFdj_tK&_nc_oc=AdroBOldSbXwMwdfC0oLzUcH54KryjT6KclYXc1Sm2FijBxuhR2Yf4xi_m612JELdpU&_nc_zt=23&se=-1&_nc_ht=scontent-sjc3-1.xx&_nc_gid=ym2FG7g2spL92o0D5_SmCQ&_nc_ss=7b20f&oh=00_AQR7rsWSJKeaeaPi8nTgJ1uRFpDp5r8N57Nr9TDR2Ab9jw&oe=6AED861B"
+          "image_url": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=hxmb-DvuB5IQ7kNvwEWtcd8&_nc_oc=AdoYWjUjg-DgE_LGGpz6HUagggEZuJKCLjCA1FuCbMXSjgO7T5C3p1EAWJg1eNffvHI&_nc_zt=23&se=-1&_nc_ht=scontent-dfw5-1.xx&_nc_gid=RvsnFNLSoAmnjO8tK2BwBg&_nc_ss=7b20f&oh=00_AQRwbhMYg35XWddLm7MBCV1zD5orFIkqwTeM0dk8r0AUiA&oe=6AEE2EDB"
         },
         {
           "stage": "post-image-discovery",
@@ -602,7 +602,7 @@
         },
         {
           "stage": "image",
-          "url": "https://scontent-sjc3-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=hxmb-DvuB5IQ7kNvwFdj_tK&_nc_oc=AdroBOldSbXwMwdfC0oLzUcH54KryjT6KclYXc1Sm2FijBxuhR2Yf4xi_m612JELdpU&_nc_zt=23&se=-1&_nc_ht=scontent-sjc3-1.xx&_nc_gid=ym2FG7g2spL92o0D5_SmCQ&_nc_ss=7b20f&oh=00_AQR7rsWSJKeaeaPi8nTgJ1uRFpDp5r8N57Nr9TDR2Ab9jw&oe=6AED861B",
+          "url": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=hxmb-DvuB5IQ7kNvwEWtcd8&_nc_oc=AdoYWjUjg-DgE_LGGpz6HUagggEZuJKCLjCA1FuCbMXSjgO7T5C3p1EAWJg1eNffvHI&_nc_zt=23&se=-1&_nc_ht=scontent-dfw5-1.xx&_nc_gid=RvsnFNLSoAmnjO8tK2BwBg&_nc_ss=7b20f&oh=00_AQRwbhMYg35XWddLm7MBCV1zD5orFIkqwTeM0dk8r0AUiA&oe=6AEE2EDB",
           "result": "cached attributed thumbnail",
           "asset": "assets/2026/11/2026-11-02/original_001.jpg"
         }
