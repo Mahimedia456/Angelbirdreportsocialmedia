@@ -1,0 +1,63 @@
+{
+  "report_date": "2026-11-05",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "completed",
+  "headline": "Angelbird Brand Monitoring Report for November 5, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Reddit",
+      "summary": "No relevant posts or comments mentioning Angelbird or AV PRO found on Reddit for November 5, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "YouTube",
+      "summary": "No new videos or comments discussing Angelbird products or brand on YouTube for November 5, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "DPReview",
+      "summary": "No new threads or discussions about Angelbird media or products on DPReview forums for November 5, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Blackmagic Design Forum",
+      "summary": "No new posts or comments regarding Angelbird media compatibility or performance on Blackmagic Design Forum for November 5, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "RED Digital Cinema Forum",
+      "summary": "No new discussions about Angelbird media usage or issues on RED Digital Cinema Forum for November 5, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Sony Cine Forum",
+      "summary": "No new threads or comments concerning Angelbird media compatibility or performance on Sony Cine Forum for November 5, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Videography Discussions",
+      "summary": "No new mentions or discussions about Angelbird products or brand in videography forums or communities for November 5, 2026.",
+      "checked": false
+    }
+  ],
+  "visibility_gaps": [
+    "Reddit",
+    "YouTube",
+    "DPReview",
+    "Blackmagic Design Forum",
+    "RED Digital Cinema Forum",
+    "Sony Cine Forum",
+    "Videography Discussions",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a comprehensive search across specified platforms for mentions of Angelbird or AV PRO products, focusing on user-generated content such as posts, comments, and discussions dated November 5, 2026. No relevant findings were identified on the specified date."
+}
