@@ -1,7 +1,7 @@
 {
   "report_date": "2026-11-07",
-  "generated_at_pkt": "2026-11-07 01:16 PKT",
-  "research_as_of_pkt": "2026-11-07 01:16 PKT",
+  "generated_at_pkt": "2026-11-07 23:29 PKT",
+  "research_as_of_pkt": "2026-11-07 23:29 PKT",
   "status": "PARTIAL DAY | original-source research remains time-limited until midnight PKT",
   "headline": "0 date-verified Angelbird post/article finding(s) and 0 dated retail observation(s) on 2026-11-07. Earlier dates are excluded; inaccessible networks cannot be claimed fully monitored.",
   "today_findings": [],
@@ -50,7 +50,7 @@
       "sentiment": "Not applicable",
       "priority": "Watch",
       "status": "unverified",
-      "image_url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=YaqWnScAFvAQ7kNvwHveLxG&_nc_oc=Adqlmoip18U1rCYT1K21IuKhRr7tnvZAYlAXyrw0s0ruEoC7S-7o4fKHtNsXRTAz2uc&_nc_zt=23&se=-1&_nc_ht=scontent-sea5-1.xx&_nc_gid=jTGBIMt7JtfRDhbFGTeoMg&_nc_ss=7b20f&oh=00_AQTeb94bx82aUkCLA-PXy0R0tkepPedikXrK0sRA0y7qaw&oe=6AF41D9B",
+      "image_url": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=YaqWnScAFvAQ7kNvwHgJyn5&_nc_oc=AdrZ7uhLsiw97jUxMJH4J3nvoRP89CuB8A_qASISzquBfFtFq49L4B00-nxzqCg3lTU&_nc_zt=23&se=-1&_nc_ht=scontent-dfw5-1.xx&_nc_gid=406fqs9QizVlQwb2GcJqNA&_nc_ss=7b20f&oh=00_AQRx_zVg-R8Xa1R8hGExlC1o8IOetymoGiypUOuf5AJSyQ&oe=6AF536DB",
       "image_context": "Public original-post preview from source og:image / twitter:image metadata.",
       "image_credit_url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
       "product": "",
@@ -203,10 +203,8 @@
     "Camera forums: alternate public index HTTP 202",
     "Industry articles: alternate public index HTTP 202",
     "Retailers: alternate public index HTTP 202",
-    "GDELT free news index: HTTP 429",
     "Public indexes do not expose all posts and comments; private/login-only content is not collected.",
     "No result does not establish no brand activity on a platform.",
-    "social research unavailable; API attempt guarded against repeat billing.",
     "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
   ],
   "methodology": "Python collector: 56 public search query attempts, 7 original-page attempts, 0 attributable image thumbnails; YouTube Data API when connected, no Reddit OAuth. New verified posts require original source dates and direct Angelbird text. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence. | Optional one-request GPT web-search supplement, original-URL checks and cached evidence."

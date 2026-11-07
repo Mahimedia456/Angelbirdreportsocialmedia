@@ -69,7 +69,7 @@
         "group": "Facebook",
         "stage": "search",
         "query": "site:facebook.com \"Angelbird\" support OR firmware OR update OR customer November 2026",
-        "results": 10,
+        "results": 1,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -90,7 +90,7 @@
         "group": "X / Twitter",
         "stage": "search",
         "query": "site:x.com/status/ \"Angelbird\" support OR review November 2026",
-        "results": 10,
+        "results": 8,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -125,7 +125,7 @@
         "group": "Retailers",
         "stage": "search",
         "query": "site:bhphotovideo.com \"Angelbird\" November 2026",
-        "results": 10,
+        "results": 2,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -384,7 +384,7 @@
         "group": "Instagram",
         "stage": "search",
         "query": "site:instagram.com/reel/ \"Angelbird\" November 2026",
-        "results": 10,
+        "results": 2,
         "index": "Bing public RSS, optional DDG fallback"
       },
       {
@@ -397,7 +397,8 @@
       {
         "stage": "free-news-search",
         "provider": "GDELT",
-        "state": "HTTP 429",
+        "returned": 0,
+        "candidates": 0,
         "source_verified": false
       },
       {
@@ -466,12 +467,12 @@
     ],
     "counts": {
       "YouTube.api_searches": 1,
-      "Facebook.wrong_source_domain": 70,
+      "Facebook.wrong_source_domain": 56,
       "Facebook.successful_queries": 7,
       "Facebook.brave_not_configured": 7,
       "Facebook.fallback_attempts": 1,
       "Facebook.queries": 7,
-      "Instagram.wrong_source_domain": 70,
+      "Instagram.wrong_source_domain": 62,
       "Instagram.successful_queries": 7,
       "Instagram.brave_not_configured": 7,
       "Instagram.fallback_attempts": 1,
@@ -481,12 +482,12 @@
       "LinkedIn.brave_not_configured": 7,
       "LinkedIn.fallback_attempts": 1,
       "LinkedIn.queries": 7,
-      "X / Twitter.wrong_source_domain": 60,
+      "X / Twitter.wrong_source_domain": 58,
       "X / Twitter.successful_queries": 6,
       "X / Twitter.brave_not_configured": 6,
       "X / Twitter.fallback_attempts": 1,
       "X / Twitter.queries": 6,
-      "Reddit.wrong_source_domain": 58,
+      "Reddit.wrong_source_domain": 60,
       "Reddit.successful_queries": 6,
       "Reddit.brave_not_configured": 6,
       "Reddit.fallback_attempts": 1,
@@ -501,18 +502,18 @@
       "Camera forums.brave_not_configured": 6,
       "Camera forums.fallback_attempts": 1,
       "Camera forums.queries": 6,
-      "Industry articles.irrelevant_index_hits": 58,
+      "Industry articles.irrelevant_index_hits": 60,
       "Industry articles.successful_queries": 6,
       "Industry articles.brave_not_configured": 6,
       "Industry articles.fallback_attempts": 1,
       "Industry articles.queries": 6,
-      "Retailers.wrong_source_domain": 60,
+      "Retailers.wrong_source_domain": 52,
       "Retailers.successful_queries": 6,
       "Retailers.brave_not_configured": 6,
       "Retailers.fallback_attempts": 1,
       "Retailers.queries": 6,
-      "Industry articles.wrong_source_domain": 2,
-      "Reddit.irrelevant_index_hits": 2,
+      "Facebook.irrelevant_index_hits": 5,
+      "Industry articles.gdelt_queries": 1,
       "Industry articles.candidates": 2,
       "Facebook.candidates": 3,
       "Reddit.candidates": 2,
@@ -537,15 +538,13 @@
     "data": [
       {
         "scope": "social",
-        "status": "failed",
-        "api_calls": "attempted",
-        "reason": "Unterminated string starting at: line 1 column 731 (char 730)"
+        "status": "previous_attempt_protected",
+        "api_calls": 0
       },
       {
         "scope": "community",
-        "status": "completed",
-        "api_calls": 1,
-        "search_events": 1,
+        "status": "cached_evidence",
+        "api_calls": 0,
         "merged": {
           "today_findings": 0,
           "unverified_leads": 0,
@@ -555,9 +554,8 @@
       },
       {
         "scope": "editorial",
-        "status": "completed",
-        "api_calls": 1,
-        "search_events": 1,
+        "status": "cached_evidence",
+        "api_calls": 0,
         "merged": {
           "today_findings": 0,
           "unverified_leads": 1,
@@ -582,7 +580,7 @@
           "stage": "post-image-discovery",
           "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
           "status": "original page advertised source preview",
-          "image_url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=YaqWnScAFvAQ7kNvwHveLxG&_nc_oc=Adqlmoip18U1rCYT1K21IuKhRr7tnvZAYlAXyrw0s0ruEoC7S-7o4fKHtNsXRTAz2uc&_nc_zt=23&se=-1&_nc_ht=scontent-sea5-1.xx&_nc_gid=jTGBIMt7JtfRDhbFGTeoMg&_nc_ss=7b20f&oh=00_AQTeb94bx82aUkCLA-PXy0R0tkepPedikXrK0sRA0y7qaw&oe=6AF41D9B"
+          "image_url": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=YaqWnScAFvAQ7kNvwHgJyn5&_nc_oc=AdrZ7uhLsiw97jUxMJH4J3nvoRP89CuB8A_qASISzquBfFtFq49L4B00-nxzqCg3lTU&_nc_zt=23&se=-1&_nc_ht=scontent-dfw5-1.xx&_nc_gid=406fqs9QizVlQwb2GcJqNA&_nc_ss=7b20f&oh=00_AQRx_zVg-R8Xa1R8hGExlC1o8IOetymoGiypUOuf5AJSyQ&oe=6AF536DB"
         },
         {
           "stage": "post-image-discovery",
@@ -591,7 +589,7 @@
         },
         {
           "stage": "image",
-          "url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=YaqWnScAFvAQ7kNvwHveLxG&_nc_oc=Adqlmoip18U1rCYT1K21IuKhRr7tnvZAYlAXyrw0s0ruEoC7S-7o4fKHtNsXRTAz2uc&_nc_zt=23&se=-1&_nc_ht=scontent-sea5-1.xx&_nc_gid=jTGBIMt7JtfRDhbFGTeoMg&_nc_ss=7b20f&oh=00_AQTeb94bx82aUkCLA-PXy0R0tkepPedikXrK0sRA0y7qaw&oe=6AF41D9B",
+          "url": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&ccb=1-7&_nc_sid=6376bf&_nc_ohc=YaqWnScAFvAQ7kNvwHgJyn5&_nc_oc=AdrZ7uhLsiw97jUxMJH4J3nvoRP89CuB8A_qASISzquBfFtFq49L4B00-nxzqCg3lTU&_nc_zt=23&se=-1&_nc_ht=scontent-dfw5-1.xx&_nc_gid=406fqs9QizVlQwb2GcJqNA&_nc_ss=7b20f&oh=00_AQRx_zVg-R8Xa1R8hGExlC1o8IOetymoGiypUOuf5AJSyQ&oe=6AF536DB",
           "result": "cached attributed thumbnail",
           "asset": "assets/2026/11/2026-11-07/original_001.jpg"
         }
