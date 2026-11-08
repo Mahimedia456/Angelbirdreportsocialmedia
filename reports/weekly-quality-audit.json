@@ -1,0 +1,31 @@
+{
+  "period": "weekly",
+  "report": "reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-11-03_to_2026-11-09.pdf",
+  "pages": 4,
+  "pdf_bytes": 54339,
+  "expected_dated_records": 0,
+  "expected_leads": 1,
+  "original_source_links_in_pdf": 6,
+  "embedded_pdf_image_xobjects": 0,
+  "images_reported_in_manifest": 0,
+  "required_sections_checked": [
+    "EXECUTIVE KPI DASHBOARD",
+    "OVERALL SENTIMENT",
+    "SOCIAL MEDIA SENTIMENT",
+    "POST ANALYTICS",
+    "PLATFORM KPI",
+    "ADDITIONAL ENGAGEMENT",
+    "FACEBOOK",
+    "INSTAGRAM",
+    "X / TWITTER",
+    "LINKEDIN",
+    "REDDIT",
+    "YOUTUBE",
+    "CAMERA FORUMS",
+    "RETAILERS"
+  ],
+  "missing_sections": [],
+  "synthetic_placeholder_urls_found": false,
+  "no_page_cap": true,
+  "source_dated_coverage_percent": 100.0
+}

@@ -1,0 +1,497 @@
+{
+  "period": "weekly",
+  "start": "2026-11-03",
+  "end": "2026-11-09",
+  "path": "reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-11-03_to_2026-11-09.pdf",
+  "snapshots": 7,
+  "archived_findings": 0,
+  "dated_findings": 0,
+  "unverified_leads": 1,
+  "platform_counts": {
+    "Facebook": 0,
+    "Instagram": 0,
+    "X / Twitter": 0,
+    "LinkedIn": 0,
+    "Reddit": 0,
+    "YouTube": 0,
+    "Camera Forums": 0,
+    "Google / News / Articles": 0,
+    "Retailers": 0
+  },
+  "sentiment_counts": {},
+  "observed_product_labels": {},
+  "record_type_counts": {},
+  "platform_discovery_leads": {
+    "Facebook": 0,
+    "Instagram": 0,
+    "X / Twitter": 0,
+    "LinkedIn": 0,
+    "Reddit": 0,
+    "YouTube": 0,
+    "Camera Forums": 0,
+    "Google / News / Articles": 1,
+    "Retailers": 0
+  },
+  "unique_social_url_groups": 0,
+  "linked_reply_excerpts": 0,
+  "daily_coverage_percent": 100.0,
+  "source_media": {
+    "embedded_verified": 0,
+    "linked_verified": 0,
+    "embedded_leads": 0,
+    "linked_leads": 1,
+    "missing_media_verified": 0
+  },
+  "retail_observations_count": 0,
+  "official_catalog_items": 79,
+  "official_catalog_pages": 36,
+  "brand_scope_mode": "brand_wide_all_products_services_and_mentions",
+  "retailer_store_counts": {},
+  "retailer_price_reference_count": 0,
+  "retail_unique_urls": 0,
+  "post_analytics_rows": [
+    [
+      "Facebook",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Instagram",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "X / Twitter",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "LinkedIn",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Reddit",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "YouTube",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Camera Forums",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Google / News / Articles",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ],
+    [
+      "Retailers",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      "N/A",
+      "N/A",
+      "N/A"
+    ]
+  ],
+  "platform_kpi_rows": [
+    [
+      "Facebook",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Instagram",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "X / Twitter",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "LinkedIn",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Reddit",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "YouTube",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Camera Forums",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Google / News / Articles",
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      "Retailers",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "kpi_card_groups": [
+    [
+      "SOURCE COVERAGE",
+      [
+        [
+          "Dated sources",
+          0
+        ],
+        [
+          "Pending leads",
+          1
+        ],
+        [
+          "Unique source URLs",
+          1
+        ],
+        [
+          "Days captured",
+          "7/7"
+        ]
+      ]
+    ],
+    [
+      "OBSERVED ENGAGEMENT",
+      [
+        [
+          "Views",
+          null
+        ],
+        [
+          "Likes",
+          null
+        ],
+        [
+          "Comments",
+          null
+        ],
+        [
+          "Shares",
+          null
+        ]
+      ]
+    ],
+    [
+      "OVERALL SENTIMENT",
+      [
+        [
+          "Positive",
+          0
+        ],
+        [
+          "Negative",
+          0
+        ],
+        [
+          "Neutral",
+          0
+        ],
+        [
+          "Questions",
+          0
+        ]
+      ]
+    ],
+    [
+      "POST FORMATS",
+      [
+        [
+          "Posts",
+          0
+        ],
+        [
+          "Videos",
+          0
+        ],
+        [
+          "Reels",
+          0
+        ],
+        [
+          "Stories",
+          0
+        ]
+      ]
+    ],
+    [
+      "ADDITIONAL ENGAGEMENT AND EVIDENCE",
+      [
+        [
+          "Reactions",
+          null
+        ],
+        [
+          "Reposts",
+          null
+        ],
+        [
+          "Linked replies",
+          0
+        ],
+        [
+          "Cached images",
+          0
+        ]
+      ]
+    ],
+    [
+      "SUPPORTING RECORDS",
+      [
+        [
+          "Retail entries",
+          0
+        ],
+        [
+          "Articles",
+          0
+        ],
+        [
+          "Comment findings",
+          0
+        ],
+        [
+          "Not classified",
+          0
+        ]
+      ]
+    ],
+    [
+      "OFFICIAL PRODUCT CATALOG | SEPARATE SNAPSHOT",
+      [
+        [
+          "Catalog products",
+          79
+        ],
+        [
+          "Catalog pages",
+          36
+        ],
+        [
+          "Listing access errors",
+          0
+        ],
+        [
+          "Catalog source",
+          "Manufacturer"
+        ]
+      ]
+    ]
+  ],
+  "pending_reference_metrics": {},
+  "rejected_synthetic_example_urls": [],
+  "overall_kpi": {
+    "dated_records": 0,
+    "pending_leads": 1,
+    "metrics": {
+      "views": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "reactions": null,
+      "reposts": null
+    },
+    "metric_source_counts": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "reactions": 0,
+      "reposts": 0
+    },
+    "sentiment": {
+      "positive": 0,
+      "negative": 0,
+      "neutral": 0,
+      "question": 0,
+      "not_applicable": 0
+    }
+  },
+  "platform_sentiment_rows": [
+    [
+      "Facebook",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Instagram",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "X / Twitter",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "LinkedIn",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Reddit",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "YouTube",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Camera Forums",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Google / News / Articles",
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "Retailers",
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ]
+}

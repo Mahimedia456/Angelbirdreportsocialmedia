@@ -1,0 +1,51 @@
+{
+  "report_date": "2026-11-09",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "success",
+  "headline": "Angelbird Brand Monitoring Report for November 9, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Reddit",
+      "summary": "No new posts or comments mentioning Angelbird on Reddit on November 9, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "YouTube",
+      "summary": "No new videos or comments mentioning Angelbird on YouTube on November 9, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "DPReview",
+      "summary": "No new discussions or mentions of Angelbird on DPReview forums on November 9, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Blackmagic Design Forum",
+      "summary": "No new threads or posts mentioning Angelbird on Blackmagic Design Forum on November 9, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "RED Digital Cinema Forum",
+      "summary": "No new discussions or mentions of Angelbird on RED Digital Cinema Forum on November 9, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Sony Cine Forum",
+      "summary": "No new threads or posts mentioning Angelbird on Sony Cine Forum on November 9, 2026.",
+      "checked": false
+    }
+  ],
+  "visibility_gaps": [
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "A comprehensive search was conducted across Reddit, YouTube, DPReview, Blackmagic Design Forum, RED Digital Cinema Forum, and Sony Cine Forum for any mentions of Angelbird on November 9, 2026. No new posts, comments, videos, or discussions were found on this date. This report reflects the findings as of November 9, 2026."
+}
