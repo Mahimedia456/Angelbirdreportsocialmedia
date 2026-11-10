@@ -1,0 +1,26 @@
+{
+  "report_date": "2026-11-11",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "complete",
+  "headline": "Angelbird Brand Monitoring Report for November 11, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Retailer",
+      "summary": "Retailer Ozone.bg lists the Angelbird AV PRO SDXC V60 256GB memory card with a promotion valid until November 30, 2026.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a comprehensive search for Angelbird brand mentions, product announcements, and related content published on November 11, 2026. Included retailer listings with explicit observation timestamps. Verified findings dated precisely 2026-11-11; older leads excluded. Retail observations include observation timestamps."
+}
