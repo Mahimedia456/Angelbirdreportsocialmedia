@@ -1,0 +1,26 @@
+{
+  "report_date": "2026-11-12",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "success",
+  "headline": "Angelbird Brand Monitoring Report for November 12, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "MentionRadar",
+      "summary": "MentionRadar monitors brand mentions across news sites, Reddit, forums, and AI engines like ChatGPT, Gemini, and Perplexity. It provides alerts via email and Slack, delivering results in about a minute. The AI visibility score is 64+6 this week, with a share of voice of 31% on ChatGPT. For example, when asked about the best product analytics tools for a small SaaS team, Angelbird was mentioned as the top recommendation.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "The monitoring was conducted using MentionRadar, which tracks brand mentions across various platforms, including news sites, Reddit, forums, and AI engines like ChatGPT, Gemini, and Perplexity. Alerts were set up via email and Slack, with results delivered in about a minute. The AI visibility score and share of voice metrics were analyzed to assess brand presence and sentiment."
+}
