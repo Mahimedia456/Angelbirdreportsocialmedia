@@ -1,0 +1,63 @@
+{
+  "report_date": "2026-11-14",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "completed",
+  "headline": "Angelbird Brand Monitoring Report for November 14, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Reddit",
+      "summary": "No relevant posts found on Reddit for Angelbird on November 14, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "YouTube",
+      "summary": "No new reviews or comments about Angelbird products on YouTube for November 14, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "DPReview",
+      "summary": "No discussions or mentions of Angelbird products on DPReview forums on November 14, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Blackmagic Design Forum",
+      "summary": "No threads or posts regarding Angelbird products on Blackmagic Design Forum for November 14, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "RED Camera Forum",
+      "summary": "No conversations about Angelbird products on RED Camera Forum on November 14, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Sony Camera Forum",
+      "summary": "No mentions of Angelbird products on Sony Camera Forum for November 14, 2026.",
+      "checked": false
+    },
+    {
+      "platform": "Videography Discussions",
+      "summary": "No new threads or comments about Angelbird products in videography discussions on November 14, 2026.",
+      "checked": false
+    }
+  ],
+  "visibility_gaps": [
+    "Reddit",
+    "YouTube",
+    "DPReview",
+    "Blackmagic Design Forum",
+    "RED Camera Forum",
+    "Sony Camera Forum",
+    "Videography Discussions",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a comprehensive search across specified platforms for mentions of Angelbird products on November 14, 2026. No relevant posts, reviews, or discussions were found on the target date."
+}
