@@ -1,12 +1,12 @@
 {
   "period": "weekly",
-  "start": "2026-11-03",
-  "end": "2026-11-09",
-  "path": "reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-11-03_to_2026-11-09.pdf",
-  "snapshots": 7,
+  "start": "2026-11-10",
+  "end": "2026-11-16",
+  "path": "reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-11-10_to_2026-11-16.pdf",
+  "snapshots": 6,
   "archived_findings": 0,
   "dated_findings": 0,
-  "unverified_leads": 1,
+  "unverified_leads": 2,
   "platform_counts": {
     "Facebook": 0,
     "Instagram": 0,
@@ -30,11 +30,11 @@
     "YouTube": 0,
     "Camera Forums": 0,
     "Google / News / Articles": 1,
-    "Retailers": 0
+    "Retailers": 1
   },
   "unique_social_url_groups": 0,
   "linked_reply_excerpts": 0,
-  "daily_coverage_percent": 100.0,
+  "daily_coverage_percent": 85.7,
   "source_media": {
     "embedded_verified": 0,
     "linked_verified": 0,
@@ -235,8 +235,8 @@
     [
       "Retailers",
       0,
-      0,
-      0,
+      1,
+      1,
       0,
       0,
       0
@@ -252,15 +252,15 @@
         ],
         [
           "Pending leads",
-          1
+          2
         ],
         [
           "Unique source URLs",
-          1
+          2
         ],
         [
           "Days captured",
-          "7/7"
+          "6/7"
         ]
       ]
     ],
@@ -395,7 +395,7 @@
   "rejected_synthetic_example_urls": [],
   "overall_kpi": {
     "dated_records": 0,
-    "pending_leads": 1,
+    "pending_leads": 2,
     "metrics": {
       "views": null,
       "likes": null,
