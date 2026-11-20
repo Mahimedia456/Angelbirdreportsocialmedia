@@ -1,0 +1,939 @@
+[
+  {
+    "scope": "Python public source audit",
+    "data": [
+      {
+        "group": "Facebook",
+        "stage": "search-fallback",
+        "query": "site:facebook.com \"Angelbird\" 2026-11-21",
+        "relevant_index_candidates": 7,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search-fallback",
+        "query": "site:instagram.com \"Angelbird\" 2026-11-21",
+        "relevant_index_candidates": 7,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search-fallback",
+        "query": "site:linkedin.com/posts/ \"Angelbird\" November 2026",
+        "relevant_index_candidates": 7,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/posts/ \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search-fallback",
+        "query": "site:x.com \"Angelbird\" 2026-11-21",
+        "relevant_index_candidates": 0,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:x.com \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search-fallback",
+        "query": "site:reddit.com \"Angelbird\" 2026-11-21",
+        "relevant_index_candidates": 5,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search-fallback",
+        "query": "site:youtube.com/watch \"Angelbird\" 2026-11-21",
+        "relevant_index_candidates": 0,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search",
+        "query": "site:youtube.com/watch \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search-fallback",
+        "query": "\"Angelbird\" camera forum compatibility November 2026",
+        "relevant_index_candidates": 8,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "\"Angelbird\" camera forum compatibility November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search-fallback",
+        "query": "\"Angelbird\" industry news 2026-11-21",
+        "relevant_index_candidates": 0,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "\"Angelbird\" industry news 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search-fallback",
+        "query": "\"Angelbird\" buy reseller inventory November 2026",
+        "relevant_index_candidates": 10,
+        "index": "DuckDuckGo HTML"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "\"Angelbird\" buy reseller inventory November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" support OR firmware OR update OR customer November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com \"Angelbird\" tagged creator November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com \"Angelbird\" product OR partnership OR event November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:x.com/status/ \"Angelbird\" support OR review November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com/r/ \"Angelbird\" review OR compatibility November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search",
+        "query": "site:youtube.com \"Angelbird\" review OR tutorial November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "site:dpreview.com/forums \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "\"Angelbird\" review or release or firmware November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "site:bhphotovideo.com \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com \"Angelbird\" \"Av Pro Sd Mk2 V60 2071\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com \"Angelbird\" \"Av Pro Sd Mk2 V60 2071\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com \"Angelbird\" \"Av Pro Sd Mk2 V60 2071\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:x.com \"Angelbird\" \"Av Pro Sd V90 Mk2 2400\" November 2026",
+        "results": 7,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com \"Angelbird\" \"Av Pro Sd V90 Mk2 2400\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search",
+        "query": "site:youtube.com \"Angelbird\" \"Av Pro Sd V90 Mk2 2400\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "\"Angelbird\" \"Av Pro Sd V90 Mk2 2400\" November 2026",
+        "results": 7,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "\"Angelbird\" \"Av Pro Se Cfexpress A 3448\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "\"Angelbird\" \"Av Pro Se Cfexpress A 3448\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/AngelbirdTechnologies/posts/ November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com/stories/ \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/posts/ \"Angelbird\" \"CFexpress\" November 2026",
+        "results": 7,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:twitter.com \"Angelbird\" announcement OR customer November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com/r/ \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search",
+        "query": "site:youtube.com \"Angelbird\" live OR shorts OR first impressions November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "site:community.sony.com \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "site:cined.com \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "site:cvp.com \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/reel/ \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com \"Angelbird\" hashtag mention tagged creator 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/posts/ \"Angelbird\" \"AV PRO\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:x.com/status/ \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com/r/ \"Angelbird\" camera product problems November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "YouTube",
+        "stage": "search",
+        "query": "site:youtube.com/watch \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "site:dpreview.com/forums \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "\"Angelbird\" video production review article 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "site:adorama.com \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/groups/ \"Angelbird\" \"card\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com/p/ \"angelbird\" \"CFexpress\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com \"Angelbird\" dealer OR trade show OR news 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "X / Twitter",
+        "stage": "search",
+        "query": "site:twitter.com \"Angelbird\" review mention November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Reddit",
+        "stage": "search",
+        "query": "site:reddit.com \"Angelbird\" firmware OR problem OR recommendation November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Camera forums",
+        "stage": "search",
+        "query": "\"Angelbird\" hands-on camera production forum November 2026",
+        "results": 7,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Industry articles",
+        "stage": "search",
+        "query": "site:newsshooter.com \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Retailers",
+        "stage": "search",
+        "query": "site:wexphotovideo.com \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Facebook",
+        "stage": "search",
+        "query": "site:facebook.com/photo/ \"Angelbird\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "Instagram",
+        "stage": "search",
+        "query": "site:instagram.com/reel/ \"angelbird\" \"SSD\" November 2026",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "group": "LinkedIn",
+        "stage": "search",
+        "query": "site:linkedin.com/posts/ \"Angelbird\" 2026-11-21",
+        "results": 10,
+        "index": "Bing public RSS, optional DDG fallback"
+      },
+      {
+        "stage": "free-news-search",
+        "provider": "GDELT",
+        "state": "HTTP 429",
+        "source_verified": false
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/AngelbirdMedia/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/AngelbirdMedia/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/AskPhotography/comments/11ygujt/bad_performance_from_angelbird_sd/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Camera forums",
+        "url": "https://www.dpreview.com/forums/threads/angelbird-cfe-cards-and-d500-compatibility.4636219/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/angelbird_angelbirdmedia-ibc2026-memorycards-activity-7500523079127990272-Ykya",
+        "result": "OK",
+        "final_url": "https://www.linkedin.com/posts/angelbird_angelbirdmedia-ibc2026-memorycards-activity-7500523079127990272-Ykya"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/angelbird_angelbirdmedia-ibc2026-memorycards-activity-7500523079127990272-Ykya",
+        "source_date": "2026-09-01",
+        "title": "Angelbird Technologies’ Post"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Retailers",
+        "url": "https://www.angelbird.com/b2b/login/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/b2b/login/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/AngelbirdMedia/videos/1124784946718538/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/AngelbirdMedia/videos/1124784946718538/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/Nikon/comments/16whcwr/anyone_using_angelbird_cards/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/angelbird_angelbirdmedia-ibc2026-memorycards-activity-7503103208962228226-8D76",
+        "result": "OK",
+        "final_url": "https://www.linkedin.com/posts/angelbird_angelbirdmedia-ibc2026-memorycards-activity-7503103208962228226-8D76"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/angelbird_angelbirdmedia-ibc2026-memorycards-activity-7503103208962228226-8D76",
+        "source_date": "2026-09-08",
+        "title": "Angelbird Technologies’ Post"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Retailers",
+        "url": "https://www.angelbird.com/category/current-deals-110/",
+        "result": "OK",
+        "final_url": "https://www.angelbird.com/category/current-deals-110/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/public/Angelbird-Angel/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/public/Angelbird-Angel/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/VIDEOENGINEERING/comments/zgfiy4/christmas_came_early_what_do_you_guys_think_of/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://es.linkedin.com/posts/rodolfo-biber-s-a-robisa-_angelbird-ibc2026-mediaproduction-activity-7500862679549517824-nY60",
+        "result": "OK",
+        "final_url": "https://es.linkedin.com/posts/rodolfo-biber-s-a-robisa-_angelbird-ibc2026-mediaproduction-activity-7500862679549517824-nY60"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://es.linkedin.com/posts/rodolfo-biber-s-a-robisa-_angelbird-ibc2026-mediaproduction-activity-7500862679549517824-nY60",
+        "source_date": "2026-09-02",
+        "title": "Rodolfo Biber, S.A. (ROBISA)’s Post"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Retailers",
+        "url": "https://www.bhphotovideo.com/c/product/1993068-REG/angelbird_av256cfxbse_256gb_av_pro_se.html",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/angelbird/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/angelbird/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/A7siii/comments/1bu3u8g/new_angelbird_cfexpress_type_a_card_on_the_way/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://de.linkedin.com/posts/angelbird_angelbirdmedia-activity-7411760500935389184-TkRu",
+        "result": "OK",
+        "final_url": "https://de.linkedin.com/posts/angelbird_angelbirdmedia-activity-7411760500935389184-TkRu"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://de.linkedin.com/posts/angelbird_angelbirdmedia-activity-7411760500935389184-TkRu",
+        "source_date": "2025-12-30",
+        "title": "Angelbird Technologies’ Post"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Retailers",
+        "url": "https://www.bhphotovideo.com/c/browse/angelbird/ci/51210",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/AngelbirdMedia/videos/953915773911324/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/AngelbirdMedia/videos/953915773911324/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/nikon_Zseries/comments/1codmb3/memory_cards_for_z8_and_z6ii_why_are_angelbirds/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://de.linkedin.com/posts/angelbird_angelbirdmedia-happynewyear-activity-7412432460572946433-a0ne",
+        "result": "OK",
+        "final_url": "https://de.linkedin.com/posts/angelbird_angelbirdmedia-happynewyear-activity-7412432460572946433-a0ne"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://de.linkedin.com/posts/angelbird_angelbirdmedia-happynewyear-activity-7412432460572946433-a0ne",
+        "source_date": "2026-01-01",
+        "title": "Angelbird Technologies’ Post"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/marketplace/item/2329672664510923/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fmarketplace%2Fitem%2F2329672664510923%2F"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/angelbird_we-are-proud-to-be-the-%F0%9D%90%8F%F0%9D%90%AB%F0%9D%90%A2%F0%9D%90%A6%F0%9D%90%9E-%F0%9D%90%8F%F0%9D%90%9A%F0%9D%90%AB%F0%9D%90%AD%F0%9D%90%A7%F0%9D%90%9E%F0%9D%90%AB-activity-7449821964984033281-PNdn",
+        "result": "OK",
+        "final_url": "https://www.linkedin.com/posts/angelbird_we-are-proud-to-be-the-%F0%9D%90%8F%F0%9D%90%AB%F0%9D%90%A2%F0%9D%90%A6%F0%9D%90%9E-%F0%9D%90%8F%F0%9D%90%9A%F0%9D%90%AB%F0%9D%90%AD%F0%9D%90%A7%F0%9D%90%9E%F0%9D%90%AB-activity-7449821964984033281-PNdn"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/angelbird_we-are-proud-to-be-the-%F0%9D%90%8F%F0%9D%90%AB%F0%9D%90%A2%F0%9D%90%A6%F0%9D%90%9E-%F0%9D%90%8F%F0%9D%90%9A%F0%9D%90%AB%F0%9D%90%AD%F0%9D%90%A7%F0%9D%90%9E%F0%9D%90%AB-activity-7449821964984033281-PNdn",
+        "source_date": "2026-04-14",
+        "title": "Angelbird Technologies’ Post"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/AngelBirdApparel/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/AngelBirdApparel/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Reddit",
+        "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+        "result": "HTTP 403",
+        "final_url": null
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/globaldistributiongroup_mpts2026-postproduction-broadcast-activity-7462435808579325952-FuSb",
+        "result": "OK",
+        "final_url": "https://www.linkedin.com/posts/globaldistributiongroup_mpts2026-postproduction-broadcast-activity-7462435808579325952-FuSb"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/globaldistributiongroup_mpts2026-postproduction-broadcast-activity-7462435808579325952-FuSb",
+        "source_date": "2026-05-19",
+        "title": "Global Distribution’s Post"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/krisjonnes/posts/pfbid0VJrQC5shWVVHSJXsVSxoN9xxDwHJsoqksbnvMZvwpqWeTXLShQex1H1Mj3pQonPUl"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/henrik-heise-240a1434_see-you-at-bsc-expo-2026-i-will-be-there-activity-7426928676178391040-jApG",
+        "result": "OK",
+        "final_url": "https://www.linkedin.com/posts/henrik-heise-240a1434_see-you-at-bsc-expo-2026-i-will-be-there-activity-7426928676178391040-jApG"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.linkedin.com/posts/henrik-heise-240a1434_see-you-at-bsc-expo-2026-i-will-be-there-activity-7426928676178391040-jApG",
+        "source_date": "2026-02-10",
+        "title": "Henrik Heise’s Post"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
+        "result": "OK",
+        "final_url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.netnewsledger.com/2026/10/29/best-sd-and-cfexpress-cards-for-northern-ontario-where-to-spend-and-where-to-save/",
+        "source_date": "2026-10-29",
+        "title": "Best SD and CFexpress Cards for Northern Ontario: Where to Spend and Where to Save"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Facebook",
+        "url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/",
+        "result": "OK",
+        "final_url": "https://www.facebook.com/groups/1638124317453327/permalink/1803619377570486/"
+      },
+      {
+        "stage": "source-fetch",
+        "group": "Industry articles",
+        "url": "https://www.fujirumors.com/fujifilm-updates-cfexpress-type-b-recommendations-this-is-whats-changed/",
+        "result": "OK",
+        "final_url": "https://www.fujirumors.com/fujifilm-updates-cfexpress-type-b-recommendations-this-is-whats-changed/"
+      },
+      {
+        "stage": "unverified-date",
+        "group": "Industry articles",
+        "url": "https://www.fujirumors.com/fujifilm-updates-cfexpress-type-b-recommendations-this-is-whats-changed/",
+        "source_date": "2026-10-06",
+        "title": "Fujifilm Updates CFexpress Type B Recommendations – This is What’s Changed"
+      }
+    ],
+    "counts": {
+      "YouTube.api_searches": 1,
+      "Facebook.wrong_source_domain": 54,
+      "Facebook.successful_queries": 7,
+      "Facebook.brave_not_configured": 7,
+      "Facebook.fallback_attempts": 1,
+      "Facebook.candidates": 10,
+      "Facebook.fallback_candidates": 7,
+      "Facebook.queries": 7,
+      "Instagram.wrong_source_domain": 71,
+      "Instagram.successful_queries": 7,
+      "Instagram.brave_not_configured": 7,
+      "Instagram.fallback_attempts": 1,
+      "Instagram.fallback_candidates": 7,
+      "Instagram.queries": 7,
+      "LinkedIn.wrong_source_domain": 68,
+      "LinkedIn.successful_queries": 7,
+      "LinkedIn.brave_not_configured": 7,
+      "LinkedIn.fallback_attempts": 1,
+      "LinkedIn.fallback_candidates": 7,
+      "LinkedIn.queries": 7,
+      "X / Twitter.wrong_source_domain": 45,
+      "X / Twitter.successful_queries": 6,
+      "X / Twitter.brave_not_configured": 6,
+      "X / Twitter.fallback_attempts": 1,
+      "X / Twitter.queries": 6,
+      "Reddit.wrong_source_domain": 48,
+      "Reddit.successful_queries": 6,
+      "Reddit.brave_not_configured": 6,
+      "Reddit.fallback_attempts": 1,
+      "Reddit.candidates": 7,
+      "Reddit.fallback_candidates": 5,
+      "Reddit.queries": 6,
+      "YouTube.wrong_source_domain": 38,
+      "YouTube.successful_queries": 5,
+      "YouTube.brave_not_configured": 5,
+      "YouTube.fallback_attempts": 1,
+      "YouTube.queries": 5,
+      "Camera forums.wrong_source_domain": 48,
+      "Camera forums.successful_queries": 6,
+      "Camera forums.brave_not_configured": 6,
+      "Camera forums.fallback_attempts": 1,
+      "Camera forums.candidates": 1,
+      "Camera forums.fallback_candidates": 8,
+      "Camera forums.queries": 6,
+      "Industry articles.irrelevant_index_hits": 43,
+      "Industry articles.successful_queries": 6,
+      "Industry articles.brave_not_configured": 5,
+      "Industry articles.fallback_attempts": 1,
+      "Industry articles.queries": 6,
+      "Retailers.wrong_source_domain": 42,
+      "Retailers.successful_queries": 6,
+      "Retailers.brave_not_configured": 6,
+      "Retailers.fallback_attempts": 1,
+      "Retailers.candidates": 4,
+      "Retailers.fallback_candidates": 10,
+      "Retailers.queries": 6,
+      "Industry articles.wrong_source_domain": 1,
+      "Industry articles.candidates": 10,
+      "Facebook.source_attempts": 10,
+      "Facebook.no_brand_original": 9,
+      "Reddit.source_attempts": 7,
+      "Reddit.fetch_failed": 7,
+      "Reddit.index_only_leads": 7,
+      "Camera forums.source_attempts": 1,
+      "Camera forums.fetch_failed": 1,
+      "Industry articles.source_attempts": 10,
+      "Industry articles.not_dated_today": 10,
+      "Retailers.source_attempts": 4,
+      "Retailers.observations": 1,
+      "Retailers.no_brand_original": 1,
+      "Retailers.fetch_failed": 2,
+      "Facebook.noindex": 1,
+      "Facebook.index_only_leads": 1
+    },
+    "search_queries": 56,
+    "original_pages_attempted": 32,
+    "cached_images": 0,
+    "undated_brand_sources": 8,
+    "previous_five_day_brand_sources": 0
+  },
+  {
+    "scope": "Scheduled platform-specific GPT web research",
+    "data": [
+      {
+        "scope": "social",
+        "status": "completed",
+        "api_calls": 1,
+        "search_events": 1,
+        "merged": {
+          "today_findings": 0,
+          "unverified_leads": 0,
+          "older_leads": 0,
+          "retail_observations": 0
+        }
+      },
+      {
+        "scope": "community",
+        "status": "completed",
+        "api_calls": 1,
+        "search_events": 1,
+        "merged": {
+          "today_findings": 0,
+          "unverified_leads": 0,
+          "older_leads": 0,
+          "retail_observations": 0
+        }
+      },
+      {
+        "scope": "editorial",
+        "status": "completed",
+        "api_calls": 1,
+        "search_events": 1,
+        "merged": {
+          "today_findings": 0,
+          "unverified_leads": 0,
+          "older_leads": 0,
+          "retail_observations": 0
+        }
+      }
+    ]
+  },
+  {
+    "scope": "Historical source image cache",
+    "data": {
+      "cached_report_images": 1,
+      "original_post_preview_checks": 9,
+      "image_audit": [
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/AskPhotography/comments/11ygujt/bad_performance_from_angelbird_sd/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/Nikon/comments/16whcwr/anyone_using_angelbird_cards/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/VIDEOENGINEERING/comments/zgfiy4/christmas_came_early_what_do_you_guys_think_of/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/A7siii/comments/1bu3u8g/new_angelbird_cfexpress_type_a_card_on_the_way/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/nikon_Zseries/comments/1codmb3/memory_cards_for_z8_and_z6ii_why_are_angelbirds/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/bmpcc/comments/1xgk022/comment/19rs28muiwts0/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.reddit.com/r/SONYFX5/comments/1xcb61q/cost_of_sony_tough_express_cards_before_huge/",
+          "status": "HTTP 403"
+        },
+        {
+          "stage": "post-image-discovery",
+          "url": "https://www.facebook.com/groups/119748031506310/permalink/3768832623264481/",
+          "status": "original page advertised source preview",
+          "image_url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6376bf&_nc_ohc=BlsZOPDolxUQ7kNvwG1DSeY&_nc_oc=AdoZEsykeNWPazGaHNRfa4nF1rSzrGSw_qW9IByAet2X3qt2rGJDvGWxpiByVvvOGa8&_nc_zt=23&se=-1&_nc_ht=scontent-iad3-1.xx&_nc_gid=6_gMxXnVfeB4yNnfBLYBqQ&_nc_ss=7b100&oh=00_AQQS_tuCr3xCQfLAbWLZcRHo4GgzU6PPQ59GY3SvOm8SsA&oe=6B06929B"
+        },
+        {
+          "stage": "image",
+          "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/870412795_10239287345514050_986361792707841183_n.jpg?stp=cp6_dst-jpegr_tt6&cstp=mx1339x2048&ctp=p600x600&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6376bf&_nc_ohc=BlsZOPDolxUQ7kNvwG1DSeY&_nc_oc=AdoZEsykeNWPazGaHNRfa4nF1rSzrGSw_qW9IByAet2X3qt2rGJDvGWxpiByVvvOGa8&_nc_zt=23&se=-1&_nc_ht=scontent-iad3-1.xx&_nc_gid=6_gMxXnVfeB4yNnfBLYBqQ&_nc_ss=7b100&oh=00_AQQS_tuCr3xCQfLAbWLZcRHo4GgzU6PPQ59GY3SvOm8SsA&oe=6B06929B",
+          "result": "cached attributed thumbnail",
+          "asset": "assets/2026/11/2026-11-21/original_001.jpg"
+        }
+      ]
+    }
+  }
+]
