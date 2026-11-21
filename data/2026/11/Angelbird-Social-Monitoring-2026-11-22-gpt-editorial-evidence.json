@@ -1,0 +1,31 @@
+{
+  "report_date": "2026-11-22",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "complete",
+  "headline": "Angelbird Brand Monitoring Report for November 22, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "Angelbird Official Website",
+      "summary": "Angelbird's official website provides comprehensive information on their product lineup, including current and legacy products such as SSDs, memory cards, card readers, cables, firmware, software, accessories, and services. The website also offers datasheets, manuals, and software downloads for various products, ensuring users have access to the latest technical details and support materials.",
+      "checked": true
+    },
+    {
+      "platform": "Angelbird Downloads Page",
+      "summary": "The Downloads section on Angelbird's website offers datasheets, manuals, and software for their products. For instance, the AV PRO SE CFexpress B 512 GB card has its datasheet and manual available for download, providing users with essential specifications and usage instructions.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "The monitoring focused on Angelbird's official website to gather the most accurate and up-to-date information on their product offerings, support materials, and any recent updates or announcements."
+}
