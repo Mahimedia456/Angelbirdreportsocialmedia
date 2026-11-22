@@ -1,5 +1,6 @@
 {
-  "status": "failed",
+  "status": "completed",
   "scope": "editorial",
-  "error": "Expecting value: line 1 column 1 (char 0)"
+  "api_calls": 1,
+  "web_search_events": 1
 }

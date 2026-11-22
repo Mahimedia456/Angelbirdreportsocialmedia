@@ -12,12 +12,12 @@
         "ttl_30m_tokens": 0
       }
     },
-    "output_tokens": 4199,
+    "output_tokens": 338,
     "output_tokens_details": {
       "reasoning_tokens": 0
     },
-    "total_tokens": 14150
+    "total_tokens": 10289
   },
-  "response_id": "resp_02e0266d967dc400006b035260e9bc87d19733bcadccf07182",
+  "response_id": "resp_0af9a0b081bf1234006b037cc25ec887d09123939c1461e598",
   "pricing": "OpenAI account usage dashboard; dollar cap not guaranteed"
 }

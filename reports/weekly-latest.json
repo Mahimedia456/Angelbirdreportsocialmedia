@@ -1,12 +1,12 @@
 {
   "period": "weekly",
-  "start": "2026-11-10",
-  "end": "2026-11-16",
-  "path": "reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-11-10_to_2026-11-16.pdf",
-  "snapshots": 6,
+  "start": "2026-11-17",
+  "end": "2026-11-23",
+  "path": "reports/2026/11/Angelbird-Social-Monitoring-Weekly-2026-11-17_to_2026-11-23.pdf",
+  "snapshots": 7,
   "archived_findings": 0,
   "dated_findings": 0,
-  "unverified_leads": 2,
+  "unverified_leads": 3,
   "platform_counts": {
     "Facebook": 0,
     "Instagram": 0,
@@ -30,25 +30,27 @@
     "YouTube": 0,
     "Camera Forums": 0,
     "Google / News / Articles": 1,
-    "Retailers": 1
+    "Retailers": 2
   },
   "unique_social_url_groups": 0,
   "linked_reply_excerpts": 0,
-  "daily_coverage_percent": 85.7,
+  "daily_coverage_percent": 100.0,
   "source_media": {
     "embedded_verified": 0,
     "linked_verified": 0,
     "embedded_leads": 0,
-    "linked_leads": 1,
+    "linked_leads": 2,
     "missing_media_verified": 0
   },
-  "retail_observations_count": 0,
+  "retail_observations_count": 1,
   "official_catalog_items": 79,
   "official_catalog_pages": 36,
   "brand_scope_mode": "brand_wide_all_products_services_and_mentions",
-  "retailer_store_counts": {},
+  "retailer_store_counts": {
+    "www.angelbird.com": 1
+  },
   "retailer_price_reference_count": 0,
-  "retail_unique_urls": 0,
+  "retail_unique_urls": 1,
   "post_analytics_rows": [
     [
       "Facebook",
@@ -235,8 +237,8 @@
     [
       "Retailers",
       0,
-      1,
-      1,
+      2,
+      2,
       0,
       0,
       0
@@ -252,15 +254,15 @@
         ],
         [
           "Pending leads",
-          2
+          3
         ],
         [
           "Unique source URLs",
-          2
+          3
         ],
         [
           "Days captured",
-          "6/7"
+          "7/7"
         ]
       ]
     ],
@@ -353,7 +355,7 @@
       [
         [
           "Retail entries",
-          0
+          1
         ],
         [
           "Articles",
@@ -395,7 +397,7 @@
   "rejected_synthetic_example_urls": [],
   "overall_kpi": {
     "dated_records": 0,
-    "pending_leads": 2,
+    "pending_leads": 3,
     "metrics": {
       "views": null,
       "likes": null,

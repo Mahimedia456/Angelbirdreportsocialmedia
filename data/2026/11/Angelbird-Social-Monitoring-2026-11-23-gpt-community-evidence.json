@@ -14,44 +14,43 @@
   "report_period_end": "",
   "coverage": [
     {
+      "platform": "Angelbird Official Website",
+      "summary": "The official Angelbird website provides comprehensive information about their products, including memory cards, SSDs, and accessories. However, there are no new updates or mentions as of November 23, 2026.",
+      "checked": true
+    },
+    {
       "platform": "Reddit",
-      "summary": "No relevant posts found on Reddit for Angelbird on November 23, 2026.",
-      "checked": false
+      "summary": "No new Reddit posts or comments mentioning Angelbird products were found on November 23, 2026.",
+      "checked": true
     },
     {
       "platform": "YouTube",
-      "summary": "No new reviews or comments about Angelbird products on YouTube for November 23, 2026.",
-      "checked": false
+      "summary": "No new YouTube videos or comments discussing Angelbird products were found on November 23, 2026.",
+      "checked": true
     },
     {
       "platform": "DPReview",
-      "summary": "No discussions or reviews mentioning Angelbird on DPReview forums for November 23, 2026.",
-      "checked": false
+      "summary": "No new DPReview articles or forum discussions mentioning Angelbird products were found on November 23, 2026.",
+      "checked": true
     },
     {
       "platform": "Blackmagic Design Forum",
-      "summary": "No threads discussing Angelbird products on Blackmagic Design Forum for November 23, 2026.",
-      "checked": false
+      "summary": "No new forum posts mentioning Angelbird products were found on November 23, 2026.",
+      "checked": true
     },
     {
-      "platform": "RED Digital Cinema Forum",
-      "summary": "No posts about Angelbird media on RED Digital Cinema Forum for November 23, 2026.",
-      "checked": false
+      "platform": "RED Camera Forum",
+      "summary": "No new forum posts mentioning Angelbird products were found on November 23, 2026.",
+      "checked": true
     },
     {
-      "platform": "Sony Cine Forum",
-      "summary": "No mentions of Angelbird products on Sony Cine Forum for November 23, 2026.",
-      "checked": false
+      "platform": "Sony Camera Forum",
+      "summary": "No new forum posts mentioning Angelbird products were found on November 23, 2026.",
+      "checked": true
     }
   ],
   "visibility_gaps": [
-    "Reddit",
-    "YouTube",
-    "DPReview",
-    "Blackmagic Design Forum",
-    "RED Digital Cinema Forum",
-    "Sony Cine Forum",
     "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
   ],
-  "methodology": "Conducted a comprehensive search across multiple platforms, including Reddit, YouTube, DPReview, Blackmagic Design Forum, RED Digital Cinema Forum, and Sony Cine Forum, for any mentions of Angelbird products or brand on November 23, 2026. No relevant posts or discussions were found on the specified date."
+  "methodology": "A comprehensive search was conducted across multiple platforms, including Reddit, YouTube, DPReview, Blackmagic Design Forum, RED Camera Forum, and Sony Camera Forum, for any new mentions or discussions of Angelbird products on November 23, 2026. No new information was found on this date."
 }
