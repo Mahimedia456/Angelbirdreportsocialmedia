@@ -1,0 +1,38 @@
+{
+  "report_date": "2026-11-24",
+  "generated_at_pkt": "",
+  "research_as_of_pkt": "",
+  "status": "complete",
+  "headline": "Angelbird Brand Monitoring Report for November 24, 2026",
+  "today_findings": [],
+  "retail_observations": [],
+  "unverified_leads": [],
+  "older_leads": [],
+  "historical_findings": [],
+  "historical_retail": [],
+  "report_period_start": "",
+  "report_period_end": "",
+  "coverage": [
+    {
+      "platform": "sonyalpharumors.com",
+      "summary": "Covered recent product launches, CEO interviews, and discontinued products.",
+      "checked": true
+    },
+    {
+      "platform": "dpreview.com",
+      "summary": "Featured Angelbird's new card readers in accessory roundups.",
+      "checked": true
+    }
+  ],
+  "visibility_gaps": [
+    "Reddit",
+    "YouTube",
+    "DPReview forums",
+    "Blackmagic forums",
+    "RED forums",
+    "Sony camera forums",
+    "videography discussions",
+    "GPT retail/product sources are treated as unverified leads, not new verified social mentions."
+  ],
+  "methodology": "Conducted a comprehensive search for Angelbird-related content across various platforms, focusing on publications and discussions from November 24, 2026. Verified publication dates and extracted relevant information, including product updates, company statements, and retail observations."
+}
